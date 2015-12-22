@@ -22,8 +22,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="DoUser">
-      <soap12:operation soapAction="urn:MainService/DoUser" style="document" />
+    <wsdl:operation name="GetUser">
+      <soap12:operation soapAction="urn:MainService/GetUser" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

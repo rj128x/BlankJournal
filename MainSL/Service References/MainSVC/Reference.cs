@@ -69,10 +69,10 @@ namespace MainSL.MainSVC {
         
         void EndDoWork(System.IAsyncResult result);
         
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:MainService/DoUser", ReplyAction="urn:MainService/DoUserResponse")]
-        System.IAsyncResult BeginDoUser(MainSL.MainSVC.User idr, System.AsyncCallback callback, object asyncState);
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:MainService/GetUser", ReplyAction="urn:MainService/GetUserResponse")]
+        System.IAsyncResult BeginGetUser(System.AsyncCallback callback, object asyncState);
         
-        int EndDoUser(System.IAsyncResult result);
+        MainSL.MainSVC.User EndGetUser(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -81,19 +81,19 @@ namespace MainSL.MainSVC {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class DoUserCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class GetUserCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        public DoUserCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        public GetUserCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
         
-        public int Result {
+        public MainSL.MainSVC.User Result {
             get {
                 base.RaiseExceptionIfNecessary();
-                return ((int)(this.results[0]));
+                return ((MainSL.MainSVC.User)(this.results[0]));
             }
         }
     }
@@ -108,11 +108,11 @@ namespace MainSL.MainSVC {
         
         private System.Threading.SendOrPostCallback onDoWorkCompletedDelegate;
         
-        private BeginOperationDelegate onBeginDoUserDelegate;
+        private BeginOperationDelegate onBeginGetUserDelegate;
         
-        private EndOperationDelegate onEndDoUserDelegate;
+        private EndOperationDelegate onEndGetUserDelegate;
         
-        private System.Threading.SendOrPostCallback onDoUserCompletedDelegate;
+        private System.Threading.SendOrPostCallback onGetUserCompletedDelegate;
         
         private BeginOperationDelegate onBeginOpenDelegate;
         
@@ -169,7 +169,7 @@ namespace MainSL.MainSVC {
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> DoWorkCompleted;
         
-        public event System.EventHandler<DoUserCompletedEventArgs> DoUserCompleted;
+        public event System.EventHandler<GetUserCompletedEventArgs> GetUserCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
         
@@ -219,49 +219,47 @@ namespace MainSL.MainSVC {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult MainSL.MainSVC.MainService.BeginDoUser(MainSL.MainSVC.User idr, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginDoUser(idr, callback, asyncState);
+        System.IAsyncResult MainSL.MainSVC.MainService.BeginGetUser(System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetUser(callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        int MainSL.MainSVC.MainService.EndDoUser(System.IAsyncResult result) {
-            return base.Channel.EndDoUser(result);
+        MainSL.MainSVC.User MainSL.MainSVC.MainService.EndGetUser(System.IAsyncResult result) {
+            return base.Channel.EndGetUser(result);
         }
         
-        private System.IAsyncResult OnBeginDoUser(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            MainSL.MainSVC.User idr = ((MainSL.MainSVC.User)(inValues[0]));
-            return ((MainSL.MainSVC.MainService)(this)).BeginDoUser(idr, callback, asyncState);
+        private System.IAsyncResult OnBeginGetUser(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            return ((MainSL.MainSVC.MainService)(this)).BeginGetUser(callback, asyncState);
         }
         
-        private object[] OnEndDoUser(System.IAsyncResult result) {
-            int retVal = ((MainSL.MainSVC.MainService)(this)).EndDoUser(result);
+        private object[] OnEndGetUser(System.IAsyncResult result) {
+            MainSL.MainSVC.User retVal = ((MainSL.MainSVC.MainService)(this)).EndGetUser(result);
             return new object[] {
                     retVal};
         }
         
-        private void OnDoUserCompleted(object state) {
-            if ((this.DoUserCompleted != null)) {
+        private void OnGetUserCompleted(object state) {
+            if ((this.GetUserCompleted != null)) {
                 InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.DoUserCompleted(this, new DoUserCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+                this.GetUserCompleted(this, new GetUserCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
             }
         }
         
-        public void DoUserAsync(MainSL.MainSVC.User idr) {
-            this.DoUserAsync(idr, null);
+        public void GetUserAsync() {
+            this.GetUserAsync(null);
         }
         
-        public void DoUserAsync(MainSL.MainSVC.User idr, object userState) {
-            if ((this.onBeginDoUserDelegate == null)) {
-                this.onBeginDoUserDelegate = new BeginOperationDelegate(this.OnBeginDoUser);
+        public void GetUserAsync(object userState) {
+            if ((this.onBeginGetUserDelegate == null)) {
+                this.onBeginGetUserDelegate = new BeginOperationDelegate(this.OnBeginGetUser);
             }
-            if ((this.onEndDoUserDelegate == null)) {
-                this.onEndDoUserDelegate = new EndOperationDelegate(this.OnEndDoUser);
+            if ((this.onEndGetUserDelegate == null)) {
+                this.onEndGetUserDelegate = new EndOperationDelegate(this.OnEndGetUser);
             }
-            if ((this.onDoUserCompletedDelegate == null)) {
-                this.onDoUserCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnDoUserCompleted);
+            if ((this.onGetUserCompletedDelegate == null)) {
+                this.onGetUserCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetUserCompleted);
             }
-            base.InvokeAsync(this.onBeginDoUserDelegate, new object[] {
-                        idr}, this.onEndDoUserDelegate, this.onDoUserCompletedDelegate, userState);
+            base.InvokeAsync(this.onBeginGetUserDelegate, null, this.onEndGetUserDelegate, this.onGetUserCompletedDelegate, userState);
         }
         
         private System.IAsyncResult OnBeginOpen(object[] inValues, System.AsyncCallback callback, object asyncState) {
@@ -351,16 +349,15 @@ namespace MainSL.MainSVC {
                 base.EndInvoke("DoWork", _args, result);
             }
             
-            public System.IAsyncResult BeginDoUser(MainSL.MainSVC.User idr, System.AsyncCallback callback, object asyncState) {
-                object[] _args = new object[1];
-                _args[0] = idr;
-                System.IAsyncResult _result = base.BeginInvoke("DoUser", _args, callback, asyncState);
+            public System.IAsyncResult BeginGetUser(System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[0];
+                System.IAsyncResult _result = base.BeginInvoke("GetUser", _args, callback, asyncState);
                 return _result;
             }
             
-            public int EndDoUser(System.IAsyncResult result) {
+            public MainSL.MainSVC.User EndGetUser(System.IAsyncResult result) {
                 object[] _args = new object[0];
-                int _result = ((int)(base.EndInvoke("DoUser", _args, result)));
+                MainSL.MainSVC.User _result = ((MainSL.MainSVC.User)(base.EndInvoke("GetUser", _args, result)));
                 return _result;
             }
         }

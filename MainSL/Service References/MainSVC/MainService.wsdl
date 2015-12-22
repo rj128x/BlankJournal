@@ -13,20 +13,20 @@
   <wsdl:message name="MainService_DoWork_OutputMessage">
     <wsdl:part name="parameters" element="DoWorkResponse" />
   </wsdl:message>
-  <wsdl:message name="MainService_DoUser_InputMessage">
-    <wsdl:part name="parameters" element="DoUser" />
+  <wsdl:message name="MainService_GetUser_InputMessage">
+    <wsdl:part name="parameters" element="GetUser" />
   </wsdl:message>
-  <wsdl:message name="MainService_DoUser_OutputMessage">
-    <wsdl:part name="parameters" element="DoUserResponse" />
+  <wsdl:message name="MainService_GetUser_OutputMessage">
+    <wsdl:part name="parameters" element="GetUserResponse" />
   </wsdl:message>
   <wsdl:portType name="MainService">
     <wsdl:operation name="DoWork">
       <wsdl:input wsaw:Action="urn:MainService/DoWork" message="MainService_DoWork_InputMessage" />
       <wsdl:output wsaw:Action="urn:MainService/DoWorkResponse" message="MainService_DoWork_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="DoUser">
-      <wsdl:input wsaw:Action="urn:MainService/DoUser" message="MainService_DoUser_InputMessage" />
-      <wsdl:output wsaw:Action="urn:MainService/DoUserResponse" message="MainService_DoUser_OutputMessage" />
+    <wsdl:operation name="GetUser">
+      <wsdl:input wsaw:Action="urn:MainService/GetUser" message="MainService_GetUser_InputMessage" />
+      <wsdl:output wsaw:Action="urn:MainService/GetUserResponse" message="MainService_GetUser_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
 </wsdl:definitions>

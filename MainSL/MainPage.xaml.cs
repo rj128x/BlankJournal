@@ -14,6 +14,14 @@ namespace MainSL {
 	public partial class MainPage : UserControl {
 		public MainPage() {
 			InitializeComponent();
+			MainSVC.MainServiceClient client = new MainSVC.MainServiceClient();
+			client.GetUserCompleted += client_GetUserCompleted;
+			client.GetUserAsync();
+			
+		}
+
+		void client_GetUserCompleted(object sender, MainSVC.GetUserCompletedEventArgs e) {
+			MessageBox.Show(e.Result.UserName);
 		}
 	}
 }

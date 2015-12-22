@@ -15,8 +15,10 @@ namespace BlankJournal {
 		}
 
 		[OperationContract]
-		public int DoUser(User idr) {
-			return 5;
+		public User GetUser() {
+			User usr = new User();
+			usr.UserName = "masha";
+			return usr;
 		}
 		// Добавьте здесь дополнительные операции и отметьте их атрибутом [OperationContract]
 	}
