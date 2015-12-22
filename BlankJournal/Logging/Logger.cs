@@ -7,7 +7,7 @@ using log4net.Appender;
 using log4net.Config;
 using log4net;
 
-namespace BlankJournal.Logging {
+namespace BlankJournal {
 	public static class Logger {
 		public enum LoggerSource { server, client, ordersContext, objectsContext, usersContext, service }
 		public static log4net.ILog logger;
@@ -37,15 +37,15 @@ namespace BlankJournal.Logging {
 			}
 		}
 
-		public static void info(string str, LoggerSource source) {
+		public static void info(string str, LoggerSource source=LoggerSource.server) {
 			logger.Info(createMessage(str, source));
 		}
 
-		public static void error(string str, LoggerSource source) {
+		public static void error(string str, LoggerSource source=LoggerSource.server) {
 			logger.Error(createMessage(str, source));
 		}
 
-		public static void debug(string str, LoggerSource source) {
+		public static void debug(string str, LoggerSource source=LoggerSource.server) {
 			logger.Debug(createMessage(str, source));
 		}
 

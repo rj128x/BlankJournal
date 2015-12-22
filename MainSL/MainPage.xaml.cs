@@ -18,8 +18,8 @@ namespace MainSL {
 		}
 
 		private void Button_Click(object sender, RoutedEventArgs e) {
-			ServiceReference1.AuthorizationServiceClient client = new ServiceReference1.AuthorizationServiceClient();
-			client.DoWorkAsync();
+			/*ServiceReference1.AuthorizationServiceClient client = new ServiceReference1.AuthorizationServiceClient();
+			client.DoWorkAsync();*/
 		}
 	}
 }

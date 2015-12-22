@@ -1,16 +1,9 @@
-﻿﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <Settings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 			 xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <LogPath>c:/clear</LogPath>
-  <DBDateFormat>yyyy-MM-dd HH:mm:ss</DBDateFormat>
-  <SutVedPath>e:/ToPiramida/sutVed</SutVedPath>
-  <SutVedPathTo>e:/Projects/ARC_53500_SUTVED/sutVed</SutVedPathTo>
 
-  <ErrorMailTo>ChekunovaMV@votges.rushydro.ru</ErrorMailTo>
-  <SMTPServer>mx-votges-021.corp.gidroogk.com</SMTPServer>
-  <SMTPUser>chekunovamv</SMTPUser>
-  <SMTPPassword>rJ320204</SMTPPassword>
-  <SMTPPort>25</SMTPPort>
-  <SMTPDomain>corp</SMTPDomain>
-  <SMTPFrom>chekunovaMV@votges.rushydro.ru</SMTPFrom>
+  <DBServer>localhost</DBServer>
+  <DBName>Blanks</DBName>
+  <DBUser>sa</DBUser>
+  <DBPassword>1</DBPassword>
 </Settings>
