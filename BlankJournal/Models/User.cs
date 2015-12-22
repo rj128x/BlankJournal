@@ -9,11 +9,8 @@ namespace BlankJournal {
 	[DataContract]
 	public class User {
 		[DataMember]
-		public string UserName { get; set; }
+		public string UserName;
 		[DataMember]
-		public string UserLogin { get; set; }
-		public User() {
-
-		}
+		public string UserLogin;
 	}
 }

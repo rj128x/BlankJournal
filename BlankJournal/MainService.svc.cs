@@ -5,27 +5,19 @@ using System.ServiceModel;
 using System.ServiceModel.Activation;
 
 namespace BlankJournal {
-	[ServiceContract(Namespace = "BlankJournal")]
+	[ServiceContract(Namespace = "")]
 	[AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
-	public class AuthorizationService {
+	public class MainService {
 		[OperationContract]
 		public void DoWork() {
-
-			Logger.info("DOWork",Logger.LoggerSource.service);
+			// Добавьте здесь реализацию операции
+			return;
 		}
 
 		[OperationContract]
-		public User getUser() {
-			User user = new User();
-			user.UserLogin = "1";
-			user.UserName = "masha;";
-			return user;
+		public int DoUser(User idr) {
+			return 5;
 		}
-
-		
-		
-
-
 		// Добавьте здесь дополнительные операции и отметьте их атрибутом [OperationContract]
 	}
 }

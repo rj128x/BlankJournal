@@ -21,7 +21,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
-    <SilverlightApplicationList>{09156E4A-1F45-431C-8039-FF4A1FC36A6F}|..\MainSL\MainSL.csproj|ClientBin|True</SilverlightApplicationList>
+    <SilverlightApplicationList>{956A420A-4F83-4327-834C-E867457A916B}|..\MainSL\MainSL.csproj|ClientBin|True</SilverlightApplicationList>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -124,13 +124,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Logging\Logger.cs" />
+    <Compile Include="MainService.svc.cs">
+      <DependentUpon>MainService.svc</DependentUpon>
+    </Compile>
     <Compile Include="Models\BlanksModel.cs" />
     <Compile Include="Models\DBClass.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\AuthorizationService.svc.cs">
-      <DependentUpon>AuthorizationService.svc</DependentUpon>
-    </Compile>
     <Compile Include="Settings\Settings.cs" />
     <Compile Include="XMLSer.cs" />
   </ItemGroup>
@@ -141,9 +141,9 @@
     <Content Include="ClientBin\Debug\MainSL.xap" />
     <Content Include="ClientBin\Release\MainSL.xap" />
     <Content Include="Global.asax" />
+    <Content Include="MainService.svc" />
     <Content Include="MainSLTestPage.aspx" />
     <Content Include="MainSLTestPage.html" />
-    <Content Include="Services\AuthorizationService.svc" />
     <Content Include="Data\MainSettings.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

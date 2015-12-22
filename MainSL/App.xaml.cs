@@ -50,8 +50,7 @@ namespace MainSL {
 				errorMsg = errorMsg.Replace('"', '\'').Replace("\r\n", @"\n");
 
 				System.Windows.Browser.HtmlPage.Window.Eval("throw new Error(\"Unhandled Error in Silverlight Application " + errorMsg + "\");");
-			}
-			catch (Exception) {
+			} catch (Exception) {
 			}
 		}
 	}

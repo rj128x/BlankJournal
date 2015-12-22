@@ -14,12 +14,6 @@ namespace MainSL {
 	public partial class MainPage : UserControl {
 		public MainPage() {
 			InitializeComponent();
-			
-		}
-
-		private void Button_Click(object sender, RoutedEventArgs e) {
-			/*ServiceReference1.AuthorizationServiceClient client = new ServiceReference1.AuthorizationServiceClient();
-			client.DoWorkAsync();*/
 		}
 	}
 }

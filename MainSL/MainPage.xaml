@@ -7,7 +7,6 @@
     d:DesignHeight="300" d:DesignWidth="400">
 
     <Grid x:Name="LayoutRoot" Background="White">
-        <TextBlock Text="HELLO"></TextBlock>
-        <Button Content="PRESS" Click="Button_Click" Width="100" Height="20"/>
+
     </Grid>
 </UserControl>
