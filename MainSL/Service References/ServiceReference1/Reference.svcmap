@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="3ee573a6-ea4d-4054-92f0-369caa6120c1" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.ObjectModel.ObservableCollection`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>false</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:57078/Services/AuthorizationService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="AuthorizationService.wsdl" MetadataType="Wsdl" ID="3f4aa722-c1fd-4ded-8365-81a169c46f9a" SourceId="1" SourceUrl="http://localhost:57078/Services/AuthorizationService.svc?wsdl=wsdl0" />
+    <MetadataFile FileName="AuthorizationService.disco" MetadataType="Disco" ID="9f67edbb-3da2-4d00-95a0-37d0ba02287d" SourceId="1" SourceUrl="http://localhost:57078/Services/AuthorizationService.svc?disco" />
+    <MetadataFile FileName="AuthorizationService.xsd" MetadataType="Schema" ID="5f4fa87d-3c7d-4e00-9ee6-9dc05b7405d3" SourceId="1" SourceUrl="http://localhost:57078/Services/AuthorizationService.svc?xsd=xsd0" />
+    <MetadataFile FileName="AuthorizationService1.wsdl" MetadataType="Wsdl" ID="6ac2a6eb-e5d9-4d90-b34e-dee6e9839234" SourceId="1" SourceUrl="http://localhost:57078/Services/AuthorizationService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

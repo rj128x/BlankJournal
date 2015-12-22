@@ -1,0 +1,5 @@
+[2015-12-22 12:40:48,033] INFO                                                      server               Start
+[2015-12-22 12:41:25,578] INFO                                                      server               Start
+[2015-12-22 12:45:14,354] INFO                                                      server               Start
+[2015-12-22 12:46:11,620] INFO                                                      server               Start
+[2015-12-22 12:46:15,060] INFO       Anonimous                      ::1             service              DOWork
