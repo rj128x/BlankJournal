@@ -12,6 +12,7 @@ namespace BlankJournal.Models {
 		}
 
 		public Dictionary<string, UsersTable> AllUsers;
+		public Dictionary<int, FoldersTable> AllFolders;
 
 		protected void createInitData() {
 			BlankJournal.BlanksEntities eni = new BlanksEntities();
@@ -33,5 +34,7 @@ namespace BlankJournal.Models {
 				return user;
 			}
 		}
+
+		 
 	}
 }

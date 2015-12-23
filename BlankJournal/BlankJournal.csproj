@@ -183,8 +183,6 @@
     <Content Include="ClientBin\Release\MainSL.xap" />
     <Content Include="Global.asax" />
     <Content Include="MainService.svc" />
-    <Content Include="MainSLTestPage.aspx" />
-    <Content Include="MainSLTestPage.html" />
     <Content Include="Data\MainSettings.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
