@@ -12,45 +12,29 @@ using System.Windows.Shapes;
 
 namespace MainSL {
 	public partial class App : Application {
-
 		public App() {
 			this.Startup += this.Application_Startup;
-			this.Exit += this.Application_Exit;
 			this.UnhandledException += this.Application_UnhandledException;
-
+			GlobalContext.init();
 			InitializeComponent();
 		}
 
 		private void Application_Startup(object sender, StartupEventArgs e) {
 			this.RootVisual = new MainPage();
-		}
-
-		private void Application_Exit(object sender, EventArgs e) {
-
+			GlobalContext.Single.Connect();
 		}
 
 		private void Application_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e) {
 			// Если приложение выполняется вне отладчика, воспользуйтесь для сообщения об исключении
-			// механизмом исключений браузера. В IE исключение будет отображаться в виде желтого значка оповещения 
-			// в строке состояния, а в Firefox - в виде ошибки скрипта.
+			// элементом управления ChildWindow.
 			if (!System.Diagnostics.Debugger.IsAttached) {
-
 				// ПРИМЕЧАНИЕ. Это позволит приложению выполняться после того, как исключение было выдано,
 				// но не было обработано. 
 				// Для рабочих приложений такую обработку ошибок следует заменить на код, 
 				// оповещающий веб-сайт об ошибке и останавливающий работу приложения.
 				e.Handled = true;
-				Deployment.Current.Dispatcher.BeginInvoke(delegate { ReportErrorToDOM(e); });
-			}
-		}
-
-		private void ReportErrorToDOM(ApplicationUnhandledExceptionEventArgs e) {
-			try {
-				string errorMsg = e.ExceptionObject.Message + e.ExceptionObject.StackTrace;
-				errorMsg = errorMsg.Replace('"', '\'').Replace("\r\n", @"\n");
-
-				System.Windows.Browser.HtmlPage.Window.Eval("throw new Error(\"Unhandled Error in Silverlight Application " + errorMsg + "\");");
-			} catch (Exception) {
+				ChildWindow errorWin = new ErrorWindow(e.ExceptionObject);
+				errorWin.Show();
 			}
 		}
 	}

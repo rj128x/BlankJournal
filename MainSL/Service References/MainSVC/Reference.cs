@@ -17,12 +17,42 @@ namespace MainSL.MainSVC {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="User", Namespace="http://schemas.datacontract.org/2004/07/BlankJournal")]
-    public partial class User : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Runtime.Serialization.DataContractAttribute(Name="Users", Namespace="http://schemas.datacontract.org/2004/07/BlankJournal")]
+    public partial class Users : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private bool IsNOSField;
+        
+        private bool IsNSSField;
         
         private string UserLoginField;
         
         private string UserNameField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsNOS {
+            get {
+                return this.IsNOSField;
+            }
+            set {
+                if ((this.IsNOSField.Equals(value) != true)) {
+                    this.IsNOSField = value;
+                    this.RaisePropertyChanged("IsNOS");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsNSS {
+            get {
+                return this.IsNSSField;
+            }
+            set {
+                if ((this.IsNSSField.Equals(value) != true)) {
+                    this.IsNSSField = value;
+                    this.RaisePropertyChanged("IsNSS");
+                }
+            }
+        }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string UserLogin {
@@ -72,7 +102,7 @@ namespace MainSL.MainSVC {
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:MainService/GetUser", ReplyAction="urn:MainService/GetUserResponse")]
         System.IAsyncResult BeginGetUser(System.AsyncCallback callback, object asyncState);
         
-        MainSL.MainSVC.User EndGetUser(System.IAsyncResult result);
+        MainSL.MainSVC.Users EndGetUser(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -90,10 +120,10 @@ namespace MainSL.MainSVC {
             this.results = results;
         }
         
-        public MainSL.MainSVC.User Result {
+        public MainSL.MainSVC.Users Result {
             get {
                 base.RaiseExceptionIfNecessary();
-                return ((MainSL.MainSVC.User)(this.results[0]));
+                return ((MainSL.MainSVC.Users)(this.results[0]));
             }
         }
     }
@@ -224,7 +254,7 @@ namespace MainSL.MainSVC {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        MainSL.MainSVC.User MainSL.MainSVC.MainService.EndGetUser(System.IAsyncResult result) {
+        MainSL.MainSVC.Users MainSL.MainSVC.MainService.EndGetUser(System.IAsyncResult result) {
             return base.Channel.EndGetUser(result);
         }
         
@@ -233,7 +263,7 @@ namespace MainSL.MainSVC {
         }
         
         private object[] OnEndGetUser(System.IAsyncResult result) {
-            MainSL.MainSVC.User retVal = ((MainSL.MainSVC.MainService)(this)).EndGetUser(result);
+            MainSL.MainSVC.Users retVal = ((MainSL.MainSVC.MainService)(this)).EndGetUser(result);
             return new object[] {
                     retVal};
         }
@@ -355,9 +385,9 @@ namespace MainSL.MainSVC {
                 return _result;
             }
             
-            public MainSL.MainSVC.User EndGetUser(System.IAsyncResult result) {
+            public MainSL.MainSVC.Users EndGetUser(System.IAsyncResult result) {
                 object[] _args = new object[0];
-                MainSL.MainSVC.User _result = ((MainSL.MainSVC.User)(base.EndInvoke("GetUser", _args, result)));
+                MainSL.MainSVC.Users _result = ((MainSL.MainSVC.Users)(base.EndInvoke("GetUser", _args, result)));
                 return _result;
             }
         }

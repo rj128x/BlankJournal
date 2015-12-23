@@ -16,12 +16,13 @@ namespace BlankJournal {
 			WebApiConfig.Register(GlobalConfiguration.Configuration);
 			FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
 			RouteConfig.RegisterRoutes(RouteTable.Routes);
+
 			
 			Logger.init(Server.MapPath("/logs/"), "blanks");
 			Logger.info("Start",Logger.LoggerSource.server);
 
 			Settings.init(Server.MapPath("/bin/Data/MainSettings.xml"));
-			BlanksModel.init();
+			//BlanksModel.init();
 		}
 	}
 }

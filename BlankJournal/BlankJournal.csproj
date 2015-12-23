@@ -17,11 +17,11 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
-    <IISExpressUseClassicPipelineMode />
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>enabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
     <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
-    <SilverlightApplicationList>{956A420A-4F83-4327-834C-E867457A916B}|..\MainSL\MainSL.csproj|ClientBin|True</SilverlightApplicationList>
+    <SilverlightApplicationList>{3CCF8F30-A0FB-41F7-A5CC-162B6AAE1EF7}|..\MainSL\MainSL.csproj|ClientBin|False</SilverlightApplicationList>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -39,16 +39,25 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <IncludeIisSettings>false</IncludeIisSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="log4net">
       <HintPath>libs\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -127,11 +136,26 @@
     <Compile Include="MainService.svc.cs">
       <DependentUpon>MainService.svc</DependentUpon>
     </Compile>
-    <Compile Include="Models\BlanksModel.cs" />
-    <Compile Include="Models\DBClass.cs" />
-    <Compile Include="Models\User.cs" />
+    <Compile Include="ModelDBBlanks.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelDBBlanks.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelDBBlanks.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelDBBlanks.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelDBBlanks.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelDBBlanks.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings\Settings.cs" />
+    <Compile Include="Users.cs">
+      <DependentUpon>ModelDBBlanks.tt</DependentUpon>
+    </Compile>
     <Compile Include="XMLSer.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -139,6 +163,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="ClientBin\Debug\MainSL.xap" />
+    <Content Include="ClientBin\MainSL.xap" />
     <Content Include="ClientBin\Release\MainSL.xap" />
     <Content Include="Global.asax" />
     <Content Include="MainService.svc" />
@@ -149,7 +174,9 @@
     </Content>
     <Content Include="Silverlight.js" />
     <Content Include="Views\Home\MainPage.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -158,9 +185,38 @@
     </Content>
     <Content Include="App_Data\Views\Web.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="ModelDBBlanks.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelDBBlanks.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ModelDBBlanks.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelDBBlanks.edmx</DependentUpon>
+      <LastGenOutput>ModelDBBlanks.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ModelDBBlanks.edmx.diagram">
+      <DependentUpon>ModelDBBlanks.edmx</DependentUpon>
+    </Content>
+    <Content Include="ModelDBBlanks.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelDBBlanks.edmx</DependentUpon>
+      <LastGenOutput>ModelDBBlanks.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\Blanks.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -180,7 +236,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>57690</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:57078/</IISUrl>
+          <IISUrl>http://localhost:8095/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

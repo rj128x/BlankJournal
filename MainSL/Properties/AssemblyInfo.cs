@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("MainSL")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("RusHydro")]
 [assembly: AssemblyProduct("MainSL")]
-[assembly: AssemblyCopyright("Copyright ©  2015")]
+[assembly: AssemblyCopyright("© RusHydro 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Следующий GUID служит для идентификации библиотеки типов, если этот проект видим для COM
-[assembly: Guid("956a420a-4f83-4327-834c-e867457a916b")]
+[assembly: Guid("3ccf8f30-a0fb-41f7-a5cc-162b6aae1ef7")]
 
 // Сведения о версии сборки состоят из следующих четырех значений:
 //
