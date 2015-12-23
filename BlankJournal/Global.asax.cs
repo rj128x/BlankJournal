@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlankJournal.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -22,6 +23,7 @@ namespace BlankJournal {
 			Logger.info("Start",Logger.LoggerSource.server);
 
 			Settings.init(Server.MapPath("/bin/Data/MainSettings.xml"));
+			DBContext.Init();
 			//BlanksModel.init();
 		}
 	}

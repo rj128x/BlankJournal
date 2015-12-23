@@ -1,0 +1,12 @@
+﻿<ResourceDictionary
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+  xmlns:conv ="clr-namespace:MainSL.Converters"  
+    xmlns:gl ="clr-namespace:MainSL" >
+
+    <conv:VisibilityConverter x:Key="visibilityConverter"/>
+    <conv:VisibilityNotConverter x:Key="visibilityNotConverter"/>
+    <conv:LogicNotConverter x:Key="logicNotConverter"/>
+    <gl:GlobalContext x:Key="globalContext"/>
+</ResourceDictionary>

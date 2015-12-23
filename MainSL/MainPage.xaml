@@ -22,7 +22,7 @@
             </navigation:Frame>
         </Border>
 
-        <Grid x:Name="NavigationGrid" Style="{StaticResource NavigationGridStyle}">
+        <Grid x:Name="NavigationGrid" Style="{StaticResource NavigationGridStyle}" DataContext="{Binding }">
 
             <Border x:Name="BrandingBorder" Style="{StaticResource BrandingBorderStyle}">
                 <StackPanel x:Name="BrandingStackPanel" Style="{StaticResource BrandingStackPanelStyle}">
@@ -38,7 +38,7 @@
                 <StackPanel x:Name="LinksStackPanel" Style="{StaticResource LinksStackPanelStyle}">
 
                     <HyperlinkButton x:Name="Link1" Style="{StaticResource LinkStyle}" 
-                                     NavigateUri="/Home" TargetName="ContentFrame" Content="домашняя страница"/>
+                                     NavigateUri="/Home" TargetName="ContentFrame" Content="ТБП"/>
 									 
                     <Rectangle x:Name="Divider1" Style="{StaticResource DividerStyle}"/>
 					
@@ -58,7 +58,7 @@
                 </Grid.ColumnDefinitions>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="2">
                     <TextBlock x:Name="LoginText" Text="Вы вошли как: "/>
-                    <TextBlock x:Name="LoginName" Text="{Binding CurrentUser.Name, Mode=OneWay}"/>
+                    <TextBlock x:Name="LoginName" Text="{Binding Single.CurrentUser.Name, Mode=OneWay, Source={StaticResource globalContext}}"/>
                 </StackPanel>
             </Grid>
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlankJournal.Models;
+using System;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
@@ -17,11 +18,7 @@ namespace BlankJournal {
 
 		[OperationContract]
 		public UsersTable GetUser() {
-			string login = HttpContext.Current.User.Identity.Name;
-			UsersTable usr = new UsersTable();
-			usr.Name = login;
-			
-			return usr;
+			return DBContext.Single.GetCurrentUser();
 		}
 		// Добавьте здесь дополнительные операции и отметьте их атрибутом [OperationContract]
 	}

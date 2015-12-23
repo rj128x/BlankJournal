@@ -15,7 +15,7 @@ namespace MainSL {
 	public partial class MainPage : UserControl {
 		public MainPage() {
 			InitializeComponent();
-			loginContainer.DataContext = GlobalContext.Single;
+			//loginContainer.DataContext = GlobalContext.Single;
 			
 			
 		}
