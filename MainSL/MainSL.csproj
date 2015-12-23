@@ -134,9 +134,6 @@
     <None Include="Service References\MainSVC\MainService1.xsd" />
     <None Include="Service References\MainSVC\MainService2.xsd" />
     <Content Include="ServiceReferences.ClientConfig" />
-    <None Include="Service References\MainSVC\MainSL.MainSVC.Users.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
@@ -154,6 +151,9 @@
     <None Include="Service References\MainSVC\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Service References\MainSVC\MainSL.MainSVC.UsersTable.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\MainSVC\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>

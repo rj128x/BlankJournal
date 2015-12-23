@@ -20,11 +20,11 @@ namespace MainSL {
 			Single = new GlobalContext();
 		}
 		public GlobalContext() {
-			CurrentUser = new Users();
-			CurrentUser.UserName = "Noname";
+			CurrentUser = new UsersTable();
+			CurrentUser.Name = "Noname";
 		}
 
-		public static readonly DependencyProperty CurrentUserProperty = DependencyProperty.Register("CurrentUser", typeof(Users), typeof(GlobalContext),META);
+		public static readonly DependencyProperty CurrentUserProperty = DependencyProperty.Register("CurrentUser", typeof(UsersTable), typeof(GlobalContext), META);
 		public static readonly DependencyProperty IsBusyProperty = DependencyProperty.Register("IsBusy", typeof(bool), typeof(GlobalContext), META);
 
 
@@ -34,8 +34,8 @@ namespace MainSL {
 			set {SetValue(IsBusyProperty,value);}
 		}
 				
-		public Users CurrentUser {
-			get { return (Users)GetValue(CurrentUserProperty); }
+		public UsersTable CurrentUser {
+			get { return (UsersTable)GetValue(CurrentUserProperty); }
 			set { SetValue(CurrentUserProperty, value); }
 		}
 		
@@ -51,7 +51,7 @@ namespace MainSL {
 		void Client_GetUserCompleted(object sender, GetUserCompletedEventArgs e) {
 			IsBusy = false;
 			CurrentUser = e.Result;
-			MessageBox.Show(String.Format("Добро пожаловать, {0}!", CurrentUser.UserName));
+			MessageBox.Show(String.Format("Добро пожаловать, {0}!", CurrentUser.Name));
 		}
 	}
 }

@@ -16,10 +16,10 @@ namespace BlankJournal {
 		}
 
 		[OperationContract]
-		public Users GetUser() {
+		public UsersTable GetUser() {
 			string login = HttpContext.Current.User.Identity.Name;
-			Users usr = new Users();
-			usr.UserName = login;
+			UsersTable usr = new UsersTable();
+			usr.Name = login;
 			
 			return usr;
 		}

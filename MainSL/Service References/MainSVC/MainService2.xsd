@@ -1,12 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/BlankJournal" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/BlankJournal" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:complexType name="Users">
+  <xs:complexType name="UsersTable">
     <xs:sequence>
+      <xs:element minOccurs="0" name="BPJournalTable" nillable="true" type="tns:ArrayOfBPJournalTable" />
       <xs:element minOccurs="0" name="IsNOS" type="xs:boolean" />
       <xs:element minOccurs="0" name="IsNSS" type="xs:boolean" />
-      <xs:element minOccurs="0" name="UserLogin" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Login" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TBPCommentsTable" nillable="true" type="tns:ArrayOfTBPCommentsTable" />
+      <xs:element minOccurs="0" name="TBPCommentsTable1" nillable="true" type="tns:ArrayOfTBPCommentsTable" />
+      <xs:element minOccurs="0" name="TBPHistoryTable" nillable="true" type="tns:ArrayOfTBPHistoryTable" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="Users" nillable="true" type="tns:Users" />
+  <xs:element name="UsersTable" nillable="true" type="tns:UsersTable" />
+  <xs:complexType name="ArrayOfBPJournalTable">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BPJournalTable" nillable="true" type="tns:BPJournalTable" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBPJournalTable" nillable="true" type="tns:ArrayOfBPJournalTable" />
+  <xs:complexType name="BPJournalTable">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Author" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Comment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DateCreate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DateEnd" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DateStart" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Number" type="xs:double" />
+      <xs:element minOccurs="0" name="PDFData" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="TBPInfoTable" nillable="true" type="tns:TBPInfoTable" />
+      <xs:element minOccurs="0" name="TBPNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UsersTable" nillable="true" type="tns:UsersTable" />
+      <xs:element minOccurs="0" name="WordData" nillable="true" type="xs:base64Binary" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BPJournalTable" nillable="true" type="tns:BPJournalTable" />
+  <xs:complexType name="TBPInfoTable">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BPJournalTable" nillable="true" type="tns:ArrayOfBPJournalTable" />
+      <xs:element minOccurs="0" name="DataPDF" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="DataWord" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="Folder" type="xs:int" />
+      <xs:element minOccurs="0" name="FoldersTable" nillable="true" type="tns:FoldersTable" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Number" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TBPCommentsTable" nillable="true" type="tns:ArrayOfTBPCommentsTable" />
+      <xs:element minOccurs="0" name="TBPHistoryTable" nillable="true" type="tns:ArrayOfTBPHistoryTable" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TBPInfoTable" nillable="true" type="tns:TBPInfoTable" />
+  <xs:complexType name="FoldersTable">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TBPInfoTable" nillable="true" type="tns:ArrayOfTBPInfoTable" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FoldersTable" nillable="true" type="tns:FoldersTable" />
+  <xs:complexType name="ArrayOfTBPInfoTable">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TBPInfoTable" nillable="true" type="tns:TBPInfoTable" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTBPInfoTable" nillable="true" type="tns:ArrayOfTBPInfoTable" />
+  <xs:complexType name="ArrayOfTBPCommentsTable">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TBPCommentsTable" nillable="true" type="tns:TBPCommentsTable" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTBPCommentsTable" nillable="true" type="tns:ArrayOfTBPCommentsTable" />
+  <xs:complexType name="TBPCommentsTable">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Author" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Comment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CommentPerform" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Performer" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TBPInfoTable" nillable="true" type="tns:TBPInfoTable" />
+      <xs:element minOccurs="0" name="TBPNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UsersTable" nillable="true" type="tns:UsersTable" />
+      <xs:element minOccurs="0" name="UsersTable1" nillable="true" type="tns:UsersTable" />
+      <xs:element minOccurs="0" name="WordData" nillable="true" type="xs:base64Binary" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TBPCommentsTable" nillable="true" type="tns:TBPCommentsTable" />
+  <xs:complexType name="ArrayOfTBPHistoryTable">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TBPHistoryTable" nillable="true" type="tns:TBPHistoryTable" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTBPHistoryTable" nillable="true" type="tns:ArrayOfTBPHistoryTable" />
+  <xs:complexType name="TBPHistoryTable">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Author" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="NewPDFData" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="NewWordData" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="PrevPDFData" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="PrevWordData" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="TBPInfoTable" nillable="true" type="tns:TBPInfoTable" />
+      <xs:element minOccurs="0" name="TBPNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UsersTable" nillable="true" type="tns:UsersTable" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TBPHistoryTable" nillable="true" type="tns:TBPHistoryTable" />
 </xs:schema>

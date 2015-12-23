@@ -58,7 +58,7 @@
                 </Grid.ColumnDefinitions>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="2">
                     <TextBlock x:Name="LoginText" Text="Вы вошли как: "/>
-                    <TextBlock x:Name="LoginName" Text="{Binding CurrentUser.UserName, Mode=OneWay}"/>
+                    <TextBlock x:Name="LoginName" Text="{Binding CurrentUser.Name, Mode=OneWay}"/>
                 </StackPanel>
             </Grid>
 
