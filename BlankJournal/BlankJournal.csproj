@@ -136,26 +136,8 @@
     <Compile Include="MainService.svc.cs">
       <DependentUpon>MainService.svc</DependentUpon>
     </Compile>
-    <Compile Include="ModelDBBlanks.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelDBBlanks.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelDBBlanks.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelDBBlanks.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelDBBlanks.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelDBBlanks.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings\Settings.cs" />
-    <Compile Include="Users.cs">
-      <DependentUpon>ModelDBBlanks.tt</DependentUpon>
-    </Compile>
     <Compile Include="XMLSer.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -190,27 +172,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EntityDeploy Include="ModelDBBlanks.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModelDBBlanks.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ModelDBBlanks.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelDBBlanks.edmx</DependentUpon>
-      <LastGenOutput>ModelDBBlanks.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="ModelDBBlanks.edmx.diagram">
-      <DependentUpon>ModelDBBlanks.edmx</DependentUpon>
-    </Content>
-    <Content Include="ModelDBBlanks.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelDBBlanks.edmx</DependentUpon>
-      <LastGenOutput>ModelDBBlanks.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
