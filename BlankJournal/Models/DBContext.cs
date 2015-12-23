@@ -14,8 +14,8 @@ namespace BlankJournal.Models {
 		public Dictionary<string, UsersTable> AllUsers;
 
 		protected void createInitData() {
-			Entities eni = new Entities();
-			IQueryable<UsersTable> users = from UsersTable usr in eni.UsersTable select usr;
+			BlankJournal.BlanksEntities eni = new BlanksEntities();
+			IQueryable<UsersTable> users = eni.UsersTable.Where(usr => true);
 			AllUsers = new Dictionary<string, UsersTable>();
 			foreach (UsersTable user in users) {
 				AllUsers.Add(user.Login.ToLower(), user);

@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BlankJournal.Models
+namespace BlankJournal
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Entities : DbContext
+    public partial class BlanksEntities : DbContext
     {
-        public Entities()
-            : base("name=Entities")
+        public BlanksEntities()
+            : base("name=BlanksEntities")
         {
         }
     
@@ -27,7 +27,6 @@ namespace BlankJournal.Models
     
         public virtual DbSet<BPJournalTable> BPJournalTable { get; set; }
         public virtual DbSet<FoldersTable> FoldersTable { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<TBPCommentsTable> TBPCommentsTable { get; set; }
         public virtual DbSet<TBPHistoryTable> TBPHistoryTable { get; set; }
         public virtual DbSet<TBPInfoTable> TBPInfoTable { get; set; }

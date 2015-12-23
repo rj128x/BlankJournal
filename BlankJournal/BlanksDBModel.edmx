@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище DBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище BlanksModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BPJournalTable">
           <Key>
             <PropertyRef Name="Id" />
@@ -27,16 +27,6 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="TBPCommentsTable">
           <Key>
@@ -177,10 +167,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Хранилище DBModelContainer">
+        <EntityContainer Name="Хранилище BlanksModelContainer">
           <EntitySet Name="BPJournalTable" EntityType="Self.BPJournalTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FoldersTable" EntityType="Self.FoldersTable" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBPCommentsTable" EntityType="Self.TBPCommentsTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBPHistoryTable" EntityType="Self.TBPHistoryTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBPInfoTable" EntityType="Self.TBPInfoTable" Schema="dbo" store:Type="Tables" />
@@ -222,7 +211,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="BlanksModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="BPJournalTable">
           <Key>
             <PropertyRef Name="Id" />
@@ -248,16 +237,6 @@
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="TBPInfoTable" Relationship="Self.FK_TBPInfoTable_FoldersTable" FromRole="FoldersTable" ToRole="TBPInfoTable" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="TBPCommentsTable">
           <Key>
@@ -411,10 +390,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="BlanksEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="BPJournalTable" EntityType="Self.BPJournalTable" />
           <EntitySet Name="FoldersTable" EntityType="Self.FoldersTable" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="TBPCommentsTable" EntityType="Self.TBPCommentsTable" />
           <EntitySet Name="TBPHistoryTable" EntityType="Self.TBPHistoryTable" />
           <EntitySet Name="TBPInfoTable" EntityType="Self.TBPInfoTable" />
@@ -457,9 +435,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище DBModelContainer" CdmEntityContainer="Entities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище BlanksModelContainer" CdmEntityContainer="BlanksEntities">
           <EntitySetMapping Name="BPJournalTable">
-            <EntityTypeMapping TypeName="DBModel.BPJournalTable">
+            <EntityTypeMapping TypeName="BlanksModel.BPJournalTable">
               <MappingFragment StoreEntitySet="BPJournalTable">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Number" ColumnName="Number" />
@@ -476,26 +454,15 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="FoldersTable">
-            <EntityTypeMapping TypeName="DBModel.FoldersTable">
+            <EntityTypeMapping TypeName="BlanksModel.FoldersTable">
               <MappingFragment StoreEntitySet="FoldersTable">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="DBModel.sysdiagrams">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TBPCommentsTable">
-            <EntityTypeMapping TypeName="DBModel.TBPCommentsTable">
+            <EntityTypeMapping TypeName="BlanksModel.TBPCommentsTable">
               <MappingFragment StoreEntitySet="TBPCommentsTable">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="TBPNumber" ColumnName="TBPNumber" />
@@ -508,7 +475,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TBPHistoryTable">
-            <EntityTypeMapping TypeName="DBModel.TBPHistoryTable">
+            <EntityTypeMapping TypeName="BlanksModel.TBPHistoryTable">
               <MappingFragment StoreEntitySet="TBPHistoryTable">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="TBPNumber" ColumnName="TBPNumber" />
@@ -521,7 +488,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TBPInfoTable">
-            <EntityTypeMapping TypeName="DBModel.TBPInfoTable">
+            <EntityTypeMapping TypeName="BlanksModel.TBPInfoTable">
               <MappingFragment StoreEntitySet="TBPInfoTable">
                 <ScalarProperty Name="Number" ColumnName="Number" />
                 <ScalarProperty Name="Folder" ColumnName="Folder" />
@@ -532,7 +499,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UsersTable">
-            <EntityTypeMapping TypeName="DBModel.UsersTable">
+            <EntityTypeMapping TypeName="BlanksModel.UsersTable">
               <MappingFragment StoreEntitySet="UsersTable">
                 <ScalarProperty Name="Login" ColumnName="Login" />
                 <ScalarProperty Name="Name" ColumnName="Name" />

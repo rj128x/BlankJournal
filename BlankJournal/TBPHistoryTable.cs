@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BlankJournal.Models
+namespace BlankJournal
 {
     using System;
     using System.Collections.Generic;

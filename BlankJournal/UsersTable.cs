@@ -7,29 +7,29 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BlankJournal.Models
+namespace BlankJournal
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class TBPInfoTable
+    public partial class UsersTable
     {
-        public TBPInfoTable()
+        public UsersTable()
         {
             this.BPJournalTable = new HashSet<BPJournalTable>();
             this.TBPCommentsTable = new HashSet<TBPCommentsTable>();
+            this.TBPCommentsTable1 = new HashSet<TBPCommentsTable>();
             this.TBPHistoryTable = new HashSet<TBPHistoryTable>();
         }
     
-        public string Number { get; set; }
-        public int Folder { get; set; }
+        public string Login { get; set; }
         public string Name { get; set; }
-        public byte[] DataPDF { get; set; }
-        public byte[] DataWord { get; set; }
+        public bool IsNOS { get; set; }
+        public bool IsNSS { get; set; }
     
         public virtual ICollection<BPJournalTable> BPJournalTable { get; set; }
-        public virtual FoldersTable FoldersTable { get; set; }
         public virtual ICollection<TBPCommentsTable> TBPCommentsTable { get; set; }
+        public virtual ICollection<TBPCommentsTable> TBPCommentsTable1 { get; set; }
         public virtual ICollection<TBPHistoryTable> TBPHistoryTable { get; set; }
     }
 }
