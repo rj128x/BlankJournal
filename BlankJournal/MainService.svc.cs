@@ -43,6 +43,11 @@ namespace BlankJournal {
 		}
 
 		[OperationContract]
+		public IQueryable<JournalRecord> GetJournalBP() {
+			return DBContext.Single.GetJournalBP().AsQueryable();
+		}
+
+		[OperationContract]
 		public ReturnMessage CreateTBP(TBPInfo newBlank) {
 			return DBContext.Single.createTBP(newBlank);
 		}

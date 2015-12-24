@@ -32,6 +32,12 @@
   <wsdl:message name="MainService_GetTBPBlanksByFolder_OutputMessage">
     <wsdl:part name="parameters" element="GetTBPBlanksByFolderResponse" />
   </wsdl:message>
+  <wsdl:message name="MainService_GetJournalBP_InputMessage">
+    <wsdl:part name="parameters" element="GetJournalBP" />
+  </wsdl:message>
+  <wsdl:message name="MainService_GetJournalBP_OutputMessage">
+    <wsdl:part name="parameters" element="GetJournalBPResponse" />
+  </wsdl:message>
   <wsdl:message name="MainService_CreateTBP_InputMessage">
     <wsdl:part name="parameters" element="CreateTBP" />
   </wsdl:message>
@@ -72,6 +78,10 @@
     <wsdl:operation name="GetTBPBlanksByFolder">
       <wsdl:input wsaw:Action="urn:MainService/GetTBPBlanksByFolder" message="MainService_GetTBPBlanksByFolder_InputMessage" />
       <wsdl:output wsaw:Action="urn:MainService/GetTBPBlanksByFolderResponse" message="MainService_GetTBPBlanksByFolder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetJournalBP">
+      <wsdl:input wsaw:Action="urn:MainService/GetJournalBP" message="MainService_GetJournalBP_InputMessage" />
+      <wsdl:output wsaw:Action="urn:MainService/GetJournalBPResponse" message="MainService_GetJournalBP_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="CreateTBP">
       <wsdl:input wsaw:Action="urn:MainService/CreateTBP" message="MainService_CreateTBP_InputMessage" />

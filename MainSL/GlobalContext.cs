@@ -30,7 +30,7 @@ namespace MainSL {
 		public static readonly DependencyProperty IsBusyProperty = DependencyProperty.Register("IsBusy", typeof(bool), typeof(GlobalContext), META);
 
 		public Dictionary<int, Folder> AllFolders;
-		public event FinishLoad onFinishLoadFolders;
+		public event FinishLoad onFinishLoad;
 
 		public  MainServiceClient Client;
 		public bool IsBusy { 
@@ -51,27 +51,26 @@ namespace MainSL {
 			IsBusy = true;
 			Client.GetUserCompleted += Client_GetUserCompleted;
 			Client.GetUserAsync();
+			
 		}
 
-		public void LoadFolders() {			
-			Client.GetAllFoldersCompleted += Client_GetAllFoldersCompleted;
-			Client.GetAllFoldersAsync();
-		}
 
 		void Client_GetAllFoldersCompleted(object sender, GetAllFoldersCompletedEventArgs e) {
 			AllFolders = new Dictionary<int, Folder>();
 			foreach (Folder fld in e.Result) {
 				AllFolders.Add(fld.ID, fld);
 			}
-			if (onFinishLoadFolders != null)
-				onFinishLoadFolders();
+			if (onFinishLoad != null)
+				onFinishLoad();
 		}
 
 
 		void Client_GetUserCompleted(object sender, GetUserCompletedEventArgs e) {
 			IsBusy = false;
-			CurrentUser = e.Result;
+			CurrentUser = e.Result;			
 			MessageBox.Show(String.Format("Добро пожаловать, {0}!", CurrentUser.Name));
+			Client.GetAllFoldersCompleted += Client_GetAllFoldersCompleted;
+			Client.GetAllFoldersAsync();
 		}
 
 		public void CreateBlank(TBPInfo newBlank) {

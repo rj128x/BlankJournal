@@ -197,51 +197,6 @@ namespace MainSL.MainSVC {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ReturnMessage", Namespace="http://schemas.datacontract.org/2004/07/BlankJournal")]
-    public partial class ReturnMessage : object, System.ComponentModel.INotifyPropertyChanged {
-        
-        private string MessageField;
-        
-        private bool ResultField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Message {
-            get {
-                return this.MessageField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.MessageField, value) != true)) {
-                    this.MessageField = value;
-                    this.RaisePropertyChanged("Message");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool Result {
-            get {
-                return this.ResultField;
-            }
-            set {
-                if ((this.ResultField.Equals(value) != true)) {
-                    this.ResultField = value;
-                    this.RaisePropertyChanged("Result");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="JournalRecord", Namespace="http://schemas.datacontract.org/2004/07/BlankJournal.Models")]
     public partial class JournalRecord : object, System.ComponentModel.INotifyPropertyChanged {
         
@@ -390,6 +345,51 @@ namespace MainSL.MainSVC {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ReturnMessage", Namespace="http://schemas.datacontract.org/2004/07/BlankJournal")]
+    public partial class ReturnMessage : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private string MessageField;
+        
+        private bool ResultField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Message {
+            get {
+                return this.MessageField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MessageField, value) != true)) {
+                    this.MessageField = value;
+                    this.RaisePropertyChanged("Message");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Result {
+            get {
+                return this.ResultField;
+            }
+            set {
+                if ((this.ResultField.Equals(value) != true)) {
+                    this.ResultField = value;
+                    this.RaisePropertyChanged("Result");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(Namespace="", ConfigurationName="MainSVC.MainService")]
     public interface MainService {
@@ -413,6 +413,11 @@ namespace MainSL.MainSVC {
         System.IAsyncResult BeginGetTBPBlanksByFolder(int folderID, System.AsyncCallback callback, object asyncState);
         
         System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPInfo> EndGetTBPBlanksByFolder(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:MainService/GetJournalBP", ReplyAction="urn:MainService/GetJournalBPResponse")]
+        System.IAsyncResult BeginGetJournalBP(System.AsyncCallback callback, object asyncState);
+        
+        System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.JournalRecord> EndGetJournalBP(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:MainService/CreateTBP", ReplyAction="urn:MainService/CreateTBPResponse")]
         System.IAsyncResult BeginCreateTBP(MainSL.MainSVC.TBPInfo newBlank, System.AsyncCallback callback, object asyncState);
@@ -492,6 +497,25 @@ namespace MainSL.MainSVC {
             get {
                 base.RaiseExceptionIfNecessary();
                 return ((System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPInfo>)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetJournalBPCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetJournalBPCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.JournalRecord> Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.JournalRecord>)(this.results[0]));
             }
         }
     }
@@ -600,6 +624,12 @@ namespace MainSL.MainSVC {
         
         private System.Threading.SendOrPostCallback onGetTBPBlanksByFolderCompletedDelegate;
         
+        private BeginOperationDelegate onBeginGetJournalBPDelegate;
+        
+        private EndOperationDelegate onEndGetJournalBPDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetJournalBPCompletedDelegate;
+        
         private BeginOperationDelegate onBeginCreateTBPDelegate;
         
         private EndOperationDelegate onEndCreateTBPDelegate;
@@ -684,6 +714,8 @@ namespace MainSL.MainSVC {
         public event System.EventHandler<GetAllFoldersCompletedEventArgs> GetAllFoldersCompleted;
         
         public event System.EventHandler<GetTBPBlanksByFolderCompletedEventArgs> GetTBPBlanksByFolderCompleted;
+        
+        public event System.EventHandler<GetJournalBPCompletedEventArgs> GetJournalBPCompleted;
         
         public event System.EventHandler<CreateTBPCompletedEventArgs> CreateTBPCompleted;
         
@@ -872,6 +904,50 @@ namespace MainSL.MainSVC {
             }
             base.InvokeAsync(this.onBeginGetTBPBlanksByFolderDelegate, new object[] {
                         folderID}, this.onEndGetTBPBlanksByFolderDelegate, this.onGetTBPBlanksByFolderCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult MainSL.MainSVC.MainService.BeginGetJournalBP(System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetJournalBP(callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.JournalRecord> MainSL.MainSVC.MainService.EndGetJournalBP(System.IAsyncResult result) {
+            return base.Channel.EndGetJournalBP(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetJournalBP(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            return ((MainSL.MainSVC.MainService)(this)).BeginGetJournalBP(callback, asyncState);
+        }
+        
+        private object[] OnEndGetJournalBP(System.IAsyncResult result) {
+            System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.JournalRecord> retVal = ((MainSL.MainSVC.MainService)(this)).EndGetJournalBP(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetJournalBPCompleted(object state) {
+            if ((this.GetJournalBPCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetJournalBPCompleted(this, new GetJournalBPCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetJournalBPAsync() {
+            this.GetJournalBPAsync(null);
+        }
+        
+        public void GetJournalBPAsync(object userState) {
+            if ((this.onBeginGetJournalBPDelegate == null)) {
+                this.onBeginGetJournalBPDelegate = new BeginOperationDelegate(this.OnBeginGetJournalBP);
+            }
+            if ((this.onEndGetJournalBPDelegate == null)) {
+                this.onEndGetJournalBPDelegate = new EndOperationDelegate(this.OnEndGetJournalBP);
+            }
+            if ((this.onGetJournalBPCompletedDelegate == null)) {
+                this.onGetJournalBPCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetJournalBPCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetJournalBPDelegate, null, this.onEndGetJournalBPDelegate, this.onGetJournalBPCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -1179,6 +1255,18 @@ namespace MainSL.MainSVC {
             public System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPInfo> EndGetTBPBlanksByFolder(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPInfo> _result = ((System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPInfo>)(base.EndInvoke("GetTBPBlanksByFolder", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginGetJournalBP(System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[0];
+                System.IAsyncResult _result = base.BeginInvoke("GetJournalBP", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.JournalRecord> EndGetJournalBP(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.JournalRecord> _result = ((System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.JournalRecord>)(base.EndInvoke("GetJournalBP", _args, result)));
                 return _result;
             }
             

@@ -18,8 +18,15 @@ namespace BlankJournal.Models {
 		}
 
 		public JournalRecord(BPJournalTable tbl) {
-			
-
+			Number = tbl.Id;
+			Task = tbl.Name;
+			Comment = tbl.Comment;
+			Author = DBContext.Single.AllUsers[tbl.Author].Name;
+			DoubleNumber = tbl.Number;
+			DateStart = tbl.DateStart;
+			DateEnd = tbl.DateEnd;
+			isOBP = tbl.isOBP;
+			TBPNumber = tbl.TBPNumber;
 		}
 
 		public static JournalRecord initTBPRecord(TBPInfo tbp) {
@@ -37,7 +44,7 @@ namespace BlankJournal.Models {
 			else {
 				rec.DoubleNumber = date.Year + 0.001;
 			}
-			rec.Number = String.Format("ТБП № {0}-{1}/{2}", tbp.Number, Math.Truncate(rec.DoubleNumber), Math.Round((rec.DoubleNumber - date.Year) * 1000));
+			rec.Number = String.Format("ТБП № {0}-{2}/{1}", tbp.Number, Math.Truncate(rec.DoubleNumber), Math.Round((rec.DoubleNumber - date.Year) * 1000));
 			rec.Author = DBContext.Single.GetCurrentUser().Login;
 			rec.Task = tbp.Name;
 			rec.isOBP = false;
@@ -60,7 +67,7 @@ namespace BlankJournal.Models {
 			else {
 				rec.DoubleNumber = date.Year + 0.001;
 			}
-			rec.Number = String.Format("ОБП № {0}/{1}", Math.Truncate(rec.DoubleNumber), Math.Round((rec.DoubleNumber - date.Year) * 1000));
+			rec.Number = String.Format("ОБП № {1}/{0}", Math.Truncate(rec.DoubleNumber), Math.Round((rec.DoubleNumber - date.Year) * 1000));
 			rec.Author = DBContext.Single.GetCurrentUser().Login;
 			rec.Task = tbp.Name;
 			rec.isOBP = true;

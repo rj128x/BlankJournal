@@ -15,6 +15,12 @@ namespace MainSL.Views {
 	public partial class JournalPage : Page {
 		public JournalPage() {
 			InitializeComponent();
+			GlobalContext.Single.Client.GetJournalBPCompleted += Client_GetJournalBPCompleted;
+			GlobalContext.Single.Client.GetJournalBPAsync();
+		}
+
+		void Client_GetJournalBPCompleted(object sender, MainSVC.GetJournalBPCompletedEventArgs e) {
+			grdBlanks.ItemsSource = e.Result;
 		}
 
 		// Выполняется, когда пользователь переходит на эту страницу.

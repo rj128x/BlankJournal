@@ -14,13 +14,17 @@ namespace MainSL {
 	public partial class App : Application {
 		public App() {
 			this.Startup += this.Application_Startup;
-			this.UnhandledException += this.Application_UnhandledException;
+			this.UnhandledException += this.Application_UnhandledException;			
 			GlobalContext.init();
+			GlobalContext.Single.onFinishLoad+=Single_onFinishLoad;
 			InitializeComponent();
 		}
 
-		private void Application_Startup(object sender, StartupEventArgs e) {
+		public void Single_onFinishLoad() {
 			this.RootVisual = new MainPage();
+		}
+
+		private void Application_Startup(object sender, StartupEventArgs e) {			
 			GlobalContext.Single.Connect();
 		}
 

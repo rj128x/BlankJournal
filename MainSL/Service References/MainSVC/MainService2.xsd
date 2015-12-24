@@ -36,6 +36,12 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="TBPInfo" nillable="true" type="tns:TBPInfo" />
+  <xs:complexType name="ArrayOfJournalRecord">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="JournalRecord" nillable="true" type="tns:JournalRecord" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfJournalRecord" nillable="true" type="tns:ArrayOfJournalRecord" />
   <xs:complexType name="JournalRecord">
     <xs:sequence>
       <xs:element minOccurs="0" name="Author" nillable="true" type="xs:string" />

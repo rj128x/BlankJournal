@@ -17,8 +17,7 @@ namespace MainSL {
 	public partial class Home : Page {
 		public Home() {
 			InitializeComponent();
-			GlobalContext.Single.onFinishLoadFolders += Single_onFinishLoadFolders;
-			GlobalContext.Single.LoadFolders();
+
 			GlobalContext.Single.Client.GetTBPBlanksByFolderCompleted += Client_GetTBPBlanksByFolderCompleted;
 			GlobalContext.Single.Client.InitOBPCompleted+=Client_InitOBPCompleted;
 			GlobalContext.Single.Client.InitTBPCompleted += Client_InitTBPCompleted;
@@ -34,17 +33,6 @@ namespace MainSL {
 
 		public Folder CurrentFolder;
 
-		void Single_onFinishLoadFolders() {
-			foreach (Folder folder in GlobalContext.Single.AllFolders.Values) {
-				Button btn = new Button();
-				btn.Content = folder.Name;
-				btn.Height = 30;
-				btn.Name = "btnFolder_" + folder.ID;
-				pnlFolders.Children.Add(btn);
-				btn.Click += btn_Click;
-			}
-		}
-
 		void btn_Click(object sender, RoutedEventArgs e) {
 			Button btn=sender as Button;
 			int id = Int32.Parse(btn.Name.Replace("btnFolder_", ""));
@@ -57,7 +45,14 @@ namespace MainSL {
 
 		// Выполняется, когда пользователь переходит на эту страницу.
 		protected override void OnNavigatedTo(NavigationEventArgs e) {
-			
+			foreach (Folder folder in GlobalContext.Single.AllFolders.Values) {
+				Button btn = new Button();
+				btn.Content = folder.Name;
+				btn.Height = 30;
+				btn.Name = "btnFolder_" + folder.ID;
+				btn.Click += btn_Click;
+				pnlFolders.Children.Add(btn);
+			}
 		}
 
 		private void Button_Click(object sender, RoutedEventArgs e) {

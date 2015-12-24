@@ -50,6 +50,17 @@ namespace BlankJournal.Models {
 			return result;
 		}
 
+		public List<JournalRecord> GetJournalBP() {
+			List<JournalRecord> result = new List<JournalRecord>();
+			BlankJournal.BlanksEntities eni = new BlanksEntities();
+			IQueryable<BPJournalTable> blanks = from b in eni.BPJournalTable select b;
+			foreach (BPJournalTable tbl in blanks) {
+				result.Add(new JournalRecord(tbl));
+			}
+			return result;
+		}
+
+
 		public ReturnMessage createTBP(TBPInfo newBlank) {
 			BlankJournal.BlanksEntities eni = new BlanksEntities();
 			IQueryable<TBPInfoTable> exist = from b in eni.TBPInfoTable where b.Number == newBlank.Number select b;
