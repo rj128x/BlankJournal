@@ -10,9 +10,11 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using MainSL.MainSVC;
 using System.ComponentModel;
+using System.Collections.Generic;
 
 namespace MainSL {	
 
+	public delegate void FinishLoad();
 	public class GlobalContext : DependencyObject {
 		public static GlobalContext Single { get; protected set; }
 		public static PropertyMetadata META = new PropertyMetadata(null);
@@ -20,22 +22,25 @@ namespace MainSL {
 			Single = new GlobalContext();
 		}
 		public GlobalContext() {
-			CurrentUser = new UsersTable();
+			CurrentUser = new User();
 			CurrentUser.Name = "Noname";
 		}
 
-		public static readonly DependencyProperty CurrentUserProperty = DependencyProperty.Register("CurrentUser", typeof(UsersTable), typeof(GlobalContext), META);
+		public static readonly DependencyProperty CurrentUserProperty = DependencyProperty.Register("CurrentUser", typeof(User), typeof(GlobalContext), META);
 		public static readonly DependencyProperty IsBusyProperty = DependencyProperty.Register("IsBusy", typeof(bool), typeof(GlobalContext), META);
 
+		public Dictionary<int, Folder> AllFolders;
+		public event FinishLoad onFinishLoadFolders;
 
-		protected MainServiceClient Client;
+		public  MainServiceClient Client;
 		public bool IsBusy { 
 			get { return (bool)GetValue(IsBusyProperty);}
 			set {SetValue(IsBusyProperty,value);}
 		}
+
 				
-		public UsersTable CurrentUser {
-			get { return (UsersTable)GetValue(CurrentUserProperty); }
+		public User CurrentUser {
+			get { return (User)GetValue(CurrentUserProperty); }
 			set { SetValue(CurrentUserProperty, value); }
 		}
 		
@@ -45,8 +50,22 @@ namespace MainSL {
 			IsBusy = true;
 			Client.GetUserCompleted += Client_GetUserCompleted;
 			Client.GetUserAsync();
-
 		}
+
+		public void LoadFolders() {			
+			Client.GetAllFoldersCompleted += Client_GetAllFoldersCompleted;
+			Client.GetAllFoldersAsync();
+		}
+
+		void Client_GetAllFoldersCompleted(object sender, GetAllFoldersCompletedEventArgs e) {
+			AllFolders = new Dictionary<int, Folder>();
+			foreach (Folder fld in e.Result) {
+				AllFolders.Add(fld.ID, fld);
+			}
+			if (onFinishLoadFolders != null)
+				onFinishLoadFolders();
+		}
+
 
 		void Client_GetUserCompleted(object sender, GetUserCompletedEventArgs e) {
 			IsBusy = false;

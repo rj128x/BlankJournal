@@ -17,9 +17,16 @@ namespace BlankJournal {
 		}
 
 		[OperationContract]
-		public UsersTable GetUser() {
+		public User GetUser() {
 			return DBContext.Single.GetCurrentUser();
 		}
+
+		[OperationContract]
+		public IQueryable<Folder> GetAllFolders() {
+			return DBContext.Single.AllFolders.Values.AsQueryable();
+		}
+
+
 		// Добавьте здесь дополнительные операции и отметьте их атрибутом [OperationContract]
 	}
 }

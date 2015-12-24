@@ -158,6 +158,9 @@
     <Compile Include="MainService.svc.cs">
       <DependentUpon>MainService.svc</DependentUpon>
     </Compile>
+    <Compile Include="Models\Folder.cs" />
+    <Compile Include="Models\TBPInfo.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings\Settings.cs" />
     <Compile Include="TBPCommentsTable.cs">

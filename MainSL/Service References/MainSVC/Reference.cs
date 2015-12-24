@@ -17,10 +17,8 @@ namespace MainSL.MainSVC {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="UsersTable", Namespace="http://schemas.datacontract.org/2004/07/BlankJournal")]
-    public partial class UsersTable : object, System.ComponentModel.INotifyPropertyChanged {
-        
-        private System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.BPJournalTable> BPJournalTableField;
+    [System.Runtime.Serialization.DataContractAttribute(Name="User", Namespace="http://schemas.datacontract.org/2004/07/BlankJournal.Models")]
+    public partial class User : object, System.ComponentModel.INotifyPropertyChanged {
         
         private bool IsNOSField;
         
@@ -29,25 +27,6 @@ namespace MainSL.MainSVC {
         private string LoginField;
         
         private string NameField;
-        
-        private System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPCommentsTable> TBPCommentsTableField;
-        
-        private System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPCommentsTable> TBPCommentsTable1Field;
-        
-        private System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPHistoryTable> TBPHistoryTableField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.BPJournalTable> BPJournalTable {
-            get {
-                return this.BPJournalTableField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.BPJournalTableField, value) != true)) {
-                    this.BPJournalTableField = value;
-                    this.RaisePropertyChanged("BPJournalTable");
-                }
-            }
-        }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public bool IsNOS {
@@ -101,45 +80,6 @@ namespace MainSL.MainSVC {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPCommentsTable> TBPCommentsTable {
-            get {
-                return this.TBPCommentsTableField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.TBPCommentsTableField, value) != true)) {
-                    this.TBPCommentsTableField = value;
-                    this.RaisePropertyChanged("TBPCommentsTable");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPCommentsTable> TBPCommentsTable1 {
-            get {
-                return this.TBPCommentsTable1Field;
-            }
-            set {
-                if ((object.ReferenceEquals(this.TBPCommentsTable1Field, value) != true)) {
-                    this.TBPCommentsTable1Field = value;
-                    this.RaisePropertyChanged("TBPCommentsTable1");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPHistoryTable> TBPHistoryTable {
-            get {
-                return this.TBPHistoryTableField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.TBPHistoryTableField, value) != true)) {
-                    this.TBPHistoryTableField = value;
-                    this.RaisePropertyChanged("TBPHistoryTable");
-                }
-            }
-        }
-        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -152,109 +92,22 @@ namespace MainSL.MainSVC {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="BPJournalTable", Namespace="http://schemas.datacontract.org/2004/07/BlankJournal")]
-    public partial class BPJournalTable : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Runtime.Serialization.DataContractAttribute(Name="Folder", Namespace="http://schemas.datacontract.org/2004/07/BlankJournal.Models")]
+    public partial class Folder : object, System.ComponentModel.INotifyPropertyChanged {
         
-        private string AuthorField;
-        
-        private string CommentField;
-        
-        private System.DateTime DateCreateField;
-        
-        private System.DateTime DateEndField;
-        
-        private System.DateTime DateStartField;
-        
-        private int IdField;
+        private int IDField;
         
         private string NameField;
         
-        private double NumberField;
-        
-        private byte[] PDFDataField;
-        
-        private MainSL.MainSVC.TBPInfoTable TBPInfoTableField;
-        
-        private string TBPNumberField;
-        
-        private MainSL.MainSVC.UsersTable UsersTableField;
-        
-        private byte[] WordDataField;
-        
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Author {
+        public int ID {
             get {
-                return this.AuthorField;
+                return this.IDField;
             }
             set {
-                if ((object.ReferenceEquals(this.AuthorField, value) != true)) {
-                    this.AuthorField = value;
-                    this.RaisePropertyChanged("Author");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Comment {
-            get {
-                return this.CommentField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CommentField, value) != true)) {
-                    this.CommentField = value;
-                    this.RaisePropertyChanged("Comment");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime DateCreate {
-            get {
-                return this.DateCreateField;
-            }
-            set {
-                if ((this.DateCreateField.Equals(value) != true)) {
-                    this.DateCreateField = value;
-                    this.RaisePropertyChanged("DateCreate");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime DateEnd {
-            get {
-                return this.DateEndField;
-            }
-            set {
-                if ((this.DateEndField.Equals(value) != true)) {
-                    this.DateEndField = value;
-                    this.RaisePropertyChanged("DateEnd");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime DateStart {
-            get {
-                return this.DateStartField;
-            }
-            set {
-                if ((this.DateStartField.Equals(value) != true)) {
-                    this.DateStartField = value;
-                    this.RaisePropertyChanged("DateStart");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
+                if ((this.IDField.Equals(value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
                 }
             }
         }
@@ -268,609 +121,6 @@ namespace MainSL.MainSVC {
                 if ((object.ReferenceEquals(this.NameField, value) != true)) {
                     this.NameField = value;
                     this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public double Number {
-            get {
-                return this.NumberField;
-            }
-            set {
-                if ((this.NumberField.Equals(value) != true)) {
-                    this.NumberField = value;
-                    this.RaisePropertyChanged("Number");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public byte[] PDFData {
-            get {
-                return this.PDFDataField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PDFDataField, value) != true)) {
-                    this.PDFDataField = value;
-                    this.RaisePropertyChanged("PDFData");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public MainSL.MainSVC.TBPInfoTable TBPInfoTable {
-            get {
-                return this.TBPInfoTableField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.TBPInfoTableField, value) != true)) {
-                    this.TBPInfoTableField = value;
-                    this.RaisePropertyChanged("TBPInfoTable");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string TBPNumber {
-            get {
-                return this.TBPNumberField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.TBPNumberField, value) != true)) {
-                    this.TBPNumberField = value;
-                    this.RaisePropertyChanged("TBPNumber");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public MainSL.MainSVC.UsersTable UsersTable {
-            get {
-                return this.UsersTableField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UsersTableField, value) != true)) {
-                    this.UsersTableField = value;
-                    this.RaisePropertyChanged("UsersTable");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public byte[] WordData {
-            get {
-                return this.WordDataField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.WordDataField, value) != true)) {
-                    this.WordDataField = value;
-                    this.RaisePropertyChanged("WordData");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="TBPCommentsTable", Namespace="http://schemas.datacontract.org/2004/07/BlankJournal")]
-    public partial class TBPCommentsTable : object, System.ComponentModel.INotifyPropertyChanged {
-        
-        private string AuthorField;
-        
-        private string CommentField;
-        
-        private string CommentPerformField;
-        
-        private int IdField;
-        
-        private string PerformerField;
-        
-        private MainSL.MainSVC.TBPInfoTable TBPInfoTableField;
-        
-        private string TBPNumberField;
-        
-        private MainSL.MainSVC.UsersTable UsersTableField;
-        
-        private MainSL.MainSVC.UsersTable UsersTable1Field;
-        
-        private byte[] WordDataField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Author {
-            get {
-                return this.AuthorField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AuthorField, value) != true)) {
-                    this.AuthorField = value;
-                    this.RaisePropertyChanged("Author");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Comment {
-            get {
-                return this.CommentField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CommentField, value) != true)) {
-                    this.CommentField = value;
-                    this.RaisePropertyChanged("Comment");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string CommentPerform {
-            get {
-                return this.CommentPerformField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CommentPerformField, value) != true)) {
-                    this.CommentPerformField = value;
-                    this.RaisePropertyChanged("CommentPerform");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Performer {
-            get {
-                return this.PerformerField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PerformerField, value) != true)) {
-                    this.PerformerField = value;
-                    this.RaisePropertyChanged("Performer");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public MainSL.MainSVC.TBPInfoTable TBPInfoTable {
-            get {
-                return this.TBPInfoTableField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.TBPInfoTableField, value) != true)) {
-                    this.TBPInfoTableField = value;
-                    this.RaisePropertyChanged("TBPInfoTable");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string TBPNumber {
-            get {
-                return this.TBPNumberField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.TBPNumberField, value) != true)) {
-                    this.TBPNumberField = value;
-                    this.RaisePropertyChanged("TBPNumber");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public MainSL.MainSVC.UsersTable UsersTable {
-            get {
-                return this.UsersTableField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UsersTableField, value) != true)) {
-                    this.UsersTableField = value;
-                    this.RaisePropertyChanged("UsersTable");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public MainSL.MainSVC.UsersTable UsersTable1 {
-            get {
-                return this.UsersTable1Field;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UsersTable1Field, value) != true)) {
-                    this.UsersTable1Field = value;
-                    this.RaisePropertyChanged("UsersTable1");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public byte[] WordData {
-            get {
-                return this.WordDataField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.WordDataField, value) != true)) {
-                    this.WordDataField = value;
-                    this.RaisePropertyChanged("WordData");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="TBPHistoryTable", Namespace="http://schemas.datacontract.org/2004/07/BlankJournal")]
-    public partial class TBPHistoryTable : object, System.ComponentModel.INotifyPropertyChanged {
-        
-        private string AuthorField;
-        
-        private int IdField;
-        
-        private byte[] NewPDFDataField;
-        
-        private byte[] NewWordDataField;
-        
-        private byte[] PrevPDFDataField;
-        
-        private byte[] PrevWordDataField;
-        
-        private MainSL.MainSVC.TBPInfoTable TBPInfoTableField;
-        
-        private string TBPNumberField;
-        
-        private MainSL.MainSVC.UsersTable UsersTableField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Author {
-            get {
-                return this.AuthorField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AuthorField, value) != true)) {
-                    this.AuthorField = value;
-                    this.RaisePropertyChanged("Author");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public byte[] NewPDFData {
-            get {
-                return this.NewPDFDataField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NewPDFDataField, value) != true)) {
-                    this.NewPDFDataField = value;
-                    this.RaisePropertyChanged("NewPDFData");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public byte[] NewWordData {
-            get {
-                return this.NewWordDataField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NewWordDataField, value) != true)) {
-                    this.NewWordDataField = value;
-                    this.RaisePropertyChanged("NewWordData");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public byte[] PrevPDFData {
-            get {
-                return this.PrevPDFDataField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PrevPDFDataField, value) != true)) {
-                    this.PrevPDFDataField = value;
-                    this.RaisePropertyChanged("PrevPDFData");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public byte[] PrevWordData {
-            get {
-                return this.PrevWordDataField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PrevWordDataField, value) != true)) {
-                    this.PrevWordDataField = value;
-                    this.RaisePropertyChanged("PrevWordData");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public MainSL.MainSVC.TBPInfoTable TBPInfoTable {
-            get {
-                return this.TBPInfoTableField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.TBPInfoTableField, value) != true)) {
-                    this.TBPInfoTableField = value;
-                    this.RaisePropertyChanged("TBPInfoTable");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string TBPNumber {
-            get {
-                return this.TBPNumberField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.TBPNumberField, value) != true)) {
-                    this.TBPNumberField = value;
-                    this.RaisePropertyChanged("TBPNumber");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public MainSL.MainSVC.UsersTable UsersTable {
-            get {
-                return this.UsersTableField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UsersTableField, value) != true)) {
-                    this.UsersTableField = value;
-                    this.RaisePropertyChanged("UsersTable");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="TBPInfoTable", Namespace="http://schemas.datacontract.org/2004/07/BlankJournal")]
-    public partial class TBPInfoTable : object, System.ComponentModel.INotifyPropertyChanged {
-        
-        private System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.BPJournalTable> BPJournalTableField;
-        
-        private byte[] DataPDFField;
-        
-        private byte[] DataWordField;
-        
-        private int FolderField;
-        
-        private MainSL.MainSVC.FoldersTable FoldersTableField;
-        
-        private string NameField;
-        
-        private string NumberField;
-        
-        private System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPCommentsTable> TBPCommentsTableField;
-        
-        private System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPHistoryTable> TBPHistoryTableField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.BPJournalTable> BPJournalTable {
-            get {
-                return this.BPJournalTableField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.BPJournalTableField, value) != true)) {
-                    this.BPJournalTableField = value;
-                    this.RaisePropertyChanged("BPJournalTable");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public byte[] DataPDF {
-            get {
-                return this.DataPDFField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DataPDFField, value) != true)) {
-                    this.DataPDFField = value;
-                    this.RaisePropertyChanged("DataPDF");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public byte[] DataWord {
-            get {
-                return this.DataWordField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DataWordField, value) != true)) {
-                    this.DataWordField = value;
-                    this.RaisePropertyChanged("DataWord");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Folder {
-            get {
-                return this.FolderField;
-            }
-            set {
-                if ((this.FolderField.Equals(value) != true)) {
-                    this.FolderField = value;
-                    this.RaisePropertyChanged("Folder");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public MainSL.MainSVC.FoldersTable FoldersTable {
-            get {
-                return this.FoldersTableField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.FoldersTableField, value) != true)) {
-                    this.FoldersTableField = value;
-                    this.RaisePropertyChanged("FoldersTable");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Number {
-            get {
-                return this.NumberField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NumberField, value) != true)) {
-                    this.NumberField = value;
-                    this.RaisePropertyChanged("Number");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPCommentsTable> TBPCommentsTable {
-            get {
-                return this.TBPCommentsTableField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.TBPCommentsTableField, value) != true)) {
-                    this.TBPCommentsTableField = value;
-                    this.RaisePropertyChanged("TBPCommentsTable");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPHistoryTable> TBPHistoryTable {
-            get {
-                return this.TBPHistoryTableField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.TBPHistoryTableField, value) != true)) {
-                    this.TBPHistoryTableField = value;
-                    this.RaisePropertyChanged("TBPHistoryTable");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="FoldersTable", Namespace="http://schemas.datacontract.org/2004/07/BlankJournal")]
-    public partial class FoldersTable : object, System.ComponentModel.INotifyPropertyChanged {
-        
-        private int IdField;
-        
-        private string NameField;
-        
-        private System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPInfoTable> TBPInfoTableField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPInfoTable> TBPInfoTable {
-            get {
-                return this.TBPInfoTableField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.TBPInfoTableField, value) != true)) {
-                    this.TBPInfoTableField = value;
-                    this.RaisePropertyChanged("TBPInfoTable");
                 }
             }
         }
@@ -897,7 +147,12 @@ namespace MainSL.MainSVC {
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:MainService/GetUser", ReplyAction="urn:MainService/GetUserResponse")]
         System.IAsyncResult BeginGetUser(System.AsyncCallback callback, object asyncState);
         
-        MainSL.MainSVC.UsersTable EndGetUser(System.IAsyncResult result);
+        MainSL.MainSVC.User EndGetUser(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:MainService/GetAllFolders", ReplyAction="urn:MainService/GetAllFoldersResponse")]
+        System.IAsyncResult BeginGetAllFolders(System.AsyncCallback callback, object asyncState);
+        
+        System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.Folder> EndGetAllFolders(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -915,10 +170,29 @@ namespace MainSL.MainSVC {
             this.results = results;
         }
         
-        public MainSL.MainSVC.UsersTable Result {
+        public MainSL.MainSVC.User Result {
             get {
                 base.RaiseExceptionIfNecessary();
-                return ((MainSL.MainSVC.UsersTable)(this.results[0]));
+                return ((MainSL.MainSVC.User)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetAllFoldersCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetAllFoldersCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.Folder> Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.Folder>)(this.results[0]));
             }
         }
     }
@@ -938,6 +212,12 @@ namespace MainSL.MainSVC {
         private EndOperationDelegate onEndGetUserDelegate;
         
         private System.Threading.SendOrPostCallback onGetUserCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetAllFoldersDelegate;
+        
+        private EndOperationDelegate onEndGetAllFoldersDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetAllFoldersCompletedDelegate;
         
         private BeginOperationDelegate onBeginOpenDelegate;
         
@@ -996,6 +276,8 @@ namespace MainSL.MainSVC {
         
         public event System.EventHandler<GetUserCompletedEventArgs> GetUserCompleted;
         
+        public event System.EventHandler<GetAllFoldersCompletedEventArgs> GetAllFoldersCompleted;
+        
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> CloseCompleted;
@@ -1049,7 +331,7 @@ namespace MainSL.MainSVC {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        MainSL.MainSVC.UsersTable MainSL.MainSVC.MainService.EndGetUser(System.IAsyncResult result) {
+        MainSL.MainSVC.User MainSL.MainSVC.MainService.EndGetUser(System.IAsyncResult result) {
             return base.Channel.EndGetUser(result);
         }
         
@@ -1058,7 +340,7 @@ namespace MainSL.MainSVC {
         }
         
         private object[] OnEndGetUser(System.IAsyncResult result) {
-            MainSL.MainSVC.UsersTable retVal = ((MainSL.MainSVC.MainService)(this)).EndGetUser(result);
+            MainSL.MainSVC.User retVal = ((MainSL.MainSVC.MainService)(this)).EndGetUser(result);
             return new object[] {
                     retVal};
         }
@@ -1085,6 +367,50 @@ namespace MainSL.MainSVC {
                 this.onGetUserCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetUserCompleted);
             }
             base.InvokeAsync(this.onBeginGetUserDelegate, null, this.onEndGetUserDelegate, this.onGetUserCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult MainSL.MainSVC.MainService.BeginGetAllFolders(System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetAllFolders(callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.Folder> MainSL.MainSVC.MainService.EndGetAllFolders(System.IAsyncResult result) {
+            return base.Channel.EndGetAllFolders(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetAllFolders(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            return ((MainSL.MainSVC.MainService)(this)).BeginGetAllFolders(callback, asyncState);
+        }
+        
+        private object[] OnEndGetAllFolders(System.IAsyncResult result) {
+            System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.Folder> retVal = ((MainSL.MainSVC.MainService)(this)).EndGetAllFolders(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetAllFoldersCompleted(object state) {
+            if ((this.GetAllFoldersCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetAllFoldersCompleted(this, new GetAllFoldersCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetAllFoldersAsync() {
+            this.GetAllFoldersAsync(null);
+        }
+        
+        public void GetAllFoldersAsync(object userState) {
+            if ((this.onBeginGetAllFoldersDelegate == null)) {
+                this.onBeginGetAllFoldersDelegate = new BeginOperationDelegate(this.OnBeginGetAllFolders);
+            }
+            if ((this.onEndGetAllFoldersDelegate == null)) {
+                this.onEndGetAllFoldersDelegate = new EndOperationDelegate(this.OnEndGetAllFolders);
+            }
+            if ((this.onGetAllFoldersCompletedDelegate == null)) {
+                this.onGetAllFoldersCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetAllFoldersCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetAllFoldersDelegate, null, this.onEndGetAllFoldersDelegate, this.onGetAllFoldersCompletedDelegate, userState);
         }
         
         private System.IAsyncResult OnBeginOpen(object[] inValues, System.AsyncCallback callback, object asyncState) {
@@ -1180,9 +506,21 @@ namespace MainSL.MainSVC {
                 return _result;
             }
             
-            public MainSL.MainSVC.UsersTable EndGetUser(System.IAsyncResult result) {
+            public MainSL.MainSVC.User EndGetUser(System.IAsyncResult result) {
                 object[] _args = new object[0];
-                MainSL.MainSVC.UsersTable _result = ((MainSL.MainSVC.UsersTable)(base.EndInvoke("GetUser", _args, result)));
+                MainSL.MainSVC.User _result = ((MainSL.MainSVC.User)(base.EndInvoke("GetUser", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginGetAllFolders(System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[0];
+                System.IAsyncResult _result = base.BeginInvoke("GetAllFolders", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.Folder> EndGetAllFolders(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.Folder> _result = ((System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.Folder>)(base.EndInvoke("GetAllFolders", _args, result)));
                 return _result;
             }
         }

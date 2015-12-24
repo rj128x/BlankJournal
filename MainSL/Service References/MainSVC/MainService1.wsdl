@@ -4,7 +4,7 @@
     <xsd:schema targetNamespace="/Imports">
       <xsd:import schemaLocation="http://localhost:8095/MainService.svc?xsd=xsd0" />
       <xsd:import schemaLocation="http://localhost:8095/MainService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://localhost:8095/MainService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/BlankJournal" />
+      <xsd:import schemaLocation="http://localhost:8095/MainService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/BlankJournal.Models" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="MainService_DoWork_InputMessage">
@@ -19,6 +19,12 @@
   <wsdl:message name="MainService_GetUser_OutputMessage">
     <wsdl:part name="parameters" element="GetUserResponse" />
   </wsdl:message>
+  <wsdl:message name="MainService_GetAllFolders_InputMessage">
+    <wsdl:part name="parameters" element="GetAllFolders" />
+  </wsdl:message>
+  <wsdl:message name="MainService_GetAllFolders_OutputMessage">
+    <wsdl:part name="parameters" element="GetAllFoldersResponse" />
+  </wsdl:message>
   <wsdl:portType name="MainService">
     <wsdl:operation name="DoWork">
       <wsdl:input wsaw:Action="urn:MainService/DoWork" message="MainService_DoWork_InputMessage" />
@@ -27,6 +33,10 @@
     <wsdl:operation name="GetUser">
       <wsdl:input wsaw:Action="urn:MainService/GetUser" message="MainService_GetUser_InputMessage" />
       <wsdl:output wsaw:Action="urn:MainService/GetUserResponse" message="MainService_GetUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllFolders">
+      <wsdl:input wsaw:Action="urn:MainService/GetAllFolders" message="MainService_GetAllFolders_InputMessage" />
+      <wsdl:output wsaw:Action="urn:MainService/GetAllFoldersResponse" message="MainService_GetAllFolders_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
 </wsdl:definitions>
