@@ -22,7 +22,7 @@ namespace MainSL {
 		}
 
 		void Client_GetTBPBlanksByFolderCompleted(object sender, GetTBPBlanksByFolderCompletedEventArgs e) {
-			grdTBPBlanks.DataContext = e.Result;
+			grdTBPBlanks.ItemsSource = e.Result;
 		}
 
 		public Folder CurrentFolder;
@@ -61,6 +61,16 @@ namespace MainSL {
 			TBPWindow newWindow = new TBPWindow();
 			newWindow.Init(newBlank);
 			newWindow.Show();
+		}
+
+		private void btnUseNextTBP_Click(object sender, RoutedEventArgs e) {
+			TBPInfo tbp = grdTBPBlanks.SelectedItem as TBPInfo;
+
+		}
+
+		private void btnUseOBP_Click(object sender, RoutedEventArgs e) {
+			TBPInfo tbp = grdTBPBlanks.SelectedItem as TBPInfo;
+			
 		}
 	}
 }
