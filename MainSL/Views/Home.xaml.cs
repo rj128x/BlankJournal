@@ -1,4 +1,5 @@
 ﻿using MainSL.MainSVC;
+using MainSL.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,11 +20,17 @@ namespace MainSL {
 			GlobalContext.Single.onFinishLoadFolders += Single_onFinishLoadFolders;
 			GlobalContext.Single.LoadFolders();
 			GlobalContext.Single.Client.GetTBPBlanksByFolderCompleted += Client_GetTBPBlanksByFolderCompleted;
+			GlobalContext.Single.Client.InitOBPCompleted+=Client_InitOBPCompleted;
+			GlobalContext.Single.Client.InitTBPCompleted += Client_InitTBPCompleted;
+			GlobalContext.Single.Client.CreateBPCompleted += Client_CreateBPCompleted;
 		}
 
+		
+		
 		void Client_GetTBPBlanksByFolderCompleted(object sender, GetTBPBlanksByFolderCompletedEventArgs e) {
 			grdTBPBlanks.ItemsSource = e.Result;
 		}
+		
 
 		public Folder CurrentFolder;
 
@@ -65,12 +72,45 @@ namespace MainSL {
 
 		private void btnUseNextTBP_Click(object sender, RoutedEventArgs e) {
 			TBPInfo tbp = grdTBPBlanks.SelectedItem as TBPInfo;
-
+			GlobalContext.Single.Client.InitTBPAsync(tbp);
 		}
 
 		private void btnUseOBP_Click(object sender, RoutedEventArgs e) {
 			TBPInfo tbp = grdTBPBlanks.SelectedItem as TBPInfo;
-			
+			GlobalContext.Single.Client.InitOBPAsync(tbp);
 		}
+
+		void Client_InitOBPCompleted(object sender, InitOBPCompletedEventArgs e) {
+			JournalRecord newBlank = e.Result as JournalRecord;
+			JournalRecordWindow win = new JournalRecordWindow();
+			win.Init(newBlank);
+			win.Closed += win_Closed;
+			win.Show();
+		}
+		
+		void Client_InitTBPCompleted(object sender, InitTBPCompletedEventArgs e) {
+			JournalRecord newBlank = e.Result as JournalRecord;
+			JournalRecordWindow win = new JournalRecordWindow();
+			win.Init(newBlank);
+			win.Closed += win_Closed;
+			win.Show();			
+		}
+
+		void win_Closed(object sender, EventArgs e) {
+			JournalRecordWindow win = sender as JournalRecordWindow;
+			if (win.DialogResult==true){
+				GlobalContext.Single.Client.CreateBPAsync(GlobalContext.Single.NewBPRecord);
+			}
+		}
+
+		void Client_CreateBPCompleted(object sender, CreateBPCompletedEventArgs e) {
+			ReturnMessage msg = e.Result as ReturnMessage;
+			MessageBox.Show(msg.Message);
+		}
+
+		
+
+
+
 	}
 }

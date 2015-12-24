@@ -25,6 +25,7 @@ namespace BlankJournal
         public string Comment { get; set; }
         public Nullable<int> WordData { get; set; }
         public Nullable<int> PDFData { get; set; }
+        public bool isOBP { get; set; }
     
         public virtual DataTable DataTable { get; set; }
         public virtual DataTable DataTable1 { get; set; }

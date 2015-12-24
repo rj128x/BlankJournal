@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:8095/MainService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/BlankJournal.Models" />
+  <xs:import schemaLocation="http://localhost:8095/MainService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/BlankJournal" />
   <xs:element name="DoWork">
     <xs:complexType>
       <xs:sequence />
@@ -46,6 +47,62 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/BlankJournal.Models" minOccurs="0" name="GetTBPBlanksByFolderResult" nillable="true" type="q3:ArrayOfTBPInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateTBP">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/BlankJournal.Models" minOccurs="0" name="newBlank" nillable="true" type="q4:TBPInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateTBPResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/BlankJournal" minOccurs="0" name="CreateTBPResult" nillable="true" type="q5:ReturnMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InitTBP">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/BlankJournal.Models" minOccurs="0" name="tbp" nillable="true" type="q6:TBPInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InitTBPResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/BlankJournal.Models" minOccurs="0" name="InitTBPResult" nillable="true" type="q7:JournalRecord" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InitOBP">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/BlankJournal.Models" minOccurs="0" name="tbp" nillable="true" type="q8:TBPInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InitOBPResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/BlankJournal.Models" minOccurs="0" name="InitOBPResult" nillable="true" type="q9:JournalRecord" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateBP">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/BlankJournal.Models" minOccurs="0" name="journal" nillable="true" type="q10:JournalRecord" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateBPResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/BlankJournal" minOccurs="0" name="CreateBPResult" nillable="true" type="q11:ReturnMessage" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

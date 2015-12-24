@@ -47,6 +47,20 @@ namespace BlankJournal {
 			return DBContext.Single.createTBP(newBlank);
 		}
 
+		[OperationContract]
+		public JournalRecord InitTBP(TBPInfo tbp) {
+			return JournalRecord.initTBPRecord(tbp);
+		}
+
+		[OperationContract]
+		public JournalRecord InitOBP(TBPInfo tbp) {
+			return JournalRecord.initOBPRecord(tbp);
+		}
+
+		[OperationContract]
+		public ReturnMessage CreateBP(JournalRecord journal) {
+			return JournalRecord.CreateBP(journal);
+		}
 
 		// Добавьте здесь дополнительные операции и отметьте их атрибутом [OperationContract]
 	}

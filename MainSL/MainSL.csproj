@@ -95,6 +95,9 @@
     <Compile Include="Views\JournalPage.xaml.cs">
       <DependentUpon>JournalPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\JournalRecordWindow.xaml.cs">
+      <DependentUpon>JournalRecordWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\TBPWindow.xaml.cs">
       <DependentUpon>TBPWindow.xaml</DependentUpon>
     </Compile>
@@ -143,6 +146,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\JournalRecordWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\JournalPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -175,7 +182,14 @@
     <None Include="Service References\MainSVC\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Service References\MainSVC\MainService3.xsd" />
     <None Include="Service References\MainSVC\MainSL.MainSVC.Folder.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MainSVC\MainSL.MainSVC.JournalRecord.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MainSVC\MainSL.MainSVC.ReturnMessage.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\MainSVC\MainSL.MainSVC.TBPInfo.datasource">

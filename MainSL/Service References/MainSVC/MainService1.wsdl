@@ -5,6 +5,7 @@
       <xsd:import schemaLocation="http://localhost:8095/MainService.svc?xsd=xsd0" />
       <xsd:import schemaLocation="http://localhost:8095/MainService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:8095/MainService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/BlankJournal.Models" />
+      <xsd:import schemaLocation="http://localhost:8095/MainService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/BlankJournal" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="MainService_DoWork_InputMessage">
@@ -31,6 +32,30 @@
   <wsdl:message name="MainService_GetTBPBlanksByFolder_OutputMessage">
     <wsdl:part name="parameters" element="GetTBPBlanksByFolderResponse" />
   </wsdl:message>
+  <wsdl:message name="MainService_CreateTBP_InputMessage">
+    <wsdl:part name="parameters" element="CreateTBP" />
+  </wsdl:message>
+  <wsdl:message name="MainService_CreateTBP_OutputMessage">
+    <wsdl:part name="parameters" element="CreateTBPResponse" />
+  </wsdl:message>
+  <wsdl:message name="MainService_InitTBP_InputMessage">
+    <wsdl:part name="parameters" element="InitTBP" />
+  </wsdl:message>
+  <wsdl:message name="MainService_InitTBP_OutputMessage">
+    <wsdl:part name="parameters" element="InitTBPResponse" />
+  </wsdl:message>
+  <wsdl:message name="MainService_InitOBP_InputMessage">
+    <wsdl:part name="parameters" element="InitOBP" />
+  </wsdl:message>
+  <wsdl:message name="MainService_InitOBP_OutputMessage">
+    <wsdl:part name="parameters" element="InitOBPResponse" />
+  </wsdl:message>
+  <wsdl:message name="MainService_CreateBP_InputMessage">
+    <wsdl:part name="parameters" element="CreateBP" />
+  </wsdl:message>
+  <wsdl:message name="MainService_CreateBP_OutputMessage">
+    <wsdl:part name="parameters" element="CreateBPResponse" />
+  </wsdl:message>
   <wsdl:portType name="MainService">
     <wsdl:operation name="DoWork">
       <wsdl:input wsaw:Action="urn:MainService/DoWork" message="MainService_DoWork_InputMessage" />
@@ -47,6 +72,22 @@
     <wsdl:operation name="GetTBPBlanksByFolder">
       <wsdl:input wsaw:Action="urn:MainService/GetTBPBlanksByFolder" message="MainService_GetTBPBlanksByFolder_InputMessage" />
       <wsdl:output wsaw:Action="urn:MainService/GetTBPBlanksByFolderResponse" message="MainService_GetTBPBlanksByFolder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateTBP">
+      <wsdl:input wsaw:Action="urn:MainService/CreateTBP" message="MainService_CreateTBP_InputMessage" />
+      <wsdl:output wsaw:Action="urn:MainService/CreateTBPResponse" message="MainService_CreateTBP_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InitTBP">
+      <wsdl:input wsaw:Action="urn:MainService/InitTBP" message="MainService_InitTBP_InputMessage" />
+      <wsdl:output wsaw:Action="urn:MainService/InitTBPResponse" message="MainService_InitTBP_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InitOBP">
+      <wsdl:input wsaw:Action="urn:MainService/InitOBP" message="MainService_InitOBP_InputMessage" />
+      <wsdl:output wsaw:Action="urn:MainService/InitOBPResponse" message="MainService_InitOBP_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateBP">
+      <wsdl:input wsaw:Action="urn:MainService/CreateBP" message="MainService_CreateBP_InputMessage" />
+      <wsdl:output wsaw:Action="urn:MainService/CreateBPResponse" message="MainService_CreateBP_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
 </wsdl:definitions>

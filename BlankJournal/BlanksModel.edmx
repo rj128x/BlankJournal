@@ -20,6 +20,7 @@
           <Property Name="Comment" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="WordData" Type="int" />
           <Property Name="PDFData" Type="int" />
+          <Property Name="isOBP" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="DataTable">
           <Key>
@@ -66,7 +67,7 @@
           </Key>
           <Property Name="Number" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="Folder" Type="int" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="DataPDF" Type="int" />
           <Property Name="DataWord" Type="int" />
         </EntityType>
@@ -79,19 +80,7 @@
           <Property Name="IsNOS" Type="bit" Nullable="false" />
           <Property Name="IsNSS" Type="bit" Nullable="false" />
         </EntityType>
-        <Association Name="FK_BPJournalTable_DataTable">
-          <End Role="DataTable" Type="Self.DataTable" Multiplicity="0..1" />
-          <End Role="BPJournalTable" Type="Self.BPJournalTable" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DataTable">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="BPJournalTable">
-              <PropertyRef Name="WordData" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_BPJournalTable_DataTable1">
+        <Association Name="FK_BPJournalTable_DataTablePDF">
           <End Role="DataTable" Type="Self.DataTable" Multiplicity="0..1" />
           <End Role="BPJournalTable" Type="Self.BPJournalTable" Multiplicity="*" />
           <ReferentialConstraint>
@@ -100,6 +89,18 @@
             </Principal>
             <Dependent Role="BPJournalTable">
               <PropertyRef Name="PDFData" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BPJournalTable_DataTableWord">
+          <End Role="DataTable" Type="Self.DataTable" Multiplicity="0..1" />
+          <End Role="BPJournalTable" Type="Self.BPJournalTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DataTable">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BPJournalTable">
+              <PropertyRef Name="WordData" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -151,7 +152,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TBPCommentsTable_UsersTable">
+        <Association Name="FK_TBPCommentsTable_UsersTableAuthor">
           <End Role="UsersTable" Type="Self.UsersTable" Multiplicity="1" />
           <End Role="TBPCommentsTable" Type="Self.TBPCommentsTable" Multiplicity="*" />
           <ReferentialConstraint>
@@ -163,7 +164,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TBPCommentsTable_UsersTable1">
+        <Association Name="FK_TBPCommentsTable_UsersTablePerformer">
           <End Role="UsersTable" Type="Self.UsersTable" Multiplicity="1" />
           <End Role="TBPCommentsTable" Type="Self.TBPCommentsTable" Multiplicity="*" />
           <ReferentialConstraint>
@@ -175,7 +176,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TBPHistoryTable_DataTable">
+        <Association Name="FK_TBPHistoryTable_DataTableNewPDF">
           <End Role="DataTable" Type="Self.DataTable" Multiplicity="1" />
           <End Role="TBPHistoryTable" Type="Self.TBPHistoryTable" Multiplicity="*" />
           <ReferentialConstraint>
@@ -187,7 +188,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TBPHistoryTable_DataTable1">
+        <Association Name="FK_TBPHistoryTable_DataTableNewWord">
           <End Role="DataTable" Type="Self.DataTable" Multiplicity="1" />
           <End Role="TBPHistoryTable" Type="Self.TBPHistoryTable" Multiplicity="*" />
           <ReferentialConstraint>
@@ -199,7 +200,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TBPHistoryTable_DataTable2">
+        <Association Name="FK_TBPHistoryTable_DataTablePrevPDF">
           <End Role="DataTable" Type="Self.DataTable" Multiplicity="1" />
           <End Role="TBPHistoryTable" Type="Self.TBPHistoryTable" Multiplicity="*" />
           <ReferentialConstraint>
@@ -211,7 +212,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TBPHistoryTable_DataTable3">
+        <Association Name="FK_TBPHistoryTable_DataTablePrevWord">
           <End Role="DataTable" Type="Self.DataTable" Multiplicity="1" />
           <End Role="TBPHistoryTable" Type="Self.TBPHistoryTable" Multiplicity="*" />
           <ReferentialConstraint>
@@ -247,7 +248,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TBPInfoTable_DataTable">
+        <Association Name="FK_TBPInfoTable_DataTablePDF">
           <End Role="DataTable" Type="Self.DataTable" Multiplicity="0..1" />
           <End Role="TBPInfoTable" Type="Self.TBPInfoTable" Multiplicity="*" />
           <ReferentialConstraint>
@@ -259,7 +260,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TBPInfoTable_DataTable1">
+        <Association Name="FK_TBPInfoTable_DataTableWord">
           <End Role="DataTable" Type="Self.DataTable" Multiplicity="0..1" />
           <End Role="TBPInfoTable" Type="Self.TBPInfoTable" Multiplicity="*" />
           <ReferentialConstraint>
@@ -291,11 +292,11 @@
           <EntitySet Name="TBPHistoryTable" EntityType="Self.TBPHistoryTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBPInfoTable" EntityType="Self.TBPInfoTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UsersTable" EntityType="Self.UsersTable" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_BPJournalTable_DataTable" Association="Self.FK_BPJournalTable_DataTable">
+          <AssociationSet Name="FK_BPJournalTable_DataTablePDF" Association="Self.FK_BPJournalTable_DataTablePDF">
             <End Role="DataTable" EntitySet="DataTable" />
             <End Role="BPJournalTable" EntitySet="BPJournalTable" />
           </AssociationSet>
-          <AssociationSet Name="FK_BPJournalTable_DataTable1" Association="Self.FK_BPJournalTable_DataTable1">
+          <AssociationSet Name="FK_BPJournalTable_DataTableWord" Association="Self.FK_BPJournalTable_DataTableWord">
             <End Role="DataTable" EntitySet="DataTable" />
             <End Role="BPJournalTable" EntitySet="BPJournalTable" />
           </AssociationSet>
@@ -315,27 +316,27 @@
             <End Role="TBPInfoTable" EntitySet="TBPInfoTable" />
             <End Role="TBPCommentsTable" EntitySet="TBPCommentsTable" />
           </AssociationSet>
-          <AssociationSet Name="FK_TBPCommentsTable_UsersTable" Association="Self.FK_TBPCommentsTable_UsersTable">
+          <AssociationSet Name="FK_TBPCommentsTable_UsersTableAuthor" Association="Self.FK_TBPCommentsTable_UsersTableAuthor">
             <End Role="UsersTable" EntitySet="UsersTable" />
             <End Role="TBPCommentsTable" EntitySet="TBPCommentsTable" />
           </AssociationSet>
-          <AssociationSet Name="FK_TBPCommentsTable_UsersTable1" Association="Self.FK_TBPCommentsTable_UsersTable1">
+          <AssociationSet Name="FK_TBPCommentsTable_UsersTablePerformer" Association="Self.FK_TBPCommentsTable_UsersTablePerformer">
             <End Role="UsersTable" EntitySet="UsersTable" />
             <End Role="TBPCommentsTable" EntitySet="TBPCommentsTable" />
           </AssociationSet>
-          <AssociationSet Name="FK_TBPHistoryTable_DataTable" Association="Self.FK_TBPHistoryTable_DataTable">
+          <AssociationSet Name="FK_TBPHistoryTable_DataTableNewPDF" Association="Self.FK_TBPHistoryTable_DataTableNewPDF">
             <End Role="DataTable" EntitySet="DataTable" />
             <End Role="TBPHistoryTable" EntitySet="TBPHistoryTable" />
           </AssociationSet>
-          <AssociationSet Name="FK_TBPHistoryTable_DataTable1" Association="Self.FK_TBPHistoryTable_DataTable1">
+          <AssociationSet Name="FK_TBPHistoryTable_DataTableNewWord" Association="Self.FK_TBPHistoryTable_DataTableNewWord">
             <End Role="DataTable" EntitySet="DataTable" />
             <End Role="TBPHistoryTable" EntitySet="TBPHistoryTable" />
           </AssociationSet>
-          <AssociationSet Name="FK_TBPHistoryTable_DataTable2" Association="Self.FK_TBPHistoryTable_DataTable2">
+          <AssociationSet Name="FK_TBPHistoryTable_DataTablePrevPDF" Association="Self.FK_TBPHistoryTable_DataTablePrevPDF">
             <End Role="DataTable" EntitySet="DataTable" />
             <End Role="TBPHistoryTable" EntitySet="TBPHistoryTable" />
           </AssociationSet>
-          <AssociationSet Name="FK_TBPHistoryTable_DataTable3" Association="Self.FK_TBPHistoryTable_DataTable3">
+          <AssociationSet Name="FK_TBPHistoryTable_DataTablePrevWord" Association="Self.FK_TBPHistoryTable_DataTablePrevWord">
             <End Role="DataTable" EntitySet="DataTable" />
             <End Role="TBPHistoryTable" EntitySet="TBPHistoryTable" />
           </AssociationSet>
@@ -347,11 +348,11 @@
             <End Role="UsersTable" EntitySet="UsersTable" />
             <End Role="TBPHistoryTable" EntitySet="TBPHistoryTable" />
           </AssociationSet>
-          <AssociationSet Name="FK_TBPInfoTable_DataTable" Association="Self.FK_TBPInfoTable_DataTable">
+          <AssociationSet Name="FK_TBPInfoTable_DataTablePDF" Association="Self.FK_TBPInfoTable_DataTablePDF">
             <End Role="DataTable" EntitySet="DataTable" />
             <End Role="TBPInfoTable" EntitySet="TBPInfoTable" />
           </AssociationSet>
-          <AssociationSet Name="FK_TBPInfoTable_DataTable1" Association="Self.FK_TBPInfoTable_DataTable1">
+          <AssociationSet Name="FK_TBPInfoTable_DataTableWord" Association="Self.FK_TBPInfoTable_DataTableWord">
             <End Role="DataTable" EntitySet="DataTable" />
             <End Role="TBPInfoTable" EntitySet="TBPInfoTable" />
           </AssociationSet>
@@ -380,8 +381,9 @@
           <Property Name="Comment" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="WordData" Type="Int32" />
           <Property Name="PDFData" Type="Int32" />
-          <NavigationProperty Name="DataTable" Relationship="Self.FK_BPJournalTable_DataTable" FromRole="BPJournalTable" ToRole="DataTable" />
-          <NavigationProperty Name="DataTable1" Relationship="Self.FK_BPJournalTable_DataTable1" FromRole="BPJournalTable" ToRole="DataTable" />
+          <Property Name="isOBP" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="DataTable" Relationship="Self.FK_BPJournalTable_DataTablePDF" FromRole="BPJournalTable" ToRole="DataTable" />
+          <NavigationProperty Name="DataTable1" Relationship="Self.FK_BPJournalTable_DataTableWord" FromRole="BPJournalTable" ToRole="DataTable" />
           <NavigationProperty Name="TBPInfoTable" Relationship="Self.FK_BPJournalTable_TBPInfoTable" FromRole="BPJournalTable" ToRole="TBPInfoTable" />
           <NavigationProperty Name="UsersTable" Relationship="Self.FK_BPJournalTable_UsersTable" FromRole="BPJournalTable" ToRole="UsersTable" />
         </EntityType>
@@ -392,15 +394,15 @@
           <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="Data" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="isPDF" Type="Boolean" />
-          <NavigationProperty Name="BPJournalTable" Relationship="Self.FK_BPJournalTable_DataTable" FromRole="DataTable" ToRole="BPJournalTable" />
-          <NavigationProperty Name="BPJournalTable1" Relationship="Self.FK_BPJournalTable_DataTable1" FromRole="DataTable" ToRole="BPJournalTable" />
+          <NavigationProperty Name="BPJournalTable" Relationship="Self.FK_BPJournalTable_DataTablePDF" FromRole="DataTable" ToRole="BPJournalTable" />
+          <NavigationProperty Name="BPJournalTable1" Relationship="Self.FK_BPJournalTable_DataTableWord" FromRole="DataTable" ToRole="BPJournalTable" />
           <NavigationProperty Name="TBPCommentsTable" Relationship="Self.FK_TBPCommentsTable_DataTable" FromRole="DataTable" ToRole="TBPCommentsTable" />
-          <NavigationProperty Name="TBPHistoryTable" Relationship="Self.FK_TBPHistoryTable_DataTable" FromRole="DataTable" ToRole="TBPHistoryTable" />
-          <NavigationProperty Name="TBPHistoryTable1" Relationship="Self.FK_TBPHistoryTable_DataTable1" FromRole="DataTable" ToRole="TBPHistoryTable" />
-          <NavigationProperty Name="TBPHistoryTable2" Relationship="Self.FK_TBPHistoryTable_DataTable2" FromRole="DataTable" ToRole="TBPHistoryTable" />
-          <NavigationProperty Name="TBPHistoryTable3" Relationship="Self.FK_TBPHistoryTable_DataTable3" FromRole="DataTable" ToRole="TBPHistoryTable" />
-          <NavigationProperty Name="TBPInfoTable" Relationship="Self.FK_TBPInfoTable_DataTable" FromRole="DataTable" ToRole="TBPInfoTable" />
-          <NavigationProperty Name="TBPInfoTable1" Relationship="Self.FK_TBPInfoTable_DataTable1" FromRole="DataTable" ToRole="TBPInfoTable" />
+          <NavigationProperty Name="TBPHistoryTable" Relationship="Self.FK_TBPHistoryTable_DataTableNewPDF" FromRole="DataTable" ToRole="TBPHistoryTable" />
+          <NavigationProperty Name="TBPHistoryTable1" Relationship="Self.FK_TBPHistoryTable_DataTableNewWord" FromRole="DataTable" ToRole="TBPHistoryTable" />
+          <NavigationProperty Name="TBPHistoryTable2" Relationship="Self.FK_TBPHistoryTable_DataTablePrevPDF" FromRole="DataTable" ToRole="TBPHistoryTable" />
+          <NavigationProperty Name="TBPHistoryTable3" Relationship="Self.FK_TBPHistoryTable_DataTablePrevWord" FromRole="DataTable" ToRole="TBPHistoryTable" />
+          <NavigationProperty Name="TBPInfoTable" Relationship="Self.FK_TBPInfoTable_DataTablePDF" FromRole="DataTable" ToRole="TBPInfoTable" />
+          <NavigationProperty Name="TBPInfoTable1" Relationship="Self.FK_TBPInfoTable_DataTableWord" FromRole="DataTable" ToRole="TBPInfoTable" />
         </EntityType>
         <EntityType Name="FoldersTable">
           <Key>
@@ -423,8 +425,8 @@
           <Property Name="CommentPerform" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="DataTable" Relationship="Self.FK_TBPCommentsTable_DataTable" FromRole="TBPCommentsTable" ToRole="DataTable" />
           <NavigationProperty Name="TBPInfoTable" Relationship="Self.FK_TBPCommentsTable_TBPInfoTable" FromRole="TBPCommentsTable" ToRole="TBPInfoTable" />
-          <NavigationProperty Name="UsersTable" Relationship="Self.FK_TBPCommentsTable_UsersTable" FromRole="TBPCommentsTable" ToRole="UsersTable" />
-          <NavigationProperty Name="UsersTable1" Relationship="Self.FK_TBPCommentsTable_UsersTable1" FromRole="TBPCommentsTable" ToRole="UsersTable" />
+          <NavigationProperty Name="UsersTable" Relationship="Self.FK_TBPCommentsTable_UsersTableAuthor" FromRole="TBPCommentsTable" ToRole="UsersTable" />
+          <NavigationProperty Name="UsersTable1" Relationship="Self.FK_TBPCommentsTable_UsersTablePerformer" FromRole="TBPCommentsTable" ToRole="UsersTable" />
         </EntityType>
         <EntityType Name="TBPHistoryTable">
           <Key>
@@ -437,10 +439,10 @@
           <Property Name="NewPDFData" Type="Int32" Nullable="false" />
           <Property Name="NewWordData" Type="Int32" Nullable="false" />
           <Property Name="Author" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="DataTable" Relationship="Self.FK_TBPHistoryTable_DataTable" FromRole="TBPHistoryTable" ToRole="DataTable" />
-          <NavigationProperty Name="DataTable1" Relationship="Self.FK_TBPHistoryTable_DataTable1" FromRole="TBPHistoryTable" ToRole="DataTable" />
-          <NavigationProperty Name="DataTable2" Relationship="Self.FK_TBPHistoryTable_DataTable2" FromRole="TBPHistoryTable" ToRole="DataTable" />
-          <NavigationProperty Name="DataTable3" Relationship="Self.FK_TBPHistoryTable_DataTable3" FromRole="TBPHistoryTable" ToRole="DataTable" />
+          <NavigationProperty Name="DataTable" Relationship="Self.FK_TBPHistoryTable_DataTableNewPDF" FromRole="TBPHistoryTable" ToRole="DataTable" />
+          <NavigationProperty Name="DataTable1" Relationship="Self.FK_TBPHistoryTable_DataTableNewWord" FromRole="TBPHistoryTable" ToRole="DataTable" />
+          <NavigationProperty Name="DataTable2" Relationship="Self.FK_TBPHistoryTable_DataTablePrevPDF" FromRole="TBPHistoryTable" ToRole="DataTable" />
+          <NavigationProperty Name="DataTable3" Relationship="Self.FK_TBPHistoryTable_DataTablePrevWord" FromRole="TBPHistoryTable" ToRole="DataTable" />
           <NavigationProperty Name="TBPInfoTable" Relationship="Self.FK_TBPHistoryTable_TBPInfoTable" FromRole="TBPHistoryTable" ToRole="TBPInfoTable" />
           <NavigationProperty Name="UsersTable" Relationship="Self.FK_TBPHistoryTable_UsersTable" FromRole="TBPHistoryTable" ToRole="UsersTable" />
         </EntityType>
@@ -450,12 +452,12 @@
           </Key>
           <Property Name="Number" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Folder" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="DataPDF" Type="Int32" />
           <Property Name="DataWord" Type="Int32" />
           <NavigationProperty Name="BPJournalTable" Relationship="Self.FK_BPJournalTable_TBPInfoTable" FromRole="TBPInfoTable" ToRole="BPJournalTable" />
-          <NavigationProperty Name="DataTable" Relationship="Self.FK_TBPInfoTable_DataTable" FromRole="TBPInfoTable" ToRole="DataTable" />
-          <NavigationProperty Name="DataTable1" Relationship="Self.FK_TBPInfoTable_DataTable1" FromRole="TBPInfoTable" ToRole="DataTable" />
+          <NavigationProperty Name="DataTable" Relationship="Self.FK_TBPInfoTable_DataTablePDF" FromRole="TBPInfoTable" ToRole="DataTable" />
+          <NavigationProperty Name="DataTable1" Relationship="Self.FK_TBPInfoTable_DataTableWord" FromRole="TBPInfoTable" ToRole="DataTable" />
           <NavigationProperty Name="FoldersTable" Relationship="Self.FK_TBPInfoTable_FoldersTable" FromRole="TBPInfoTable" ToRole="FoldersTable" />
           <NavigationProperty Name="TBPCommentsTable" Relationship="Self.FK_TBPCommentsTable_TBPInfoTable" FromRole="TBPInfoTable" ToRole="TBPCommentsTable" />
           <NavigationProperty Name="TBPHistoryTable" Relationship="Self.FK_TBPHistoryTable_TBPInfoTable" FromRole="TBPInfoTable" ToRole="TBPHistoryTable" />
@@ -469,23 +471,11 @@
           <Property Name="IsNOS" Type="Boolean" Nullable="false" />
           <Property Name="IsNSS" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="BPJournalTable" Relationship="Self.FK_BPJournalTable_UsersTable" FromRole="UsersTable" ToRole="BPJournalTable" />
-          <NavigationProperty Name="TBPCommentsTable" Relationship="Self.FK_TBPCommentsTable_UsersTable" FromRole="UsersTable" ToRole="TBPCommentsTable" />
-          <NavigationProperty Name="TBPCommentsTable1" Relationship="Self.FK_TBPCommentsTable_UsersTable1" FromRole="UsersTable" ToRole="TBPCommentsTable" />
+          <NavigationProperty Name="TBPCommentsTable" Relationship="Self.FK_TBPCommentsTable_UsersTableAuthor" FromRole="UsersTable" ToRole="TBPCommentsTable" />
+          <NavigationProperty Name="TBPCommentsTable1" Relationship="Self.FK_TBPCommentsTable_UsersTablePerformer" FromRole="UsersTable" ToRole="TBPCommentsTable" />
           <NavigationProperty Name="TBPHistoryTable" Relationship="Self.FK_TBPHistoryTable_UsersTable" FromRole="UsersTable" ToRole="TBPHistoryTable" />
         </EntityType>
-        <Association Name="FK_BPJournalTable_DataTable">
-          <End Role="DataTable" Type="Self.DataTable" Multiplicity="0..1" />
-          <End Role="BPJournalTable" Type="Self.BPJournalTable" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DataTable">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="BPJournalTable">
-              <PropertyRef Name="WordData" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_BPJournalTable_DataTable1">
+        <Association Name="FK_BPJournalTable_DataTablePDF">
           <End Role="DataTable" Type="Self.DataTable" Multiplicity="0..1" />
           <End Role="BPJournalTable" Type="Self.BPJournalTable" Multiplicity="*" />
           <ReferentialConstraint>
@@ -494,6 +484,18 @@
             </Principal>
             <Dependent Role="BPJournalTable">
               <PropertyRef Name="PDFData" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BPJournalTable_DataTableWord">
+          <End Role="DataTable" Type="Self.DataTable" Multiplicity="0..1" />
+          <End Role="BPJournalTable" Type="Self.BPJournalTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DataTable">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BPJournalTable">
+              <PropertyRef Name="WordData" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -533,7 +535,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TBPHistoryTable_DataTable">
+        <Association Name="FK_TBPHistoryTable_DataTableNewPDF">
           <End Role="DataTable" Type="Self.DataTable" Multiplicity="1" />
           <End Role="TBPHistoryTable" Type="Self.TBPHistoryTable" Multiplicity="*" />
           <ReferentialConstraint>
@@ -545,7 +547,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TBPHistoryTable_DataTable1">
+        <Association Name="FK_TBPHistoryTable_DataTableNewWord">
           <End Role="DataTable" Type="Self.DataTable" Multiplicity="1" />
           <End Role="TBPHistoryTable" Type="Self.TBPHistoryTable" Multiplicity="*" />
           <ReferentialConstraint>
@@ -557,7 +559,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TBPHistoryTable_DataTable2">
+        <Association Name="FK_TBPHistoryTable_DataTablePrevPDF">
           <End Role="DataTable" Type="Self.DataTable" Multiplicity="1" />
           <End Role="TBPHistoryTable" Type="Self.TBPHistoryTable" Multiplicity="*" />
           <ReferentialConstraint>
@@ -569,7 +571,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TBPHistoryTable_DataTable3">
+        <Association Name="FK_TBPHistoryTable_DataTablePrevWord">
           <End Role="DataTable" Type="Self.DataTable" Multiplicity="1" />
           <End Role="TBPHistoryTable" Type="Self.TBPHistoryTable" Multiplicity="*" />
           <ReferentialConstraint>
@@ -581,7 +583,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TBPInfoTable_DataTable">
+        <Association Name="FK_TBPInfoTable_DataTablePDF">
           <End Role="DataTable" Type="Self.DataTable" Multiplicity="0..1" />
           <End Role="TBPInfoTable" Type="Self.TBPInfoTable" Multiplicity="*" />
           <ReferentialConstraint>
@@ -593,7 +595,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TBPInfoTable_DataTable1">
+        <Association Name="FK_TBPInfoTable_DataTableWord">
           <End Role="DataTable" Type="Self.DataTable" Multiplicity="0..1" />
           <End Role="TBPInfoTable" Type="Self.TBPInfoTable" Multiplicity="*" />
           <ReferentialConstraint>
@@ -629,7 +631,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TBPCommentsTable_UsersTable">
+        <Association Name="FK_TBPCommentsTable_UsersTableAuthor">
           <End Role="UsersTable" Type="Self.UsersTable" Multiplicity="1" />
           <End Role="TBPCommentsTable" Type="Self.TBPCommentsTable" Multiplicity="*" />
           <ReferentialConstraint>
@@ -641,7 +643,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TBPCommentsTable_UsersTable1">
+        <Association Name="FK_TBPCommentsTable_UsersTablePerformer">
           <End Role="UsersTable" Type="Self.UsersTable" Multiplicity="1" />
           <End Role="TBPCommentsTable" Type="Self.TBPCommentsTable" Multiplicity="*" />
           <ReferentialConstraint>
@@ -685,11 +687,11 @@
           <EntitySet Name="TBPHistoryTable" EntityType="Self.TBPHistoryTable" />
           <EntitySet Name="TBPInfoTable" EntityType="Self.TBPInfoTable" />
           <EntitySet Name="UsersTable" EntityType="Self.UsersTable" />
-          <AssociationSet Name="FK_BPJournalTable_DataTable" Association="Self.FK_BPJournalTable_DataTable">
+          <AssociationSet Name="FK_BPJournalTable_DataTablePDF" Association="Self.FK_BPJournalTable_DataTablePDF">
             <End Role="DataTable" EntitySet="DataTable" />
             <End Role="BPJournalTable" EntitySet="BPJournalTable" />
           </AssociationSet>
-          <AssociationSet Name="FK_BPJournalTable_DataTable1" Association="Self.FK_BPJournalTable_DataTable1">
+          <AssociationSet Name="FK_BPJournalTable_DataTableWord" Association="Self.FK_BPJournalTable_DataTableWord">
             <End Role="DataTable" EntitySet="DataTable" />
             <End Role="BPJournalTable" EntitySet="BPJournalTable" />
           </AssociationSet>
@@ -705,27 +707,27 @@
             <End Role="DataTable" EntitySet="DataTable" />
             <End Role="TBPCommentsTable" EntitySet="TBPCommentsTable" />
           </AssociationSet>
-          <AssociationSet Name="FK_TBPHistoryTable_DataTable" Association="Self.FK_TBPHistoryTable_DataTable">
+          <AssociationSet Name="FK_TBPHistoryTable_DataTableNewPDF" Association="Self.FK_TBPHistoryTable_DataTableNewPDF">
             <End Role="DataTable" EntitySet="DataTable" />
             <End Role="TBPHistoryTable" EntitySet="TBPHistoryTable" />
           </AssociationSet>
-          <AssociationSet Name="FK_TBPHistoryTable_DataTable1" Association="Self.FK_TBPHistoryTable_DataTable1">
+          <AssociationSet Name="FK_TBPHistoryTable_DataTableNewWord" Association="Self.FK_TBPHistoryTable_DataTableNewWord">
             <End Role="DataTable" EntitySet="DataTable" />
             <End Role="TBPHistoryTable" EntitySet="TBPHistoryTable" />
           </AssociationSet>
-          <AssociationSet Name="FK_TBPHistoryTable_DataTable2" Association="Self.FK_TBPHistoryTable_DataTable2">
+          <AssociationSet Name="FK_TBPHistoryTable_DataTablePrevPDF" Association="Self.FK_TBPHistoryTable_DataTablePrevPDF">
             <End Role="DataTable" EntitySet="DataTable" />
             <End Role="TBPHistoryTable" EntitySet="TBPHistoryTable" />
           </AssociationSet>
-          <AssociationSet Name="FK_TBPHistoryTable_DataTable3" Association="Self.FK_TBPHistoryTable_DataTable3">
+          <AssociationSet Name="FK_TBPHistoryTable_DataTablePrevWord" Association="Self.FK_TBPHistoryTable_DataTablePrevWord">
             <End Role="DataTable" EntitySet="DataTable" />
             <End Role="TBPHistoryTable" EntitySet="TBPHistoryTable" />
           </AssociationSet>
-          <AssociationSet Name="FK_TBPInfoTable_DataTable" Association="Self.FK_TBPInfoTable_DataTable">
+          <AssociationSet Name="FK_TBPInfoTable_DataTablePDF" Association="Self.FK_TBPInfoTable_DataTablePDF">
             <End Role="DataTable" EntitySet="DataTable" />
             <End Role="TBPInfoTable" EntitySet="TBPInfoTable" />
           </AssociationSet>
-          <AssociationSet Name="FK_TBPInfoTable_DataTable1" Association="Self.FK_TBPInfoTable_DataTable1">
+          <AssociationSet Name="FK_TBPInfoTable_DataTableWord" Association="Self.FK_TBPInfoTable_DataTableWord">
             <End Role="DataTable" EntitySet="DataTable" />
             <End Role="TBPInfoTable" EntitySet="TBPInfoTable" />
           </AssociationSet>
@@ -737,11 +739,11 @@
             <End Role="TBPInfoTable" EntitySet="TBPInfoTable" />
             <End Role="TBPCommentsTable" EntitySet="TBPCommentsTable" />
           </AssociationSet>
-          <AssociationSet Name="FK_TBPCommentsTable_UsersTable" Association="Self.FK_TBPCommentsTable_UsersTable">
+          <AssociationSet Name="FK_TBPCommentsTable_UsersTableAuthor" Association="Self.FK_TBPCommentsTable_UsersTableAuthor">
             <End Role="UsersTable" EntitySet="UsersTable" />
             <End Role="TBPCommentsTable" EntitySet="TBPCommentsTable" />
           </AssociationSet>
-          <AssociationSet Name="FK_TBPCommentsTable_UsersTable1" Association="Self.FK_TBPCommentsTable_UsersTable1">
+          <AssociationSet Name="FK_TBPCommentsTable_UsersTablePerformer" Association="Self.FK_TBPCommentsTable_UsersTablePerformer">
             <End Role="UsersTable" EntitySet="UsersTable" />
             <End Role="TBPCommentsTable" EntitySet="TBPCommentsTable" />
           </AssociationSet>
@@ -774,6 +776,7 @@
                 <ScalarProperty Name="Comment" ColumnName="Comment" />
                 <ScalarProperty Name="WordData" ColumnName="WordData" />
                 <ScalarProperty Name="PDFData" ColumnName="PDFData" />
+                <ScalarProperty Name="isOBP" ColumnName="isOBP" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
