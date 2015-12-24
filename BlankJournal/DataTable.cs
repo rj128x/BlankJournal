@@ -12,26 +12,33 @@ namespace BlankJournal
     using System;
     using System.Collections.Generic;
     
-    public partial class TBPInfoTable
+    public partial class DataTable
     {
-        public TBPInfoTable()
+        public DataTable()
         {
             this.BPJournalTable = new HashSet<BPJournalTable>();
+            this.BPJournalTable1 = new HashSet<BPJournalTable>();
             this.TBPCommentsTable = new HashSet<TBPCommentsTable>();
             this.TBPHistoryTable = new HashSet<TBPHistoryTable>();
+            this.TBPHistoryTable1 = new HashSet<TBPHistoryTable>();
+            this.TBPHistoryTable2 = new HashSet<TBPHistoryTable>();
+            this.TBPHistoryTable3 = new HashSet<TBPHistoryTable>();
+            this.TBPInfoTable = new HashSet<TBPInfoTable>();
+            this.TBPInfoTable1 = new HashSet<TBPInfoTable>();
         }
     
-        public string Number { get; set; }
-        public int Folder { get; set; }
-        public string Name { get; set; }
-        public Nullable<int> DataPDF { get; set; }
-        public Nullable<int> DataWord { get; set; }
+        public int ID { get; set; }
+        public byte[] Data { get; set; }
+        public Nullable<bool> isPDF { get; set; }
     
         public virtual ICollection<BPJournalTable> BPJournalTable { get; set; }
-        public virtual DataTable DataTable { get; set; }
-        public virtual DataTable DataTable1 { get; set; }
-        public virtual FoldersTable FoldersTable { get; set; }
+        public virtual ICollection<BPJournalTable> BPJournalTable1 { get; set; }
         public virtual ICollection<TBPCommentsTable> TBPCommentsTable { get; set; }
         public virtual ICollection<TBPHistoryTable> TBPHistoryTable { get; set; }
+        public virtual ICollection<TBPHistoryTable> TBPHistoryTable1 { get; set; }
+        public virtual ICollection<TBPHistoryTable> TBPHistoryTable2 { get; set; }
+        public virtual ICollection<TBPHistoryTable> TBPHistoryTable3 { get; set; }
+        public virtual ICollection<TBPInfoTable> TBPInfoTable { get; set; }
+        public virtual ICollection<TBPInfoTable> TBPInfoTable1 { get; set; }
     }
 }

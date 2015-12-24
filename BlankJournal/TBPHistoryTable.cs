@@ -16,12 +16,16 @@ namespace BlankJournal
     {
         public int Id { get; set; }
         public string TBPNumber { get; set; }
-        public byte[] PrevPDFData { get; set; }
-        public byte[] PrevWordData { get; set; }
-        public byte[] NewPDFData { get; set; }
-        public byte[] NewWordData { get; set; }
+        public int PrevPDFData { get; set; }
+        public int PrevWordData { get; set; }
+        public int NewPDFData { get; set; }
+        public int NewWordData { get; set; }
         public string Author { get; set; }
     
+        public virtual DataTable DataTable { get; set; }
+        public virtual DataTable DataTable1 { get; set; }
+        public virtual DataTable DataTable2 { get; set; }
+        public virtual DataTable DataTable3 { get; set; }
         public virtual TBPInfoTable TBPInfoTable { get; set; }
         public virtual UsersTable UsersTable { get; set; }
     }

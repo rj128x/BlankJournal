@@ -18,10 +18,11 @@ namespace BlankJournal
         public string TBPNumber { get; set; }
         public string Author { get; set; }
         public string Comment { get; set; }
-        public byte[] WordData { get; set; }
+        public Nullable<int> WordData { get; set; }
         public string Performer { get; set; }
         public string CommentPerform { get; set; }
     
+        public virtual DataTable DataTable { get; set; }
         public virtual TBPInfoTable TBPInfoTable { get; set; }
         public virtual UsersTable UsersTable { get; set; }
         public virtual UsersTable UsersTable1 { get; set; }

@@ -23,9 +23,11 @@ namespace BlankJournal
         public System.DateTime DateStart { get; set; }
         public System.DateTime DateEnd { get; set; }
         public string Comment { get; set; }
-        public byte[] WordData { get; set; }
-        public byte[] PDFData { get; set; }
+        public Nullable<int> WordData { get; set; }
+        public Nullable<int> PDFData { get; set; }
     
+        public virtual DataTable DataTable { get; set; }
+        public virtual DataTable DataTable1 { get; set; }
         public virtual TBPInfoTable TBPInfoTable { get; set; }
         public virtual UsersTable UsersTable { get; set; }
     }

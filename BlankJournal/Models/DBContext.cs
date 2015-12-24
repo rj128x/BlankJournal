@@ -42,7 +42,8 @@ namespace BlankJournal.Models {
 
 		public List<TBPInfo> GetTBPListByFolder(int folderID) {
 			List<TBPInfo> result = new List<TBPInfo>();
-
+			BlankJournal.BlanksEntities eni = new BlanksEntities();
+			
 			return result;
 		}
 

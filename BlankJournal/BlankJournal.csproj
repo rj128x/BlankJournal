@@ -128,27 +128,30 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BlanksDBModel.Context.cs">
+    <Compile Include="BlanksModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BlanksDBModel.Context.tt</DependentUpon>
+      <DependentUpon>BlanksModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="BlanksDBModel.cs">
+    <Compile Include="BlanksModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BlanksDBModel.tt</DependentUpon>
+      <DependentUpon>BlanksModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="BlanksDBModel.Designer.cs">
+    <Compile Include="BlanksModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BlanksDBModel.edmx</DependentUpon>
+      <DependentUpon>BlanksModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="BPJournalTable.cs">
-      <DependentUpon>BlanksDBModel.tt</DependentUpon>
+      <DependentUpon>BlanksModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="DataTable.cs">
+      <DependentUpon>BlanksModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="FoldersTable.cs">
-      <DependentUpon>BlanksDBModel.tt</DependentUpon>
+      <DependentUpon>BlanksModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DBContext.cs" />
     <Compile Include="Global.asax.cs">
@@ -164,16 +167,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings\Settings.cs" />
     <Compile Include="TBPCommentsTable.cs">
-      <DependentUpon>BlanksDBModel.tt</DependentUpon>
+      <DependentUpon>BlanksModel.tt</DependentUpon>
     </Compile>
     <Compile Include="TBPHistoryTable.cs">
-      <DependentUpon>BlanksDBModel.tt</DependentUpon>
+      <DependentUpon>BlanksModel.tt</DependentUpon>
     </Compile>
     <Compile Include="TBPInfoTable.cs">
-      <DependentUpon>BlanksDBModel.tt</DependentUpon>
+      <DependentUpon>BlanksModel.tt</DependentUpon>
     </Compile>
     <Compile Include="UsersTable.cs">
-      <DependentUpon>BlanksDBModel.tt</DependentUpon>
+      <DependentUpon>BlanksModel.tt</DependentUpon>
     </Compile>
     <Compile Include="XMLSer.cs" />
   </ItemGroup>
@@ -211,22 +214,22 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="Data\Blanks" />
-    <EntityDeploy Include="BlanksDBModel.edmx">
+    <EntityDeploy Include="BlanksModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>BlanksDBModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>BlanksModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="BlanksDBModel.Context.tt">
+    <Content Include="BlanksModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BlanksDBModel.edmx</DependentUpon>
-      <LastGenOutput>BlanksDBModel.Context.cs</LastGenOutput>
+      <DependentUpon>BlanksModel.edmx</DependentUpon>
+      <LastGenOutput>BlanksModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="BlanksDBModel.edmx.diagram">
-      <DependentUpon>BlanksDBModel.edmx</DependentUpon>
+    <Content Include="BlanksModel.edmx.diagram">
+      <DependentUpon>BlanksModel.edmx</DependentUpon>
     </Content>
-    <Content Include="BlanksDBModel.tt">
+    <Content Include="BlanksModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BlanksDBModel.edmx</DependentUpon>
-      <LastGenOutput>BlanksDBModel.cs</LastGenOutput>
+      <DependentUpon>BlanksModel.edmx</DependentUpon>
+      <LastGenOutput>BlanksModel.cs</LastGenOutput>
     </Content>
     <None Include="Properties\PublishProfiles\Blanks.pubxml" />
   </ItemGroup>

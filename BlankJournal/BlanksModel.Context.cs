@@ -26,6 +26,7 @@ namespace BlankJournal
         }
     
         public virtual DbSet<BPJournalTable> BPJournalTable { get; set; }
+        public virtual DbSet<DataTable> DataTable { get; set; }
         public virtual DbSet<FoldersTable> FoldersTable { get; set; }
         public virtual DbSet<TBPCommentsTable> TBPCommentsTable { get; set; }
         public virtual DbSet<TBPHistoryTable> TBPHistoryTable { get; set; }
