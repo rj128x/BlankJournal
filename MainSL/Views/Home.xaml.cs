@@ -18,7 +18,14 @@ namespace MainSL {
 			InitializeComponent();
 			GlobalContext.Single.onFinishLoadFolders += Single_onFinishLoadFolders;
 			GlobalContext.Single.LoadFolders();
+			GlobalContext.Single.Client.GetTBPBlanksByFolderCompleted += Client_GetTBPBlanksByFolderCompleted;
 		}
+
+		void Client_GetTBPBlanksByFolderCompleted(object sender, GetTBPBlanksByFolderCompletedEventArgs e) {
+			grdTBPBlanks.DataContext = e.Result;
+		}
+
+		public Folder CurrentFolder;
 
 		void Single_onFinishLoadFolders() {
 			foreach (Folder folder in GlobalContext.Single.AllFolders.Values) {
@@ -34,7 +41,9 @@ namespace MainSL {
 		void btn_Click(object sender, RoutedEventArgs e) {
 			Button btn=sender as Button;
 			int id = Int32.Parse(btn.Name.Replace("btnFolder_", ""));
-			MessageBox.Show(id.ToString());
+			//MessageBox.Show(id.ToString());
+			CurrentFolder = GlobalContext.Single.AllFolders[id];
+			GlobalContext.Single.Client.GetTBPBlanksByFolderAsync(id);
 		}
 
 
@@ -45,7 +54,13 @@ namespace MainSL {
 		}
 
 		private void Button_Click(object sender, RoutedEventArgs e) {
-
+			TBPInfo newBlank = new TBPInfo();
+			newBlank.Number = "-";
+			newBlank.Name = "";
+			newBlank.FolderID = CurrentFolder.ID;
+			TBPWindow newWindow = new TBPWindow();
+			newWindow.Init(newBlank);
+			newWindow.Show();
 		}
 	}
 }

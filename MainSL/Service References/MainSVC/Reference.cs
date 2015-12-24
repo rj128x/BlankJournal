@@ -135,6 +135,66 @@ namespace MainSL.MainSVC {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TBPInfo", Namespace="http://schemas.datacontract.org/2004/07/BlankJournal.Models")]
+    public partial class TBPInfo : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private int FolderIDField;
+        
+        private string NameField;
+        
+        private string NumberField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int FolderID {
+            get {
+                return this.FolderIDField;
+            }
+            set {
+                if ((this.FolderIDField.Equals(value) != true)) {
+                    this.FolderIDField = value;
+                    this.RaisePropertyChanged("FolderID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Number {
+            get {
+                return this.NumberField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NumberField, value) != true)) {
+                    this.NumberField = value;
+                    this.RaisePropertyChanged("Number");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(Namespace="", ConfigurationName="MainSVC.MainService")]
     public interface MainService {
@@ -153,6 +213,11 @@ namespace MainSL.MainSVC {
         System.IAsyncResult BeginGetAllFolders(System.AsyncCallback callback, object asyncState);
         
         System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.Folder> EndGetAllFolders(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:MainService/GetTBPBlanksByFolder", ReplyAction="urn:MainService/GetTBPBlanksByFolderResponse")]
+        System.IAsyncResult BeginGetTBPBlanksByFolder(int folderID, System.AsyncCallback callback, object asyncState);
+        
+        System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPInfo> EndGetTBPBlanksByFolder(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -199,6 +264,25 @@ namespace MainSL.MainSVC {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetTBPBlanksByFolderCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetTBPBlanksByFolderCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPInfo> Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPInfo>)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class MainServiceClient : System.ServiceModel.ClientBase<MainSL.MainSVC.MainService>, MainSL.MainSVC.MainService {
         
         private BeginOperationDelegate onBeginDoWorkDelegate;
@@ -218,6 +302,12 @@ namespace MainSL.MainSVC {
         private EndOperationDelegate onEndGetAllFoldersDelegate;
         
         private System.Threading.SendOrPostCallback onGetAllFoldersCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetTBPBlanksByFolderDelegate;
+        
+        private EndOperationDelegate onEndGetTBPBlanksByFolderDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetTBPBlanksByFolderCompletedDelegate;
         
         private BeginOperationDelegate onBeginOpenDelegate;
         
@@ -277,6 +367,8 @@ namespace MainSL.MainSVC {
         public event System.EventHandler<GetUserCompletedEventArgs> GetUserCompleted;
         
         public event System.EventHandler<GetAllFoldersCompletedEventArgs> GetAllFoldersCompleted;
+        
+        public event System.EventHandler<GetTBPBlanksByFolderCompletedEventArgs> GetTBPBlanksByFolderCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
         
@@ -413,6 +505,52 @@ namespace MainSL.MainSVC {
             base.InvokeAsync(this.onBeginGetAllFoldersDelegate, null, this.onEndGetAllFoldersDelegate, this.onGetAllFoldersCompletedDelegate, userState);
         }
         
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult MainSL.MainSVC.MainService.BeginGetTBPBlanksByFolder(int folderID, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetTBPBlanksByFolder(folderID, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPInfo> MainSL.MainSVC.MainService.EndGetTBPBlanksByFolder(System.IAsyncResult result) {
+            return base.Channel.EndGetTBPBlanksByFolder(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetTBPBlanksByFolder(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            int folderID = ((int)(inValues[0]));
+            return ((MainSL.MainSVC.MainService)(this)).BeginGetTBPBlanksByFolder(folderID, callback, asyncState);
+        }
+        
+        private object[] OnEndGetTBPBlanksByFolder(System.IAsyncResult result) {
+            System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPInfo> retVal = ((MainSL.MainSVC.MainService)(this)).EndGetTBPBlanksByFolder(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetTBPBlanksByFolderCompleted(object state) {
+            if ((this.GetTBPBlanksByFolderCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetTBPBlanksByFolderCompleted(this, new GetTBPBlanksByFolderCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetTBPBlanksByFolderAsync(int folderID) {
+            this.GetTBPBlanksByFolderAsync(folderID, null);
+        }
+        
+        public void GetTBPBlanksByFolderAsync(int folderID, object userState) {
+            if ((this.onBeginGetTBPBlanksByFolderDelegate == null)) {
+                this.onBeginGetTBPBlanksByFolderDelegate = new BeginOperationDelegate(this.OnBeginGetTBPBlanksByFolder);
+            }
+            if ((this.onEndGetTBPBlanksByFolderDelegate == null)) {
+                this.onEndGetTBPBlanksByFolderDelegate = new EndOperationDelegate(this.OnEndGetTBPBlanksByFolder);
+            }
+            if ((this.onGetTBPBlanksByFolderCompletedDelegate == null)) {
+                this.onGetTBPBlanksByFolderCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetTBPBlanksByFolderCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetTBPBlanksByFolderDelegate, new object[] {
+                        folderID}, this.onEndGetTBPBlanksByFolderDelegate, this.onGetTBPBlanksByFolderCompletedDelegate, userState);
+        }
+        
         private System.IAsyncResult OnBeginOpen(object[] inValues, System.AsyncCallback callback, object asyncState) {
             return ((System.ServiceModel.ICommunicationObject)(this)).BeginOpen(callback, asyncState);
         }
@@ -521,6 +659,19 @@ namespace MainSL.MainSVC {
             public System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.Folder> EndGetAllFolders(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.Folder> _result = ((System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.Folder>)(base.EndInvoke("GetAllFolders", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginGetTBPBlanksByFolder(int folderID, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = folderID;
+                System.IAsyncResult _result = base.BeginInvoke("GetTBPBlanksByFolder", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPInfo> EndGetTBPBlanksByFolder(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPInfo> _result = ((System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPInfo>)(base.EndInvoke("GetTBPBlanksByFolder", _args, result)));
                 return _result;
             }
         }

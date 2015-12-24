@@ -43,10 +43,32 @@ namespace BlankJournal.Models {
 		public List<TBPInfo> GetTBPListByFolder(int folderID) {
 			List<TBPInfo> result = new List<TBPInfo>();
 			BlankJournal.BlanksEntities eni = new BlanksEntities();
-			
+			IQueryable<TBPInfoTable> blanks = from b in eni.TBPInfoTable where b.Folder == folderID select b;
+			foreach (TBPInfoTable tbl in blanks) {
+				result.Add(new TBPInfo(tbl));
+			}
 			return result;
 		}
 
+		public ReturnMessage createTBP(TBPInfo newBlank) {
+			BlankJournal.BlanksEntities eni = new BlanksEntities();
+			IQueryable<TBPInfoTable> exist = from b in eni.TBPInfoTable where b.Number == newBlank.Number select b;
+			if (exist.Count() > 0) {
+				return new ReturnMessage(false, String.Format("Бланк с номером {0} уже существует", newBlank.Number));
+			}
+			try {
+				TBPInfoTable tbl = new TBPInfoTable();
+				tbl.Number = newBlank.Number;
+				tbl.Name = newBlank.Name;
+				eni.TBPInfoTable.Add(tbl);
+				eni.SaveChanges();
+			}
+			catch (Exception e) {
+				Logger.info("Ошибка при создании бланка " + e.ToString());
+				return new ReturnMessage(false, "Ошибка при создании бланка " + e.ToString());				
+			}
+			return new ReturnMessage(true, "Бланк успешно создан");
+		}
 		 
 	}
 }

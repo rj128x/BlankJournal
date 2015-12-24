@@ -71,6 +71,9 @@
       <HintPath>$(TargetFrameworkDirectory)System.Core.dll</HintPath>
     </Reference>
     <Reference Include="System.Net" />
+    <Reference Include="System.Windows.Controls.Data, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Controls.Data.Input, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Data, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Windows.Browser" />
     <Reference Include="System.Windows.Controls" />
@@ -89,7 +92,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="TBPWindow.xaml.cs">
+    <Compile Include="Views\TBPWindow.xaml.cs">
       <DependentUpon>TBPWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ErrorWindow.xaml.cs">
@@ -137,7 +140,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="TBPWindow.xaml">
+    <Page Include="Views\TBPWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -166,6 +169,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\MainSVC\MainSL.MainSVC.Folder.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MainSVC\MainSL.MainSVC.TBPInfo.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\MainSVC\MainSL.MainSVC.User.datasource">

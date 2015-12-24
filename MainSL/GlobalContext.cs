@@ -72,5 +72,9 @@ namespace MainSL {
 			CurrentUser = e.Result;
 			MessageBox.Show(String.Format("Добро пожаловать, {0}!", CurrentUser.Name));
 		}
+
+		public void CreateBlank(TBPInfo newBlank) {
+			
+		}
 	}
 }

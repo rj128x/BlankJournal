@@ -25,6 +25,12 @@
   <wsdl:message name="MainService_GetAllFolders_OutputMessage">
     <wsdl:part name="parameters" element="GetAllFoldersResponse" />
   </wsdl:message>
+  <wsdl:message name="MainService_GetTBPBlanksByFolder_InputMessage">
+    <wsdl:part name="parameters" element="GetTBPBlanksByFolder" />
+  </wsdl:message>
+  <wsdl:message name="MainService_GetTBPBlanksByFolder_OutputMessage">
+    <wsdl:part name="parameters" element="GetTBPBlanksByFolderResponse" />
+  </wsdl:message>
   <wsdl:portType name="MainService">
     <wsdl:operation name="DoWork">
       <wsdl:input wsaw:Action="urn:MainService/DoWork" message="MainService_DoWork_InputMessage" />
@@ -37,6 +43,10 @@
     <wsdl:operation name="GetAllFolders">
       <wsdl:input wsaw:Action="urn:MainService/GetAllFolders" message="MainService_GetAllFolders_InputMessage" />
       <wsdl:output wsaw:Action="urn:MainService/GetAllFoldersResponse" message="MainService_GetAllFolders_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTBPBlanksByFolder">
+      <wsdl:input wsaw:Action="urn:MainService/GetTBPBlanksByFolder" message="MainService_GetTBPBlanksByFolder_InputMessage" />
+      <wsdl:output wsaw:Action="urn:MainService/GetTBPBlanksByFolderResponse" message="MainService_GetTBPBlanksByFolder_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
 </wsdl:definitions>

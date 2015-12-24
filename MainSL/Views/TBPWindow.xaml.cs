@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MainSL.MainSVC;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -15,6 +16,7 @@ namespace MainSL {
 		public TBPWindow() {
 			InitializeComponent();
 		}
+		public TBPInfo CurrentBlank { get; set; }
 
 		private void OKButton_Click(object sender, RoutedEventArgs e) {
 			this.DialogResult = true;
@@ -23,7 +25,13 @@ namespace MainSL {
 		private void CancelButton_Click(object sender, RoutedEventArgs e) {
 			this.DialogResult = false;
 		}
-				
+
+		public void Init(TBPInfo blank) {
+			CurrentBlank = blank;
+			LayoutRoot.DataContext = blank;
+		}
+
+						
 	}
 }
 
