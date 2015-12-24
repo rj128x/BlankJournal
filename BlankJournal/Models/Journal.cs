@@ -76,12 +76,16 @@ namespace BlankJournal.Models {
 			}
 			try {
 				BPJournalTable tbl = new BPJournalTable();
+				tbl.Id = record.Number;
 				tbl.isOBP = record.isOBP;
 				tbl.TBPNumber = record.TBPNumber;
 				tbl.Author = DBContext.Single.GetCurrentUser().Login;
 				tbl.Comment = record.Comment;
 				tbl.Name = record.Task;
 				tbl.Number = record.DoubleNumber;
+				tbl.DateCreate = DateTime.Now;
+				tbl.DateStart = DateTime.Now;
+				tbl.DateEnd = DateTime.Now;
 				eni.BPJournalTable.Add(tbl);
 				eni.SaveChanges();
 				return new ReturnMessage(true,"Бланк успешно создан");

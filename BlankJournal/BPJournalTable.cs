@@ -14,7 +14,7 @@ namespace BlankJournal
     
     public partial class BPJournalTable
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public double Number { get; set; }
         public string TBPNumber { get; set; }
         public string Name { get; set; }
