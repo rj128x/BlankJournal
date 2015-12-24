@@ -103,6 +103,14 @@ namespace MainSL {
 			MessageBox.Show(msg.Message);
 		}
 
+		private void btnNewOBP_Click(object sender, RoutedEventArgs e) {
+			TBPInfo tbp = new TBPInfo();
+			tbp.Number = "-";
+			tbp.Name = "ОБП";
+
+			GlobalContext.Single.Client.InitOBPAsync(tbp);
+		}
+
 		
 
 

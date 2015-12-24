@@ -10,42 +10,42 @@
     <Grid x:Name="LayoutRoot">
         <sdk:DataGrid Name="grdBlanks" AutoGenerateColumns="False" >
             <sdk:DataGrid.Columns>
-                <sdk:DataGridTemplateColumn Header="№ бланка" SortMemberPath="Number" Width="100" >
+                <sdk:DataGridTemplateColumn Header="№ бланка" SortMemberPath="Number" Width="150" >
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
                             <ContentControl Content="{Binding Number}" />
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
                 </sdk:DataGridTemplateColumn>
-                <sdk:DataGridTemplateColumn Header="Задание" SortMemberPath="Number" Width="150" >
+                <sdk:DataGridTemplateColumn Header="Задание" SortMemberPath="Number" Width="200" >
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
                             <TextBlock Text="{Binding Task}" TextWrapping="Wrap" />
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
                 </sdk:DataGridTemplateColumn>
-                <sdk:DataGridTemplateColumn Header="Задание" SortMemberPath="Number" Width="150" >
+                <sdk:DataGridTemplateColumn Header="Комментарий" SortMemberPath="Number" Width="200" >
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
                             <TextBlock Text="{Binding Comment}" TextWrapping="Wrap" />
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
                 </sdk:DataGridTemplateColumn>
-                <sdk:DataGridTemplateColumn Header="Автор" SortMemberPath="Number" Width="100" >
+                <sdk:DataGridTemplateColumn Header="Автор" SortMemberPath="Author" Width="100" >
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
                             <ContentControl Content="{Binding Author}" />
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
                 </sdk:DataGridTemplateColumn>
-                <sdk:DataGridTemplateColumn Header="Дата1" SortMemberPath="DateStart" Width="100" >
+                <sdk:DataGridTemplateColumn Header="Дата1" SortMemberPath="DateStart" Width="150" >
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
                             <ContentControl Content="{Binding DateStart}" />
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
                 </sdk:DataGridTemplateColumn>
-                <sdk:DataGridTemplateColumn Header="Дата2" SortMemberPath="DateEnd" Width="100" >
+                <sdk:DataGridTemplateColumn Header="Дата2" SortMemberPath="DateEnd" Width="150" >
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
                             <ContentControl Content="{Binding DateEnd}" />

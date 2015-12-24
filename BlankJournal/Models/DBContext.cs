@@ -21,7 +21,7 @@ namespace BlankJournal.Models {
 			foreach (UsersTable user in users) {
 				AllUsers.Add(user.Login.ToLower(),new User(user));
 			}
-			IQueryable<FoldersTable> folders = from f in eni.FoldersTable select f;
+			IQueryable<FoldersTable> folders = from f in eni.FoldersTable where f.Id>0 select f ;
 			AllFolders = new Dictionary<int, Folder>();
 			foreach (FoldersTable fld in folders) {
 				AllFolders.Add(fld.Id, new Folder(fld));

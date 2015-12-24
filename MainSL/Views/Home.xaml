@@ -20,7 +20,8 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Name="btnNewTBP" Content="Создать Бланк" Click="Button_Click"/>                
+                <Button Name="btnNewTBP" Content="Создать Бланк" Click="Button_Click"/>
+                <Button Name="btnNewOBP" Content="Создать ОБП" Click="btnNewOBP_Click"/>
             </StackPanel>
             <Grid Grid.Row="1" VerticalAlignment="Stretch">
                 <sdk:DataGrid Name="grdTBPBlanks" AutoGenerateColumns="False" >
