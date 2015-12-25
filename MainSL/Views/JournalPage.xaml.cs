@@ -27,5 +27,13 @@ namespace MainSL.Views {
 		protected override void OnNavigatedTo(NavigationEventArgs e) {
 		}
 
+		private void btnShow_Click(object sender, RoutedEventArgs e) {
+
+		}
+
+		private void btnEdit_Click(object sender, RoutedEventArgs e) {
+
+		}
+
 	}
 }
