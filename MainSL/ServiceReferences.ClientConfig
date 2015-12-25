@@ -4,7 +4,7 @@
             <customBinding>
                 <binding name="CustomBinding_MainService">
                     <binaryMessageEncoding />
-                    <httpTransport maxReceivedMessageSize="2147483647" maxBufferSize="2147483647" />
+                    <httpTransport maxReceivedMessageSize="2147483647" maxBufferSize="2147483647"/>
                 </binding>
             </customBinding>
         </bindings>

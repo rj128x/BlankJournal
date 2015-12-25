@@ -25,8 +25,15 @@ namespace MainSL {
 				GlobalContext.Single.Client.InitOBPCompleted += Client_InitOBPCompleted;
 				GlobalContext.Single.Client.InitTBPCompleted += Client_InitTBPCompleted;
 				GlobalContext.Single.Client.CreateBPCompleted += Client_CreateBPCompleted;
+				GlobalContext.Single.Client.CreateTBPCompleted += Client_CreateTBPCompleted;
 			}
 			inited = true;
+		}
+
+		void Client_CreateTBPCompleted(object sender, CreateTBPCompletedEventArgs e) {
+			ReturnMessage msg = e.Result;
+			MessageBox.Show(msg.Message);
+			GlobalContext.Single.Client.GetTBPBlanksByFolderAsync(CurrentFolder.ID);
 		}
 
 		
@@ -67,7 +74,15 @@ namespace MainSL {
 			newBlank.FolderID = CurrentFolder.ID;
 			TBPWindow newWindow = new TBPWindow();
 			newWindow.Init(newBlank);
+			newWindow.Closed += newWindow_Closed;
 			newWindow.Show();
+		}
+
+		void newWindow_Closed(object sender, EventArgs e) {
+			TBPWindow win = sender as TBPWindow;
+			if (win.DialogResult == true) {
+				GlobalContext.Single.Client.CreateTBPAsync(win.CurrentBlank);
+			}
 		}
 
 		private void btnUseNextTBP_Click(object sender, RoutedEventArgs e) {

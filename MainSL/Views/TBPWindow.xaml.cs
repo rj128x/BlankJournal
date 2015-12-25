@@ -1,6 +1,7 @@
 ﻿using MainSL.MainSVC;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Windows;
@@ -29,6 +30,26 @@ namespace MainSL {
 		public void Init(TBPInfo blank) {
 			CurrentBlank = blank;
 			LayoutRoot.DataContext = blank;
+		}
+
+		private void btnChoosePDF_Click(object sender, RoutedEventArgs e) {
+			OpenFileDialog dlg = new OpenFileDialog();
+			if (dlg.ShowDialog() == true) {
+				StreamReader rdr = new StreamReader(dlg.File.OpenRead());
+				string text = rdr.ReadToEnd();
+				txtPDF.Text = "Файл выбран";
+				CurrentBlank.PDFData = text;
+			}			
+		}
+
+		private void btnChooseWord_Click(object sender, RoutedEventArgs e) {
+			OpenFileDialog dlg = new OpenFileDialog();
+			if (dlg.ShowDialog() == true) {
+				StreamReader rdr = new StreamReader(dlg.File.OpenRead());
+				string text = rdr.ReadToEnd();
+				txtWord.Text = "Файл выбран";
+				CurrentBlank.WordData = text;
+			}
 		}
 
 						

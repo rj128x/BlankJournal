@@ -111,6 +111,7 @@ namespace BlankJournal.Models {
 				TBPInfoTable tbl = new TBPInfoTable();
 				tbl.Number = newBlank.Number;
 				tbl.Name = newBlank.Name;
+				tbl.Folder = newBlank.FolderID;
 				eni.TBPInfoTable.Add(tbl);
 				SaveTBPDataToDB(newBlank, tbl, eni);
 				eni.SaveChanges();
@@ -144,7 +145,8 @@ namespace BlankJournal.Models {
 				hist.PrevWordData = tbl.DataWord;
 				hist.NewPDFData = pdf.ID;
 				hist.NewWordData = word.ID;
-
+				hist.TBPNumber = tbl.Number;
+				
 				pdf.isPDF = true;
 
 				pdf.Data = Encoding.Unicode.GetBytes(newBlank.PDFData);

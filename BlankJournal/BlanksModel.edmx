@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Хранилище BlanksModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище BlanksModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BPJournalTable">
           <Key>
             <PropertyRef Name="Id" />
@@ -59,8 +59,8 @@
           </Key>
           <Property Name="Id" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="TBPNumber" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="PrevPDFData" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="PrevWordData" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PrevPDFData" Type="varchar" MaxLength="50" />
+          <Property Name="PrevWordData" Type="varchar" MaxLength="50" />
           <Property Name="NewPDFData" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="NewWordData" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Author" Type="varchar" MaxLength="50" Nullable="false" />
@@ -218,7 +218,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TBPHistoryTable_DataTablePrevPDF">
-          <End Role="DataTable" Type="Self.DataTable" Multiplicity="1" />
+          <End Role="DataTable" Type="Self.DataTable" Multiplicity="0..1" />
           <End Role="TBPHistoryTable" Type="Self.TBPHistoryTable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DataTable">
@@ -230,7 +230,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TBPHistoryTable_DataTablePrevWord">
-          <End Role="DataTable" Type="Self.DataTable" Multiplicity="1" />
+          <End Role="DataTable" Type="Self.DataTable" Multiplicity="0..1" />
           <End Role="TBPHistoryTable" Type="Self.TBPHistoryTable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DataTable">
@@ -382,7 +382,8 @@
             <End Role="TBPInfoTable" EntitySet="TBPInfoTable" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BlanksModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -459,8 +460,8 @@
           </Key>
           <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="TBPNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PrevPDFData" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PrevWordData" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PrevPDFData" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PrevWordData" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="NewPDFData" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="NewWordData" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Author" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
@@ -599,7 +600,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TBPHistoryTable_DataTablePrevPDF">
-          <End Role="DataTable" Type="Self.DataTable" Multiplicity="1" />
+          <End Role="DataTable" Type="Self.DataTable" Multiplicity="0..1" />
           <End Role="TBPHistoryTable" Type="Self.TBPHistoryTable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DataTable">
@@ -611,7 +612,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TBPHistoryTable_DataTablePrevWord">
-          <End Role="DataTable" Type="Self.DataTable" Multiplicity="1" />
+          <End Role="DataTable" Type="Self.DataTable" Multiplicity="0..1" />
           <End Role="TBPHistoryTable" Type="Self.TBPHistoryTable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DataTable">
