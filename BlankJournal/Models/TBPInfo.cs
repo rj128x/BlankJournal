@@ -8,8 +8,10 @@ namespace BlankJournal.Models {
 		public string Number { get; set; }
 		public int FolderID { get; set; }
 		public string Name { get; set; }
-		public string WordData { get; set; }
-		public string PDFData { get; set; }
+		public byte[] WordData { get; set; }
+		public byte[] PDFData { get; set; }
+		public string IDPDFData { get; set; }
+		public string IDWordData { get; set; }
 
 		public TBPInfo() {
 
@@ -18,7 +20,9 @@ namespace BlankJournal.Models {
 		public TBPInfo(TBPInfoTable tbl) {
 			Number = tbl.Number;
 			Name = tbl.Name;
-			FolderID = tbl.Folder;			
+			FolderID = tbl.Folder;
+			IDPDFData = tbl.DataPDF;
+			IDWordData = tbl.DataWord;
 		}
 	}
 }

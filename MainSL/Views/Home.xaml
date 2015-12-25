@@ -46,6 +46,8 @@
                                     <StackPanel Orientation="Horizontal">
                                         <Button Content="Использовать следующий" Name="btnUseNextTBP" Click="btnUseNextTBP_Click"/>
                                         <Button Content="Использовать ОБП" Name="btnUseOBP" Click="btnUseOBP_Click"/>
+                                        <Button Content="Просмотр" Name="btnShowPDF" Click="btnShowPDF_Click"/>
+                                        <Button Content="Просмотр" Name="btnShowWord" Click="btnShowWord_Click"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </sdk:DataGridTemplateColumn.CellTemplate>

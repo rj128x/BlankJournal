@@ -195,6 +195,7 @@
     </Content>
     <Content Include="Silverlight.js" />
     <Content Include="Views\Home\MainPage.aspx" />
+    <Content Include="Views\Home\View1.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -212,9 +213,10 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Content Include="Data\Blanks" />
+    <Folder Include="TempData\" />
+  </ItemGroup>
+  <ItemGroup>
     <EntityDeploy Include="BlanksModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>BlanksModel.Designer.cs</LastGenOutput>
@@ -232,6 +234,8 @@
       <DependentUpon>BlanksModel.edmx</DependentUpon>
       <LastGenOutput>BlanksModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Data\Blanks.bak" />
+    <Content Include="Data\ПЕРЕЧЕНЬ ТБП 23 09 15.xlsx" />
     <None Include="Properties\PublishProfiles\Blanks.pubxml" />
   </ItemGroup>
   <PropertyGroup>

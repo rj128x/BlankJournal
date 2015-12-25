@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
@@ -35,20 +36,24 @@ namespace MainSL {
 		private void btnChoosePDF_Click(object sender, RoutedEventArgs e) {
 			OpenFileDialog dlg = new OpenFileDialog();
 			if (dlg.ShowDialog() == true) {
-				StreamReader rdr = new StreamReader(dlg.File.OpenRead());
-				string text = rdr.ReadToEnd();
+				FileStream str = dlg.File.OpenRead();
+				byte[]buffer=new byte[str.Length];
+				str.Read(buffer, 0, (int)str.Length);
+				str.Close();
 				txtPDF.Text = "Файл выбран";
-				CurrentBlank.PDFData = text;
+				CurrentBlank.PDFData = buffer;
 			}			
 		}
 
 		private void btnChooseWord_Click(object sender, RoutedEventArgs e) {
 			OpenFileDialog dlg = new OpenFileDialog();
 			if (dlg.ShowDialog() == true) {
-				StreamReader rdr = new StreamReader(dlg.File.OpenRead());
-				string text = rdr.ReadToEnd();
+				FileStream str = dlg.File.OpenRead();
+				byte[] buffer = new byte[str.Length];
+				str.Read(buffer, 0, (int)str.Length);
+				str.Close();
 				txtWord.Text = "Файл выбран";
-				CurrentBlank.WordData = text;
+				CurrentBlank.WordData = buffer;
 			}
 		}
 

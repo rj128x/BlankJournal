@@ -142,13 +142,17 @@ namespace MainSL.MainSVC {
         
         private int FolderIDField;
         
+        private string IDPDFDataField;
+        
+        private string IDWordDataField;
+        
         private string NameField;
         
         private string NumberField;
         
-        private string PDFDataField;
+        private byte[] PDFDataField;
         
-        private string WordDataField;
+        private byte[] WordDataField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public int FolderID {
@@ -159,6 +163,32 @@ namespace MainSL.MainSVC {
                 if ((this.FolderIDField.Equals(value) != true)) {
                     this.FolderIDField = value;
                     this.RaisePropertyChanged("FolderID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string IDPDFData {
+            get {
+                return this.IDPDFDataField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IDPDFDataField, value) != true)) {
+                    this.IDPDFDataField = value;
+                    this.RaisePropertyChanged("IDPDFData");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string IDWordData {
+            get {
+                return this.IDWordDataField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IDWordDataField, value) != true)) {
+                    this.IDWordDataField = value;
+                    this.RaisePropertyChanged("IDWordData");
                 }
             }
         }
@@ -190,7 +220,7 @@ namespace MainSL.MainSVC {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string PDFData {
+        public byte[] PDFData {
             get {
                 return this.PDFDataField;
             }
@@ -203,7 +233,7 @@ namespace MainSL.MainSVC {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string WordData {
+        public byte[] WordData {
             get {
                 return this.WordDataField;
             }

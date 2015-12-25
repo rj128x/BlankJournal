@@ -86,6 +86,7 @@
     <Compile Include="Converters\LogicNotConverter.cs" />
     <Compile Include="Converters\VisibilityConverter.cs" />
     <Compile Include="Converters\VisibilityNotConverter.cs" />
+    <Compile Include="FloatWindow.cs" />
     <Compile Include="GlobalContext.cs" />
     <Compile Include="Service References\MainSVC\Reference.cs">
       <AutoGen>True</AutoGen>

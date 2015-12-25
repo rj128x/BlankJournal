@@ -146,11 +146,14 @@ namespace BlankJournal.Models {
 				hist.NewPDFData = pdf.ID;
 				hist.NewWordData = word.ID;
 				hist.TBPNumber = tbl.Number;
+
+				tbl.DataWord = word.ID;
+				tbl.DataPDF = pdf.ID;
 				
 				pdf.isPDF = true;
 
-				pdf.Data = Encoding.Unicode.GetBytes(newBlank.PDFData);
-				word.Data = Encoding.Unicode.GetBytes(newBlank.WordData);
+				pdf.Data = newBlank.PDFData;
+				word.Data = newBlank.WordData;
 				eni.DataTable.Add(pdf);
 				eni.DataTable.Add(word);
 				eni.TBPHistoryTable.Add(hist);
@@ -160,7 +163,6 @@ namespace BlankJournal.Models {
 				return false;
 			}
 			return true;
-
 		}
 		 
 	}

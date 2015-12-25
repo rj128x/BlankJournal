@@ -131,6 +131,16 @@ namespace MainSL {
 			GlobalContext.Single.Client.InitOBPAsync(tbp);
 		}
 
+		private void btnShowPDF_Click(object sender, RoutedEventArgs e) {
+			TBPInfo tbp = grdTBPBlanks.SelectedItem as TBPInfo;
+			FloatWindow.OpenWindow("Home/getFile?id="+tbp.IDPDFData);
+		}
+
+		private void btnShowWord_Click(object sender, RoutedEventArgs e) {
+			TBPInfo tbp = grdTBPBlanks.SelectedItem as TBPInfo;
+			FloatWindow.OpenWindow("Home/getFile?id=" + tbp.IDWordData);
+		}
+
 		
 
 
