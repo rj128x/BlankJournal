@@ -8,9 +8,9 @@
            d:DesignWidth="640" d:DesignHeight="480"
            Title="JournalPage Page">
     <Grid x:Name="LayoutRoot">
-        <sdk:DataGrid Name="grdBlanks" AutoGenerateColumns="False" >
+        <sdk:DataGrid Name="grdBlanks" AutoGenerateColumns="False">                   
             <sdk:DataGrid.Columns>
-                <sdk:DataGridTemplateColumn Header="Дата созд" SortMemberPath="DateCreate" Width="150" >
+                <sdk:DataGridTemplateColumn Header="Дата созд" SortMemberPath="DateCreate" Width="150"  >
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
                             <ContentControl Content="{Binding DateCreate}" />

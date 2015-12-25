@@ -20,8 +20,12 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Name="btnNewTBP" Content="Создать Бланк" Click="Button_Click" IsEnabled="{Binding GlobalContext.Single.IsBusy, Converter={StaticResource logicNotConverter}}"/>
-                <Button Name="btnNewOBP" Content="Создать ОБП" Click="btnNewOBP_Click"/>
+                <Button Name="btnNewTBP" Content="Создать Бланк" Click="Button_Click" 
+                        IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}"
+                        Visibility="{Binding Single.CurrentUser.IsNSS, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
+                <Button Name="btnNewOBP" Content="Создать ОБП" Click="btnNewOBP_Click"
+                        IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}"
+                        Visibility="{Binding Single.CurrentUser.IsNOS, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
             </StackPanel>
             <Grid Grid.Row="1" VerticalAlignment="Stretch">
                 <sdk:DataGrid Name="grdTBPBlanks" AutoGenerateColumns="False" >
@@ -44,10 +48,18 @@
                             <sdk:DataGridTemplateColumn.CellTemplate >
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
-                                        <Button Content="Использовать следующий" Name="btnUseNextTBP" Click="btnUseNextTBP_Click"/>
-                                        <Button Content="Использовать ОБП" Name="btnUseOBP" Click="btnUseOBP_Click"/>
-                                        <Button Content="Просмотр" Name="btnShowPDF" Click="btnShowPDF_Click"/>
-                                        <Button Content="Просмотр" Name="btnShowWord" Click="btnShowWord_Click"/>
+                                        <Button Content="Использовать следующий" Name="btnUseNextTBP" Click="btnUseNextTBP_Click" 
+                                                IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}"
+                                                Visibility="{Binding Single.CurrentUser.IsNSS, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
+                                        <Button Content="Использовать ОБП" Name="btnUseOBP" Click="btnUseOBP_Click"
+                                                IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}"
+                                                Visibility="{Binding Single.CurrentUser.IsNSS, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>                                        
+                                        <Button Content="Просмотр PDF" Name="btnShowPDF" Click="btnShowPDF_Click"
+                                                IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}"
+                                                Visibility="{Binding Single.CurrentUser.IsNSS, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
+                                        <Button Content="Просмотр" Name="btnShowWord" Click="btnShowWord_Click"
+                                                IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}"
+                                                Visibility="{Binding Single.CurrentUser.IsNSS, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </sdk:DataGridTemplateColumn.CellTemplate>

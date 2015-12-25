@@ -31,14 +31,17 @@ namespace MainSL {
 		}
 
 		void Client_CreateTBPCompleted(object sender, CreateTBPCompletedEventArgs e) {
+			GlobalContext.Single.IsBusy = false;
 			ReturnMessage msg = e.Result;
 			MessageBox.Show(msg.Message);
+			GlobalContext.Single.IsBusy = true;
 			GlobalContext.Single.Client.GetTBPBlanksByFolderAsync(CurrentFolder.ID);
 		}
 
 		
 		
 		void Client_GetTBPBlanksByFolderCompleted(object sender, GetTBPBlanksByFolderCompletedEventArgs e) {
+			GlobalContext.Single.IsBusy = false;
 			grdTBPBlanks.ItemsSource = e.Result;
 		}
 		
@@ -50,6 +53,7 @@ namespace MainSL {
 			int id = Int32.Parse(btn.Name.Replace("btnFolder_", ""));
 			//MessageBox.Show(id.ToString());
 			CurrentFolder = GlobalContext.Single.AllFolders[id];
+			GlobalContext.Single.IsBusy = true;
 			GlobalContext.Single.Client.GetTBPBlanksByFolderAsync(id);
 		}
 
@@ -81,21 +85,25 @@ namespace MainSL {
 		void newWindow_Closed(object sender, EventArgs e) {
 			TBPWindow win = sender as TBPWindow;
 			if (win.DialogResult == true) {
+				GlobalContext.Single.IsBusy = true;
 				GlobalContext.Single.Client.CreateTBPAsync(win.CurrentBlank);
 			}
 		}
 
 		private void btnUseNextTBP_Click(object sender, RoutedEventArgs e) {
 			TBPInfo tbp = grdTBPBlanks.SelectedItem as TBPInfo;
+			GlobalContext.Single.IsBusy = true;
 			GlobalContext.Single.Client.InitTBPAsync(tbp);
 		}
 
 		private void btnUseOBP_Click(object sender, RoutedEventArgs e) {
 			TBPInfo tbp = grdTBPBlanks.SelectedItem as TBPInfo;
+			GlobalContext.Single.IsBusy = true;
 			GlobalContext.Single.Client.InitOBPAsync(tbp);
 		}
 
 		void Client_InitOBPCompleted(object sender, InitOBPCompletedEventArgs e) {
+			GlobalContext.Single.IsBusy = false;
 			JournalRecord newBlank = e.Result as JournalRecord;
 			JournalRecordWindow win = new JournalRecordWindow();
 			win.Init(newBlank);
@@ -104,6 +112,7 @@ namespace MainSL {
 		}
 		
 		void Client_InitTBPCompleted(object sender, InitTBPCompletedEventArgs e) {
+			GlobalContext.Single.IsBusy = false;
 			JournalRecord newBlank = e.Result as JournalRecord;
 			JournalRecordWindow win = new JournalRecordWindow();
 			win.Init(newBlank);
@@ -114,11 +123,13 @@ namespace MainSL {
 		void win_Closed(object sender, EventArgs e) {
 			JournalRecordWindow win = sender as JournalRecordWindow;
 			if (win.DialogResult==true){
+				GlobalContext.Single.IsBusy = true;
 				GlobalContext.Single.Client.CreateBPAsync(GlobalContext.Single.NewBPRecord);
 			}
 		}
 
 		void Client_CreateBPCompleted(object sender, CreateBPCompletedEventArgs e) {
+			GlobalContext.Single.IsBusy = false;
 			ReturnMessage msg = e.Result as ReturnMessage;
 			MessageBox.Show(msg.Message);
 		}
@@ -127,7 +138,7 @@ namespace MainSL {
 			TBPInfo tbp = new TBPInfo();
 			tbp.Number = "-";
 			tbp.Name = "ОБП";
-
+			GlobalContext.Single.IsBusy = true;
 			GlobalContext.Single.Client.InitOBPAsync(tbp);
 		}
 

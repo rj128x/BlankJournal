@@ -80,7 +80,7 @@ namespace BlankJournal.Models {
 			try {
 				List<JournalRecord> result = new List<JournalRecord>();
 				BlankJournal.BlanksEntities eni = new BlanksEntities();
-				IQueryable<BPJournalTable> blanks = from b in eni.BPJournalTable select b;
+				IQueryable<BPJournalTable> blanks = from b in eni.BPJournalTable orderby b.DateCreate descending select b;
 				foreach (BPJournalTable tbl in blanks) {
 					result.Add(new JournalRecord(tbl));
 				}
