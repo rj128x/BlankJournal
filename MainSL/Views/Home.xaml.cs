@@ -15,13 +15,18 @@ using System.Windows.Shapes;
 
 namespace MainSL {
 	public partial class Home : Page {
+
+		public static bool inited { get; set; }
 		public Home() {
 			InitializeComponent();
-
-			GlobalContext.Single.Client.GetTBPBlanksByFolderCompleted += Client_GetTBPBlanksByFolderCompleted;
-			GlobalContext.Single.Client.InitOBPCompleted+=Client_InitOBPCompleted;
-			GlobalContext.Single.Client.InitTBPCompleted += Client_InitTBPCompleted;
-			GlobalContext.Single.Client.CreateBPCompleted += Client_CreateBPCompleted;
+			
+				GlobalContext.Single.Client.GetTBPBlanksByFolderCompleted += Client_GetTBPBlanksByFolderCompleted;
+			if (!inited) {	
+				GlobalContext.Single.Client.InitOBPCompleted += Client_InitOBPCompleted;
+				GlobalContext.Single.Client.InitTBPCompleted += Client_InitTBPCompleted;
+				GlobalContext.Single.Client.CreateBPCompleted += Client_CreateBPCompleted;
+			}
+			inited = true;
 		}
 
 		

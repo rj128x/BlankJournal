@@ -4,18 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="8369273af202408e842a5150f1b0d225" Name="Diagram1">
-        <EntityTypeShape EntityType="BlanksModel.BPJournalTable" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BlanksModel.DataTable" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="BlanksModel.FoldersTable" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BlanksModel.TBPCommentsTable" Width="1.5" PointX="6" PointY="9" IsExpanded="true" />
-        <EntityTypeShape EntityType="BlanksModel.TBPHistoryTable" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BlanksModel.TBPInfoTable" Width="1.5" PointX="6" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BlanksModel.UsersTable" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
+      <Diagram DiagramId="f29cf12af0154606bbb8e0c7c0f507c0" Name="Diagram1">
+        <EntityTypeShape EntityType="BlanksModel.BPJournalTable" Width="1.5" PointX="5.25" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BlanksModel.DataTable" Width="1.5" PointX="3" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BlanksModel.FoldersTable" Width="1.5" PointX="3" PointY="18.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BlanksModel.TBPCommentsTable" Width="1.5" PointX="8.25" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="BlanksModel.TBPHistoryTable" Width="1.5" PointX="5.25" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BlanksModel.TBPInfoTable" Width="1.5" PointX="5.25" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BlanksModel.UsersTable" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
         <AssociationConnector Association="BlanksModel.FK_BPJournalTable_DataTablePDF" ManuallyRouted="false" />
         <AssociationConnector Association="BlanksModel.FK_BPJournalTable_DataTableWord" ManuallyRouted="false" />
         <AssociationConnector Association="BlanksModel.FK_BPJournalTable_TBPInfoTable" ManuallyRouted="false" />
         <AssociationConnector Association="BlanksModel.FK_BPJournalTable_UsersTable" ManuallyRouted="false" />
+        <AssociationConnector Association="BlanksModel.FK_DataTable_UsersTable" ManuallyRouted="false" />
         <AssociationConnector Association="BlanksModel.FK_TBPCommentsTable_DataTable" ManuallyRouted="false" />
         <AssociationConnector Association="BlanksModel.FK_TBPHistoryTable_DataTableNewPDF" ManuallyRouted="false" />
         <AssociationConnector Association="BlanksModel.FK_TBPHistoryTable_DataTableNewWord" ManuallyRouted="false" />

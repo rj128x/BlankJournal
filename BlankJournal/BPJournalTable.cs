@@ -23,8 +23,8 @@ namespace BlankJournal
         public System.DateTime DateStart { get; set; }
         public System.DateTime DateEnd { get; set; }
         public string Comment { get; set; }
-        public Nullable<int> WordData { get; set; }
-        public Nullable<int> PDFData { get; set; }
+        public string WordData { get; set; }
+        public string PDFData { get; set; }
         public bool isOBP { get; set; }
     
         public virtual DataTable DataTable { get; set; }

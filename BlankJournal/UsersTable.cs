@@ -17,6 +17,7 @@ namespace BlankJournal
         public UsersTable()
         {
             this.BPJournalTable = new HashSet<BPJournalTable>();
+            this.DataTable = new HashSet<DataTable>();
             this.TBPCommentsTable = new HashSet<TBPCommentsTable>();
             this.TBPCommentsTable1 = new HashSet<TBPCommentsTable>();
             this.TBPHistoryTable = new HashSet<TBPHistoryTable>();
@@ -28,6 +29,7 @@ namespace BlankJournal
         public bool IsNSS { get; set; }
     
         public virtual ICollection<BPJournalTable> BPJournalTable { get; set; }
+        public virtual ICollection<DataTable> DataTable { get; set; }
         public virtual ICollection<TBPCommentsTable> TBPCommentsTable { get; set; }
         public virtual ICollection<TBPCommentsTable> TBPCommentsTable1 { get; set; }
         public virtual ICollection<TBPHistoryTable> TBPHistoryTable { get; set; }

@@ -146,6 +146,10 @@ namespace MainSL.MainSVC {
         
         private string NumberField;
         
+        private string PDFDataField;
+        
+        private string WordDataField;
+        
         [System.Runtime.Serialization.DataMemberAttribute()]
         public int FolderID {
             get {
@@ -185,6 +189,32 @@ namespace MainSL.MainSVC {
             }
         }
         
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PDFData {
+            get {
+                return this.PDFDataField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PDFDataField, value) != true)) {
+                    this.PDFDataField = value;
+                    this.RaisePropertyChanged("PDFData");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string WordData {
+            get {
+                return this.WordDataField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.WordDataField, value) != true)) {
+                    this.WordDataField = value;
+                    this.RaisePropertyChanged("WordData");
+                }
+            }
+        }
+        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -203,6 +233,8 @@ namespace MainSL.MainSVC {
         private string AuthorField;
         
         private string CommentField;
+        
+        private System.DateTime DateCreateField;
         
         private System.DateTime DateEndField;
         
@@ -240,6 +272,19 @@ namespace MainSL.MainSVC {
                 if ((object.ReferenceEquals(this.CommentField, value) != true)) {
                     this.CommentField = value;
                     this.RaisePropertyChanged("Comment");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime DateCreate {
+            get {
+                return this.DateCreateField;
+            }
+            set {
+                if ((this.DateCreateField.Equals(value) != true)) {
+                    this.DateCreateField = value;
+                    this.RaisePropertyChanged("DateCreate");
                 }
             }
         }

@@ -24,8 +24,8 @@ namespace BlankJournal
         public string Number { get; set; }
         public int Folder { get; set; }
         public string Name { get; set; }
-        public Nullable<int> DataPDF { get; set; }
-        public Nullable<int> DataWord { get; set; }
+        public string DataPDF { get; set; }
+        public string DataWord { get; set; }
     
         public virtual ICollection<BPJournalTable> BPJournalTable { get; set; }
         public virtual DataTable DataTable { get; set; }

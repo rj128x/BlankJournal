@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище BlanksModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище BlanksModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BPJournalTable">
           <Key>
             <PropertyRef Name="Id" />
@@ -12,23 +12,25 @@
           <Property Name="Id" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Number" Type="float" Nullable="false" />
           <Property Name="TBPNumber" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="500" Nullable="false" />
           <Property Name="DateCreate" Type="datetime" Nullable="false" />
           <Property Name="Author" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="DateStart" Type="datetime" Nullable="false" />
           <Property Name="DateEnd" Type="datetime" Nullable="false" />
-          <Property Name="Comment" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="WordData" Type="int" />
-          <Property Name="PDFData" Type="int" />
+          <Property Name="Comment" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="WordData" Type="varchar" MaxLength="50" />
+          <Property Name="PDFData" Type="varchar" MaxLength="50" />
           <Property Name="isOBP" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="DataTable">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
-          <Property Name="Data" Type="varbinary(max)" />
-          <Property Name="isPDF" Type="bit" />
+          <Property Name="ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Data" Type="varbinary(max)" Nullable="false" />
+          <Property Name="isPDF" Type="bit" Nullable="false" />
+          <Property Name="DateCreate" Type="datetime" Nullable="false" />
+          <Property Name="Author" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="FoldersTable">
           <Key>
@@ -41,25 +43,28 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="TBPNumber" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="Author" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Comment" Type="varchar(max)" Nullable="false" />
-          <Property Name="WordData" Type="int" />
-          <Property Name="Performer" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="CommentPerform" Type="varchar(max)" Nullable="false" />
+          <Property Name="WordData" Type="varchar" MaxLength="50" />
+          <Property Name="Performer" Type="varchar" MaxLength="50" />
+          <Property Name="CommentPerform" Type="varchar(max)" />
+          <Property Name="DateCreate" Type="datetime" Nullable="false" />
+          <Property Name="DatePerform" Type="datetime" />
         </EntityType>
         <EntityType Name="TBPHistoryTable">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="TBPNumber" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="PrevPDFData" Type="int" Nullable="false" />
-          <Property Name="PrevWordData" Type="int" Nullable="false" />
-          <Property Name="NewPDFData" Type="int" Nullable="false" />
-          <Property Name="NewWordData" Type="int" Nullable="false" />
+          <Property Name="PrevPDFData" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PrevWordData" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NewPDFData" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NewWordData" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Author" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DateCreate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="TBPInfoTable">
           <Key>
@@ -67,9 +72,9 @@
           </Key>
           <Property Name="Number" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="Folder" Type="int" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="200" Nullable="false" />
-          <Property Name="DataPDF" Type="int" />
-          <Property Name="DataWord" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="DataPDF" Type="varchar" MaxLength="50" />
+          <Property Name="DataWord" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="UsersTable">
           <Key>
@@ -128,6 +133,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_DataTable_UsersTable">
+          <End Role="UsersTable" Type="Self.UsersTable" Multiplicity="1" />
+          <End Role="DataTable" Type="Self.DataTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsersTable">
+              <PropertyRef Name="Login" />
+            </Principal>
+            <Dependent Role="DataTable">
+              <PropertyRef Name="Author" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TBPCommentsTable_DataTable">
           <End Role="DataTable" Type="Self.DataTable" Multiplicity="0..1" />
           <End Role="TBPCommentsTable" Type="Self.TBPCommentsTable" Multiplicity="*" />
@@ -165,7 +182,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TBPCommentsTable_UsersTablePerformer">
-          <End Role="UsersTable" Type="Self.UsersTable" Multiplicity="1" />
+          <End Role="UsersTable" Type="Self.UsersTable" Multiplicity="0..1" />
           <End Role="TBPCommentsTable" Type="Self.TBPCommentsTable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UsersTable">
@@ -308,6 +325,10 @@
             <End Role="UsersTable" EntitySet="UsersTable" />
             <End Role="BPJournalTable" EntitySet="BPJournalTable" />
           </AssociationSet>
+          <AssociationSet Name="FK_DataTable_UsersTable" Association="Self.FK_DataTable_UsersTable">
+            <End Role="UsersTable" EntitySet="UsersTable" />
+            <End Role="DataTable" EntitySet="DataTable" />
+          </AssociationSet>
           <AssociationSet Name="FK_TBPCommentsTable_DataTable" Association="Self.FK_TBPCommentsTable_DataTable">
             <End Role="DataTable" EntitySet="DataTable" />
             <End Role="TBPCommentsTable" EntitySet="TBPCommentsTable" />
@@ -361,8 +382,7 @@
             <End Role="TBPInfoTable" EntitySet="TBPInfoTable" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BlanksModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -373,14 +393,14 @@
           <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Number" Type="Double" Nullable="false" />
           <Property Name="TBPNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="DateCreate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Author" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="DateStart" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DateEnd" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Comment" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="WordData" Type="Int32" />
-          <Property Name="PDFData" Type="Int32" />
+          <Property Name="Comment" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="WordData" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PDFData" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="isOBP" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="DataTable" Relationship="Self.FK_BPJournalTable_DataTablePDF" FromRole="BPJournalTable" ToRole="DataTable" />
           <NavigationProperty Name="DataTable1" Relationship="Self.FK_BPJournalTable_DataTableWord" FromRole="BPJournalTable" ToRole="DataTable" />
@@ -391,11 +411,14 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="Data" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="isPDF" Type="Boolean" />
+          <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Data" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="isPDF" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Author" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="BPJournalTable" Relationship="Self.FK_BPJournalTable_DataTablePDF" FromRole="DataTable" ToRole="BPJournalTable" />
           <NavigationProperty Name="BPJournalTable1" Relationship="Self.FK_BPJournalTable_DataTableWord" FromRole="DataTable" ToRole="BPJournalTable" />
+          <NavigationProperty Name="UsersTable" Relationship="Self.FK_DataTable_UsersTable" FromRole="DataTable" ToRole="UsersTable" />
           <NavigationProperty Name="TBPCommentsTable" Relationship="Self.FK_TBPCommentsTable_DataTable" FromRole="DataTable" ToRole="TBPCommentsTable" />
           <NavigationProperty Name="TBPHistoryTable" Relationship="Self.FK_TBPHistoryTable_DataTableNewPDF" FromRole="DataTable" ToRole="TBPHistoryTable" />
           <NavigationProperty Name="TBPHistoryTable1" Relationship="Self.FK_TBPHistoryTable_DataTableNewWord" FromRole="DataTable" ToRole="TBPHistoryTable" />
@@ -416,13 +439,15 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="TBPNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Author" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="WordData" Type="Int32" />
-          <Property Name="Performer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CommentPerform" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="WordData" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Performer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CommentPerform" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DateCreate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DatePerform" Type="DateTime" Precision="3" />
           <NavigationProperty Name="DataTable" Relationship="Self.FK_TBPCommentsTable_DataTable" FromRole="TBPCommentsTable" ToRole="DataTable" />
           <NavigationProperty Name="TBPInfoTable" Relationship="Self.FK_TBPCommentsTable_TBPInfoTable" FromRole="TBPCommentsTable" ToRole="TBPInfoTable" />
           <NavigationProperty Name="UsersTable" Relationship="Self.FK_TBPCommentsTable_UsersTableAuthor" FromRole="TBPCommentsTable" ToRole="UsersTable" />
@@ -432,13 +457,14 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="TBPNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PrevPDFData" Type="Int32" Nullable="false" />
-          <Property Name="PrevWordData" Type="Int32" Nullable="false" />
-          <Property Name="NewPDFData" Type="Int32" Nullable="false" />
-          <Property Name="NewWordData" Type="Int32" Nullable="false" />
+          <Property Name="PrevPDFData" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PrevWordData" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NewPDFData" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NewWordData" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Author" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DateCreate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="DataTable" Relationship="Self.FK_TBPHistoryTable_DataTableNewPDF" FromRole="TBPHistoryTable" ToRole="DataTable" />
           <NavigationProperty Name="DataTable1" Relationship="Self.FK_TBPHistoryTable_DataTableNewWord" FromRole="TBPHistoryTable" ToRole="DataTable" />
           <NavigationProperty Name="DataTable2" Relationship="Self.FK_TBPHistoryTable_DataTablePrevPDF" FromRole="TBPHistoryTable" ToRole="DataTable" />
@@ -452,9 +478,9 @@
           </Key>
           <Property Name="Number" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Folder" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="DataPDF" Type="Int32" />
-          <Property Name="DataWord" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DataPDF" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DataWord" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="BPJournalTable" Relationship="Self.FK_BPJournalTable_TBPInfoTable" FromRole="TBPInfoTable" ToRole="BPJournalTable" />
           <NavigationProperty Name="DataTable" Relationship="Self.FK_TBPInfoTable_DataTablePDF" FromRole="TBPInfoTable" ToRole="DataTable" />
           <NavigationProperty Name="DataTable1" Relationship="Self.FK_TBPInfoTable_DataTableWord" FromRole="TBPInfoTable" ToRole="DataTable" />
@@ -471,6 +497,7 @@
           <Property Name="IsNOS" Type="Boolean" Nullable="false" />
           <Property Name="IsNSS" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="BPJournalTable" Relationship="Self.FK_BPJournalTable_UsersTable" FromRole="UsersTable" ToRole="BPJournalTable" />
+          <NavigationProperty Name="DataTable" Relationship="Self.FK_DataTable_UsersTable" FromRole="UsersTable" ToRole="DataTable" />
           <NavigationProperty Name="TBPCommentsTable" Relationship="Self.FK_TBPCommentsTable_UsersTableAuthor" FromRole="UsersTable" ToRole="TBPCommentsTable" />
           <NavigationProperty Name="TBPCommentsTable1" Relationship="Self.FK_TBPCommentsTable_UsersTablePerformer" FromRole="UsersTable" ToRole="TBPCommentsTable" />
           <NavigationProperty Name="TBPHistoryTable" Relationship="Self.FK_TBPHistoryTable_UsersTable" FromRole="UsersTable" ToRole="TBPHistoryTable" />
@@ -519,6 +546,18 @@
               <PropertyRef Name="Login" />
             </Principal>
             <Dependent Role="BPJournalTable">
+              <PropertyRef Name="Author" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DataTable_UsersTable">
+          <End Role="UsersTable" Type="Self.UsersTable" Multiplicity="1" />
+          <End Role="DataTable" Type="Self.DataTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsersTable">
+              <PropertyRef Name="Login" />
+            </Principal>
+            <Dependent Role="DataTable">
               <PropertyRef Name="Author" />
             </Dependent>
           </ReferentialConstraint>
@@ -644,7 +683,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TBPCommentsTable_UsersTablePerformer">
-          <End Role="UsersTable" Type="Self.UsersTable" Multiplicity="1" />
+          <End Role="UsersTable" Type="Self.UsersTable" Multiplicity="0..1" />
           <End Role="TBPCommentsTable" Type="Self.TBPCommentsTable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UsersTable">
@@ -702,6 +741,10 @@
           <AssociationSet Name="FK_BPJournalTable_UsersTable" Association="Self.FK_BPJournalTable_UsersTable">
             <End Role="UsersTable" EntitySet="UsersTable" />
             <End Role="BPJournalTable" EntitySet="BPJournalTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataTable_UsersTable" Association="Self.FK_DataTable_UsersTable">
+            <End Role="UsersTable" EntitySet="UsersTable" />
+            <End Role="DataTable" EntitySet="DataTable" />
           </AssociationSet>
           <AssociationSet Name="FK_TBPCommentsTable_DataTable" Association="Self.FK_TBPCommentsTable_DataTable">
             <End Role="DataTable" EntitySet="DataTable" />
@@ -786,6 +829,8 @@
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Data" ColumnName="Data" />
                 <ScalarProperty Name="isPDF" ColumnName="isPDF" />
+                <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -807,6 +852,8 @@
                 <ScalarProperty Name="WordData" ColumnName="WordData" />
                 <ScalarProperty Name="Performer" ColumnName="Performer" />
                 <ScalarProperty Name="CommentPerform" ColumnName="CommentPerform" />
+                <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+                <ScalarProperty Name="DatePerform" ColumnName="DatePerform" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -820,6 +867,7 @@
                 <ScalarProperty Name="NewPDFData" ColumnName="NewPDFData" />
                 <ScalarProperty Name="NewWordData" ColumnName="NewWordData" />
                 <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

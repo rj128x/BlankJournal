@@ -8,6 +8,8 @@ namespace BlankJournal.Models {
 		public string Number { get; set; }
 		public int FolderID { get; set; }
 		public string Name { get; set; }
+		public string WordData { get; set; }
+		public string PDFData { get; set; }
 
 		public TBPInfo() {
 

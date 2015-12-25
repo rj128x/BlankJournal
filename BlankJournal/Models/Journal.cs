@@ -12,6 +12,7 @@ namespace BlankJournal.Models {
 		public double DoubleNumber { get; set; }
 		public DateTime DateStart { get; set; }
 		public DateTime DateEnd { get; set; }
+		public DateTime DateCreate { get; set; }
 		public bool isOBP { get; set; }
 		public string TBPNumber { get; set; }
 		public JournalRecord() {
@@ -21,10 +22,11 @@ namespace BlankJournal.Models {
 			Number = tbl.Id;
 			Task = tbl.Name;
 			Comment = tbl.Comment;
-			Author = DBContext.Single.AllUsers[tbl.Author].Name;
+			Author = DBContext.Single.getUserByLogin(tbl.Author).Name;
 			DoubleNumber = tbl.Number;
 			DateStart = tbl.DateStart;
 			DateEnd = tbl.DateEnd;
+			DateCreate = tbl.DateCreate;
 			isOBP = tbl.isOBP;
 			TBPNumber = tbl.TBPNumber;
 		}
@@ -93,11 +95,15 @@ namespace BlankJournal.Models {
 				tbl.DateCreate = DateTime.Now;
 				tbl.DateStart = DateTime.Now;
 				tbl.DateEnd = DateTime.Now;
+				
 				eni.BPJournalTable.Add(tbl);
 				eni.SaveChanges();
+				Logger.info("Бланк создан");
 				return new ReturnMessage(true,"Бланк успешно создан");
 			}
 			catch (Exception e) {
+				Logger.info("Ошибка при создаии бланка " + e.ToString());
+				Logger.info(e.StackTrace);
 				return new ReturnMessage(false, "Ошибка при создании бланка");
 			}
 			

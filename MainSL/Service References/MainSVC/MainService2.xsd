@@ -33,6 +33,8 @@
       <xs:element minOccurs="0" name="FolderID" type="xs:int" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Number" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PDFData" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WordData" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="TBPInfo" nillable="true" type="tns:TBPInfo" />
@@ -46,6 +48,7 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="Author" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Comment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DateCreate" type="xs:dateTime" />
       <xs:element minOccurs="0" name="DateEnd" type="xs:dateTime" />
       <xs:element minOccurs="0" name="DateStart" type="xs:dateTime" />
       <xs:element minOccurs="0" name="DoubleNumber" type="xs:double" />

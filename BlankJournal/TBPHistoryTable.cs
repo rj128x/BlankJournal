@@ -14,13 +14,14 @@ namespace BlankJournal
     
     public partial class TBPHistoryTable
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string TBPNumber { get; set; }
-        public int PrevPDFData { get; set; }
-        public int PrevWordData { get; set; }
-        public int NewPDFData { get; set; }
-        public int NewWordData { get; set; }
+        public string PrevPDFData { get; set; }
+        public string PrevWordData { get; set; }
+        public string NewPDFData { get; set; }
+        public string NewWordData { get; set; }
         public string Author { get; set; }
+        public System.DateTime DateCreate { get; set; }
     
         public virtual DataTable DataTable { get; set; }
         public virtual DataTable DataTable1 { get; set; }

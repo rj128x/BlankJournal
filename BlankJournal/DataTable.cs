@@ -27,12 +27,15 @@ namespace BlankJournal
             this.TBPInfoTable1 = new HashSet<TBPInfoTable>();
         }
     
-        public int ID { get; set; }
+        public string ID { get; set; }
         public byte[] Data { get; set; }
-        public Nullable<bool> isPDF { get; set; }
+        public bool isPDF { get; set; }
+        public System.DateTime DateCreate { get; set; }
+        public string Author { get; set; }
     
         public virtual ICollection<BPJournalTable> BPJournalTable { get; set; }
         public virtual ICollection<BPJournalTable> BPJournalTable1 { get; set; }
+        public virtual UsersTable UsersTable { get; set; }
         public virtual ICollection<TBPCommentsTable> TBPCommentsTable { get; set; }
         public virtual ICollection<TBPHistoryTable> TBPHistoryTable { get; set; }
         public virtual ICollection<TBPHistoryTable> TBPHistoryTable1 { get; set; }

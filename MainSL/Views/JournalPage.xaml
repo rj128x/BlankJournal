@@ -10,6 +10,13 @@
     <Grid x:Name="LayoutRoot">
         <sdk:DataGrid Name="grdBlanks" AutoGenerateColumns="False" >
             <sdk:DataGrid.Columns>
+                <sdk:DataGridTemplateColumn Header="Дата созд" SortMemberPath="DateCreate" Width="150" >
+                    <sdk:DataGridTemplateColumn.CellTemplate >
+                        <DataTemplate>
+                            <ContentControl Content="{Binding DateCreate}" />
+                        </DataTemplate>
+                    </sdk:DataGridTemplateColumn.CellTemplate>
+                </sdk:DataGridTemplateColumn>
                 <sdk:DataGridTemplateColumn Header="№ бланка" SortMemberPath="Number" Width="150" >
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
