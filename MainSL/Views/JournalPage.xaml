@@ -63,8 +63,8 @@
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <Button Content="Просмотр бланка" Name="btnShow" Click="btnShow_Click"/>
-                                <Button Content="Параметры переключения" Name="btnEdit" Click="btnEdit_Click"/>
+                                <Button Content="Просмотр бланка" Name="btnShow" Click="btnShow_Click" Height="30"/>
+                                <Button Content="Параметры переключения" Name="btnEdit" Click="btnEdit_Click" Height="30"/>
                             </StackPanel>
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>

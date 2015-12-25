@@ -46,9 +46,10 @@ namespace MainSL {
 		}
 		
 		
-		public void Connect() {
-			Client = new MainServiceClient();
+		public void Connect() {			
+			Client = new MainServiceClient();			
 			IsBusy = true;
+
 			Client.GetUserCompleted += Client_GetUserCompleted;
 			Client.GetUserAsync();
 			
