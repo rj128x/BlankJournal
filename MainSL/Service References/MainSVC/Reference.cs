@@ -20,36 +20,36 @@ namespace MainSL.MainSVC {
     [System.Runtime.Serialization.DataContractAttribute(Name="User", Namespace="http://schemas.datacontract.org/2004/07/BlankJournal.Models")]
     public partial class User : object, System.ComponentModel.INotifyPropertyChanged {
         
-        private bool IsNOSField;
+        private bool CanDoOperField;
         
-        private bool IsNSSField;
+        private bool CanEditTBPField;
         
         private string LoginField;
         
         private string NameField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool IsNOS {
+        public bool CanDoOper {
             get {
-                return this.IsNOSField;
+                return this.CanDoOperField;
             }
             set {
-                if ((this.IsNOSField.Equals(value) != true)) {
-                    this.IsNOSField = value;
-                    this.RaisePropertyChanged("IsNOS");
+                if ((this.CanDoOperField.Equals(value) != true)) {
+                    this.CanDoOperField = value;
+                    this.RaisePropertyChanged("CanDoOper");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool IsNSS {
+        public bool CanEditTBP {
             get {
-                return this.IsNSSField;
+                return this.CanEditTBPField;
             }
             set {
-                if ((this.IsNSSField.Equals(value) != true)) {
-                    this.IsNSSField = value;
-                    this.RaisePropertyChanged("IsNSS");
+                if ((this.CanEditTBPField.Equals(value) != true)) {
+                    this.CanEditTBPField = value;
+                    this.RaisePropertyChanged("CanEditTBP");
                 }
             }
         }
@@ -140,6 +140,8 @@ namespace MainSL.MainSVC {
     [System.Runtime.Serialization.DataContractAttribute(Name="TBPInfo", Namespace="http://schemas.datacontract.org/2004/07/BlankJournal.Models")]
     public partial class TBPInfo : object, System.ComponentModel.INotifyPropertyChanged {
         
+        private bool EditingTBPField;
+        
         private int FolderIDField;
         
         private string IDPDFDataField;
@@ -152,7 +154,24 @@ namespace MainSL.MainSVC {
         
         private byte[] PDFDataField;
         
+        private bool UpdatedPDFField;
+        
+        private bool UpdatedWordField;
+        
         private byte[] WordDataField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool EditingTBP {
+            get {
+                return this.EditingTBPField;
+            }
+            set {
+                if ((this.EditingTBPField.Equals(value) != true)) {
+                    this.EditingTBPField = value;
+                    this.RaisePropertyChanged("EditingTBP");
+                }
+            }
+        }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public int FolderID {
@@ -233,6 +252,32 @@ namespace MainSL.MainSVC {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool UpdatedPDF {
+            get {
+                return this.UpdatedPDFField;
+            }
+            set {
+                if ((this.UpdatedPDFField.Equals(value) != true)) {
+                    this.UpdatedPDFField = value;
+                    this.RaisePropertyChanged("UpdatedPDF");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool UpdatedWord {
+            get {
+                return this.UpdatedWordField;
+            }
+            set {
+                if ((this.UpdatedWordField.Equals(value) != true)) {
+                    this.UpdatedWordField = value;
+                    this.RaisePropertyChanged("UpdatedWord");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public byte[] WordData {
             get {
                 return this.WordDataField;
@@ -272,11 +317,17 @@ namespace MainSL.MainSVC {
         
         private double DoubleNumberField;
         
+        private string IDWordDataField;
+        
         private string NumberField;
         
         private string TBPNumberField;
         
         private string TaskField;
+        
+        private byte[] WordDataField;
+        
+        private bool isInitField;
         
         private bool isOBPField;
         
@@ -359,6 +410,19 @@ namespace MainSL.MainSVC {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string IDWordData {
+            get {
+                return this.IDWordDataField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IDWordDataField, value) != true)) {
+                    this.IDWordDataField = value;
+                    this.RaisePropertyChanged("IDWordData");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string Number {
             get {
                 return this.NumberField;
@@ -393,6 +457,32 @@ namespace MainSL.MainSVC {
                 if ((object.ReferenceEquals(this.TaskField, value) != true)) {
                     this.TaskField = value;
                     this.RaisePropertyChanged("Task");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] WordData {
+            get {
+                return this.WordDataField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.WordDataField, value) != true)) {
+                    this.WordDataField = value;
+                    this.RaisePropertyChanged("WordData");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool isInit {
+            get {
+                return this.isInitField;
+            }
+            set {
+                if ((this.isInitField.Equals(value) != true)) {
+                    this.isInitField = value;
+                    this.RaisePropertyChanged("isInit");
                 }
             }
         }

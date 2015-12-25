@@ -1,6 +1,7 @@
 ﻿using MainSL.MainSVC;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Windows;
@@ -13,6 +14,8 @@ using System.Windows.Shapes;
 
 namespace MainSL.Views {
 	public partial class JournalRecordWindow : ChildWindow {
+
+		public JournalRecord CurrentBlank { get; set; }
 		public JournalRecordWindow() {
 			InitializeComponent();
 		}
@@ -26,9 +29,22 @@ namespace MainSL.Views {
 		}
 
 		public void Init(JournalRecord rec) {
-			GlobalContext.Single.NewBPRecord = rec;
+			CurrentBlank = rec;
 			pnlData.DataContext = rec;
 		}
+
+		private void btnChooseWord_Click(object sender, RoutedEventArgs e) {
+			OpenFileDialog dlg = new OpenFileDialog();
+			if (dlg.ShowDialog() == true) {
+				FileStream str = dlg.File.OpenRead();
+				byte[] buffer = new byte[str.Length];
+				str.Read(buffer, 0, (int)str.Length);
+				str.Close();
+				txtWord.Text = "Файл выбран";
+				CurrentBlank.WordData = buffer;
+			}
+		}
+
 	}
 }
 

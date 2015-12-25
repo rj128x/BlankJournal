@@ -12,7 +12,7 @@
         <StackPanel Orientation="Vertical">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Номер бланка" Width="100"/>
-                <TextBox Text="{Binding Number, Mode=TwoWay}" Width="50"/>                
+                <TextBox Text="{Binding Number, Mode=TwoWay}" Width="50" IsEnabled="{Binding EditingTBP, Converter={StaticResource logicNotConverter}}"/>                
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Наименование" Width="100"/>

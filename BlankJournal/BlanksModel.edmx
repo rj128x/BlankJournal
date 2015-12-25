@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище BlanksModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище BlanksModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BPJournalTable">
           <Key>
             <PropertyRef Name="Id" />
@@ -82,8 +82,8 @@
           </Key>
           <Property Name="Login" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="IsNOS" Type="bit" Nullable="false" />
-          <Property Name="IsNSS" Type="bit" Nullable="false" />
+          <Property Name="CanEditTBP" Type="bit" Nullable="false" />
+          <Property Name="CanDoOper" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_BPJournalTable_DataTablePDF">
           <End Role="DataTable" Type="Self.DataTable" Multiplicity="0..1" />
@@ -382,8 +382,7 @@
             <End Role="TBPInfoTable" EntitySet="TBPInfoTable" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BlanksModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -495,13 +494,13 @@
           </Key>
           <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="IsNOS" Type="Boolean" Nullable="false" />
-          <Property Name="IsNSS" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="BPJournalTable" Relationship="Self.FK_BPJournalTable_UsersTable" FromRole="UsersTable" ToRole="BPJournalTable" />
           <NavigationProperty Name="DataTable" Relationship="Self.FK_DataTable_UsersTable" FromRole="UsersTable" ToRole="DataTable" />
           <NavigationProperty Name="TBPCommentsTable" Relationship="Self.FK_TBPCommentsTable_UsersTableAuthor" FromRole="UsersTable" ToRole="TBPCommentsTable" />
           <NavigationProperty Name="TBPCommentsTable1" Relationship="Self.FK_TBPCommentsTable_UsersTablePerformer" FromRole="UsersTable" ToRole="TBPCommentsTable" />
           <NavigationProperty Name="TBPHistoryTable" Relationship="Self.FK_TBPHistoryTable_UsersTable" FromRole="UsersTable" ToRole="TBPHistoryTable" />
+          <Property Name="CanEditTBP" Type="Boolean" Nullable="false" />
+          <Property Name="CanDoOper" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="FK_BPJournalTable_DataTablePDF">
           <End Role="DataTable" Type="Self.DataTable" Multiplicity="0..1" />
@@ -886,11 +885,11 @@
           <EntitySetMapping Name="UsersTable">
             <EntityTypeMapping TypeName="BlanksModel.UsersTable">
               <MappingFragment StoreEntitySet="UsersTable">
+                <ScalarProperty Name="CanDoOper" ColumnName="CanDoOper" />
+                <ScalarProperty Name="CanEditTBP" ColumnName="CanEditTBP" />
                 <ScalarProperty Name="Login" ColumnName="Login" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="IsNOS" ColumnName="IsNOS" />
-                <ScalarProperty Name="IsNSS" ColumnName="IsNSS" />
-              </MappingFragment>
+                </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
         </EntityContainerMapping>

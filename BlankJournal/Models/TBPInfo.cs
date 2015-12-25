@@ -12,6 +12,10 @@ namespace BlankJournal.Models {
 		public byte[] PDFData { get; set; }
 		public string IDPDFData { get; set; }
 		public string IDWordData { get; set; }
+		public bool UpdatedPDF { get; set; }
+		public bool UpdatedWord { get; set; }
+		public bool EditingTBP { get; set; }
+
 
 		public TBPInfo() {
 

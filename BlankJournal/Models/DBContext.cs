@@ -93,27 +93,33 @@ namespace BlankJournal.Models {
 		}
 
 
-		public ReturnMessage createTBP(TBPInfo newBlank) {
+		public ReturnMessage createTBP(TBPInfo newBlank,bool edit=false) {
 			Logger.info("Создание ТБП");
 			BlankJournal.BlanksEntities eni = new BlanksEntities();
-			try {				
+			TBPInfoTable last = null;
+
+			try {
 				IQueryable<TBPInfoTable> exist = from b in eni.TBPInfoTable where b.Number == newBlank.Number select b;
 				if (exist.Count() > 0) {
-					Logger.info("Бланк не создан - дубль");
-					return new ReturnMessage(false, String.Format("Бланк с номером {0} уже существует", newBlank.Number));
+					last = exist.First();
+					if (!edit) {
+						Logger.info("Бланк не создан - дубль");
+						return new ReturnMessage(false, String.Format("Бланк с номером {0} уже существует", newBlank.Number));
+					}
 				}
-			}
-			catch (Exception e) {
+			} catch (Exception e) {
 				Logger.info("Ошибка при создании бланка " + e.ToString());
 				return new ReturnMessage(false, String.Format("Ошибка при создании бланка"));
 			}
 			try {
-				TBPInfoTable tbl = new TBPInfoTable();
+				TBPInfoTable tbl = edit?last:new TBPInfoTable();
 				tbl.Number = newBlank.Number;
 				tbl.Name = newBlank.Name;
 				tbl.Folder = newBlank.FolderID;
-				eni.TBPInfoTable.Add(tbl);
-				SaveTBPDataToDB(newBlank, tbl, eni);
+				if (!edit)
+					eni.TBPInfoTable.Add(tbl);
+				if (newBlank.UpdatedPDF||newBlank.UpdatedWord)
+					SaveTBPDataToDB(newBlank, tbl, eni);
 				eni.SaveChanges();
 			}
 			catch (Exception e) {
@@ -124,38 +130,41 @@ namespace BlankJournal.Models {
 		}
 
 		public bool SaveTBPDataToDB(TBPInfo newBlank, TBPInfoTable tbl, BlanksEntities eni) {
-			try {
-				DataTable pdf = new DataTable();
-				DataTable word = new DataTable();
+				try{
 				TBPHistoryTable hist = new TBPHistoryTable();
-
-				pdf.ID = Guid.NewGuid().ToString();
-				word.ID = Guid.NewGuid().ToString();
 				hist.Id = Guid.NewGuid().ToString();
-
 				hist.Author = GetCurrentUser().Login;
-				pdf.Author = GetCurrentUser().Login;
-				word.Author = GetCurrentUser().Login;
-
-				pdf.DateCreate = DateTime.Now;
-				word.DateCreate = DateTime.Now;
 				hist.DateCreate = DateTime.Now;
 
 				hist.PrevPDFData = tbl.DataPDF;
 				hist.PrevWordData = tbl.DataWord;
-				hist.NewPDFData = pdf.ID;
-				hist.NewWordData = word.ID;
-				hist.TBPNumber = tbl.Number;
 
-				tbl.DataWord = word.ID;
-				tbl.DataPDF = pdf.ID;
+				if (newBlank.UpdatedWord) {
+					DataTable word = new DataTable();
+					word.ID = Guid.NewGuid().ToString();
+					word.Author = GetCurrentUser().Login;
+					word.DateCreate = DateTime.Now;
+					hist.NewWordData = word.ID;
+					tbl.DataWord = word.ID;
+					word.Data = newBlank.WordData;
+					eni.DataTable.Add(word);
+				}
+
+				if (newBlank.UpdatedPDF) {
+					DataTable pdf = new DataTable();
+					pdf.ID = Guid.NewGuid().ToString();
+					pdf.Author = GetCurrentUser().Login;
+					pdf.DateCreate = DateTime.Now;
+					hist.NewPDFData = pdf.ID;
+					tbl.DataPDF = pdf.ID;
+					pdf.isPDF = true;
+					pdf.Data = newBlank.PDFData;
+					eni.DataTable.Add(pdf);
+
+				}
 				
-				pdf.isPDF = true;
-
-				pdf.Data = newBlank.PDFData;
-				word.Data = newBlank.WordData;
-				eni.DataTable.Add(pdf);
-				eni.DataTable.Add(word);
+				hist.TBPNumber = tbl.Number;			
+				
 				eni.TBPHistoryTable.Add(hist);
 			}
 			catch (Exception e) {

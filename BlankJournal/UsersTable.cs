@@ -25,8 +25,8 @@ namespace BlankJournal
     
         public string Login { get; set; }
         public string Name { get; set; }
-        public bool IsNOS { get; set; }
-        public bool IsNSS { get; set; }
+        public bool CanEditTBP { get; set; }
+        public bool CanDoOper { get; set; }
     
         public virtual ICollection<BPJournalTable> BPJournalTable { get; set; }
         public virtual ICollection<DataTable> DataTable { get; set; }

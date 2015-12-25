@@ -8,21 +8,21 @@ namespace BlankJournal.Models {
 	public class User {
 		public string Login { get; set; }
 		public string Name { get; set; }
-		public bool IsNSS { get; set; }
-		public bool IsNOS{get;set;}
+		public bool CanEditTBP { get; set; }
+		public bool CanDoOper {get;set;}
 
 		public User() {
 			Login = "noname";
 			Name = "noname";
-			IsNOS = false;
-			IsNSS = false;
+			CanEditTBP = false;
+			CanDoOper = false;
 		}
 
 		public User(UsersTable tbl) {
 			Login = tbl.Login;
 			Name = tbl.Name;
-			IsNOS = tbl.IsNOS;
-			IsNSS = tbl.IsNSS;
+			CanDoOper = tbl.CanDoOper;
+			CanEditTBP = tbl.CanEditTBP;
 		}
 	}
 }

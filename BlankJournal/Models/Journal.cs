@@ -14,6 +14,9 @@ namespace BlankJournal.Models {
 		public DateTime DateEnd { get; set; }
 		public DateTime DateCreate { get; set; }
 		public bool isOBP { get; set; }
+		public bool isInit { get; set; }
+		public byte[] WordData { get; set; }
+		public string IDWordData { get; set; }
 		public string TBPNumber { get; set; }
 		public JournalRecord() {
 		}
@@ -51,6 +54,8 @@ namespace BlankJournal.Models {
 			rec.Task = tbp.Name;
 			rec.isOBP = false;
 			rec.TBPNumber = tbp.Number;
+			rec.DateEnd = DateTime.Now;
+			rec.DateStart = DateTime.Now;
 			return rec;
 		}
 

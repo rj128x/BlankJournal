@@ -49,7 +49,7 @@ namespace BlankJournal {
 
 		[OperationContract]
 		public ReturnMessage CreateTBP(TBPInfo newBlank) {
-			return DBContext.Single.createTBP(newBlank);
+			return DBContext.Single.createTBP(newBlank,newBlank.EditingTBP);
 		}
 
 		[OperationContract]

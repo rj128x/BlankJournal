@@ -42,6 +42,7 @@ namespace MainSL {
 				str.Close();
 				txtPDF.Text = "Файл выбран";
 				CurrentBlank.PDFData = buffer;
+				CurrentBlank.UpdatedPDF = true;
 			}			
 		}
 
@@ -54,6 +55,7 @@ namespace MainSL {
 				str.Close();
 				txtWord.Text = "Файл выбран";
 				CurrentBlank.WordData = buffer;
+				CurrentBlank.UpdatedWord = true;
 			}
 		}
 

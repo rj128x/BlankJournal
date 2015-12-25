@@ -38,7 +38,6 @@ namespace MainSL {
 			set {SetValue(IsBusyProperty,value);}
 		}
 
-		public JournalRecord NewBPRecord { get; set; }
 				
 		public User CurrentUser {
 			get { return (User)GetValue(CurrentUserProperty); }

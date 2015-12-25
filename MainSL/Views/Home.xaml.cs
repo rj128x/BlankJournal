@@ -19,9 +19,9 @@ namespace MainSL {
 		public static bool inited { get; set; }
 		public Home() {
 			InitializeComponent();
-			
-				GlobalContext.Single.Client.GetTBPBlanksByFolderCompleted += Client_GetTBPBlanksByFolderCompleted;
-			if (!inited) {	
+
+			GlobalContext.Single.Client.GetTBPBlanksByFolderCompleted += Client_GetTBPBlanksByFolderCompleted;
+			if (!inited) {
 				GlobalContext.Single.Client.InitOBPCompleted += Client_InitOBPCompleted;
 				GlobalContext.Single.Client.InitTBPCompleted += Client_InitTBPCompleted;
 				GlobalContext.Single.Client.CreateBPCompleted += Client_CreateBPCompleted;
@@ -38,18 +38,18 @@ namespace MainSL {
 			GlobalContext.Single.Client.GetTBPBlanksByFolderAsync(CurrentFolder.ID);
 		}
 
-		
-		
+
+
 		void Client_GetTBPBlanksByFolderCompleted(object sender, GetTBPBlanksByFolderCompletedEventArgs e) {
 			GlobalContext.Single.IsBusy = false;
 			grdTBPBlanks.ItemsSource = e.Result;
 		}
-		
+
 
 		public Folder CurrentFolder;
 
 		void btn_Click(object sender, RoutedEventArgs e) {
-			Button btn=sender as Button;
+			Button btn = sender as Button;
 			int id = Int32.Parse(btn.Name.Replace("btnFolder_", ""));
 			//MessageBox.Show(id.ToString());
 			CurrentFolder = GlobalContext.Single.AllFolders[id];
@@ -77,6 +77,7 @@ namespace MainSL {
 			newBlank.Name = "";
 			newBlank.FolderID = CurrentFolder.ID;
 			TBPWindow newWindow = new TBPWindow();
+			newBlank.EditingTBP = false;
 			newWindow.Init(newBlank);
 			newWindow.Closed += newWindow_Closed;
 			newWindow.Show();
@@ -105,26 +106,28 @@ namespace MainSL {
 		void Client_InitOBPCompleted(object sender, InitOBPCompletedEventArgs e) {
 			GlobalContext.Single.IsBusy = false;
 			JournalRecord newBlank = e.Result as JournalRecord;
+			newBlank.isInit = true;
 			JournalRecordWindow win = new JournalRecordWindow();
 			win.Init(newBlank);
 			win.Closed += win_Closed;
 			win.Show();
 		}
-		
+
 		void Client_InitTBPCompleted(object sender, InitTBPCompletedEventArgs e) {
 			GlobalContext.Single.IsBusy = false;
 			JournalRecord newBlank = e.Result as JournalRecord;
+			newBlank.isInit = true;
 			JournalRecordWindow win = new JournalRecordWindow();
 			win.Init(newBlank);
 			win.Closed += win_Closed;
-			win.Show();			
+			win.Show();
 		}
 
 		void win_Closed(object sender, EventArgs e) {
 			JournalRecordWindow win = sender as JournalRecordWindow;
-			if (win.DialogResult==true){
+			if (win.DialogResult == true) {
 				GlobalContext.Single.IsBusy = true;
-				GlobalContext.Single.Client.CreateBPAsync(GlobalContext.Single.NewBPRecord);
+				GlobalContext.Single.Client.CreateBPAsync(win.CurrentBlank);
 			}
 		}
 
@@ -144,7 +147,7 @@ namespace MainSL {
 
 		private void btnShowPDF_Click(object sender, RoutedEventArgs e) {
 			TBPInfo tbp = grdTBPBlanks.SelectedItem as TBPInfo;
-			FloatWindow.OpenWindow("Home/getFile?id="+tbp.IDPDFData);
+			FloatWindow.OpenWindow("Home/getFile?id=" + tbp.IDPDFData);
 		}
 
 		private void btnShowWord_Click(object sender, RoutedEventArgs e) {
@@ -152,7 +155,16 @@ namespace MainSL {
 			FloatWindow.OpenWindow("Home/getFile?id=" + tbp.IDWordData);
 		}
 
-		
+		private void btnEditTBP_Click(object sender, RoutedEventArgs e) {
+			TBPInfo tbp = grdTBPBlanks.SelectedItem as TBPInfo;
+			TBPWindow newWindow = new TBPWindow();
+			tbp.EditingTBP = true;
+			newWindow.Init(tbp);
+			newWindow.Closed += newWindow_Closed;
+			newWindow.Show();
+		}
+
+
 
 
 
