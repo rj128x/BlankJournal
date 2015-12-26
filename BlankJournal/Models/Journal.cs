@@ -79,17 +79,22 @@ namespace BlankJournal.Models {
 			rec.Task = tbp.Name;
 			rec.isOBP = true;
 			rec.TBPNumber = tbp.Number;
+			rec.DateEnd = DateTime.Now;
+			rec.DateStart = DateTime.Now;
 			return rec;
 		}
 
 		public static ReturnMessage CreateBP(JournalRecord record) {
 			BlankJournal.BlanksEntities eni = new BlanksEntities();
 			IQueryable<BPJournalTable> blanks = from b in eni.BPJournalTable where b.Number == record.DoubleNumber && b.TBPNumber == record.TBPNumber && b.isOBP==record.isOBP select b;
+			BPJournalTable last = null;
 			if (blanks.Count() > 0) {
-				return new ReturnMessage(false, "Ошибка при создании бланка переключений. Бланк с такими параметрами уже создан");
+				last = blanks.First();
+				if (record.isInit)
+					return new ReturnMessage(false, "Ошибка при создании бланка переключений. Бланк с такими параметрами уже создан");
 			}
 			try {
-				BPJournalTable tbl = new BPJournalTable();
+				BPJournalTable tbl=record.isInit?new BPJournalTable():last;
 				tbl.Id = record.Number;
 				tbl.isOBP = record.isOBP;
 				tbl.TBPNumber = record.TBPNumber;
@@ -98,10 +103,39 @@ namespace BlankJournal.Models {
 				tbl.Name = record.Task;
 				tbl.Number = record.DoubleNumber;
 				tbl.DateCreate = DateTime.Now;
-				tbl.DateStart = DateTime.Now;
-				tbl.DateEnd = DateTime.Now;
+				tbl.DateStart = record.DateStart;
+				tbl.DateEnd = record.DateEnd;
+
+				if (!record.isInit&& record.WordData.Length>0 && record.isOBP) {
+					if (record.IDWordData.Length>0){
+						DataTable dat=new DataTable();
+						dat.ID = Guid.NewGuid().ToString();
+						IQueryable<DataTable> data=from d in eni.DataTable where d.ID==record.IDWordData select d;
+						if (data.Count() > 0)
+							dat = data.First();
+						else
+							eni.DataTable.Add(dat);
+						dat.Data = record.WordData;
+						tbl.WordData = dat.ID;
+					}
+				}
+
+				if (!record.isOBP) {
+					try {
+						IQueryable<TBPInfoTable> tbpList = from t in eni.TBPInfoTable where t.Number == tbl.TBPNumber select t;
+						if (tbpList.Count() > 0) {
+							TBPInfoTable tbpInfo = tbpList.First();
+							tbl.PDFData = tbpInfo.DataPDF;
+						} else {
+							throw new Exception("Бланк не найден" + tbl.TBPNumber);
+						}
+					} catch (Exception e) {
+						Logger.info("ошибка при формировании записи в журнале переключений. ТБП не найден");
+					}
+				}
 				
-				eni.BPJournalTable.Add(tbl);
+				if (record.isInit)
+					eni.BPJournalTable.Add(tbl);
 				eni.SaveChanges();
 				Logger.info("Бланк создан");
 				return new ReturnMessage(true,"Бланк успешно создан");

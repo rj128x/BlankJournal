@@ -41,7 +41,8 @@ namespace MainSL.Views {
 
 		private void btnShow_Click(object sender, RoutedEventArgs e) {
 			JournalRecord blank = grdBlanks.SelectedItem as JournalRecord;
-			FloatWindow.OpenWindow("Home/getFile?id=" + blank.IDWordData);
+
+			FloatWindow.OpenWindow("Home/getBlank?id=" + blank.Number);
 		}
 
 		private void btnEdit_Click(object sender, RoutedEventArgs e) {
