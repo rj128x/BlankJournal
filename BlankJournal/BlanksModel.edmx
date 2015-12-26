@@ -52,6 +52,7 @@
           <Property Name="CommentPerform" Type="varchar(max)" />
           <Property Name="DateCreate" Type="datetime" Nullable="false" />
           <Property Name="DatePerform" Type="datetime" />
+          <Property Name="Finished" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="TBPHistoryTable">
           <Key>
@@ -452,6 +453,7 @@
           <NavigationProperty Name="TBPInfoTable" Relationship="Self.FK_TBPCommentsTable_TBPInfoTable" FromRole="TBPCommentsTable" ToRole="TBPInfoTable" />
           <NavigationProperty Name="UsersTable" Relationship="Self.FK_TBPCommentsTable_UsersTableAuthor" FromRole="TBPCommentsTable" ToRole="UsersTable" />
           <NavigationProperty Name="UsersTable1" Relationship="Self.FK_TBPCommentsTable_UsersTablePerformer" FromRole="TBPCommentsTable" ToRole="UsersTable" />
+          <Property Name="Finished" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="TBPHistoryTable">
           <Key>
@@ -845,6 +847,7 @@
           <EntitySetMapping Name="TBPCommentsTable">
             <EntityTypeMapping TypeName="BlanksModel.TBPCommentsTable">
               <MappingFragment StoreEntitySet="TBPCommentsTable">
+                <ScalarProperty Name="Finished" ColumnName="Finished" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="TBPNumber" ColumnName="TBPNumber" />
                 <ScalarProperty Name="Author" ColumnName="Author" />

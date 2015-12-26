@@ -67,6 +67,21 @@ namespace BlankJournal {
 			return JournalRecord.CreateBP(journal);
 		}
 
+		[OperationContract]
+		public ReturnMessage CreateCommentTBP(TBPComment comment) {
+			return TBPComment.createComment(comment);
+		}
+
+		[OperationContract]
+		public ReturnMessage FinishCommentTBP(TBPComment comment) {
+			return TBPComment.finishComment(comment);
+		}
+
+		[OperationContract]
+		public IQueryable<TBPComment> GetCommentsList() {
+			return DBContext.Single.GetCommentsList().AsQueryable();
+		}
+
 		// Добавьте здесь дополнительные операции и отметьте их атрибутом [OperationContract]
 	}
 }

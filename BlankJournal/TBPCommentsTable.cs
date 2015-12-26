@@ -23,6 +23,7 @@ namespace BlankJournal
         public string CommentPerform { get; set; }
         public System.DateTime DateCreate { get; set; }
         public Nullable<System.DateTime> DatePerform { get; set; }
+        public bool Finished { get; set; }
     
         public virtual DataTable DataTable { get; set; }
         public virtual TBPInfoTable TBPInfoTable { get; set; }

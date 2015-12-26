@@ -1,0 +1,31 @@
+﻿<controls:ChildWindow x:Class="MainSL.Views.CommentWindow"
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
+           Width="466.255" Height="185.619" 
+           Title="CommentWindow">
+    <Grid x:Name="LayoutRoot" Margin="2">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackPanel Name="pnlData">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Номер бланка: " Width="100"/>
+                <TextBlock Text="{Binding Number, Mode=OneWay}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Комментарий: " Width="100"/>
+                <TextBox Text="{Binding Comment, Mode=TwoWay}" TextWrapping="Wrap" Height="70" Width="300"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Файл Word" Width="100"/>
+                <TextBox Name="txtWord" Width="200"/>
+                <Button Content="  ...  " Name="btnChooseWord" Click="btnChooseWord_Click"/>
+            </StackPanel>
+        </StackPanel>
+
+        <Button x:Name="CancelButton" Content="Отмена" Click="CancelButton_Click" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,12,0,0" Grid.Row="1" />
+        <Button x:Name="OKButton" Content="ОК" Click="OKButton_Click" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,12,79,0" Grid.Row="1" />
+    </Grid>
+</controls:ChildWindow>

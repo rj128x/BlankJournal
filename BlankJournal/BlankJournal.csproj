@@ -163,6 +163,7 @@
     </Compile>
     <Compile Include="Models\Folder.cs" />
     <Compile Include="Models\Journal.cs" />
+    <Compile Include="Models\TBPComment.cs" />
     <Compile Include="Models\TBPInfo.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

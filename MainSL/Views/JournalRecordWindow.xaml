@@ -22,7 +22,7 @@
                 <TextBlock Text="Комментарий: " Width="100"/>
                 <TextBox Text="{Binding Comment, Mode=TwoWay}" TextWrapping="Wrap" Height="70" Width="300"/>
             </StackPanel>
-            <StackPanel Orientation="Vertical" Visibility="{Binding isInit, Converter={StaticResource logicNotConverter}}">
+            <StackPanel Orientation="Vertical" Visibility="{Binding isInit, Converter={StaticResource visibilityNotConverter}}">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Дата начала: " Width="100"/>
                     <StackPanel Orientation="Horizontal">

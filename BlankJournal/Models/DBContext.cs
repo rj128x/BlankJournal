@@ -92,6 +92,22 @@ namespace BlankJournal.Models {
 			}
 		}
 
+		public List<TBPComment> GetCommentsList() {
+			Logger.info("Получение списка замечаний ");
+			try {
+				List<TBPComment> result = new List<TBPComment>();
+				BlankJournal.BlanksEntities eni = new BlanksEntities();
+				IQueryable<TBPCommentsTable> comments = from c in eni.TBPCommentsTable orderby c.DateCreate descending select c;
+				foreach (TBPCommentsTable tbl in comments) {
+					result.Add(new TBPComment(tbl));
+				}
+				return result;
+			} catch (Exception e) {
+				Logger.info("Ошибка при получении списка замечаний " + e.ToString());
+				return new List<TBPComment>();
+			}
+		}
+
 
 		public ReturnMessage createTBP(TBPInfo newBlank,bool edit=false) {
 			Logger.info("Создание ТБП");

@@ -164,6 +164,13 @@ namespace MainSL {
 			newWindow.Show();
 		}
 
+		private void btnCommentTBP_Click(object sender, RoutedEventArgs e) {
+			TBPInfo tbp = grdTBPBlanks.SelectedItem as TBPInfo;
+			CommentWindow commentWin = new CommentWindow();
+			tbp.EditingTBP = true;
+
+		}
+
 
 
 

@@ -61,6 +61,9 @@
                                         <Button Content="Редактировать" Name="btnEditTBP" Click="btnEditTBP_Click"
                                                 IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}" 
                                                 Visibility="{Binding Single.CurrentUser.CanEditTBP, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
+                                        <Button Content="Замечания" Name="btnCommentTBP" Click="btnCommentTBP_Click"
+                                                IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}" 
+                                                Visibility="{Binding Single.CurrentUser.CanDoOper, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </sdk:DataGridTemplateColumn.CellTemplate>
