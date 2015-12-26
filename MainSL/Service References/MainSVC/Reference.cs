@@ -555,6 +555,171 @@ namespace MainSL.MainSVC {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TBPComment", Namespace="http://schemas.datacontract.org/2004/07/BlankJournal.Models")]
+    public partial class TBPComment : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private string AuthorField;
+        
+        private string CommentTextField;
+        
+        private byte[] DataField;
+        
+        private string DataIDField;
+        
+        private System.DateTime DateCreateField;
+        
+        private System.DateTime DatePerformField;
+        
+        private bool FinishedField;
+        
+        private string IDField;
+        
+        private string PerformerField;
+        
+        private string TBPNumberField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Author {
+            get {
+                return this.AuthorField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AuthorField, value) != true)) {
+                    this.AuthorField = value;
+                    this.RaisePropertyChanged("Author");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CommentText {
+            get {
+                return this.CommentTextField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CommentTextField, value) != true)) {
+                    this.CommentTextField = value;
+                    this.RaisePropertyChanged("CommentText");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] Data {
+            get {
+                return this.DataField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DataField, value) != true)) {
+                    this.DataField = value;
+                    this.RaisePropertyChanged("Data");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string DataID {
+            get {
+                return this.DataIDField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DataIDField, value) != true)) {
+                    this.DataIDField = value;
+                    this.RaisePropertyChanged("DataID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime DateCreate {
+            get {
+                return this.DateCreateField;
+            }
+            set {
+                if ((this.DateCreateField.Equals(value) != true)) {
+                    this.DateCreateField = value;
+                    this.RaisePropertyChanged("DateCreate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime DatePerform {
+            get {
+                return this.DatePerformField;
+            }
+            set {
+                if ((this.DatePerformField.Equals(value) != true)) {
+                    this.DatePerformField = value;
+                    this.RaisePropertyChanged("DatePerform");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Finished {
+            get {
+                return this.FinishedField;
+            }
+            set {
+                if ((this.FinishedField.Equals(value) != true)) {
+                    this.FinishedField = value;
+                    this.RaisePropertyChanged("Finished");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IDField, value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Performer {
+            get {
+                return this.PerformerField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PerformerField, value) != true)) {
+                    this.PerformerField = value;
+                    this.RaisePropertyChanged("Performer");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TBPNumber {
+            get {
+                return this.TBPNumberField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TBPNumberField, value) != true)) {
+                    this.TBPNumberField = value;
+                    this.RaisePropertyChanged("TBPNumber");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(Namespace="", ConfigurationName="MainSVC.MainService")]
     public interface MainService {
@@ -603,6 +768,21 @@ namespace MainSL.MainSVC {
         System.IAsyncResult BeginCreateBP(MainSL.MainSVC.JournalRecord journal, System.AsyncCallback callback, object asyncState);
         
         MainSL.MainSVC.ReturnMessage EndCreateBP(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:MainService/CreateCommentTBP", ReplyAction="urn:MainService/CreateCommentTBPResponse")]
+        System.IAsyncResult BeginCreateCommentTBP(MainSL.MainSVC.TBPComment comment, System.AsyncCallback callback, object asyncState);
+        
+        MainSL.MainSVC.ReturnMessage EndCreateCommentTBP(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:MainService/FinishCommentTBP", ReplyAction="urn:MainService/FinishCommentTBPResponse")]
+        System.IAsyncResult BeginFinishCommentTBP(MainSL.MainSVC.TBPComment comment, System.AsyncCallback callback, object asyncState);
+        
+        MainSL.MainSVC.ReturnMessage EndFinishCommentTBP(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:MainService/GetCommentsList", ReplyAction="urn:MainService/GetCommentsListResponse")]
+        System.IAsyncResult BeginGetCommentsList(System.AsyncCallback callback, object asyncState);
+        
+        System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPComment> EndGetCommentsList(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -763,6 +943,63 @@ namespace MainSL.MainSVC {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class CreateCommentTBPCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public CreateCommentTBPCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public MainSL.MainSVC.ReturnMessage Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((MainSL.MainSVC.ReturnMessage)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class FinishCommentTBPCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public FinishCommentTBPCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public MainSL.MainSVC.ReturnMessage Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((MainSL.MainSVC.ReturnMessage)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetCommentsListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetCommentsListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPComment> Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPComment>)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class MainServiceClient : System.ServiceModel.ClientBase<MainSL.MainSVC.MainService>, MainSL.MainSVC.MainService {
         
         private BeginOperationDelegate onBeginDoWorkDelegate;
@@ -818,6 +1055,24 @@ namespace MainSL.MainSVC {
         private EndOperationDelegate onEndCreateBPDelegate;
         
         private System.Threading.SendOrPostCallback onCreateBPCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginCreateCommentTBPDelegate;
+        
+        private EndOperationDelegate onEndCreateCommentTBPDelegate;
+        
+        private System.Threading.SendOrPostCallback onCreateCommentTBPCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginFinishCommentTBPDelegate;
+        
+        private EndOperationDelegate onEndFinishCommentTBPDelegate;
+        
+        private System.Threading.SendOrPostCallback onFinishCommentTBPCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetCommentsListDelegate;
+        
+        private EndOperationDelegate onEndGetCommentsListDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetCommentsListCompletedDelegate;
         
         private BeginOperationDelegate onBeginOpenDelegate;
         
@@ -889,6 +1144,12 @@ namespace MainSL.MainSVC {
         public event System.EventHandler<InitOBPCompletedEventArgs> InitOBPCompleted;
         
         public event System.EventHandler<CreateBPCompletedEventArgs> CreateBPCompleted;
+        
+        public event System.EventHandler<CreateCommentTBPCompletedEventArgs> CreateCommentTBPCompleted;
+        
+        public event System.EventHandler<FinishCommentTBPCompletedEventArgs> FinishCommentTBPCompleted;
+        
+        public event System.EventHandler<GetCommentsListCompletedEventArgs> GetCommentsListCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
         
@@ -1299,6 +1560,142 @@ namespace MainSL.MainSVC {
                         journal}, this.onEndCreateBPDelegate, this.onCreateBPCompletedDelegate, userState);
         }
         
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult MainSL.MainSVC.MainService.BeginCreateCommentTBP(MainSL.MainSVC.TBPComment comment, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginCreateCommentTBP(comment, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        MainSL.MainSVC.ReturnMessage MainSL.MainSVC.MainService.EndCreateCommentTBP(System.IAsyncResult result) {
+            return base.Channel.EndCreateCommentTBP(result);
+        }
+        
+        private System.IAsyncResult OnBeginCreateCommentTBP(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            MainSL.MainSVC.TBPComment comment = ((MainSL.MainSVC.TBPComment)(inValues[0]));
+            return ((MainSL.MainSVC.MainService)(this)).BeginCreateCommentTBP(comment, callback, asyncState);
+        }
+        
+        private object[] OnEndCreateCommentTBP(System.IAsyncResult result) {
+            MainSL.MainSVC.ReturnMessage retVal = ((MainSL.MainSVC.MainService)(this)).EndCreateCommentTBP(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnCreateCommentTBPCompleted(object state) {
+            if ((this.CreateCommentTBPCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.CreateCommentTBPCompleted(this, new CreateCommentTBPCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void CreateCommentTBPAsync(MainSL.MainSVC.TBPComment comment) {
+            this.CreateCommentTBPAsync(comment, null);
+        }
+        
+        public void CreateCommentTBPAsync(MainSL.MainSVC.TBPComment comment, object userState) {
+            if ((this.onBeginCreateCommentTBPDelegate == null)) {
+                this.onBeginCreateCommentTBPDelegate = new BeginOperationDelegate(this.OnBeginCreateCommentTBP);
+            }
+            if ((this.onEndCreateCommentTBPDelegate == null)) {
+                this.onEndCreateCommentTBPDelegate = new EndOperationDelegate(this.OnEndCreateCommentTBP);
+            }
+            if ((this.onCreateCommentTBPCompletedDelegate == null)) {
+                this.onCreateCommentTBPCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnCreateCommentTBPCompleted);
+            }
+            base.InvokeAsync(this.onBeginCreateCommentTBPDelegate, new object[] {
+                        comment}, this.onEndCreateCommentTBPDelegate, this.onCreateCommentTBPCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult MainSL.MainSVC.MainService.BeginFinishCommentTBP(MainSL.MainSVC.TBPComment comment, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginFinishCommentTBP(comment, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        MainSL.MainSVC.ReturnMessage MainSL.MainSVC.MainService.EndFinishCommentTBP(System.IAsyncResult result) {
+            return base.Channel.EndFinishCommentTBP(result);
+        }
+        
+        private System.IAsyncResult OnBeginFinishCommentTBP(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            MainSL.MainSVC.TBPComment comment = ((MainSL.MainSVC.TBPComment)(inValues[0]));
+            return ((MainSL.MainSVC.MainService)(this)).BeginFinishCommentTBP(comment, callback, asyncState);
+        }
+        
+        private object[] OnEndFinishCommentTBP(System.IAsyncResult result) {
+            MainSL.MainSVC.ReturnMessage retVal = ((MainSL.MainSVC.MainService)(this)).EndFinishCommentTBP(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnFinishCommentTBPCompleted(object state) {
+            if ((this.FinishCommentTBPCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.FinishCommentTBPCompleted(this, new FinishCommentTBPCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void FinishCommentTBPAsync(MainSL.MainSVC.TBPComment comment) {
+            this.FinishCommentTBPAsync(comment, null);
+        }
+        
+        public void FinishCommentTBPAsync(MainSL.MainSVC.TBPComment comment, object userState) {
+            if ((this.onBeginFinishCommentTBPDelegate == null)) {
+                this.onBeginFinishCommentTBPDelegate = new BeginOperationDelegate(this.OnBeginFinishCommentTBP);
+            }
+            if ((this.onEndFinishCommentTBPDelegate == null)) {
+                this.onEndFinishCommentTBPDelegate = new EndOperationDelegate(this.OnEndFinishCommentTBP);
+            }
+            if ((this.onFinishCommentTBPCompletedDelegate == null)) {
+                this.onFinishCommentTBPCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnFinishCommentTBPCompleted);
+            }
+            base.InvokeAsync(this.onBeginFinishCommentTBPDelegate, new object[] {
+                        comment}, this.onEndFinishCommentTBPDelegate, this.onFinishCommentTBPCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult MainSL.MainSVC.MainService.BeginGetCommentsList(System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetCommentsList(callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPComment> MainSL.MainSVC.MainService.EndGetCommentsList(System.IAsyncResult result) {
+            return base.Channel.EndGetCommentsList(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetCommentsList(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            return ((MainSL.MainSVC.MainService)(this)).BeginGetCommentsList(callback, asyncState);
+        }
+        
+        private object[] OnEndGetCommentsList(System.IAsyncResult result) {
+            System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPComment> retVal = ((MainSL.MainSVC.MainService)(this)).EndGetCommentsList(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetCommentsListCompleted(object state) {
+            if ((this.GetCommentsListCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetCommentsListCompleted(this, new GetCommentsListCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetCommentsListAsync() {
+            this.GetCommentsListAsync(null);
+        }
+        
+        public void GetCommentsListAsync(object userState) {
+            if ((this.onBeginGetCommentsListDelegate == null)) {
+                this.onBeginGetCommentsListDelegate = new BeginOperationDelegate(this.OnBeginGetCommentsList);
+            }
+            if ((this.onEndGetCommentsListDelegate == null)) {
+                this.onEndGetCommentsListDelegate = new EndOperationDelegate(this.OnEndGetCommentsList);
+            }
+            if ((this.onGetCommentsListCompletedDelegate == null)) {
+                this.onGetCommentsListCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetCommentsListCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetCommentsListDelegate, null, this.onEndGetCommentsListDelegate, this.onGetCommentsListCompletedDelegate, userState);
+        }
+        
         private System.IAsyncResult OnBeginOpen(object[] inValues, System.AsyncCallback callback, object asyncState) {
             return ((System.ServiceModel.ICommunicationObject)(this)).BeginOpen(callback, asyncState);
         }
@@ -1484,6 +1881,44 @@ namespace MainSL.MainSVC {
             public MainSL.MainSVC.ReturnMessage EndCreateBP(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 MainSL.MainSVC.ReturnMessage _result = ((MainSL.MainSVC.ReturnMessage)(base.EndInvoke("CreateBP", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginCreateCommentTBP(MainSL.MainSVC.TBPComment comment, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = comment;
+                System.IAsyncResult _result = base.BeginInvoke("CreateCommentTBP", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public MainSL.MainSVC.ReturnMessage EndCreateCommentTBP(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                MainSL.MainSVC.ReturnMessage _result = ((MainSL.MainSVC.ReturnMessage)(base.EndInvoke("CreateCommentTBP", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginFinishCommentTBP(MainSL.MainSVC.TBPComment comment, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = comment;
+                System.IAsyncResult _result = base.BeginInvoke("FinishCommentTBP", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public MainSL.MainSVC.ReturnMessage EndFinishCommentTBP(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                MainSL.MainSVC.ReturnMessage _result = ((MainSL.MainSVC.ReturnMessage)(base.EndInvoke("FinishCommentTBP", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginGetCommentsList(System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[0];
+                System.IAsyncResult _result = base.BeginInvoke("GetCommentsList", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPComment> EndGetCommentsList(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPComment> _result = ((System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPComment>)(base.EndInvoke("GetCommentsList", _args, result)));
                 return _result;
             }
         }

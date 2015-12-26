@@ -62,6 +62,24 @@
   <wsdl:message name="MainService_CreateBP_OutputMessage">
     <wsdl:part name="parameters" element="CreateBPResponse" />
   </wsdl:message>
+  <wsdl:message name="MainService_CreateCommentTBP_InputMessage">
+    <wsdl:part name="parameters" element="CreateCommentTBP" />
+  </wsdl:message>
+  <wsdl:message name="MainService_CreateCommentTBP_OutputMessage">
+    <wsdl:part name="parameters" element="CreateCommentTBPResponse" />
+  </wsdl:message>
+  <wsdl:message name="MainService_FinishCommentTBP_InputMessage">
+    <wsdl:part name="parameters" element="FinishCommentTBP" />
+  </wsdl:message>
+  <wsdl:message name="MainService_FinishCommentTBP_OutputMessage">
+    <wsdl:part name="parameters" element="FinishCommentTBPResponse" />
+  </wsdl:message>
+  <wsdl:message name="MainService_GetCommentsList_InputMessage">
+    <wsdl:part name="parameters" element="GetCommentsList" />
+  </wsdl:message>
+  <wsdl:message name="MainService_GetCommentsList_OutputMessage">
+    <wsdl:part name="parameters" element="GetCommentsListResponse" />
+  </wsdl:message>
   <wsdl:portType name="MainService">
     <wsdl:operation name="DoWork">
       <wsdl:input wsaw:Action="urn:MainService/DoWork" message="MainService_DoWork_InputMessage" />
@@ -98,6 +116,18 @@
     <wsdl:operation name="CreateBP">
       <wsdl:input wsaw:Action="urn:MainService/CreateBP" message="MainService_CreateBP_InputMessage" />
       <wsdl:output wsaw:Action="urn:MainService/CreateBPResponse" message="MainService_CreateBP_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateCommentTBP">
+      <wsdl:input wsaw:Action="urn:MainService/CreateCommentTBP" message="MainService_CreateCommentTBP_InputMessage" />
+      <wsdl:output wsaw:Action="urn:MainService/CreateCommentTBPResponse" message="MainService_CreateCommentTBP_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FinishCommentTBP">
+      <wsdl:input wsaw:Action="urn:MainService/FinishCommentTBP" message="MainService_FinishCommentTBP_InputMessage" />
+      <wsdl:output wsaw:Action="urn:MainService/FinishCommentTBPResponse" message="MainService_FinishCommentTBP_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCommentsList">
+      <wsdl:input wsaw:Action="urn:MainService/GetCommentsList" message="MainService_GetCommentsList_InputMessage" />
+      <wsdl:output wsaw:Action="urn:MainService/GetCommentsListResponse" message="MainService_GetCommentsList_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
 </wsdl:definitions>

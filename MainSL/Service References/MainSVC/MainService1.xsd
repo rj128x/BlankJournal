@@ -118,4 +118,44 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="CreateCommentTBP">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/BlankJournal.Models" minOccurs="0" name="comment" nillable="true" type="q13:TBPComment" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateCommentTBPResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/BlankJournal" minOccurs="0" name="CreateCommentTBPResult" nillable="true" type="q14:ReturnMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FinishCommentTBP">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/BlankJournal.Models" minOccurs="0" name="comment" nillable="true" type="q15:TBPComment" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FinishCommentTBPResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/BlankJournal" minOccurs="0" name="FinishCommentTBPResult" nillable="true" type="q16:ReturnMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCommentsList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCommentsListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/BlankJournal.Models" minOccurs="0" name="GetCommentsListResult" nillable="true" type="q17:ArrayOfTBPComment" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

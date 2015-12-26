@@ -168,7 +168,15 @@ namespace MainSL {
 			TBPInfo tbp = grdTBPBlanks.SelectedItem as TBPInfo;
 			CommentWindow commentWin = new CommentWindow();
 			tbp.EditingTBP = true;
+			TBPComment newCom=new TBPComment();
+			newCom.TBPNumber=tbp.Number;
+			commentWin.Init(newCom);
+			commentWin.Closed += commentWin_Closed;
+			commentWin.Show();
+		}
 
+		void commentWin_Closed(object sender, EventArgs e) {
+			throw new NotImplementedException();
 		}
 
 

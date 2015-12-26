@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MainSL.MainSVC;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -12,7 +13,7 @@ using System.Windows.Shapes;
 
 namespace MainSL.Views {
 	public partial class CommentWindow : ChildWindow {
-
+		public TBPComment CurrentComment{get;set;}
 		public CommentWindow() {
 			InitializeComponent();
 		}
@@ -27,6 +28,11 @@ namespace MainSL.Views {
 
 		private void btnChooseWord_Click(object sender, RoutedEventArgs e) {
 
+		}
+
+		public void Init(TBPComment comment) {
+			CurrentComment = comment;
+			pnlData.DataContext = comment;
 		}
 	}
 }

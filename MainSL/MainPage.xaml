@@ -47,6 +47,11 @@
 
                     <Rectangle x:Name="Divider2" Style="{StaticResource DividerStyle}"/>
 
+                    <HyperlinkButton x:Name="Link3" Style="{StaticResource LinkStyle}" 
+                                     NavigateUri="/CommentsPage" TargetName="ContentFrame" Content="Замечания"/>
+
+                    <Rectangle x:Name="Divider3" Style="{StaticResource DividerStyle}"/>
+
 
 
                 </StackPanel>
