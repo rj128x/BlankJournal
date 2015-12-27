@@ -218,6 +218,8 @@
     <Folder Include="TempData\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Data\Blanks.bak" />
+    <Content Include="Data\ПЕРЕЧЕНЬ ТБП 23 09 15.xlsx" />
     <EntityDeploy Include="BlanksModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>BlanksModel.Designer.cs</LastGenOutput>
@@ -235,8 +237,6 @@
       <DependentUpon>BlanksModel.edmx</DependentUpon>
       <LastGenOutput>BlanksModel.cs</LastGenOutput>
     </Content>
-    <Content Include="Data\Blanks.bak" />
-    <Content Include="Data\ПЕРЕЧЕНЬ ТБП 23 09 15.xlsx" />
     <None Include="Properties\PublishProfiles\Blanks.pubxml" />
   </ItemGroup>
   <PropertyGroup>

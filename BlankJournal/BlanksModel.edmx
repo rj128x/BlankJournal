@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Хранилище BlanksModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище BlanksModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BPJournalTable">
           <Key>
             <PropertyRef Name="Id" />
@@ -383,7 +383,8 @@
             <End Role="TBPInfoTable" EntitySet="TBPInfoTable" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BlanksModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -449,11 +450,11 @@
           <Property Name="CommentPerform" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="DateCreate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DatePerform" Type="DateTime" Precision="3" />
+          <Property Name="Finished" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="DataTable" Relationship="Self.FK_TBPCommentsTable_DataTable" FromRole="TBPCommentsTable" ToRole="DataTable" />
           <NavigationProperty Name="TBPInfoTable" Relationship="Self.FK_TBPCommentsTable_TBPInfoTable" FromRole="TBPCommentsTable" ToRole="TBPInfoTable" />
           <NavigationProperty Name="UsersTable" Relationship="Self.FK_TBPCommentsTable_UsersTableAuthor" FromRole="TBPCommentsTable" ToRole="UsersTable" />
           <NavigationProperty Name="UsersTable1" Relationship="Self.FK_TBPCommentsTable_UsersTablePerformer" FromRole="TBPCommentsTable" ToRole="UsersTable" />
-          <Property Name="Finished" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="TBPHistoryTable">
           <Key>
@@ -496,13 +497,13 @@
           </Key>
           <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CanEditTBP" Type="Boolean" Nullable="false" />
+          <Property Name="CanDoOper" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="BPJournalTable" Relationship="Self.FK_BPJournalTable_UsersTable" FromRole="UsersTable" ToRole="BPJournalTable" />
           <NavigationProperty Name="DataTable" Relationship="Self.FK_DataTable_UsersTable" FromRole="UsersTable" ToRole="DataTable" />
           <NavigationProperty Name="TBPCommentsTable" Relationship="Self.FK_TBPCommentsTable_UsersTableAuthor" FromRole="UsersTable" ToRole="TBPCommentsTable" />
           <NavigationProperty Name="TBPCommentsTable1" Relationship="Self.FK_TBPCommentsTable_UsersTablePerformer" FromRole="UsersTable" ToRole="TBPCommentsTable" />
           <NavigationProperty Name="TBPHistoryTable" Relationship="Self.FK_TBPHistoryTable_UsersTable" FromRole="UsersTable" ToRole="TBPHistoryTable" />
-          <Property Name="CanEditTBP" Type="Boolean" Nullable="false" />
-          <Property Name="CanDoOper" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="FK_BPJournalTable_DataTablePDF">
           <End Role="DataTable" Type="Self.DataTable" Multiplicity="0..1" />
@@ -847,7 +848,6 @@
           <EntitySetMapping Name="TBPCommentsTable">
             <EntityTypeMapping TypeName="BlanksModel.TBPCommentsTable">
               <MappingFragment StoreEntitySet="TBPCommentsTable">
-                <ScalarProperty Name="Finished" ColumnName="Finished" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="TBPNumber" ColumnName="TBPNumber" />
                 <ScalarProperty Name="Author" ColumnName="Author" />
@@ -857,6 +857,7 @@
                 <ScalarProperty Name="CommentPerform" ColumnName="CommentPerform" />
                 <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
                 <ScalarProperty Name="DatePerform" ColumnName="DatePerform" />
+                <ScalarProperty Name="Finished" ColumnName="Finished" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -888,11 +889,11 @@
           <EntitySetMapping Name="UsersTable">
             <EntityTypeMapping TypeName="BlanksModel.UsersTable">
               <MappingFragment StoreEntitySet="UsersTable">
-                <ScalarProperty Name="CanDoOper" ColumnName="CanDoOper" />
-                <ScalarProperty Name="CanEditTBP" ColumnName="CanEditTBP" />
                 <ScalarProperty Name="Login" ColumnName="Login" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                </MappingFragment>
+                <ScalarProperty Name="CanEditTBP" ColumnName="CanEditTBP" />
+                <ScalarProperty Name="CanDoOper" ColumnName="CanDoOper" />
+              </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
         </EntityContainerMapping>

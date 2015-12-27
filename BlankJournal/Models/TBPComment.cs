@@ -15,6 +15,7 @@ namespace BlankJournal.Models {
 		public bool Finished { get; set; }
 		public string DataID { get; set; }
 		public byte[] Data { get; set; }
+		public string CommentPerform { get; set; }
 
 		public TBPComment() { }
 
@@ -25,6 +26,7 @@ namespace BlankJournal.Models {
 			CommentText = tbl.Comment;
 			DateCreate = tbl.DateCreate;
 			Finished = tbl.Finished;
+			CommentPerform = tbl.CommentPerform;
 			if (Finished) {
 				Performer = DBContext.Single.getUserByLogin(tbl.Performer).Name;
 				DatePerform = tbl.DatePerform.Value;
@@ -42,7 +44,7 @@ namespace BlankJournal.Models {
 				tbl.Finished=false;
 				tbl.TBPNumber=comment.TBPNumber;
 				tbl.Id=Guid.NewGuid().ToString();
-				if (comment.Data.Length>0){
+				if (comment.Data!=null && comment.Data.Length>0){
 					DataTable dat=new DataTable();
 					dat.Data=comment.Data;
 					dat.ID=Guid.NewGuid().ToString();
@@ -68,6 +70,7 @@ namespace BlankJournal.Models {
 					last.Performer = DBContext.Single.GetCurrentUser().Login;
 					last.DatePerform = DateTime.Now;
 					last.Finished = true;
+					last.CommentPerform = comment.CommentPerform;
 					eni.SaveChanges();
 					return new ReturnMessage(true,"Замечание успешно закрыто");
 				} else {

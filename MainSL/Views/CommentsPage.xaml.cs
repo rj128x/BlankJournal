@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Windows.Navigation;
+using MainSL.MainSVC;
 
 namespace MainSL.Views {
 	public partial class CommentsPage : Page {
@@ -17,7 +18,6 @@ namespace MainSL.Views {
 		public CommentsPage() {
 			InitializeComponent();
 			if (!Inited) {
-				GlobalContext.Single.Client.CreateCommentTBPCompleted += Client_CreateCommentTBPCompleted;
 				GlobalContext.Single.Client.FinishCommentTBPCompleted += Client_FinishCommentTBPCompleted;
 				GlobalContext.Single.Client.GetCommentsListCompleted += Client_GetCommentsListCompleted;
 				GlobalContext.Single.IsBusy = true;
@@ -33,13 +33,22 @@ namespace MainSL.Views {
 
 		void Client_FinishCommentTBPCompleted(object sender, MainSVC.FinishCommentTBPCompletedEventArgs e) {
 			GlobalContext.Single.IsBusy = false;
-			throw new NotImplementedException();
+			ReturnMessage msg = e.Result;
+			MessageBox.Show(msg.Message);
+			GlobalContext.Single.IsBusy = true;
+			GlobalContext.Single.Client.GetCommentsListAsync();
 		}
 
-		void Client_CreateCommentTBPCompleted(object sender, MainSVC.CreateCommentTBPCompletedEventArgs e) {
-			GlobalContext.Single.IsBusy = false;
-			throw new NotImplementedException();
+		void win_Closed(object sender, EventArgs e) {
+			CommentWindow win = sender as CommentWindow;
+			if (win.DialogResult == true) {
+				GlobalContext.Single.IsBusy = true;
+				GlobalContext.Single.Client.FinishCommentTBPAsync(win.CurrentComment);
+			} else {
+				win.CurrentComment.Finished = false;
+			}
 		}
+
 
 
 		// Выполняется, когда пользователь переходит на эту страницу.
@@ -47,11 +56,18 @@ namespace MainSL.Views {
 		}
 
 		private void btnShow_Click(object sender, RoutedEventArgs e) {
-
+			TBPComment comment = grdBlanks.SelectedItem as TBPComment;
+			FloatWindow.OpenWindow("Home/getFile?id=" + comment.DataID);
 		}
 
 		private void btnFinish_Click(object sender, RoutedEventArgs e) {
-
+			GlobalContext.Single.IsBusy = false;
+			TBPComment current = grdBlanks.SelectedItem as TBPComment;
+			current.Finished = true;
+			CommentWindow win = new CommentWindow();
+			win.Init(current);
+			win.Closed += win_Closed;
+			win.Show();
 		}
 
 	}

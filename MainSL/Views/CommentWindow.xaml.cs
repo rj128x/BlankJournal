@@ -1,6 +1,7 @@
 ﻿using MainSL.MainSVC;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Windows;
@@ -27,7 +28,15 @@ namespace MainSL.Views {
 		}
 
 		private void btnChooseWord_Click(object sender, RoutedEventArgs e) {
-
+			OpenFileDialog dlg = new OpenFileDialog();
+			if (dlg.ShowDialog() == true) {
+				FileStream str = dlg.File.OpenRead();
+				byte[] buffer = new byte[str.Length];
+				str.Read(buffer, 0, (int)str.Length);
+				str.Close();
+				txtWord.Text = "Файл выбран";
+				CurrentComment.Data = buffer;
+			}
 		}
 
 		public void Init(TBPComment comment) {

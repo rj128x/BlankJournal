@@ -562,6 +562,8 @@ namespace MainSL.MainSVC {
         
         private string AuthorField;
         
+        private string CommentPerformField;
+        
         private string CommentTextField;
         
         private byte[] DataField;
@@ -589,6 +591,19 @@ namespace MainSL.MainSVC {
                 if ((object.ReferenceEquals(this.AuthorField, value) != true)) {
                     this.AuthorField = value;
                     this.RaisePropertyChanged("Author");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CommentPerform {
+            get {
+                return this.CommentPerformField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CommentPerformField, value) != true)) {
+                    this.CommentPerformField = value;
+                    this.RaisePropertyChanged("CommentPerform");
                 }
             }
         }

@@ -26,9 +26,12 @@ namespace MainSL {
 				GlobalContext.Single.Client.InitTBPCompleted += Client_InitTBPCompleted;
 				GlobalContext.Single.Client.CreateBPCompleted += Client_CreateBPCompleted;
 				GlobalContext.Single.Client.CreateTBPCompleted += Client_CreateTBPCompleted;
+				GlobalContext.Single.Client.CreateCommentTBPCompleted += Client_CreateCommentTBPCompleted;
 			}
 			inited = true;
 		}
+
+		
 
 		void Client_CreateTBPCompleted(object sender, CreateTBPCompletedEventArgs e) {
 			GlobalContext.Single.IsBusy = false;
@@ -176,10 +179,18 @@ namespace MainSL {
 		}
 
 		void commentWin_Closed(object sender, EventArgs e) {
-			throw new NotImplementedException();
+			CommentWindow win = sender as CommentWindow;
+			if (win.DialogResult == true) {
+				GlobalContext.Single.IsBusy = true;
+				GlobalContext.Single.Client.CreateCommentTBPAsync(win.CurrentComment);
+			}
 		}
 
-
+		void Client_CreateCommentTBPCompleted(object sender, CreateCommentTBPCompletedEventArgs e) {
+			GlobalContext.Single.IsBusy = false;
+			ReturnMessage msg = e.Result;
+			MessageBox.Show(msg.Message);
+		}
 
 
 
