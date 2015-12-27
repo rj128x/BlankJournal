@@ -43,5 +43,11 @@ namespace BlankJournal.Controllers {
 			return View("View1");
 		}
 
+		public ActionResult InitDB() {
+			DirectoryInfo dir = new DirectoryInfo("D:/TBP");
+			BlankJournal.Models.InitDB.doInit(dir);
+			return View("View1");
+		}
+
 	}
 }

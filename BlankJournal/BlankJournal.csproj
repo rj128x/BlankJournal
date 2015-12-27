@@ -162,6 +162,7 @@
       <DependentUpon>MainService.svc</DependentUpon>
     </Compile>
     <Compile Include="Models\Folder.cs" />
+    <Compile Include="Models\InitDB.cs" />
     <Compile Include="Models\Journal.cs" />
     <Compile Include="Models\TBPComment.cs" />
     <Compile Include="Models\TBPInfo.cs" />
