@@ -20,14 +20,14 @@
                 <sdk:DataGridTemplateColumn Header="№ бланка" SortMemberPath="Number" Width="150" >
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
-                            <ContentControl Content="{Binding Number}" />
+                            <ContentControl Content="{Binding TBPNumber}" />
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
                 </sdk:DataGridTemplateColumn>
                 <sdk:DataGridTemplateColumn Header="Замечание" SortMemberPath="Number" Width="200" >
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
-                            <TextBlock Text="{Binding Comment}" TextWrapping="Wrap" />
+                            <TextBlock Text="{Binding CommentText}" TextWrapping="Wrap" />
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
                 </sdk:DataGridTemplateColumn>

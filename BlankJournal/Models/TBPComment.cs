@@ -27,6 +27,7 @@ namespace BlankJournal.Models {
 			DateCreate = tbl.DateCreate;
 			Finished = tbl.Finished;
 			CommentPerform = tbl.CommentPerform;
+			DataID = tbl.WordData;
 			if (Finished) {
 				Performer = DBContext.Single.getUserByLogin(tbl.Performer).Name;
 				DatePerform = tbl.DatePerform.Value;
@@ -40,7 +41,7 @@ namespace BlankJournal.Models {
 				TBPCommentsTable tbl=new TBPCommentsTable();
 				tbl.Author=DBContext.Single.GetCurrentUser().Login;
 				tbl.Comment=comment.CommentText;
-				tbl.DateCreate=DateTime.Now;
+				tbl.DateCreate = new DateTime(2015, 1, 1);
 				tbl.Finished=false;
 				tbl.TBPNumber=comment.TBPNumber;
 				tbl.Id=Guid.NewGuid().ToString();
@@ -48,6 +49,8 @@ namespace BlankJournal.Models {
 					DataTable dat=new DataTable();
 					dat.Data=comment.Data;
 					dat.ID=Guid.NewGuid().ToString();
+					dat.DateCreate = DateTime.Now;
+					dat.Author = DBContext.Single.GetCurrentUser().Login;
 					tbl.WordData=dat.ID;
 					dat.isPDF=false;
 					eni.DataTable.Add(dat);
