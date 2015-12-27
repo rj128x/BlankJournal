@@ -56,7 +56,7 @@
                                                 Visibility="{Binding Single.CurrentUser.CanDoOper, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>                                        
                                         <Button Content="Просмотр PDF" Name="btnShowPDF" Click="btnShowPDF_Click"
                                                 IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}" />
-                                        <Button Content="Просмотр" Name="btnShowWord" Click="btnShowWord_Click"
+                                        <Button Content="Просмотр Word" Name="btnShowWord" Click="btnShowWord_Click"
                                                 IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}" />
                                         <Button Content="Редактировать" Name="btnEditTBP" Click="btnEditTBP_Click"
                                                 IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}" 
