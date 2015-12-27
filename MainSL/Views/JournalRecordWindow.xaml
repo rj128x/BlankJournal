@@ -37,7 +37,7 @@
                         <toolkit:TimePicker Value="{Binding DateEnd, Mode=TwoWay}"/>
                     </StackPanel>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Visibility="{Binding isOBP}">
+                <StackPanel Orientation="Horizontal" Visibility="{Binding isOBP, Converter={StaticResource visibilityConverter}}">
                     <TextBlock Text="Файл бланка: " Width="100"/>
                     <TextBox Name="txtWord" Width="200"/>
                     <Button Content="  ...  " Name="btnChooseWord" Click="btnChooseWord_Click"/>

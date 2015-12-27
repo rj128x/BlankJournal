@@ -68,6 +68,11 @@ namespace BlankJournal {
 		}
 
 		[OperationContract]
+		public ReturnMessage FinishBP(JournalRecord journal) {
+			return JournalRecord.CreateBP(journal);
+		}
+
+		[OperationContract]
 		public ReturnMessage CreateCommentTBP(TBPComment comment) {
 			return TBPComment.createComment(comment);
 		}

@@ -106,10 +106,12 @@ namespace BlankJournal.Models {
 				tbl.DateStart = record.DateStart;
 				tbl.DateEnd = record.DateEnd;
 
-				if (!record.isInit&& record.WordData.Length>0 && record.isOBP) {
-					if (record.IDWordData.Length>0){
+				if (!record.isInit&& record.WordData!=null && record.isOBP) {
+					//if (!string.IsNullOrEmpty(record.IDWordData)){
 						DataTable dat=new DataTable();
 						dat.ID = Guid.NewGuid().ToString();
+						dat.DateCreate = DateTime.Now;
+						dat.Author = DBContext.Single.GetCurrentUser().Login;
 						IQueryable<DataTable> data=from d in eni.DataTable where d.ID==record.IDWordData select d;
 						if (data.Count() > 0)
 							dat = data.First();
@@ -117,7 +119,7 @@ namespace BlankJournal.Models {
 							eni.DataTable.Add(dat);
 						dat.Data = record.WordData;
 						tbl.WordData = dat.ID;
-					}
+					//}
 				}
 
 				if (!record.isOBP) {

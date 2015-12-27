@@ -784,6 +784,11 @@ namespace MainSL.MainSVC {
         
         MainSL.MainSVC.ReturnMessage EndCreateBP(System.IAsyncResult result);
         
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:MainService/FinishBP", ReplyAction="urn:MainService/FinishBPResponse")]
+        System.IAsyncResult BeginFinishBP(MainSL.MainSVC.JournalRecord journal, System.AsyncCallback callback, object asyncState);
+        
+        MainSL.MainSVC.ReturnMessage EndFinishBP(System.IAsyncResult result);
+        
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:MainService/CreateCommentTBP", ReplyAction="urn:MainService/CreateCommentTBPResponse")]
         System.IAsyncResult BeginCreateCommentTBP(MainSL.MainSVC.TBPComment comment, System.AsyncCallback callback, object asyncState);
         
@@ -958,6 +963,25 @@ namespace MainSL.MainSVC {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class FinishBPCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public FinishBPCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public MainSL.MainSVC.ReturnMessage Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((MainSL.MainSVC.ReturnMessage)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class CreateCommentTBPCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
@@ -1071,6 +1095,12 @@ namespace MainSL.MainSVC {
         
         private System.Threading.SendOrPostCallback onCreateBPCompletedDelegate;
         
+        private BeginOperationDelegate onBeginFinishBPDelegate;
+        
+        private EndOperationDelegate onEndFinishBPDelegate;
+        
+        private System.Threading.SendOrPostCallback onFinishBPCompletedDelegate;
+        
         private BeginOperationDelegate onBeginCreateCommentTBPDelegate;
         
         private EndOperationDelegate onEndCreateCommentTBPDelegate;
@@ -1159,6 +1189,8 @@ namespace MainSL.MainSVC {
         public event System.EventHandler<InitOBPCompletedEventArgs> InitOBPCompleted;
         
         public event System.EventHandler<CreateBPCompletedEventArgs> CreateBPCompleted;
+        
+        public event System.EventHandler<FinishBPCompletedEventArgs> FinishBPCompleted;
         
         public event System.EventHandler<CreateCommentTBPCompletedEventArgs> CreateCommentTBPCompleted;
         
@@ -1576,6 +1608,52 @@ namespace MainSL.MainSVC {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult MainSL.MainSVC.MainService.BeginFinishBP(MainSL.MainSVC.JournalRecord journal, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginFinishBP(journal, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        MainSL.MainSVC.ReturnMessage MainSL.MainSVC.MainService.EndFinishBP(System.IAsyncResult result) {
+            return base.Channel.EndFinishBP(result);
+        }
+        
+        private System.IAsyncResult OnBeginFinishBP(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            MainSL.MainSVC.JournalRecord journal = ((MainSL.MainSVC.JournalRecord)(inValues[0]));
+            return ((MainSL.MainSVC.MainService)(this)).BeginFinishBP(journal, callback, asyncState);
+        }
+        
+        private object[] OnEndFinishBP(System.IAsyncResult result) {
+            MainSL.MainSVC.ReturnMessage retVal = ((MainSL.MainSVC.MainService)(this)).EndFinishBP(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnFinishBPCompleted(object state) {
+            if ((this.FinishBPCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.FinishBPCompleted(this, new FinishBPCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void FinishBPAsync(MainSL.MainSVC.JournalRecord journal) {
+            this.FinishBPAsync(journal, null);
+        }
+        
+        public void FinishBPAsync(MainSL.MainSVC.JournalRecord journal, object userState) {
+            if ((this.onBeginFinishBPDelegate == null)) {
+                this.onBeginFinishBPDelegate = new BeginOperationDelegate(this.OnBeginFinishBP);
+            }
+            if ((this.onEndFinishBPDelegate == null)) {
+                this.onEndFinishBPDelegate = new EndOperationDelegate(this.OnEndFinishBP);
+            }
+            if ((this.onFinishBPCompletedDelegate == null)) {
+                this.onFinishBPCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnFinishBPCompleted);
+            }
+            base.InvokeAsync(this.onBeginFinishBPDelegate, new object[] {
+                        journal}, this.onEndFinishBPDelegate, this.onFinishBPCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.IAsyncResult MainSL.MainSVC.MainService.BeginCreateCommentTBP(MainSL.MainSVC.TBPComment comment, System.AsyncCallback callback, object asyncState) {
             return base.Channel.BeginCreateCommentTBP(comment, callback, asyncState);
         }
@@ -1896,6 +1974,19 @@ namespace MainSL.MainSVC {
             public MainSL.MainSVC.ReturnMessage EndCreateBP(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 MainSL.MainSVC.ReturnMessage _result = ((MainSL.MainSVC.ReturnMessage)(base.EndInvoke("CreateBP", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginFinishBP(MainSL.MainSVC.JournalRecord journal, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = journal;
+                System.IAsyncResult _result = base.BeginInvoke("FinishBP", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public MainSL.MainSVC.ReturnMessage EndFinishBP(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                MainSL.MainSVC.ReturnMessage _result = ((MainSL.MainSVC.ReturnMessage)(base.EndInvoke("FinishBP", _args, result)));
                 return _result;
             }
             

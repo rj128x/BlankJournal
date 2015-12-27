@@ -62,6 +62,12 @@
   <wsdl:message name="MainService_CreateBP_OutputMessage">
     <wsdl:part name="parameters" element="CreateBPResponse" />
   </wsdl:message>
+  <wsdl:message name="MainService_FinishBP_InputMessage">
+    <wsdl:part name="parameters" element="FinishBP" />
+  </wsdl:message>
+  <wsdl:message name="MainService_FinishBP_OutputMessage">
+    <wsdl:part name="parameters" element="FinishBPResponse" />
+  </wsdl:message>
   <wsdl:message name="MainService_CreateCommentTBP_InputMessage">
     <wsdl:part name="parameters" element="CreateCommentTBP" />
   </wsdl:message>
@@ -116,6 +122,10 @@
     <wsdl:operation name="CreateBP">
       <wsdl:input wsaw:Action="urn:MainService/CreateBP" message="MainService_CreateBP_InputMessage" />
       <wsdl:output wsaw:Action="urn:MainService/CreateBPResponse" message="MainService_CreateBP_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FinishBP">
+      <wsdl:input wsaw:Action="urn:MainService/FinishBP" message="MainService_FinishBP_InputMessage" />
+      <wsdl:output wsaw:Action="urn:MainService/FinishBPResponse" message="MainService_FinishBP_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="CreateCommentTBP">
       <wsdl:input wsaw:Action="urn:MainService/CreateCommentTBP" message="MainService_CreateCommentTBP_InputMessage" />

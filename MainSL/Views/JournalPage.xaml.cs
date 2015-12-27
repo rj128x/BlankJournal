@@ -19,13 +19,13 @@ namespace MainSL.Views {
 			InitializeComponent();
 			if (!inited) {
 				GlobalContext.Single.Client.GetJournalBPCompleted += Client_GetJournalBPCompleted;
-				GlobalContext.Single.Client.CreateBPCompleted += Client_CreateBPCompleted;
+				GlobalContext.Single.Client.FinishBPCompleted += Client_FinishBPCompleted;
 				GlobalContext.Single.Client.GetJournalBPAsync();
 			}
 			inited = true;
 		}
 
-		void Client_CreateBPCompleted(object sender, MainSVC.CreateBPCompletedEventArgs e) {
+		void Client_FinishBPCompleted(object sender, FinishBPCompletedEventArgs e) {
 			GlobalContext.Single.IsBusy = false;
 			ReturnMessage msg = e.Result as ReturnMessage;
 			MessageBox.Show(msg.Message);
