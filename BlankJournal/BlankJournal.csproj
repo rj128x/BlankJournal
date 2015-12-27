@@ -189,6 +189,7 @@
     <Content Include="ClientBin\Debug\MainSL.xap" />
     <Content Include="ClientBin\MainSL.xap" />
     <Content Include="ClientBin\Release\MainSL.xap" />
+    <Content Include="Data\ClearDB.sql" />
     <Content Include="Global.asax" />
     <Content Include="MainService.svc" />
     <Content Include="Data\MainSettings.xml">
