@@ -24,6 +24,7 @@ namespace BlankJournal
         public string Number { get; set; }
         public int Folder { get; set; }
         public string Name { get; set; }
+        public string ObjectInfo { get; set; }
         public string DataPDF { get; set; }
         public string DataWord { get; set; }
     
