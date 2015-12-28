@@ -58,8 +58,9 @@ namespace BlankJournal.Models {
 			rec.Task = tbp.Name;
 			rec.isOBP = false;
 			rec.TBPNumber = tbp.Number;
-			rec.DateEnd = DateTime.Now;
-			rec.DateStart = DateTime.Now;
+			rec.DateCreate = DateTime.Now;
+			rec.DateEnd = rec.DateCreate;
+			rec.DateStart = rec.DateCreate;
 			return rec;
 		}
 
@@ -83,8 +84,10 @@ namespace BlankJournal.Models {
 			rec.Task = tbp.Name;
 			rec.isOBP = true;
 			rec.TBPNumber = tbp.Number;
-			rec.DateEnd = DateTime.Now;
-			rec.DateStart = DateTime.Now;
+			rec.DateCreate = DateTime.Now;
+			rec.DateEnd = rec.DateCreate;
+			rec.DateStart = rec.DateCreate;
+			
 			return rec;
 		}
 
@@ -106,9 +109,9 @@ namespace BlankJournal.Models {
 				tbl.Comment = record.Comment;
 				tbl.Name = record.Task;
 				tbl.Number = record.DoubleNumber;
-				tbl.DateCreate = DateTime.Now;
-				tbl.DateStart = tbl.DateCreate;
-				tbl.DateEnd = tbl.DateCreate;
+				tbl.DateStart = record.DateStart;
+				tbl.DateCreate = record.DateCreate;
+				tbl.DateEnd = record.DateEnd;
 
 				if (!record.isInit&& record.WordData!=null && record.isOBP) {
 					//if (!string.IsNullOrEmpty(record.IDWordData)){
