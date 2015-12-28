@@ -149,8 +149,10 @@ namespace MainSL {
 			GlobalContext.Single.IsBusy = false;
 			ReturnMessage msg = e.Result as ReturnMessage;
 			MessageBox.Show(msg.Message);
-			GlobalContext.Single.IsBusy = true;
-			GlobalContext.Single.Client.GetTBPBlanksByFolderAsync(CurrentFolder.ID);
+			if (CurrentFolder != null) {
+				GlobalContext.Single.IsBusy = true;
+				GlobalContext.Single.Client.GetTBPBlanksByFolderAsync(CurrentFolder.ID);
+			}
 		}
 
 		private void btnNewOBP_Click(object sender, RoutedEventArgs e) {
@@ -208,6 +210,10 @@ namespace MainSL {
 		private void grdTBPBlanks_SelectionChanged(object sender, SelectionChangedEventArgs e) {
 			CurrentTBP = grdTBPBlanks.SelectedItem as TBPInfo;
 			pnlInfo.DataContext = CurrentTBP;
+		}
+
+		private void btnTemplateOBP_Click(object sender, RoutedEventArgs e) {
+			FloatWindow.OpenWindow("/Data/EmptyOBP.docx");
 		}
 
 

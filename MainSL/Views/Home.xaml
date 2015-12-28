@@ -21,14 +21,21 @@
                 <RowDefinition Height="*"/>
                 
             </Grid.RowDefinitions>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Name="btnNewTBP" Content="Создать Бланк" Click="Button_Click" 
+            <Grid>
+                <StackPanel Orientation="Horizontal" FlowDirection="LeftToRight" HorizontalAlignment="Left">
+                    <Button Name="btnNewTBP" Content="Создать ТБП" Click="Button_Click" 
                         IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}"
                         Visibility="{Binding Single.CurrentUser.CanEditTBP, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
-                <Button Name="btnNewOBP" Content="Создать ОБП" Click="btnNewOBP_Click"
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft" HorizontalAlignment="Right">
+                    <Button Name="btnNewOBP" Content="Пустой ОБП" Click="btnNewOBP_Click"
                         IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}"
                         Visibility="{Binding Single.CurrentUser.CanDoOper, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
-            </StackPanel>
+                    <Button Name="btnTemplateOBP" Content="Шаблон ОБП" Click="btnTemplateOBP_Click"
+                        IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}"
+                        Visibility="{Binding Single.CurrentUser.CanDoOper, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
+                </StackPanel>                
+            </Grid>
             <Grid Grid.Row="1" VerticalAlignment="Stretch">
                 <sdk:DataGrid Name="grdTBPBlanks" AutoGenerateColumns="False" SelectionChanged="grdTBPBlanks_SelectionChanged" >
                     <sdk:DataGrid.Columns>
