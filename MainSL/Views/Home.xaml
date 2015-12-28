@@ -58,6 +58,8 @@
                                                 IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}" />
                                         <Button Content="Word" Name="btnShowWord" Click="btnShowWord_Click"
                                                 IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}" />
+                                        <Button Content="Word ОБП" Name="btnShowWordOBP" Click="btnShowWordOBP_Click"
+                                                IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}" />
                                         <Button Content="Редактировать" Name="btnEditTBP" Click="btnEditTBP_Click"
                                                 IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}" 
                                                 Visibility="{Binding Single.CurrentUser.CanEditTBP, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>

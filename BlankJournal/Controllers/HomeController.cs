@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlankJournal.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,7 +23,9 @@ namespace BlankJournal.Controllers {
 				DataTable dt = data.First();
 				string fn = dt.ID.ToString() + (dt.isPDF == true ? ".pdf" : ".docx");
 				string fullpath = Server.MapPath("/TempData/") + fn;
+				
 				System.IO.File.WriteAllBytes(fullpath, dt.Data);
+
 				Response.Redirect("/TempData/" + fn);
 			}
 		}
@@ -39,6 +42,17 @@ namespace BlankJournal.Controllers {
 				BPJournalTable dt = data.First();
 				string fileID = dt.isOBP ? dt.WordData : dt.PDFData;
 				processFile(fileID);
+			}
+			return View("View1");
+		}
+
+		public ActionResult getOBPWord(string id) {
+			BlanksEntities eni = new BlanksEntities();
+			IQueryable<TBPInfoTable> data = from d in eni.TBPInfoTable where d.Number == id select d;
+			if (data.Count() > 0) {
+				TBPInfo tbp = new TBPInfo(data.First());
+				string fn=WordData.createOBP(Server.MapPath("/TempData/"),tbp);
+				Response.Redirect("/TempData/" + fn);
 			}
 			return View("View1");
 		}

@@ -205,6 +205,11 @@ namespace MainSL {
 			MessageBox.Show(msg.Message);
 		}
 
+		private void btnShowWordOBP_Click(object sender, RoutedEventArgs e) {
+			TBPInfo tbp = grdTBPBlanks.SelectedItem as TBPInfo;
+			FloatWindow.OpenWindow("Home/getOBPWord?id=" + tbp.Number);
+		}
+
 
 
 	}
