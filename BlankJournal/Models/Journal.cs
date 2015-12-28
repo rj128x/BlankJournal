@@ -18,6 +18,8 @@ namespace BlankJournal.Models {
 		public byte[] WordData { get; set; }
 		public string IDWordData { get; set; }
 		public string TBPNumber { get; set; }
+		public bool Finished { get; set; }
+		public bool Closed { get; set; }
 		public JournalRecord() {
 		}
 
@@ -30,6 +32,8 @@ namespace BlankJournal.Models {
 			DateStart = tbl.DateStart;
 			DateEnd = tbl.DateEnd;
 			DateCreate = tbl.DateCreate;
+			Finished = !(DateStart == DateCreate || DateEnd == DateCreate);
+			Closed = Finished && DateCreate.AddDays(1) < DateTime.Now;
 			isOBP = tbl.isOBP;
 			TBPNumber = tbl.TBPNumber;
 		}
@@ -103,8 +107,8 @@ namespace BlankJournal.Models {
 				tbl.Name = record.Task;
 				tbl.Number = record.DoubleNumber;
 				tbl.DateCreate = DateTime.Now;
-				tbl.DateStart = record.DateStart;
-				tbl.DateEnd = record.DateEnd;
+				tbl.DateStart = tbl.DateCreate;
+				tbl.DateEnd = tbl.DateCreate;
 
 				if (!record.isInit&& record.WordData!=null && record.isOBP) {
 					//if (!string.IsNullOrEmpty(record.IDWordData)){

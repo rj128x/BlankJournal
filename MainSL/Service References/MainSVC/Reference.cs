@@ -307,6 +307,8 @@ namespace MainSL.MainSVC {
         
         private string AuthorField;
         
+        private bool ClosedField;
+        
         private string CommentField;
         
         private System.DateTime DateCreateField;
@@ -316,6 +318,8 @@ namespace MainSL.MainSVC {
         private System.DateTime DateStartField;
         
         private double DoubleNumberField;
+        
+        private bool FinishedField;
         
         private string IDWordDataField;
         
@@ -340,6 +344,19 @@ namespace MainSL.MainSVC {
                 if ((object.ReferenceEquals(this.AuthorField, value) != true)) {
                     this.AuthorField = value;
                     this.RaisePropertyChanged("Author");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Closed {
+            get {
+                return this.ClosedField;
+            }
+            set {
+                if ((this.ClosedField.Equals(value) != true)) {
+                    this.ClosedField = value;
+                    this.RaisePropertyChanged("Closed");
                 }
             }
         }
@@ -405,6 +422,19 @@ namespace MainSL.MainSVC {
                 if ((this.DoubleNumberField.Equals(value) != true)) {
                     this.DoubleNumberField = value;
                     this.RaisePropertyChanged("DoubleNumber");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Finished {
+            get {
+                return this.FinishedField;
+            }
+            set {
+                if ((this.FinishedField.Equals(value) != true)) {
+                    this.FinishedField = value;
+                    this.RaisePropertyChanged("Finished");
                 }
             }
         }

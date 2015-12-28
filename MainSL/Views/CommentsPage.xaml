@@ -13,7 +13,7 @@
                 <sdk:DataGridTemplateColumn Header="Дата созд" SortMemberPath="DateCreate" Width="150"  >
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
-                            <ContentControl Content="{Binding DateCreate}" />
+                            <ContentControl Content="{Binding DateCreate, StringFormat='dd.MM.yyyy HH:mm'}"  />
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
                 </sdk:DataGridTemplateColumn>
@@ -41,7 +41,7 @@
                 <sdk:DataGridTemplateColumn Header="Дата закрытия" SortMemberPath="DateStart" Width="150" >
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
-                            <ContentControl Content="{Binding DatePerform}" Visibility="{Binding Finished, Converter={StaticResource visibilityConverter}}" />
+                            <ContentControl Content="{Binding DatePerform,StringFormat='dd.MM.yyyy HH:mm'}" Visibility="{Binding Finished, Converter={StaticResource visibilityConverter}}"  />
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
                 </sdk:DataGridTemplateColumn>

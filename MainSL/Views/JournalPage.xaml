@@ -13,7 +13,7 @@
                 <sdk:DataGridTemplateColumn Header="Дата созд" SortMemberPath="DateCreate" Width="150"  >
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
-                            <ContentControl Content="{Binding DateCreate}" />
+                            <ContentControl Content="{Binding DateCreate, StringFormat='dd.MM.yyyy HH:mm'}" />
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
                 </sdk:DataGridTemplateColumn>
@@ -48,14 +48,14 @@
                 <sdk:DataGridTemplateColumn Header="Дата1" SortMemberPath="DateStart" Width="150" >
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
-                            <ContentControl Content="{Binding DateStart}" />
+                            <ContentControl Content="{Binding DateStart , StringFormat='dd.MM.yyyy HH:mm'}" Visibility="{Binding Finished, Converter={StaticResource visibilityConverter}}" />
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
                 </sdk:DataGridTemplateColumn>
                 <sdk:DataGridTemplateColumn Header="Дата2" SortMemberPath="DateEnd" Width="150" >
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
-                            <ContentControl Content="{Binding DateEnd}" />
+                            <ContentControl Content="{Binding DateEnd , StringFormat='dd.MM.yyyy HH:mm'}" Visibility="{Binding Finished, Converter={StaticResource visibilityConverter}}" />
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
                 </sdk:DataGridTemplateColumn>
@@ -64,7 +64,7 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
                                 <Button Content="Просмотр бланка" Name="btnShow" Click="btnShow_Click" Height="30"/>
-                                <Button Content="Параметры переключения" Name="btnEdit" Click="btnEdit_Click" Height="30"/>
+                                <Button Content="Параметры переключения" Name="btnEdit" Click="btnEdit_Click" Height="30" Visibility="{Binding Closed, Converter={StaticResource visibilityNotConverter}}"/>
                             </StackPanel>
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
