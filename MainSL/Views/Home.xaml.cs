@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 
 namespace MainSL {
 	public partial class Home : Page {
-
+		public TBPInfo CurrentTBP { get; set; }
 		public Home() {
 			InitializeComponent();
 			init();
@@ -66,7 +66,7 @@ namespace MainSL {
 			//MessageBox.Show(id.ToString());
 			CurrentFolder = GlobalContext.Single.AllFolders[id];
 			GlobalContext.Single.IsBusy = true;
-			GlobalContext.Single.Client.GetTBPBlanksByFolderAsync(id);
+			GlobalContext.Single.Client.GetTBPBlanksByFolderAsync(CurrentFolder.ID);
 		}
 
 
@@ -108,15 +108,13 @@ namespace MainSL {
 		}
 
 		private void btnUseNextTBP_Click(object sender, RoutedEventArgs e) {
-			TBPInfo tbp = grdTBPBlanks.SelectedItem as TBPInfo;
 			GlobalContext.Single.IsBusy = true;
-			GlobalContext.Single.Client.InitTBPAsync(tbp);
+			GlobalContext.Single.Client.InitTBPAsync(CurrentTBP);
 		}
 
 		private void btnUseOBP_Click(object sender, RoutedEventArgs e) {
-			TBPInfo tbp = grdTBPBlanks.SelectedItem as TBPInfo;
 			GlobalContext.Single.IsBusy = true;
-			GlobalContext.Single.Client.InitOBPAsync(tbp);
+			GlobalContext.Single.Client.InitOBPAsync(CurrentTBP);
 		}
 
 		void Client_InitOBPCompleted(object sender, InitOBPCompletedEventArgs e) {
@@ -151,6 +149,8 @@ namespace MainSL {
 			GlobalContext.Single.IsBusy = false;
 			ReturnMessage msg = e.Result as ReturnMessage;
 			MessageBox.Show(msg.Message);
+			GlobalContext.Single.IsBusy = true;
+			GlobalContext.Single.Client.GetTBPBlanksByFolderAsync(CurrentFolder.ID);
 		}
 
 		private void btnNewOBP_Click(object sender, RoutedEventArgs e) {
@@ -162,30 +162,26 @@ namespace MainSL {
 		}
 
 		private void btnShowPDF_Click(object sender, RoutedEventArgs e) {
-			TBPInfo tbp = grdTBPBlanks.SelectedItem as TBPInfo;
-			FloatWindow.OpenWindow("Home/getFile?id=" + tbp.IDPDFData);
+			FloatWindow.OpenWindow("Home/getFile?id=" + CurrentTBP.IDPDFData);
 		}
 
 		private void btnShowWord_Click(object sender, RoutedEventArgs e) {
-			TBPInfo tbp = grdTBPBlanks.SelectedItem as TBPInfo;
-			FloatWindow.OpenWindow("Home/getFile?id=" + tbp.IDWordData);
+			FloatWindow.OpenWindow("Home/getFile?id=" + CurrentTBP.IDWordData);
 		}
 
 		private void btnEditTBP_Click(object sender, RoutedEventArgs e) {
-			TBPInfo tbp = grdTBPBlanks.SelectedItem as TBPInfo;
 			TBPWindow newWindow = new TBPWindow();
-			tbp.EditingTBP = true;
-			newWindow.Init(tbp);
+			CurrentTBP.EditingTBP = true;
+			newWindow.Init(CurrentTBP);
 			newWindow.Closed += newWindow_Closed;
 			newWindow.Show();
 		}
 
 		private void btnCommentTBP_Click(object sender, RoutedEventArgs e) {
-			TBPInfo tbp = grdTBPBlanks.SelectedItem as TBPInfo;
 			CommentWindow commentWin = new CommentWindow();
-			tbp.EditingTBP = true;
+			CurrentTBP.EditingTBP = true;
 			TBPComment newCom=new TBPComment();
-			newCom.TBPNumber=tbp.Number;
+			newCom.TBPNumber = CurrentTBP.Number;
 			commentWin.Init(newCom);
 			commentWin.Closed += commentWin_Closed;
 			commentWin.Show();
@@ -206,8 +202,12 @@ namespace MainSL {
 		}
 
 		private void btnShowWordOBP_Click(object sender, RoutedEventArgs e) {
-			TBPInfo tbp = grdTBPBlanks.SelectedItem as TBPInfo;
-			FloatWindow.OpenWindow("Home/getOBPWord?id=" + tbp.Number);
+			FloatWindow.OpenWindow("Home/getOBPWord?id=" + CurrentTBP.Number);
+		}
+
+		private void grdTBPBlanks_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+			CurrentTBP = grdTBPBlanks.SelectedItem as TBPInfo;
+			pnlInfo.DataContext = CurrentTBP;
 		}
 
 

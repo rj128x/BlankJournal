@@ -55,7 +55,7 @@
                 <sdk:DataGridTemplateColumn Header="Дата2" SortMemberPath="DateEnd" Width="150" >
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
-                            <ContentControl Content="{Binding DateEnd , StringFormat='dd.MM.yyyy HH:mm'}" Visibility="{Binding Finished, Converter={StaticResource logicNotConverter}}" />
+                            <ContentControl Content="{Binding DateEnd , StringFormat='dd.MM.yyyy HH:mm'}" Visibility="{Binding Finished, Converter={StaticResource visibilityConverter}}" />
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
                 </sdk:DataGridTemplateColumn>

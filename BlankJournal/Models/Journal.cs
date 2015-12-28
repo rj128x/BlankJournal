@@ -113,20 +113,18 @@ namespace BlankJournal.Models {
 				tbl.DateCreate = record.DateCreate;
 				tbl.DateEnd = record.DateEnd;
 
-				if (!record.isInit&& record.WordData!=null && record.isOBP) {
-					//if (!string.IsNullOrEmpty(record.IDWordData)){
-						DataTable dat=new DataTable();
-						dat.ID = Guid.NewGuid().ToString();
-						dat.DateCreate = DateTime.Now;
-						dat.Author = DBContext.Single.GetCurrentUser().Login;
-						IQueryable<DataTable> data=from d in eni.DataTable where d.ID==record.IDWordData select d;
-						if (data.Count() > 0)
-							dat = data.First();
-						else
-							eni.DataTable.Add(dat);
-						dat.Data = record.WordData;
-						tbl.WordData = dat.ID;
-					//}
+				if (record.WordData!=null && record.isOBP) {
+					DataTable dat=new DataTable();
+					dat.ID = !string.IsNullOrEmpty(record.IDWordData)?record.IDWordData:Guid.NewGuid().ToString();
+					dat.DateCreate = DateTime.Now;
+					dat.Author = DBContext.Single.GetCurrentUser().Login;
+					IQueryable<DataTable> data=from d in eni.DataTable where d.ID==record.IDWordData select d;
+					if (data.Count() > 0)
+						dat = data.First();
+					else
+						eni.DataTable.Add(dat);
+					dat.Data = record.WordData;
+					tbl.WordData = dat.ID;
 				}
 
 				if (!record.isOBP) {

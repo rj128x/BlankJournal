@@ -22,6 +22,11 @@
                 <TextBlock Text="Комментарий: " Width="100"/>
                 <TextBox Text="{Binding Comment, Mode=TwoWay}" TextWrapping="Wrap" Height="70" Width="300"/>
             </StackPanel>
+            <StackPanel Orientation="Horizontal" Visibility="{Binding isOBP, Converter={StaticResource visibilityConverter}}">
+                <TextBlock Text="Файл бланка: " Width="100"/>
+                <TextBox Name="txtWord" Width="200"/>
+                <Button Content="  ...  " Name="btnChooseWord" Click="btnChooseWord_Click"/>
+            </StackPanel>
             <StackPanel Orientation="Vertical" Visibility="{Binding isInit, Converter={StaticResource visibilityNotConverter}}">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Дата начала: " Width="100"/>
@@ -36,12 +41,7 @@
                         <controls:DatePicker SelectedDate="{Binding DateEnd, Mode=TwoWay}"/>
                         <toolkit:TimePicker Value="{Binding DateEnd, Mode=TwoWay}"/>
                     </StackPanel>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Visibility="{Binding isOBP, Converter={StaticResource visibilityConverter}}">
-                    <TextBlock Text="Файл бланка: " Width="100"/>
-                    <TextBox Name="txtWord" Width="200"/>
-                    <Button Content="  ...  " Name="btnChooseWord" Click="btnChooseWord_Click"/>
-                </StackPanel>
+                </StackPanel>               
             </StackPanel>
         </StackPanel>
         <Button x:Name="CancelButton" Content="Отмена" Click="CancelButton_Click" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,12,0,0" Grid.Row="1" />

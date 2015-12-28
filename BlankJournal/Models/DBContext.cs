@@ -63,11 +63,25 @@ namespace BlankJournal.Models {
 			try {
 				List<TBPInfo> result = new List<TBPInfo>();
 				BlankJournal.BlanksEntities eni = new BlanksEntities();
-				IQueryable<TBPInfoTable> blanks = from b in eni.TBPInfoTable where b.Folder == folderID select b;
+				IQueryable<TBPInfoTable> blanks = from b in eni.TBPInfoTable  where b.Folder == folderID select b;
+				Dictionary<string, TBPInfo> res = new Dictionary<string, TBPInfo>();
 				foreach (TBPInfoTable tbl in blanks) {
-					result.Add(new TBPInfo(tbl));
+					res.Add(tbl.Number,new TBPInfo(tbl));
 				}
-				return result;
+
+				IQueryable<BPJournalTable> latest = from j in eni.BPJournalTable orderby j.Number ascending 
+																where res.Keys.Contains(j.TBPNumber) && j.DateCreate.Year == DateTime.Now.Year && j.isOBP==false
+																select j;
+				foreach (BPJournalTable bp in latest) {
+					try {
+						res[bp.TBPNumber].LastOper = bp.DateCreate;
+						res[bp.TBPNumber].LastNumber = bp.Id;
+						res[bp.TBPNumber].HasLastOper = true;
+					} catch (Exception e) {
+						Logger.info(e.ToString());
+					}
+				}
+				return res.Values.ToList();
 			}
 			catch (Exception e) {
 				Logger.info("Ошибка при получении списка бланков " + e.ToString());

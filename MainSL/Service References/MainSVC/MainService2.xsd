@@ -32,8 +32,11 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="EditingTBP" type="xs:boolean" />
       <xs:element minOccurs="0" name="FolderID" type="xs:int" />
+      <xs:element minOccurs="0" name="HasLastOper" type="xs:boolean" />
       <xs:element minOccurs="0" name="IDPDFData" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="IDWordData" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastOper" type="xs:dateTime" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Number" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="PDFData" nillable="true" type="xs:base64Binary" />

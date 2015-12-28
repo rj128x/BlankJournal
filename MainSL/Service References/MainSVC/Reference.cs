@@ -144,9 +144,15 @@ namespace MainSL.MainSVC {
         
         private int FolderIDField;
         
+        private bool HasLastOperField;
+        
         private string IDPDFDataField;
         
         private string IDWordDataField;
+        
+        private string LastNumberField;
+        
+        private System.DateTime LastOperField;
         
         private string NameField;
         
@@ -187,6 +193,19 @@ namespace MainSL.MainSVC {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool HasLastOper {
+            get {
+                return this.HasLastOperField;
+            }
+            set {
+                if ((this.HasLastOperField.Equals(value) != true)) {
+                    this.HasLastOperField = value;
+                    this.RaisePropertyChanged("HasLastOper");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string IDPDFData {
             get {
                 return this.IDPDFDataField;
@@ -208,6 +227,32 @@ namespace MainSL.MainSVC {
                 if ((object.ReferenceEquals(this.IDWordDataField, value) != true)) {
                     this.IDWordDataField = value;
                     this.RaisePropertyChanged("IDWordData");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string LastNumber {
+            get {
+                return this.LastNumberField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LastNumberField, value) != true)) {
+                    this.LastNumberField = value;
+                    this.RaisePropertyChanged("LastNumber");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime LastOper {
+            get {
+                return this.LastOperField;
+            }
+            set {
+                if ((this.LastOperField.Equals(value) != true)) {
+                    this.LastOperField = value;
+                    this.RaisePropertyChanged("LastOper");
                 }
             }
         }

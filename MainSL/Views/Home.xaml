@@ -4,12 +4,13 @@
                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
                  xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation" 
-                 mc:Ignorable="d" d:DesignWidth="640" d:DesignHeight="480" Title="Домашняя страница" Style="{StaticResource PageStyle}">
+                 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600" Title="Домашняя страница" Style="{StaticResource PageStyle}">
 
     <Grid x:Name="LayoutRoot">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="150"/>
         </Grid.RowDefinitions>
         <StackPanel Name="pnlFolders" Orientation="Horizontal" Grid.Row="0">
             
@@ -18,6 +19,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="*"/>
+                
             </Grid.RowDefinitions>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Name="btnNewTBP" Content="Создать Бланк" Click="Button_Click" 
@@ -28,7 +30,7 @@
                         Visibility="{Binding Single.CurrentUser.CanDoOper, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
             </StackPanel>
             <Grid Grid.Row="1" VerticalAlignment="Stretch">
-                <sdk:DataGrid Name="grdTBPBlanks" AutoGenerateColumns="False" >
+                <sdk:DataGrid Name="grdTBPBlanks" AutoGenerateColumns="False" SelectionChanged="grdTBPBlanks_SelectionChanged" >
                     <sdk:DataGrid.Columns>
                         <sdk:DataGridTemplateColumn Header="№ бланка" SortMemberPath="Number" Width="100" >
                             <sdk:DataGridTemplateColumn.CellTemplate >
@@ -37,45 +39,82 @@
                                 </DataTemplate>
                             </sdk:DataGridTemplateColumn.CellTemplate>
                         </sdk:DataGridTemplateColumn>
-                        <sdk:DataGridTemplateColumn Header="Имя бланка" SortMemberPath="Number" Width="500" >
+                        <sdk:DataGridTemplateColumn Header="Имя бланка" SortMemberPath="Number" Width="300" >
                             <sdk:DataGridTemplateColumn.CellTemplate >
                                 <DataTemplate>
                                     <ContentControl Content="{Binding Name}" />
                                 </DataTemplate>
                             </sdk:DataGridTemplateColumn.CellTemplate>
                         </sdk:DataGridTemplateColumn>
-                        <sdk:DataGridTemplateColumn Header="Команды" Width="700" >
+                        <sdk:DataGridTemplateColumn Header="Объект" SortMemberPath="ObjectInfo" Width="120" >
                             <sdk:DataGridTemplateColumn.CellTemplate >
                                 <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Button Content="ТБП" Name="btnUseNextTBP" Click="btnUseNextTBP_Click" 
-                                                IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}"
-                                                Visibility="{Binding Single.CurrentUser.CanDoOper, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
-                                        <Button Content="ОБП" Name="btnUseOBP" Click="btnUseOBP_Click"
-                                                IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}"
-                                                Visibility="{Binding Single.CurrentUser.CanDoOper, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>                                        
-                                        <Button Content="PDF" Name="btnShowPDF" Click="btnShowPDF_Click"
-                                                IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}" />
-                                        <Button Content="Word" Name="btnShowWord" Click="btnShowWord_Click"
-                                                IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}" />
-                                        <Button Content="Word ОБП" Name="btnShowWordOBP" Click="btnShowWordOBP_Click"
-                                                IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}" />
-                                        <Button Content="Редактировать" Name="btnEditTBP" Click="btnEditTBP_Click"
-                                                IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}" 
-                                                Visibility="{Binding Single.CurrentUser.CanEditTBP, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
-                                        <Button Content="Замечания" Name="btnCommentTBP" Click="btnCommentTBP_Click"
-                                                IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}" 
-                                                Visibility="{Binding Single.CurrentUser.CanDoOper, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
-                                    </StackPanel>
+                                    <ContentControl Content="{Binding ObjectInfo}" />
                                 </DataTemplate>
                             </sdk:DataGridTemplateColumn.CellTemplate>
                         </sdk:DataGridTemplateColumn>
-                    </sdk:DataGrid.Columns>
-                    
+                        <sdk:DataGridTemplateColumn Header="Последний" SortMemberPath="LastOper" Width="150" >
+                            <sdk:DataGridTemplateColumn.CellTemplate >
+                                <DataTemplate>
+                                    <StackPanel Orientation="Vertical" Visibility="{Binding HasLastOper, Converter={StaticResource visibilityConverter}}">
+                                        <ContentControl Content="{Binding LastOper}" />
+                                        <ContentControl Content="{Binding LastNumber}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </sdk:DataGridTemplateColumn.CellTemplate>
+                        </sdk:DataGridTemplateColumn>                     
+                    </sdk:DataGrid.Columns>                    
                 </sdk:DataGrid>
             </Grid>
         </Grid>
-        
+        <Grid Grid.Row="2">
+            <StackPanel Name="pnlInfo"  Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Номер бланка" Width="150"/>
+                    <TextBlock Text="{Binding Number}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Имя" Width="150"/>
+                    <TextBlock Text="{Binding Name}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Объект" Width="150"/>
+                    <TextBlock Text="{Binding ObjectInfo}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Журнал переключений" Width="150"/>
+                    <Button Content="Создать запись в журнал (ТБП)" Name="btnUseNextTBP" Click="btnUseNextTBP_Click" 
+                                                IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}"
+                                                Visibility="{Binding Single.CurrentUser.CanDoOper, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
+                    <Button Content="Создать запись в журнал (ОБП)" Name="btnUseOBP" Click="btnUseOBP_Click"
+                                                IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}"
+                                                Visibility="{Binding Single.CurrentUser.CanDoOper, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>  
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Связанные файлы" Width="150"/>
+                    <Button Content="Файл скан (PDF)" Name="btnShowPDF" Click="btnShowPDF_Click"
+                                                IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}" />
+                    <Button Content="Файл ТБП (Word)" Name="btnShowWord" Click="btnShowWord_Click"
+                                                IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}" />
+                    <Button Content="Файл ОБП (Word)" Name="btnShowWordOBP" Click="btnShowWordOBP_Click"
+                                                IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Редактирование" Width="150"/>
+                        <Button Content="Редактировать" Name="btnEditTBP" Click="btnEditTBP_Click"
+                                                IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}" 
+                                                Visibility="{Binding Single.CurrentUser.CanEditTBP, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
+                    </StackPanel>                    
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="Создать замечание" Name="btnCommentTBP" Click="btnCommentTBP_Click"
+                                                IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}" 
+                                                Visibility="{Binding Single.CurrentUser.CanDoOper, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
     </Grid>
 
 </navigation:Page>

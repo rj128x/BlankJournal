@@ -15,6 +15,9 @@ namespace BlankJournal.Models {
 		public bool UpdatedPDF { get; set; }
 		public bool UpdatedWord { get; set; }
 		public bool EditingTBP { get; set; }
+		public DateTime LastOper { get; set; }
+		public String LastNumber { get; set; }
+		public bool HasLastOper { get; set; }
 
 
 		public TBPInfo() {
