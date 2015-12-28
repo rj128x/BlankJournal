@@ -14,15 +14,21 @@ using MainSL.MainSVC;
 
 namespace MainSL.Views {
 	public partial class JournalPage : Page {
-		public static bool inited { get; set; }
 		public JournalPage() {
 			InitializeComponent();
-			if (!inited) {
-				GlobalContext.Single.Client.GetJournalBPCompleted += Client_GetJournalBPCompleted;
-				GlobalContext.Single.Client.FinishBPCompleted += Client_FinishBPCompleted;
-				GlobalContext.Single.Client.GetJournalBPAsync();
-			}
-			inited = true;
+			init();
+			GlobalContext.Single.IsBusy = true;
+			GlobalContext.Single.Client.GetJournalBPAsync();
+		}
+
+		public void init() {
+			GlobalContext.Single.Client.GetJournalBPCompleted += Client_GetJournalBPCompleted;
+			GlobalContext.Single.Client.FinishBPCompleted += Client_FinishBPCompleted;
+		}
+
+		public void deInit() {
+			GlobalContext.Single.Client.GetJournalBPCompleted -= Client_GetJournalBPCompleted;
+			GlobalContext.Single.Client.FinishBPCompleted -= Client_FinishBPCompleted;
 		}
 
 		void Client_FinishBPCompleted(object sender, FinishBPCompletedEventArgs e) {
@@ -37,6 +43,10 @@ namespace MainSL.Views {
 
 		// Выполняется, когда пользователь переходит на эту страницу.
 		protected override void OnNavigatedTo(NavigationEventArgs e) {
+		}
+
+		protected override void OnNavigatedFrom(NavigationEventArgs e) {
+			deInit();
 		}
 
 		private void btnShow_Click(object sender, RoutedEventArgs e) {

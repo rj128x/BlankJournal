@@ -48,15 +48,15 @@
                             <sdk:DataGridTemplateColumn.CellTemplate >
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
-                                        <Button Content="Использовать следующий" Name="btnUseNextTBP" Click="btnUseNextTBP_Click" 
+                                        <Button Content="ТБП" Name="btnUseNextTBP" Click="btnUseNextTBP_Click" 
                                                 IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}"
                                                 Visibility="{Binding Single.CurrentUser.CanDoOper, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
-                                        <Button Content="Использовать ОБП" Name="btnUseOBP" Click="btnUseOBP_Click"
+                                        <Button Content="ОБП" Name="btnUseOBP" Click="btnUseOBP_Click"
                                                 IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}"
                                                 Visibility="{Binding Single.CurrentUser.CanDoOper, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>                                        
-                                        <Button Content="Просмотр PDF" Name="btnShowPDF" Click="btnShowPDF_Click"
+                                        <Button Content="PDF" Name="btnShowPDF" Click="btnShowPDF_Click"
                                                 IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}" />
-                                        <Button Content="Просмотр Word" Name="btnShowWord" Click="btnShowWord_Click"
+                                        <Button Content="Word" Name="btnShowWord" Click="btnShowWord_Click"
                                                 IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}" />
                                         <Button Content="Редактировать" Name="btnEditTBP" Click="btnEditTBP_Click"
                                                 IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}" 

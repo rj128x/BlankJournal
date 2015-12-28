@@ -41,7 +41,7 @@ namespace BlankJournal.Models {
 				TBPCommentsTable tbl=new TBPCommentsTable();
 				tbl.Author=DBContext.Single.GetCurrentUser().Login;
 				tbl.Comment=comment.CommentText;
-				tbl.DateCreate = new DateTime(2015, 1, 1);
+				tbl.DateCreate = DateTime.Now;
 				tbl.Finished=false;
 				tbl.TBPNumber=comment.TBPNumber;
 				tbl.Id=Guid.NewGuid().ToString();

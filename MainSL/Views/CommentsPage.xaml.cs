@@ -14,16 +14,21 @@ using MainSL.MainSVC;
 
 namespace MainSL.Views {
 	public partial class CommentsPage : Page {
-		public static bool Inited { get; set; }
 		public CommentsPage() {
 			InitializeComponent();
-			if (!Inited) {
-				GlobalContext.Single.Client.FinishCommentTBPCompleted += Client_FinishCommentTBPCompleted;
-				GlobalContext.Single.Client.GetCommentsListCompleted += Client_GetCommentsListCompleted;
-				GlobalContext.Single.IsBusy = true;
-				GlobalContext.Single.Client.GetCommentsListAsync();
-			}
-			Inited = true;
+			init();
+			GlobalContext.Single.IsBusy = true;
+			GlobalContext.Single.Client.GetCommentsListAsync();
+		}
+
+		public void init() {
+			GlobalContext.Single.Client.FinishCommentTBPCompleted += Client_FinishCommentTBPCompleted;
+			GlobalContext.Single.Client.GetCommentsListCompleted += Client_GetCommentsListCompleted;
+		}
+
+		public void deInit() {
+			GlobalContext.Single.Client.FinishCommentTBPCompleted -= Client_FinishCommentTBPCompleted;
+			GlobalContext.Single.Client.GetCommentsListCompleted -= Client_GetCommentsListCompleted;
 		}
 
 		void Client_GetCommentsListCompleted(object sender, MainSVC.GetCommentsListCompletedEventArgs e) {
@@ -55,6 +60,9 @@ namespace MainSL.Views {
 		protected override void OnNavigatedTo(NavigationEventArgs e) {
 		}
 
+		protected override void OnNavigatedFrom(NavigationEventArgs e) {
+			deInit();
+		}
 		private void btnShow_Click(object sender, RoutedEventArgs e) {
 			TBPComment comment = grdBlanks.SelectedItem as TBPComment;
 			FloatWindow.OpenWindow("Home/getFile?id=" + comment.DataID);

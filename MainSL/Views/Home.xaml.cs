@@ -16,19 +16,28 @@ using System.Windows.Shapes;
 namespace MainSL {
 	public partial class Home : Page {
 
-		public static bool inited { get; set; }
 		public Home() {
 			InitializeComponent();
+			init();
+		}
 
-			GlobalContext.Single.Client.GetTBPBlanksByFolderCompleted += Client_GetTBPBlanksByFolderCompleted;
-			if (!inited) {
+		public void init() {
+				GlobalContext.Single.Client.GetTBPBlanksByFolderCompleted += Client_GetTBPBlanksByFolderCompleted;
 				GlobalContext.Single.Client.InitOBPCompleted += Client_InitOBPCompleted;
 				GlobalContext.Single.Client.InitTBPCompleted += Client_InitTBPCompleted;
 				GlobalContext.Single.Client.CreateBPCompleted += Client_CreateBPCompleted;
 				GlobalContext.Single.Client.CreateTBPCompleted += Client_CreateTBPCompleted;
 				GlobalContext.Single.Client.CreateCommentTBPCompleted += Client_CreateCommentTBPCompleted;
-			}
-			inited = true;
+
+		}
+
+		public void deInit() {
+				GlobalContext.Single.Client.GetTBPBlanksByFolderCompleted -= Client_GetTBPBlanksByFolderCompleted;
+				GlobalContext.Single.Client.InitOBPCompleted -= Client_InitOBPCompleted;
+				GlobalContext.Single.Client.InitTBPCompleted -= Client_InitTBPCompleted;
+				GlobalContext.Single.Client.CreateBPCompleted -= Client_CreateBPCompleted;
+				GlobalContext.Single.Client.CreateTBPCompleted -= Client_CreateTBPCompleted;
+				GlobalContext.Single.Client.CreateCommentTBPCompleted -= Client_CreateCommentTBPCompleted;
 		}
 
 		
@@ -72,6 +81,10 @@ namespace MainSL {
 				btn.Click += btn_Click;
 				pnlFolders.Children.Add(btn);
 			}
+		}
+
+		protected override void OnNavigatedFrom(NavigationEventArgs e) {
+			deInit();
 		}
 
 		private void Button_Click(object sender, RoutedEventArgs e) {
