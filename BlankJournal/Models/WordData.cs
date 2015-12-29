@@ -55,7 +55,7 @@ namespace BlankJournal.Models {
 			tab.Rows[1].Cells[1].Range.Font.Bold = 2;
 			tab.Rows[1].Cells[1].Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphCenter;
 
-			tab.Rows[2].Cells[1].Range.Text = "Объект переключений: Воткинская ГЭС";
+			tab.Rows[2].Cells[1].Range.Text = "Объект переключений: Воткинская ГЭС, "+tbp.ObjectInfo;
 			tab.Rows[2].Cells[1].Range.Font.Size = 12;
 			tab.Rows[2].Cells[1].Range.Font.Bold = 2;
 			tab.Rows[2].Cells[1].Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;

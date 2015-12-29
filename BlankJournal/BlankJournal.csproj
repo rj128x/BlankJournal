@@ -242,6 +242,7 @@
       <LastGenOutput>BlanksModel.cs</LastGenOutput>
     </Content>
     <Content Include="Data\EmptyOBP.docx" />
+    <Content Include="Data\Копия ПЕРЕЧЕНЬ ТБП 23 09 15.xlsx" />
     <None Include="Properties\PublishProfiles\Blanks.pubxml" />
   </ItemGroup>
   <ItemGroup>

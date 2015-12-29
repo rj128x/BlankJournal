@@ -17,11 +17,19 @@ namespace BlankJournal.Models {
 				Logger.info("Обработка файла " + file.Name.ToString());
 				if (file.Extension.ToLower().Contains("pdf") || file.Extension.ToLower().Contains("docx")) {
 					try {
-						string num = "";
+						string num = "";						
 						try {
+												
 							int i = file.Name.IndexOf(" ");
-							num = file.Name.Substring(0, i);
-						} catch { }
+							if (i > 0)
+								num = file.Name.Substring(0, i);
+							else {
+								string ex = file.Extension;
+								int posEx = file.Name.IndexOf(ex);
+								num = file.Name.Substring(0, posEx);		
+							}
+						} catch {							
+						}
 						if (num.Length == 0) {
 							Logger.info("===Бланк не распознан");
 							continue;
@@ -29,7 +37,7 @@ namespace BlankJournal.Models {
 						IQueryable<TBPInfoTable> list = from t in eni.TBPInfoTable where t.Number == num select t;
 						if (list.Count() == 1) {
 							Logger.info("Бланк найден в БД: "+num);
-							TBPInfoTable tbp = list.First();
+							TBPInfoTable tbp = list.First();							
 							FileStream str = file.OpenRead();
 							byte[] buffer = new byte[str.Length];
 							str.Read(buffer, 0, (int)str.Length);
