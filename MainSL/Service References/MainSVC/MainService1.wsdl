@@ -92,6 +92,12 @@
   <wsdl:message name="MainService_GetCommentsList_OutputMessage">
     <wsdl:part name="parameters" element="GetCommentsListResponse" />
   </wsdl:message>
+  <wsdl:message name="MainService_getOperationsInfo_InputMessage">
+    <wsdl:part name="parameters" element="getOperationsInfo" />
+  </wsdl:message>
+  <wsdl:message name="MainService_getOperationsInfo_OutputMessage">
+    <wsdl:part name="parameters" element="getOperationsInfoResponse" />
+  </wsdl:message>
   <wsdl:portType name="MainService">
     <wsdl:operation name="DoWork">
       <wsdl:input wsaw:Action="urn:MainService/DoWork" message="MainService_DoWork_InputMessage" />
@@ -148,6 +154,10 @@
     <wsdl:operation name="GetCommentsList">
       <wsdl:input wsaw:Action="urn:MainService/GetCommentsList" message="MainService_GetCommentsList_InputMessage" />
       <wsdl:output wsaw:Action="urn:MainService/GetCommentsListResponse" message="MainService_GetCommentsList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getOperationsInfo">
+      <wsdl:input wsaw:Action="urn:MainService/getOperationsInfo" message="MainService_getOperationsInfo_InputMessage" />
+      <wsdl:output wsaw:Action="urn:MainService/getOperationsInfoResponse" message="MainService_getOperationsInfo_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
 </wsdl:definitions>

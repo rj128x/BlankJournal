@@ -160,9 +160,10 @@ namespace BlankJournal.Models {
 				eni.SaveChanges();
 				if (record.isOBP) {
 					DBContext.Single.MaxLSO = record.EndLSO > DBContext.Single.MaxLSO ? record.EndLSO : DBContext.Single.MaxLSO;
+					DBContext.Single.LastOBP = tbl.Id;
 				}
 				Logger.info("Бланк создан");
-				return new ReturnMessage(true,"Бланк успешно создан");
+				return new ReturnMessage(true, "Бланк успешно создан");
 			}
 			catch (Exception e) {
 				Logger.info("Ошибка при создаии бланка " + e.ToString());

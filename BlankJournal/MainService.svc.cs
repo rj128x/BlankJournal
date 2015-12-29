@@ -11,11 +11,19 @@ namespace BlankJournal {
 	public class ReturnMessage {
 		public string Message { get; set; }
 		public bool Result { get; set; }
+		public int MaxLSO { get; set; }
+		public string LastOBP { get; set; }
 		public ReturnMessage() { }
 		public ReturnMessage(bool result, string message) {
 			Message = message;
 			Result = result;
 		}
+
+		public ReturnMessage(int maxLSO, string lastOBP) {
+			MaxLSO = maxLSO;
+			LastOBP = lastOBP;
+		}
+	
 	}
 
 	[ServiceContract(Namespace = "")]
@@ -90,6 +98,11 @@ namespace BlankJournal {
 		[OperationContract]
 		public IQueryable<TBPComment> GetCommentsList() {
 			return DBContext.Single.GetCommentsList().AsQueryable();
+		}
+
+		[OperationContract]
+		public ReturnMessage getOperationsInfo() {
+			return new ReturnMessage(DBContext.Single.MaxLSO, DBContext.Single.LastOBP);
 		}
 
 		// Добавьте здесь дополнительные операции и отметьте их атрибутом [OperationContract]

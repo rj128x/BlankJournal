@@ -186,4 +186,16 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="getOperationsInfo">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getOperationsInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/BlankJournal" minOccurs="0" name="getOperationsInfoResult" nillable="true" type="q22:ReturnMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

@@ -52,6 +52,11 @@
 
                     <Rectangle x:Name="Divider3" Style="{StaticResource DividerStyle}"/>
 
+                    <HyperlinkButton x:Name="Link4" Style="{StaticResource LinkStyle}" 
+                                     NavigateUri="/About" TargetName="ContentFrame" Content="О переключниях"/>
+
+                    <Rectangle x:Name="Divider4" Style="{StaticResource DividerStyle}"/>
+
 
 
                 </StackPanel>

@@ -15,6 +15,7 @@ namespace BlankJournal.Models {
 		public Dictionary<string, User> AllUsers;
 		public Dictionary<int, Folder> AllFolders;
 		public int MaxLSO { get; set; }
+		public string LastOBP { get; set; }
 
 		protected void createInitData() {
 			Logger.info("Инициализация контекста БД");
@@ -41,6 +42,16 @@ namespace BlankJournal.Models {
 				catch (Exception e) {
 					Logger.info("Ошибка при получении максимального номера ЛСО из БД"+e.ToString());
 					MaxLSO = 0;
+				}
+
+				Logger.info("Чтение ОБП");
+				BPJournalTable lastOBP = (from j in eni.BPJournalTable where j.isOBP && j.DateCreate.Year == DateTime.Now.Year orderby j.Number descending select j).FirstOrDefault();
+				try {
+					LastOBP = lastOBP.Id;
+				}
+				catch (Exception e) {
+					Logger.info("Ошибка при получении максимального номера ЛСО из БД" + e.ToString());
+					LastOBP = "";
 				}
 				
 			}

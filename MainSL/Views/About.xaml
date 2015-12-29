@@ -3,10 +3,16 @@
     <Grid x:Name="LayoutRoot">
         <ScrollViewer x:Name="PageScrollViewer" Style="{StaticResource PageScrollViewerStyle}">
 
-            <StackPanel x:Name="ContentStackPanel">
+            <StackPanel Name="pnlData">
 
-                <TextBlock x:Name="HeaderText" Style="{StaticResource HeaderTextStyle}" Text="Сведения"/>
-                <TextBlock x:Name="ContentText" Style="{StaticResource ContentTextStyle}" Text="Сведения о содержимом страницы"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Последний лист ЛСО" Width="200"/>
+                    <TextBlock Text="{Binding MaxLSO}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Последний ОБП" Width="200"/>
+                    <TextBlock Text="{Binding LastOBP}"/>
+                </StackPanel>
 
             </StackPanel>
 

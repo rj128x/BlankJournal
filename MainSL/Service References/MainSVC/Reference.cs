@@ -635,9 +635,39 @@ namespace MainSL.MainSVC {
     [System.Runtime.Serialization.DataContractAttribute(Name="ReturnMessage", Namespace="http://schemas.datacontract.org/2004/07/BlankJournal")]
     public partial class ReturnMessage : object, System.ComponentModel.INotifyPropertyChanged {
         
+        private string LastOBPField;
+        
+        private int MaxLSOField;
+        
         private string MessageField;
         
         private bool ResultField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string LastOBP {
+            get {
+                return this.LastOBPField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LastOBPField, value) != true)) {
+                    this.LastOBPField = value;
+                    this.RaisePropertyChanged("LastOBP");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int MaxLSO {
+            get {
+                return this.MaxLSOField;
+            }
+            set {
+                if ((this.MaxLSOField.Equals(value) != true)) {
+                    this.MaxLSOField = value;
+                    this.RaisePropertyChanged("MaxLSO");
+                }
+            }
+        }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string Message {
@@ -1048,6 +1078,11 @@ namespace MainSL.MainSVC {
         System.IAsyncResult BeginGetCommentsList(System.AsyncCallback callback, object asyncState);
         
         System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPComment> EndGetCommentsList(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:MainService/getOperationsInfo", ReplyAction="urn:MainService/getOperationsInfoResponse")]
+        System.IAsyncResult BegingetOperationsInfo(System.AsyncCallback callback, object asyncState);
+        
+        MainSL.MainSVC.ReturnMessage EndgetOperationsInfo(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1303,6 +1338,25 @@ namespace MainSL.MainSVC {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class getOperationsInfoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public getOperationsInfoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public MainSL.MainSVC.ReturnMessage Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((MainSL.MainSVC.ReturnMessage)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class MainServiceClient : System.ServiceModel.ClientBase<MainSL.MainSVC.MainService>, MainSL.MainSVC.MainService {
         
         private BeginOperationDelegate onBeginDoWorkDelegate;
@@ -1389,6 +1443,12 @@ namespace MainSL.MainSVC {
         
         private System.Threading.SendOrPostCallback onGetCommentsListCompletedDelegate;
         
+        private BeginOperationDelegate onBegingetOperationsInfoDelegate;
+        
+        private EndOperationDelegate onEndgetOperationsInfoDelegate;
+        
+        private System.Threading.SendOrPostCallback ongetOperationsInfoCompletedDelegate;
+        
         private BeginOperationDelegate onBeginOpenDelegate;
         
         private EndOperationDelegate onEndOpenDelegate;
@@ -1469,6 +1529,8 @@ namespace MainSL.MainSVC {
         public event System.EventHandler<FinishCommentTBPCompletedEventArgs> FinishCommentTBPCompleted;
         
         public event System.EventHandler<GetCommentsListCompletedEventArgs> GetCommentsListCompleted;
+        
+        public event System.EventHandler<getOperationsInfoCompletedEventArgs> getOperationsInfoCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
         
@@ -2107,6 +2169,50 @@ namespace MainSL.MainSVC {
             base.InvokeAsync(this.onBeginGetCommentsListDelegate, null, this.onEndGetCommentsListDelegate, this.onGetCommentsListCompletedDelegate, userState);
         }
         
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult MainSL.MainSVC.MainService.BegingetOperationsInfo(System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BegingetOperationsInfo(callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        MainSL.MainSVC.ReturnMessage MainSL.MainSVC.MainService.EndgetOperationsInfo(System.IAsyncResult result) {
+            return base.Channel.EndgetOperationsInfo(result);
+        }
+        
+        private System.IAsyncResult OnBegingetOperationsInfo(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            return ((MainSL.MainSVC.MainService)(this)).BegingetOperationsInfo(callback, asyncState);
+        }
+        
+        private object[] OnEndgetOperationsInfo(System.IAsyncResult result) {
+            MainSL.MainSVC.ReturnMessage retVal = ((MainSL.MainSVC.MainService)(this)).EndgetOperationsInfo(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OngetOperationsInfoCompleted(object state) {
+            if ((this.getOperationsInfoCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.getOperationsInfoCompleted(this, new getOperationsInfoCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void getOperationsInfoAsync() {
+            this.getOperationsInfoAsync(null);
+        }
+        
+        public void getOperationsInfoAsync(object userState) {
+            if ((this.onBegingetOperationsInfoDelegate == null)) {
+                this.onBegingetOperationsInfoDelegate = new BeginOperationDelegate(this.OnBegingetOperationsInfo);
+            }
+            if ((this.onEndgetOperationsInfoDelegate == null)) {
+                this.onEndgetOperationsInfoDelegate = new EndOperationDelegate(this.OnEndgetOperationsInfo);
+            }
+            if ((this.ongetOperationsInfoCompletedDelegate == null)) {
+                this.ongetOperationsInfoCompletedDelegate = new System.Threading.SendOrPostCallback(this.OngetOperationsInfoCompleted);
+            }
+            base.InvokeAsync(this.onBegingetOperationsInfoDelegate, null, this.onEndgetOperationsInfoDelegate, this.ongetOperationsInfoCompletedDelegate, userState);
+        }
+        
         private System.IAsyncResult OnBeginOpen(object[] inValues, System.AsyncCallback callback, object asyncState) {
             return ((System.ServiceModel.ICommunicationObject)(this)).BeginOpen(callback, asyncState);
         }
@@ -2356,6 +2462,18 @@ namespace MainSL.MainSVC {
             public System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPComment> EndGetCommentsList(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPComment> _result = ((System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPComment>)(base.EndInvoke("GetCommentsList", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BegingetOperationsInfo(System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[0];
+                System.IAsyncResult _result = base.BeginInvoke("getOperationsInfo", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public MainSL.MainSVC.ReturnMessage EndgetOperationsInfo(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                MainSL.MainSVC.ReturnMessage _result = ((MainSL.MainSVC.ReturnMessage)(base.EndInvoke("getOperationsInfo", _args, result)));
                 return _result;
             }
         }

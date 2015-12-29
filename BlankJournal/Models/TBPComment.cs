@@ -75,7 +75,7 @@ namespace BlankJournal.Models {
 					last.Finished = true;
 					last.CommentPerform = comment.CommentPerform;
 					eni.SaveChanges();
-					return new ReturnMessage(true,"Замечание успешно закрыто");
+					return new ReturnMessage(true, "Замечание успешно закрыто");
 				} else {
 					return new ReturnMessage(false, "Замечение не найдено в БД");
 				}
