@@ -62,9 +62,11 @@
       <xs:element minOccurs="0" name="DateEnd" type="xs:dateTime" />
       <xs:element minOccurs="0" name="DateStart" type="xs:dateTime" />
       <xs:element minOccurs="0" name="DoubleNumber" type="xs:double" />
+      <xs:element minOccurs="0" name="EndLSO" type="xs:int" />
       <xs:element minOccurs="0" name="Finished" type="xs:boolean" />
       <xs:element minOccurs="0" name="IDWordData" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Number" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StartLSO" type="xs:int" />
       <xs:element minOccurs="0" name="TBPNumber" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Task" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="WordData" nillable="true" type="xs:base64Binary" />
@@ -73,6 +75,24 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="JournalRecord" nillable="true" type="tns:JournalRecord" />
+  <xs:complexType name="ArrayOfTBPHistoryRecord">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TBPHistoryRecord" nillable="true" type="tns:TBPHistoryRecord" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTBPHistoryRecord" nillable="true" type="tns:ArrayOfTBPHistoryRecord" />
+  <xs:complexType name="TBPHistoryRecord">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Author" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DateCreate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="NewPDFID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NewWordID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PrevPDFID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PrewWordID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TBPNumber" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TBPHistoryRecord" nillable="true" type="tns:TBPHistoryRecord" />
   <xs:complexType name="TBPComment">
     <xs:sequence>
       <xs:element minOccurs="0" name="Author" nillable="true" type="xs:string" />

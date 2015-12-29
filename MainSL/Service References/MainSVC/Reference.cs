@@ -379,11 +379,15 @@ namespace MainSL.MainSVC {
         
         private double DoubleNumberField;
         
+        private int EndLSOField;
+        
         private bool FinishedField;
         
         private string IDWordDataField;
         
         private string NumberField;
+        
+        private int StartLSOField;
         
         private string TBPNumberField;
         
@@ -487,6 +491,19 @@ namespace MainSL.MainSVC {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public int EndLSO {
+            get {
+                return this.EndLSOField;
+            }
+            set {
+                if ((this.EndLSOField.Equals(value) != true)) {
+                    this.EndLSOField = value;
+                    this.RaisePropertyChanged("EndLSO");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public bool Finished {
             get {
                 return this.FinishedField;
@@ -521,6 +538,19 @@ namespace MainSL.MainSVC {
                 if ((object.ReferenceEquals(this.NumberField, value) != true)) {
                     this.NumberField = value;
                     this.RaisePropertyChanged("Number");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int StartLSO {
+            get {
+                return this.StartLSOField;
+            }
+            set {
+                if ((this.StartLSOField.Equals(value) != true)) {
+                    this.StartLSOField = value;
+                    this.RaisePropertyChanged("StartLSO");
                 }
             }
         }
@@ -631,6 +661,126 @@ namespace MainSL.MainSVC {
                 if ((this.ResultField.Equals(value) != true)) {
                     this.ResultField = value;
                     this.RaisePropertyChanged("Result");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TBPHistoryRecord", Namespace="http://schemas.datacontract.org/2004/07/BlankJournal.Models")]
+    public partial class TBPHistoryRecord : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private string AuthorField;
+        
+        private System.DateTime DateCreateField;
+        
+        private string NewPDFIDField;
+        
+        private string NewWordIDField;
+        
+        private string PrevPDFIDField;
+        
+        private string PrewWordIDField;
+        
+        private string TBPNumberField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Author {
+            get {
+                return this.AuthorField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AuthorField, value) != true)) {
+                    this.AuthorField = value;
+                    this.RaisePropertyChanged("Author");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime DateCreate {
+            get {
+                return this.DateCreateField;
+            }
+            set {
+                if ((this.DateCreateField.Equals(value) != true)) {
+                    this.DateCreateField = value;
+                    this.RaisePropertyChanged("DateCreate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string NewPDFID {
+            get {
+                return this.NewPDFIDField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NewPDFIDField, value) != true)) {
+                    this.NewPDFIDField = value;
+                    this.RaisePropertyChanged("NewPDFID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string NewWordID {
+            get {
+                return this.NewWordIDField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NewWordIDField, value) != true)) {
+                    this.NewWordIDField = value;
+                    this.RaisePropertyChanged("NewWordID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PrevPDFID {
+            get {
+                return this.PrevPDFIDField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PrevPDFIDField, value) != true)) {
+                    this.PrevPDFIDField = value;
+                    this.RaisePropertyChanged("PrevPDFID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PrewWordID {
+            get {
+                return this.PrewWordIDField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PrewWordIDField, value) != true)) {
+                    this.PrewWordIDField = value;
+                    this.RaisePropertyChanged("PrewWordID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TBPNumber {
+            get {
+                return this.TBPNumberField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TBPNumberField, value) != true)) {
+                    this.TBPNumberField = value;
+                    this.RaisePropertyChanged("TBPNumber");
                 }
             }
         }
@@ -869,6 +1019,11 @@ namespace MainSL.MainSVC {
         
         MainSL.MainSVC.JournalRecord EndInitOBP(System.IAsyncResult result);
         
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:MainService/getHistory", ReplyAction="urn:MainService/getHistoryResponse")]
+        System.IAsyncResult BegingetHistory(MainSL.MainSVC.TBPInfo tbp, System.AsyncCallback callback, object asyncState);
+        
+        System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPHistoryRecord> EndgetHistory(System.IAsyncResult result);
+        
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:MainService/CreateBP", ReplyAction="urn:MainService/CreateBPResponse")]
         System.IAsyncResult BeginCreateBP(MainSL.MainSVC.JournalRecord journal, System.AsyncCallback callback, object asyncState);
         
@@ -1034,6 +1189,25 @@ namespace MainSL.MainSVC {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class getHistoryCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public getHistoryCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPHistoryRecord> Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPHistoryRecord>)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class CreateBPCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
@@ -1179,6 +1353,12 @@ namespace MainSL.MainSVC {
         
         private System.Threading.SendOrPostCallback onInitOBPCompletedDelegate;
         
+        private BeginOperationDelegate onBegingetHistoryDelegate;
+        
+        private EndOperationDelegate onEndgetHistoryDelegate;
+        
+        private System.Threading.SendOrPostCallback ongetHistoryCompletedDelegate;
+        
         private BeginOperationDelegate onBeginCreateBPDelegate;
         
         private EndOperationDelegate onEndCreateBPDelegate;
@@ -1277,6 +1457,8 @@ namespace MainSL.MainSVC {
         public event System.EventHandler<InitTBPCompletedEventArgs> InitTBPCompleted;
         
         public event System.EventHandler<InitOBPCompletedEventArgs> InitOBPCompleted;
+        
+        public event System.EventHandler<getHistoryCompletedEventArgs> getHistoryCompleted;
         
         public event System.EventHandler<CreateBPCompletedEventArgs> CreateBPCompleted;
         
@@ -1649,6 +1831,52 @@ namespace MainSL.MainSVC {
             }
             base.InvokeAsync(this.onBeginInitOBPDelegate, new object[] {
                         tbp}, this.onEndInitOBPDelegate, this.onInitOBPCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult MainSL.MainSVC.MainService.BegingetHistory(MainSL.MainSVC.TBPInfo tbp, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BegingetHistory(tbp, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPHistoryRecord> MainSL.MainSVC.MainService.EndgetHistory(System.IAsyncResult result) {
+            return base.Channel.EndgetHistory(result);
+        }
+        
+        private System.IAsyncResult OnBegingetHistory(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            MainSL.MainSVC.TBPInfo tbp = ((MainSL.MainSVC.TBPInfo)(inValues[0]));
+            return ((MainSL.MainSVC.MainService)(this)).BegingetHistory(tbp, callback, asyncState);
+        }
+        
+        private object[] OnEndgetHistory(System.IAsyncResult result) {
+            System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPHistoryRecord> retVal = ((MainSL.MainSVC.MainService)(this)).EndgetHistory(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OngetHistoryCompleted(object state) {
+            if ((this.getHistoryCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.getHistoryCompleted(this, new getHistoryCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void getHistoryAsync(MainSL.MainSVC.TBPInfo tbp) {
+            this.getHistoryAsync(tbp, null);
+        }
+        
+        public void getHistoryAsync(MainSL.MainSVC.TBPInfo tbp, object userState) {
+            if ((this.onBegingetHistoryDelegate == null)) {
+                this.onBegingetHistoryDelegate = new BeginOperationDelegate(this.OnBegingetHistory);
+            }
+            if ((this.onEndgetHistoryDelegate == null)) {
+                this.onEndgetHistoryDelegate = new EndOperationDelegate(this.OnEndgetHistory);
+            }
+            if ((this.ongetHistoryCompletedDelegate == null)) {
+                this.ongetHistoryCompletedDelegate = new System.Threading.SendOrPostCallback(this.OngetHistoryCompleted);
+            }
+            base.InvokeAsync(this.onBegingetHistoryDelegate, new object[] {
+                        tbp}, this.onEndgetHistoryDelegate, this.ongetHistoryCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -2051,6 +2279,19 @@ namespace MainSL.MainSVC {
             public MainSL.MainSVC.JournalRecord EndInitOBP(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 MainSL.MainSVC.JournalRecord _result = ((MainSL.MainSVC.JournalRecord)(base.EndInvoke("InitOBP", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BegingetHistory(MainSL.MainSVC.TBPInfo tbp, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = tbp;
+                System.IAsyncResult _result = base.BeginInvoke("getHistory", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPHistoryRecord> EndgetHistory(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPHistoryRecord> _result = ((System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPHistoryRecord>)(base.EndInvoke("getHistory", _args, result)));
                 return _result;
             }
             

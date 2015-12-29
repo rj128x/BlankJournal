@@ -107,6 +107,9 @@
     <Compile Include="Views\JournalRecordWindow.xaml.cs">
       <DependentUpon>JournalRecordWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\TBPHistoryWindow.xaml.cs">
+      <DependentUpon>TBPHistoryWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\TBPWindow.xaml.cs">
       <DependentUpon>TBPWindow.xaml</DependentUpon>
     </Compile>
@@ -163,6 +166,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\TBPHistoryWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\JournalRecordWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -210,6 +217,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\MainSVC\MainSL.MainSVC.TBPComment.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MainSVC\MainSL.MainSVC.TBPHistoryRecord.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\MainSVC\MainSL.MainSVC.TBPInfo.datasource">

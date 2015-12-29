@@ -236,6 +236,14 @@ namespace MainSL {
 			FloatWindow.OpenWindow("/Data/EmptyOBP.docx");
 		}
 
+		private void btnHistoryTBP_Click(object sender, RoutedEventArgs e) {
+			if (CurrentTBP != null) {
+				TBPHistoryWindow win = new TBPHistoryWindow();
+				win.init(CurrentTBP);
+				win.Show();
+			}
+		}
+
 
 
 	}

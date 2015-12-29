@@ -20,6 +20,8 @@ namespace BlankJournal.Models {
 		public string TBPNumber { get; set; }
 		public bool Finished { get; set; }
 		public bool Closed { get; set; }
+		public int StartLSO { get; set; }
+		public int EndLSO { get; set; }
 		public JournalRecord() {
 		}
 
@@ -35,6 +37,8 @@ namespace BlankJournal.Models {
 			Finished = !(DateStart == DateCreate || DateEnd == DateCreate);
 			Closed = Finished && DateCreate.AddDays(1) < DateTime.Now;
 			isOBP = tbl.isOBP;
+			StartLSO = tbl.LSOStart.HasValue?tbl.LSOStart.Value:0;
+			EndLSO = tbl.LSOEnd.HasValue ? tbl.LSOEnd.Value : 0;
 			TBPNumber = tbl.TBPNumber;
 		}
 
@@ -61,6 +65,9 @@ namespace BlankJournal.Models {
 			rec.DateCreate = DateTime.Now;
 			rec.DateEnd = rec.DateCreate;
 			rec.DateStart = rec.DateCreate;
+			rec.StartLSO = 0;
+			rec.EndLSO = 0;
+
 			return rec;
 		}
 
@@ -87,7 +94,10 @@ namespace BlankJournal.Models {
 			rec.DateCreate = DateTime.Now;
 			rec.DateEnd = rec.DateCreate;
 			rec.DateStart = rec.DateCreate;
-			
+
+			rec.StartLSO = DBContext.Single.MaxLSO+1;
+			rec.EndLSO = DBContext.Single.MaxLSO+2;
+
 			return rec;
 		}
 
@@ -128,7 +138,7 @@ namespace BlankJournal.Models {
 				}
 
 				if (!record.isOBP) {
-					try {
+					try {						
 						IQueryable<TBPInfoTable> tbpList = from t in eni.TBPInfoTable where t.Number == tbl.TBPNumber select t;
 						if (tbpList.Count() > 0) {
 							TBPInfoTable tbpInfo = tbpList.First();
@@ -140,10 +150,17 @@ namespace BlankJournal.Models {
 						Logger.info("ошибка при формировании записи в журнале переключений. ТБП не найден");
 					}
 				}
+				else {
+					tbl.LSOStart = record.StartLSO;
+					tbl.LSOEnd = record.EndLSO;
+				}
 				
 				if (record.isInit)
 					eni.BPJournalTable.Add(tbl);
 				eni.SaveChanges();
+				if (record.isOBP) {
+					DBContext.Single.MaxLSO = record.EndLSO > DBContext.Single.MaxLSO ? record.EndLSO : DBContext.Single.MaxLSO;
+				}
 				Logger.info("Бланк создан");
 				return new ReturnMessage(true,"Бланк успешно создан");
 			}

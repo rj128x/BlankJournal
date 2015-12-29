@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище BlanksModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище BlanksModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BPJournalTable">
           <Key>
             <PropertyRef Name="Id" />
@@ -21,6 +21,8 @@
           <Property Name="WordData" Type="varchar" MaxLength="50" />
           <Property Name="PDFData" Type="varchar" MaxLength="50" />
           <Property Name="isOBP" Type="bit" Nullable="false" />
+          <Property Name="LSOStart" Type="int" />
+          <Property Name="LSOEnd" Type="int" />
         </EntityType>
         <EntityType Name="DataTable">
           <Key>
@@ -384,8 +386,7 @@
             <End Role="TBPInfoTable" EntitySet="TBPInfoTable" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BlanksModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -409,6 +410,8 @@
           <NavigationProperty Name="DataTable1" Relationship="Self.FK_BPJournalTable_DataTableWord" FromRole="BPJournalTable" ToRole="DataTable" />
           <NavigationProperty Name="TBPInfoTable" Relationship="Self.FK_BPJournalTable_TBPInfoTable" FromRole="BPJournalTable" ToRole="TBPInfoTable" />
           <NavigationProperty Name="UsersTable" Relationship="Self.FK_BPJournalTable_UsersTable" FromRole="BPJournalTable" ToRole="UsersTable" />
+          <Property Name="LSOStart" Type="Int32" />
+          <Property Name="LSOEnd" Type="Int32" />
         </EntityType>
         <EntityType Name="DataTable">
           <Key>
@@ -813,6 +816,8 @@
           <EntitySetMapping Name="BPJournalTable">
             <EntityTypeMapping TypeName="BlanksModel.BPJournalTable">
               <MappingFragment StoreEntitySet="BPJournalTable">
+                <ScalarProperty Name="LSOEnd" ColumnName="LSOEnd" />
+                <ScalarProperty Name="LSOStart" ColumnName="LSOStart" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Number" ColumnName="Number" />
                 <ScalarProperty Name="TBPNumber" ColumnName="TBPNumber" />

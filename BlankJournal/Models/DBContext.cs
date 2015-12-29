@@ -14,6 +14,7 @@ namespace BlankJournal.Models {
 
 		public Dictionary<string, User> AllUsers;
 		public Dictionary<int, Folder> AllFolders;
+		public int MaxLSO { get; set; }
 
 		protected void createInitData() {
 			Logger.info("Инициализация контекста БД");
@@ -31,6 +32,17 @@ namespace BlankJournal.Models {
 				foreach (FoldersTable fld in folders) {
 					AllFolders.Add(fld.Id, new Folder(fld));
 				}
+
+				Logger.info("Чтение ЛСО");
+				BPJournalTable last = (from j in eni.BPJournalTable where j.isOBP && j.DateCreate.Year == DateTime.Now.Year orderby j.LSOEnd.Value descending select j).FirstOrDefault();
+				try {
+					MaxLSO = last.LSOEnd.Value;
+				}
+				catch (Exception e) {
+					Logger.info("Ошибка при получении максимального номера ЛСО из БД"+e.ToString());
+					MaxLSO = 0;
+				}
+				
 			}
 			catch (Exception e) {
 				Logger.info("ошибка при инициализации " + e.ToString());
@@ -158,6 +170,24 @@ namespace BlankJournal.Models {
 				return new ReturnMessage(false, "Ошибка при создании бланка " + e.ToString());				
 			}
 			return new ReturnMessage(true, "Бланк успешно создан");
+		}
+
+		public List<TBPHistoryRecord> getTBPHistory(TBPInfo tbp) {
+			Logger.info("Получение истории изменения ТБП");
+			BlankJournal.BlanksEntities eni = new BlanksEntities();
+			try {
+				List<TBPHistoryRecord> result = new List<TBPHistoryRecord>();
+				IQueryable<TBPHistoryTable> list = from h in eni.TBPHistoryTable where h.TBPNumber == tbp.Number orderby h.DateCreate descending select h;
+				foreach (TBPHistoryTable tbl in list) {
+					TBPHistoryRecord rec = new TBPHistoryRecord(tbl);
+					result.Add(rec);
+				}
+				return result;
+			}
+			catch (Exception e) {
+				Logger.info("Ошибка при получении истории изменения ТБП"+e.ToString());
+				return new List<TBPHistoryRecord>();
+			}
 		}
 
 		public bool SaveTBPDataToDB(TBPInfo newBlank, TBPInfoTable tbl, BlanksEntities eni) {

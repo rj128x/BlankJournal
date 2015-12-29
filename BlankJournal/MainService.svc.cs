@@ -59,7 +59,12 @@ namespace BlankJournal {
 
 		[OperationContract]
 		public JournalRecord InitOBP(TBPInfo tbp) {
-			return JournalRecord.initOBPRecord(tbp);
+			return JournalRecord.initOBPRecord(tbp);		
+		}
+
+		[OperationContract]
+		public IQueryable<TBPHistoryRecord> getHistory(TBPInfo tbp) {
+			return DBContext.Single.getTBPHistory(tbp).AsQueryable();
 		}
 
 		[OperationContract]

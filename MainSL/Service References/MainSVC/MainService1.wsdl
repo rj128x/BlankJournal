@@ -56,6 +56,12 @@
   <wsdl:message name="MainService_InitOBP_OutputMessage">
     <wsdl:part name="parameters" element="InitOBPResponse" />
   </wsdl:message>
+  <wsdl:message name="MainService_getHistory_InputMessage">
+    <wsdl:part name="parameters" element="getHistory" />
+  </wsdl:message>
+  <wsdl:message name="MainService_getHistory_OutputMessage">
+    <wsdl:part name="parameters" element="getHistoryResponse" />
+  </wsdl:message>
   <wsdl:message name="MainService_CreateBP_InputMessage">
     <wsdl:part name="parameters" element="CreateBP" />
   </wsdl:message>
@@ -118,6 +124,10 @@
     <wsdl:operation name="InitOBP">
       <wsdl:input wsaw:Action="urn:MainService/InitOBP" message="MainService_InitOBP_InputMessage" />
       <wsdl:output wsaw:Action="urn:MainService/InitOBPResponse" message="MainService_InitOBP_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getHistory">
+      <wsdl:input wsaw:Action="urn:MainService/getHistory" message="MainService_getHistory_InputMessage" />
+      <wsdl:output wsaw:Action="urn:MainService/getHistoryResponse" message="MainService_getHistory_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="CreateBP">
       <wsdl:input wsaw:Action="urn:MainService/CreateBP" message="MainService_CreateBP_InputMessage" />
