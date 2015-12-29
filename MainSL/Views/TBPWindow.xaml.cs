@@ -35,6 +35,7 @@ namespace MainSL {
 
 		private void btnChoosePDF_Click(object sender, RoutedEventArgs e) {
 			OpenFileDialog dlg = new OpenFileDialog();
+			dlg.Filter = "Файлы pdf |*.pdf";
 			if (dlg.ShowDialog() == true) {
 				FileStream str = dlg.File.OpenRead();
 				byte[]buffer=new byte[str.Length];
@@ -48,6 +49,7 @@ namespace MainSL {
 
 		private void btnChooseWord_Click(object sender, RoutedEventArgs e) {
 			OpenFileDialog dlg = new OpenFileDialog();
+			dlg.Filter = "Файлы docx |*.docx";
 			if (dlg.ShowDialog() == true) {
 				FileStream str = dlg.File.OpenRead();
 				byte[] buffer = new byte[str.Length];
