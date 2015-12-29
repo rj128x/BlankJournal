@@ -78,6 +78,12 @@
 
         </Border>
 
+        <Grid Name="grdLoading" Visibility="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"
+              OpacityMask="Aqua" Background="LightBlue" Opacity="0.7">
+            
+            <TextBlock Text="Загрузка данных. Подождите" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Grid>
+
     </Grid>
 
 </UserControl>
