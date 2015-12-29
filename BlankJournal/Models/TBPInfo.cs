@@ -18,6 +18,7 @@ namespace BlankJournal.Models {
 		public DateTime LastOper { get; set; }
 		public String LastNumber { get; set; }
 		public bool HasLastOper { get; set; }
+		public string ObjectInfo { get; set; }
 
 
 		public TBPInfo() {
@@ -30,6 +31,7 @@ namespace BlankJournal.Models {
 			FolderID = tbl.Folder;
 			IDPDFData = tbl.DataPDF;
 			IDWordData = tbl.DataWord;
+			ObjectInfo = tbl.ObjectInfo;
 		}
 	}
 }

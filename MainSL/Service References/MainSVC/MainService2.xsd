@@ -39,6 +39,7 @@
       <xs:element minOccurs="0" name="LastOper" type="xs:dateTime" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Number" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ObjectInfo" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="PDFData" nillable="true" type="xs:base64Binary" />
       <xs:element minOccurs="0" name="UpdatedPDF" type="xs:boolean" />
       <xs:element minOccurs="0" name="UpdatedWord" type="xs:boolean" />

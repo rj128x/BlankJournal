@@ -240,6 +240,7 @@
       <DependentUpon>BlanksModel.edmx</DependentUpon>
       <LastGenOutput>BlanksModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Data\EmptyOBP.docx" />
     <None Include="Properties\PublishProfiles\Blanks.pubxml" />
   </ItemGroup>
   <ItemGroup>

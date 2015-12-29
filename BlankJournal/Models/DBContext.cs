@@ -145,6 +145,7 @@ namespace BlankJournal.Models {
 				TBPInfoTable tbl = edit?last:new TBPInfoTable();
 				tbl.Number = newBlank.Number;
 				tbl.Name = newBlank.Name;
+				tbl.ObjectInfo = newBlank.ObjectInfo;
 				tbl.Folder = newBlank.FolderID;
 				if (!edit)
 					eni.TBPInfoTable.Add(tbl);

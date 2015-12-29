@@ -158,6 +158,8 @@ namespace MainSL.MainSVC {
         
         private string NumberField;
         
+        private string ObjectInfoField;
+        
         private byte[] PDFDataField;
         
         private bool UpdatedPDFField;
@@ -279,6 +281,19 @@ namespace MainSL.MainSVC {
                 if ((object.ReferenceEquals(this.NumberField, value) != true)) {
                     this.NumberField = value;
                     this.RaisePropertyChanged("Number");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ObjectInfo {
+            get {
+                return this.ObjectInfoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ObjectInfoField, value) != true)) {
+                    this.ObjectInfoField = value;
+                    this.RaisePropertyChanged("ObjectInfo");
                 }
             }
         }

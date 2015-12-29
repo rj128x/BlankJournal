@@ -49,7 +49,7 @@
                         <sdk:DataGridTemplateColumn Header="Имя бланка" SortMemberPath="Number" Width="300" >
                             <sdk:DataGridTemplateColumn.CellTemplate >
                                 <DataTemplate>
-                                    <ContentControl Content="{Binding Name}" />
+                                   <TextBlock Text="{Binding Name}" TextWrapping="Wrap"/>
                                 </DataTemplate>
                             </sdk:DataGridTemplateColumn.CellTemplate>
                         </sdk:DataGridTemplateColumn>
@@ -64,7 +64,7 @@
                             <sdk:DataGridTemplateColumn.CellTemplate >
                                 <DataTemplate>
                                     <StackPanel Orientation="Vertical" Visibility="{Binding HasLastOper, Converter={StaticResource visibilityConverter}}">
-                                        <ContentControl Content="{Binding LastOper}" />
+                                        <ContentControl Content="{Binding LastOper, StringFormat='dd.MM.yyyy HH:mm'}" />
                                         <ContentControl Content="{Binding LastNumber}" />
                                     </StackPanel>
                                 </DataTemplate>
