@@ -11,6 +11,7 @@ namespace BlankJournal.Models {
 		public bool CanEditTBP { get; set; }
 		public bool CanDoOper {get;set;}
 		public bool CanCommentTBP { get; set; }
+		public bool IsEditing { get; set; }
 
 		public User() {
 			Login = "noname";

@@ -26,6 +26,8 @@ namespace MainSL.MainSVC {
         
         private bool CanEditTBPField;
         
+        private bool IsEditingField;
+        
         private string LoginField;
         
         private string NameField;
@@ -65,6 +67,19 @@ namespace MainSL.MainSVC {
                 if ((this.CanEditTBPField.Equals(value) != true)) {
                     this.CanEditTBPField = value;
                     this.RaisePropertyChanged("CanEditTBP");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsEditing {
+            get {
+                return this.IsEditingField;
+            }
+            set {
+                if ((this.IsEditingField.Equals(value) != true)) {
+                    this.IsEditingField = value;
+                    this.RaisePropertyChanged("IsEditing");
                 }
             }
         }

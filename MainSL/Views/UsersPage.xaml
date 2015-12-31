@@ -8,7 +8,12 @@
            d:DesignWidth="640" d:DesignHeight="480"
            Title="UsersPage Page">
     <Grid x:Name="LayoutRoot">
-        <sdk:DataGrid Name="grdUsers" AutoGenerateColumns="False">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Button Name="btnNewUser" Click="btnNewUser_Click" Content="Добавить" Width="70" HorizontalAlignment="Left"/>
+        <sdk:DataGrid Name="grdUsers" AutoGenerateColumns="False" Grid.Row="1">
             <sdk:DataGrid.Columns>
                 <sdk:DataGridTemplateColumn Header="Login" SortMemberPath="Login" Width="150"  >
                     <sdk:DataGridTemplateColumn.CellTemplate >
@@ -27,21 +32,21 @@
                 <sdk:DataGridTemplateColumn Header="Редактирование ТБП" SortMemberPath="CanEditTBP" Width="150"  >
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
-                            <TextBlock Text="Да" Visibility="{Binding CanEditTBP}"/>
+                            <TextBlock Text="Да" Visibility="{Binding CanEditTBP,Converter={StaticResource visibilityConverter}}"/>
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
                 </sdk:DataGridTemplateColumn>
                 <sdk:DataGridTemplateColumn Header="Заполнение журнала" SortMemberPath="CanDoOper" Width="150"  >
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
-                            <TextBlock Text="Да" Visibility="{Binding CanDoOper}"/>
+                            <TextBlock Text="Да" Visibility="{Binding CanDoOper,Converter={StaticResource visibilityConverter}}"/>
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
                 </sdk:DataGridTemplateColumn>
                 <sdk:DataGridTemplateColumn Header="Замечания к ТБП" SortMemberPath="CanCommentTBP" Width="150"  >
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
-                            <TextBlock Text="Да" Visibility="{Binding CanCommentTBP}"/>
+                            <TextBlock Text="Да" Visibility="{Binding CanCommentTBP,Converter={StaticResource visibilityConverter}}"/>
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
                 </sdk:DataGridTemplateColumn>
