@@ -65,7 +65,7 @@ namespace MainSL {
 
 		void btn_Click(object sender, RoutedEventArgs e) {
 			Button btn = sender as Button;
-			int id = Int32.Parse(btn.Name.Replace("btnFolder_", ""));
+			string id = btn.Name.Replace("btnFolder_", "");
 			//MessageBox.Show(id.ToString());
 			CurrentFolder = GlobalContext.Single.AllFolders[id];
 			GlobalContext.Single.IsBusy = true;
@@ -93,7 +93,7 @@ namespace MainSL {
 		private void Button_Click(object sender, RoutedEventArgs e) {
 			if (CurrentFolder != null) {
 				TBPInfo newBlank = new TBPInfo();
-				newBlank.Number = "-";
+				newBlank.Number = CurrentFolder.ID+"-";
 				newBlank.Name = "";
 				newBlank.FolderID = CurrentFolder.ID;
 				TBPWindow newWindow = new TBPWindow();
@@ -168,7 +168,7 @@ namespace MainSL {
 			TBPInfo tbp = new TBPInfo();
 			tbp.Number = "-";
 			tbp.Name = "ОБП";
-			tbp.FolderID = -1;
+			tbp.FolderID ="-";
 			GlobalContext.Single.IsBusy = true;
 			GlobalContext.Single.Client.InitOBPAsync(tbp);
 		}

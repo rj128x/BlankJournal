@@ -63,12 +63,10 @@
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <Button Content="Файл" Name="btnShow" Click="btnShow_Click" Height="30"
-                                        IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}"/>
+                                <Button Content="Файл" Name="btnShow" Click="btnShow_Click" Height="30"/>
                                 <StackPanel Orientation="Horizontal" Visibility="{Binding Finished, Converter={StaticResource visibilityNotConverter}}">
                                     <Button Content="Закрыть" Name="btnFinish" Click="btnFinish_Click" Height="30" 
-                                            Visibility="{Binding Single.CurrentUser.CanEditTBP, Source={StaticResource globalContext}}"
-                                            IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}"/>
+                                            Visibility="{Binding Single.CurrentUser.CanEditTBP, Source={StaticResource globalContext}}"/>
                                 </StackPanel>
                             </StackPanel>
                         </DataTemplate>

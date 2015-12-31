@@ -39,7 +39,7 @@
   <xs:element name="GetTBPBlanksByFolder">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="folderID" type="xs:int" />
+        <xs:element minOccurs="0" name="folderID" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -195,6 +195,32 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/BlankJournal" minOccurs="0" name="getOperationsInfoResult" nillable="true" type="q22:ReturnMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getAllUsers">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getAllUsersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/BlankJournal.Models" minOccurs="0" name="getAllUsersResult" nillable="true" type="q23:ArrayOfUser" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="editUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/BlankJournal.Models" minOccurs="0" name="user" nillable="true" type="q24:User" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="editUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/BlankJournal" minOccurs="0" name="editUserResult" nillable="true" type="q25:ReturnMessage" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

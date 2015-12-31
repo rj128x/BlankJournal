@@ -27,6 +27,7 @@ namespace BlankJournal
         public string Name { get; set; }
         public bool CanEditTBP { get; set; }
         public bool CanDoOper { get; set; }
+        public bool CanCommentTBP { get; set; }
     
         public virtual ICollection<BPJournalTable> BPJournalTable { get; set; }
         public virtual ICollection<DataTable> DataTable { get; set; }

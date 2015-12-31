@@ -6,7 +6,7 @@ using System.Web;
 namespace BlankJournal.Models {
 	public class TBPInfo {
 		public string Number { get; set; }
-		public int FolderID { get; set; }
+		public string FolderID { get; set; }
 		public string Name { get; set; }
 		public byte[] WordData { get; set; }
 		public byte[] PDFData { get; set; }

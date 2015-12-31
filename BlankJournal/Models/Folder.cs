@@ -6,7 +6,7 @@ using System.Web;
 
 namespace BlankJournal.Models {
 	public class Folder {
-		public int ID { get; set; }
+		public string ID { get; set; }
 		public string Name { get; set; }
 
 		public Folder() {

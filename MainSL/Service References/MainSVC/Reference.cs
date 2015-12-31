@@ -20,6 +20,8 @@ namespace MainSL.MainSVC {
     [System.Runtime.Serialization.DataContractAttribute(Name="User", Namespace="http://schemas.datacontract.org/2004/07/BlankJournal.Models")]
     public partial class User : object, System.ComponentModel.INotifyPropertyChanged {
         
+        private bool CanCommentTBPField;
+        
         private bool CanDoOperField;
         
         private bool CanEditTBPField;
@@ -27,6 +29,19 @@ namespace MainSL.MainSVC {
         private string LoginField;
         
         private string NameField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool CanCommentTBP {
+            get {
+                return this.CanCommentTBPField;
+            }
+            set {
+                if ((this.CanCommentTBPField.Equals(value) != true)) {
+                    this.CanCommentTBPField = value;
+                    this.RaisePropertyChanged("CanCommentTBP");
+                }
+            }
+        }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public bool CanDoOper {
@@ -95,17 +110,17 @@ namespace MainSL.MainSVC {
     [System.Runtime.Serialization.DataContractAttribute(Name="Folder", Namespace="http://schemas.datacontract.org/2004/07/BlankJournal.Models")]
     public partial class Folder : object, System.ComponentModel.INotifyPropertyChanged {
         
-        private int IDField;
+        private string IDField;
         
         private string NameField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ID {
+        public string ID {
             get {
                 return this.IDField;
             }
             set {
-                if ((this.IDField.Equals(value) != true)) {
+                if ((object.ReferenceEquals(this.IDField, value) != true)) {
                     this.IDField = value;
                     this.RaisePropertyChanged("ID");
                 }
@@ -142,7 +157,7 @@ namespace MainSL.MainSVC {
         
         private bool EditingTBPField;
         
-        private int FolderIDField;
+        private string FolderIDField;
         
         private bool HasLastOperField;
         
@@ -182,12 +197,12 @@ namespace MainSL.MainSVC {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int FolderID {
+        public string FolderID {
             get {
                 return this.FolderIDField;
             }
             set {
-                if ((this.FolderIDField.Equals(value) != true)) {
+                if ((object.ReferenceEquals(this.FolderIDField, value) != true)) {
                     this.FolderIDField = value;
                     this.RaisePropertyChanged("FolderID");
                 }
@@ -1025,7 +1040,7 @@ namespace MainSL.MainSVC {
         System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.Folder> EndGetAllFolders(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:MainService/GetTBPBlanksByFolder", ReplyAction="urn:MainService/GetTBPBlanksByFolderResponse")]
-        System.IAsyncResult BeginGetTBPBlanksByFolder(int folderID, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginGetTBPBlanksByFolder(string folderID, System.AsyncCallback callback, object asyncState);
         
         System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPInfo> EndGetTBPBlanksByFolder(System.IAsyncResult result);
         
@@ -1083,6 +1098,16 @@ namespace MainSL.MainSVC {
         System.IAsyncResult BegingetOperationsInfo(System.AsyncCallback callback, object asyncState);
         
         MainSL.MainSVC.ReturnMessage EndgetOperationsInfo(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:MainService/getAllUsers", ReplyAction="urn:MainService/getAllUsersResponse")]
+        System.IAsyncResult BegingetAllUsers(System.AsyncCallback callback, object asyncState);
+        
+        System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.User> EndgetAllUsers(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:MainService/editUser", ReplyAction="urn:MainService/editUserResponse")]
+        System.IAsyncResult BegineditUser(MainSL.MainSVC.User user, System.AsyncCallback callback, object asyncState);
+        
+        MainSL.MainSVC.ReturnMessage EndeditUser(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1357,6 +1382,44 @@ namespace MainSL.MainSVC {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class getAllUsersCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public getAllUsersCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.User> Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.User>)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class editUserCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public editUserCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public MainSL.MainSVC.ReturnMessage Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((MainSL.MainSVC.ReturnMessage)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class MainServiceClient : System.ServiceModel.ClientBase<MainSL.MainSVC.MainService>, MainSL.MainSVC.MainService {
         
         private BeginOperationDelegate onBeginDoWorkDelegate;
@@ -1449,6 +1512,18 @@ namespace MainSL.MainSVC {
         
         private System.Threading.SendOrPostCallback ongetOperationsInfoCompletedDelegate;
         
+        private BeginOperationDelegate onBegingetAllUsersDelegate;
+        
+        private EndOperationDelegate onEndgetAllUsersDelegate;
+        
+        private System.Threading.SendOrPostCallback ongetAllUsersCompletedDelegate;
+        
+        private BeginOperationDelegate onBegineditUserDelegate;
+        
+        private EndOperationDelegate onEndeditUserDelegate;
+        
+        private System.Threading.SendOrPostCallback oneditUserCompletedDelegate;
+        
         private BeginOperationDelegate onBeginOpenDelegate;
         
         private EndOperationDelegate onEndOpenDelegate;
@@ -1531,6 +1606,10 @@ namespace MainSL.MainSVC {
         public event System.EventHandler<GetCommentsListCompletedEventArgs> GetCommentsListCompleted;
         
         public event System.EventHandler<getOperationsInfoCompletedEventArgs> getOperationsInfoCompleted;
+        
+        public event System.EventHandler<getAllUsersCompletedEventArgs> getAllUsersCompleted;
+        
+        public event System.EventHandler<editUserCompletedEventArgs> editUserCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
         
@@ -1668,7 +1747,7 @@ namespace MainSL.MainSVC {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult MainSL.MainSVC.MainService.BeginGetTBPBlanksByFolder(int folderID, System.AsyncCallback callback, object asyncState) {
+        System.IAsyncResult MainSL.MainSVC.MainService.BeginGetTBPBlanksByFolder(string folderID, System.AsyncCallback callback, object asyncState) {
             return base.Channel.BeginGetTBPBlanksByFolder(folderID, callback, asyncState);
         }
         
@@ -1678,7 +1757,7 @@ namespace MainSL.MainSVC {
         }
         
         private System.IAsyncResult OnBeginGetTBPBlanksByFolder(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            int folderID = ((int)(inValues[0]));
+            string folderID = ((string)(inValues[0]));
             return ((MainSL.MainSVC.MainService)(this)).BeginGetTBPBlanksByFolder(folderID, callback, asyncState);
         }
         
@@ -1695,11 +1774,11 @@ namespace MainSL.MainSVC {
             }
         }
         
-        public void GetTBPBlanksByFolderAsync(int folderID) {
+        public void GetTBPBlanksByFolderAsync(string folderID) {
             this.GetTBPBlanksByFolderAsync(folderID, null);
         }
         
-        public void GetTBPBlanksByFolderAsync(int folderID, object userState) {
+        public void GetTBPBlanksByFolderAsync(string folderID, object userState) {
             if ((this.onBeginGetTBPBlanksByFolderDelegate == null)) {
                 this.onBeginGetTBPBlanksByFolderDelegate = new BeginOperationDelegate(this.OnBeginGetTBPBlanksByFolder);
             }
@@ -2213,6 +2292,96 @@ namespace MainSL.MainSVC {
             base.InvokeAsync(this.onBegingetOperationsInfoDelegate, null, this.onEndgetOperationsInfoDelegate, this.ongetOperationsInfoCompletedDelegate, userState);
         }
         
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult MainSL.MainSVC.MainService.BegingetAllUsers(System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BegingetAllUsers(callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.User> MainSL.MainSVC.MainService.EndgetAllUsers(System.IAsyncResult result) {
+            return base.Channel.EndgetAllUsers(result);
+        }
+        
+        private System.IAsyncResult OnBegingetAllUsers(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            return ((MainSL.MainSVC.MainService)(this)).BegingetAllUsers(callback, asyncState);
+        }
+        
+        private object[] OnEndgetAllUsers(System.IAsyncResult result) {
+            System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.User> retVal = ((MainSL.MainSVC.MainService)(this)).EndgetAllUsers(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OngetAllUsersCompleted(object state) {
+            if ((this.getAllUsersCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.getAllUsersCompleted(this, new getAllUsersCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void getAllUsersAsync() {
+            this.getAllUsersAsync(null);
+        }
+        
+        public void getAllUsersAsync(object userState) {
+            if ((this.onBegingetAllUsersDelegate == null)) {
+                this.onBegingetAllUsersDelegate = new BeginOperationDelegate(this.OnBegingetAllUsers);
+            }
+            if ((this.onEndgetAllUsersDelegate == null)) {
+                this.onEndgetAllUsersDelegate = new EndOperationDelegate(this.OnEndgetAllUsers);
+            }
+            if ((this.ongetAllUsersCompletedDelegate == null)) {
+                this.ongetAllUsersCompletedDelegate = new System.Threading.SendOrPostCallback(this.OngetAllUsersCompleted);
+            }
+            base.InvokeAsync(this.onBegingetAllUsersDelegate, null, this.onEndgetAllUsersDelegate, this.ongetAllUsersCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult MainSL.MainSVC.MainService.BegineditUser(MainSL.MainSVC.User user, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BegineditUser(user, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        MainSL.MainSVC.ReturnMessage MainSL.MainSVC.MainService.EndeditUser(System.IAsyncResult result) {
+            return base.Channel.EndeditUser(result);
+        }
+        
+        private System.IAsyncResult OnBegineditUser(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            MainSL.MainSVC.User user = ((MainSL.MainSVC.User)(inValues[0]));
+            return ((MainSL.MainSVC.MainService)(this)).BegineditUser(user, callback, asyncState);
+        }
+        
+        private object[] OnEndeditUser(System.IAsyncResult result) {
+            MainSL.MainSVC.ReturnMessage retVal = ((MainSL.MainSVC.MainService)(this)).EndeditUser(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OneditUserCompleted(object state) {
+            if ((this.editUserCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.editUserCompleted(this, new editUserCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void editUserAsync(MainSL.MainSVC.User user) {
+            this.editUserAsync(user, null);
+        }
+        
+        public void editUserAsync(MainSL.MainSVC.User user, object userState) {
+            if ((this.onBegineditUserDelegate == null)) {
+                this.onBegineditUserDelegate = new BeginOperationDelegate(this.OnBegineditUser);
+            }
+            if ((this.onEndeditUserDelegate == null)) {
+                this.onEndeditUserDelegate = new EndOperationDelegate(this.OnEndeditUser);
+            }
+            if ((this.oneditUserCompletedDelegate == null)) {
+                this.oneditUserCompletedDelegate = new System.Threading.SendOrPostCallback(this.OneditUserCompleted);
+            }
+            base.InvokeAsync(this.onBegineditUserDelegate, new object[] {
+                        user}, this.onEndeditUserDelegate, this.oneditUserCompletedDelegate, userState);
+        }
+        
         private System.IAsyncResult OnBeginOpen(object[] inValues, System.AsyncCallback callback, object asyncState) {
             return ((System.ServiceModel.ICommunicationObject)(this)).BeginOpen(callback, asyncState);
         }
@@ -2324,7 +2493,7 @@ namespace MainSL.MainSVC {
                 return _result;
             }
             
-            public System.IAsyncResult BeginGetTBPBlanksByFolder(int folderID, System.AsyncCallback callback, object asyncState) {
+            public System.IAsyncResult BeginGetTBPBlanksByFolder(string folderID, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[1];
                 _args[0] = folderID;
                 System.IAsyncResult _result = base.BeginInvoke("GetTBPBlanksByFolder", _args, callback, asyncState);
@@ -2474,6 +2643,31 @@ namespace MainSL.MainSVC {
             public MainSL.MainSVC.ReturnMessage EndgetOperationsInfo(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 MainSL.MainSVC.ReturnMessage _result = ((MainSL.MainSVC.ReturnMessage)(base.EndInvoke("getOperationsInfo", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BegingetAllUsers(System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[0];
+                System.IAsyncResult _result = base.BeginInvoke("getAllUsers", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.User> EndgetAllUsers(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.User> _result = ((System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.User>)(base.EndInvoke("getAllUsers", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BegineditUser(MainSL.MainSVC.User user, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = user;
+                System.IAsyncResult _result = base.BeginInvoke("editUser", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public MainSL.MainSVC.ReturnMessage EndeditUser(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                MainSL.MainSVC.ReturnMessage _result = ((MainSL.MainSVC.ReturnMessage)(base.EndInvoke("editUser", _args, result)));
                 return _result;
             }
         }

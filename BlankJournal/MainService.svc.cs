@@ -46,7 +46,7 @@ namespace BlankJournal {
 		}
 
 		[OperationContract]
-		public IQueryable<TBPInfo> GetTBPBlanksByFolder(int folderID) {
+		public IQueryable<TBPInfo> GetTBPBlanksByFolder(string folderID) {
 			return DBContext.Single.GetTBPListByFolder(folderID).AsQueryable();
 		}
 
@@ -103,6 +103,16 @@ namespace BlankJournal {
 		[OperationContract]
 		public ReturnMessage getOperationsInfo() {
 			return new ReturnMessage(DBContext.Single.MaxLSO, DBContext.Single.LastOBP);
+		}
+
+		[OperationContract]
+		public IQueryable<User> getAllUsers() {
+			return DBContext.Single.AllUsers.Values.AsQueryable();
+		}
+
+		[OperationContract]
+		public ReturnMessage editUser(User user) {
+			return User.EditUser(user);
 		}
 
 		// Добавьте здесь дополнительные операции и отметьте их атрибутом [OperationContract]

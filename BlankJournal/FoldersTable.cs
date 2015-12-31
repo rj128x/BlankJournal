@@ -19,7 +19,7 @@ namespace BlankJournal
             this.TBPInfoTable = new HashSet<TBPInfoTable>();
         }
     
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
     
         public virtual ICollection<TBPInfoTable> TBPInfoTable { get; set; }

@@ -24,15 +24,12 @@
             <Grid>
                 <StackPanel Orientation="Horizontal" FlowDirection="LeftToRight" HorizontalAlignment="Left">
                     <Button Name="btnNewTBP" Content="Создать ТБП" Click="Button_Click" 
-                        IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}"
                         Visibility="{Binding Single.CurrentUser.CanEditTBP, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft" HorizontalAlignment="Right">
                     <Button Name="btnNewOBP" Content="Пустой ОБП" Click="btnNewOBP_Click"
-                        IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}"
                         Visibility="{Binding Single.CurrentUser.CanDoOper, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
                     <Button Name="btnTemplateOBP" Content="Шаблон ОБП" Click="btnTemplateOBP_Click"
-                        IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}"
                         Visibility="{Binding Single.CurrentUser.CanDoOper, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
                 </StackPanel>                
             </Grid>
@@ -91,36 +88,28 @@
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Журнал переключений" Width="150"/>
                     <Button Content="Создать запись в журнал (ТБП)" Name="btnUseNextTBP" Click="btnUseNextTBP_Click" 
-                                                IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}"
                                                 Visibility="{Binding Single.CurrentUser.CanDoOper, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
                     <Button Content="Создать запись в журнал (ОБП)" Name="btnUseOBP" Click="btnUseOBP_Click"
-                                                IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}"
                                                 Visibility="{Binding Single.CurrentUser.CanDoOper, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>  
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Связанные файлы" Width="150"/>
-                    <Button Content="Файл скан (PDF)" Name="btnShowPDF" Click="btnShowPDF_Click"
-                                                IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}" />
-                    <Button Content="Файл ТБП (Word)" Name="btnShowWord" Click="btnShowWord_Click"
-                                                IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}" />
-                    <Button Content="Файл ОБП (Word)" Name="btnShowWordOBP" Click="btnShowWordOBP_Click"
-                                                IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}" />
+                    <Button Content="Файл скан (PDF)" Name="btnShowPDF" Click="btnShowPDF_Click" />
+                    <Button Content="Файл ТБП (Word)" Name="btnShowWord" Click="btnShowWord_Click" />
+                    <Button Content="Файл ОБП (Word)" Name="btnShowWordOBP" Click="btnShowWordOBP_Click" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="Редактирование" Width="150"/>
                         <Button Content="Редактировать" Name="btnEditTBP" Click="btnEditTBP_Click"
-                                                IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}" 
                                                 Visibility="{Binding Single.CurrentUser.CanEditTBP, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
                         <Button Content="История редактирования" Name="btnHistoryTBP" Click="btnHistoryTBP_Click"
-                                                IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}" 
                                                 Visibility="{Binding Single.CurrentUser.CanEditTBP, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
                     </StackPanel>                    
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Button Content="Создать замечание" Name="btnCommentTBP" Click="btnCommentTBP_Click"
-                                                IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}" 
                                                 Visibility="{Binding Single.CurrentUser.CanDoOper, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
                 </StackPanel>
             </StackPanel>

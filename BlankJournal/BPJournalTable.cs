@@ -26,8 +26,8 @@ namespace BlankJournal
         public string WordData { get; set; }
         public string PDFData { get; set; }
         public bool isOBP { get; set; }
-        public Nullable<int> LSOStart { get; set; }
-        public Nullable<int> LSOEnd { get; set; }
+        public int LSOStart { get; set; }
+        public int LSOEnd { get; set; }
     
         public virtual DataTable DataTable { get; set; }
         public virtual DataTable DataTable1 { get; set; }

@@ -37,8 +37,8 @@ namespace BlankJournal.Models {
 			Finished = !(DateStart == DateCreate || DateEnd == DateCreate);
 			Closed = Finished && DateCreate.AddDays(1) < DateTime.Now;
 			isOBP = tbl.isOBP;
-			StartLSO = tbl.LSOStart.HasValue?tbl.LSOStart.Value:0;
-			EndLSO = tbl.LSOEnd.HasValue ? tbl.LSOEnd.Value : 0;
+			StartLSO = tbl.LSOStart;
+			EndLSO = tbl.LSOEnd;
 			TBPNumber = tbl.TBPNumber;
 		}
 

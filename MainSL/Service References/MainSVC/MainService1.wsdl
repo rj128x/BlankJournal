@@ -98,6 +98,18 @@
   <wsdl:message name="MainService_getOperationsInfo_OutputMessage">
     <wsdl:part name="parameters" element="getOperationsInfoResponse" />
   </wsdl:message>
+  <wsdl:message name="MainService_getAllUsers_InputMessage">
+    <wsdl:part name="parameters" element="getAllUsers" />
+  </wsdl:message>
+  <wsdl:message name="MainService_getAllUsers_OutputMessage">
+    <wsdl:part name="parameters" element="getAllUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="MainService_editUser_InputMessage">
+    <wsdl:part name="parameters" element="editUser" />
+  </wsdl:message>
+  <wsdl:message name="MainService_editUser_OutputMessage">
+    <wsdl:part name="parameters" element="editUserResponse" />
+  </wsdl:message>
   <wsdl:portType name="MainService">
     <wsdl:operation name="DoWork">
       <wsdl:input wsaw:Action="urn:MainService/DoWork" message="MainService_DoWork_InputMessage" />
@@ -158,6 +170,14 @@
     <wsdl:operation name="getOperationsInfo">
       <wsdl:input wsaw:Action="urn:MainService/getOperationsInfo" message="MainService_getOperationsInfo_InputMessage" />
       <wsdl:output wsaw:Action="urn:MainService/getOperationsInfoResponse" message="MainService_getOperationsInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getAllUsers">
+      <wsdl:input wsaw:Action="urn:MainService/getAllUsers" message="MainService_getAllUsers_InputMessage" />
+      <wsdl:output wsaw:Action="urn:MainService/getAllUsersResponse" message="MainService_getAllUsers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="editUser">
+      <wsdl:input wsaw:Action="urn:MainService/editUser" message="MainService_editUser_InputMessage" />
+      <wsdl:output wsaw:Action="urn:MainService/editUserResponse" message="MainService_editUser_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
 </wsdl:definitions>

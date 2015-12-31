@@ -29,7 +29,7 @@ namespace MainSL {
 		public static readonly DependencyProperty CurrentUserProperty = DependencyProperty.Register("CurrentUser", typeof(User), typeof(GlobalContext), META);
 		public static readonly DependencyProperty IsBusyProperty = DependencyProperty.Register("IsBusy", typeof(bool), typeof(GlobalContext), META);
 
-		public Dictionary<int, Folder> AllFolders;
+		public Dictionary<string, Folder> AllFolders;
 		public event FinishLoad onFinishLoad;
 
 		public  MainServiceClient Client;
@@ -56,7 +56,7 @@ namespace MainSL {
 
 
 		void Client_GetAllFoldersCompleted(object sender, GetAllFoldersCompletedEventArgs e) {
-			AllFolders = new Dictionary<int, Folder>();
+			AllFolders = new Dictionary<string, Folder>();
 			foreach (Folder fld in e.Result) {
 				AllFolders.Add(fld.ID, fld);
 			}

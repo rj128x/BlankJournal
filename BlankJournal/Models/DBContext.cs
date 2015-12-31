@@ -13,31 +13,27 @@ namespace BlankJournal.Models {
 		}
 
 		public Dictionary<string, User> AllUsers;
-		public Dictionary<int, Folder> AllFolders;
+		public Dictionary<string, Folder> AllFolders;
 		public int MaxLSO { get; set; }
 		public string LastOBP { get; set; }
 
 		protected void createInitData() {
 			Logger.info("Инициализация контекста БД");
 			try {
-				Logger.info("Чтение пользователей");
+				InitUsers();
 				BlankJournal.BlanksEntities eni = new BlanksEntities();
-				IQueryable<UsersTable> users = from u in eni.UsersTable select u;
-				AllUsers = new Dictionary<string, User>();
-				foreach (UsersTable user in users) {
-					AllUsers.Add(user.Login.ToLower(), new User(user));
-				}
+
 				Logger.info("Чтение папок");
-				IQueryable<FoldersTable> folders = from f in eni.FoldersTable where f.Id > 0 select f;
-				AllFolders = new Dictionary<int, Folder>();
+				IQueryable<FoldersTable> folders = from f in eni.FoldersTable where f.Id!="-" select f;
+				AllFolders = new Dictionary<string, Folder>();
 				foreach (FoldersTable fld in folders) {
 					AllFolders.Add(fld.Id, new Folder(fld));
 				}
 
 				Logger.info("Чтение ЛСО");
-				BPJournalTable last = (from j in eni.BPJournalTable where j.isOBP && j.DateCreate.Year == DateTime.Now.Year orderby j.LSOEnd.Value descending select j).FirstOrDefault();
+				BPJournalTable last = (from j in eni.BPJournalTable where j.isOBP && j.DateCreate.Year == DateTime.Now.Year orderby j.LSOEnd descending select j).FirstOrDefault();
 				try {
-					MaxLSO = last.LSOEnd.Value;
+					MaxLSO = last.LSOEnd;
 				}
 				catch (Exception e) {
 					Logger.info("Ошибка при получении максимального номера ЛСО из БД"+e.ToString());
@@ -57,6 +53,16 @@ namespace BlankJournal.Models {
 			}
 			catch (Exception e) {
 				Logger.info("ошибка при инициализации " + e.ToString());
+			}
+		}
+
+		public void InitUsers() {
+			Logger.info("Чтение пользователей");
+			BlankJournal.BlanksEntities eni = new BlanksEntities();
+			IQueryable<UsersTable> users = from u in eni.UsersTable select u;
+			AllUsers = new Dictionary<string, User>();
+			foreach (UsersTable user in users) {
+				AllUsers.Add(user.Login.ToLower(), new User(user));
 			}
 		}
 
@@ -81,7 +87,7 @@ namespace BlankJournal.Models {
 			}
 		}
 
-		public List<TBPInfo> GetTBPListByFolder(int folderID) {
+		public List<TBPInfo> GetTBPListByFolder(string folderID) {
 			Logger.info("Получение бланков папки " + folderID);
 			try {
 				List<TBPInfo> result = new List<TBPInfo>();

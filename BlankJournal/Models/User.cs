@@ -10,12 +10,14 @@ namespace BlankJournal.Models {
 		public string Name { get; set; }
 		public bool CanEditTBP { get; set; }
 		public bool CanDoOper {get;set;}
+		public bool CanCommentTBP { get; set; }
 
 		public User() {
 			Login = "noname";
 			Name = "noname";
 			CanEditTBP = false;
 			CanDoOper = false;
+			CanCommentTBP = false;
 		}
 
 		public User(UsersTable tbl) {
@@ -23,6 +25,30 @@ namespace BlankJournal.Models {
 			Name = tbl.Name;
 			CanDoOper = tbl.CanDoOper;
 			CanEditTBP = tbl.CanEditTBP;
+			CanCommentTBP = tbl.CanCommentTBP;
+		}
+
+		public static ReturnMessage EditUser(User user) {
+			Logger.info("Добавление/редактирование пльзователя");
+			try {
+				BlanksEntities eni=new BlanksEntities();
+				UsersTable last = (from u in eni.UsersTable where u.Login.ToLower() == user.Login.ToLower() select u).FirstOrDefault();
+				if (last == null) {
+					last = new UsersTable();
+					last.Login = user.Login;
+					eni.UsersTable.Add(last);
+				}
+				last.Name = user.Name;
+				last.CanEditTBP = user.CanEditTBP;
+				last.CanDoOper = user.CanDoOper;
+				last.CanCommentTBP=user.CanCommentTBP;
+				eni.SaveChanges();
+				DBContext.Single.InitUsers();
+				return new ReturnMessage(true, "Информация о пользоватле сохранена");
+			} catch (Exception e) {
+				Logger.info("Ошибка при добавлении/изменении пользователя"+e.ToString());
+				return new ReturnMessage(false, "Ошибка при добавлении/изменении пользователя");
+			}
 		}
 	}
 }
