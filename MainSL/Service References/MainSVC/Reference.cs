@@ -1200,7 +1200,7 @@ namespace MainSL.MainSVC {
         MainSL.MainSVC.ReturnMessage EndeditUser(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:MainService/addFile", ReplyAction="urn:MainService/addFileResponse")]
-        System.IAsyncResult BeginaddFile(string fileInfo, byte[] data, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginaddFile(string fileInfo, byte[] data, System.DateTime dateLoad, System.AsyncCallback callback, object asyncState);
         
         MainSL.MainSVC.ReturnMessage EndaddFile(System.IAsyncResult result);
     }
@@ -2505,8 +2505,8 @@ namespace MainSL.MainSVC {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult MainSL.MainSVC.MainService.BeginaddFile(string fileInfo, byte[] data, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginaddFile(fileInfo, data, callback, asyncState);
+        System.IAsyncResult MainSL.MainSVC.MainService.BeginaddFile(string fileInfo, byte[] data, System.DateTime dateLoad, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginaddFile(fileInfo, data, dateLoad, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -2517,7 +2517,8 @@ namespace MainSL.MainSVC {
         private System.IAsyncResult OnBeginaddFile(object[] inValues, System.AsyncCallback callback, object asyncState) {
             string fileInfo = ((string)(inValues[0]));
             byte[] data = ((byte[])(inValues[1]));
-            return ((MainSL.MainSVC.MainService)(this)).BeginaddFile(fileInfo, data, callback, asyncState);
+            System.DateTime dateLoad = ((System.DateTime)(inValues[2]));
+            return ((MainSL.MainSVC.MainService)(this)).BeginaddFile(fileInfo, data, dateLoad, callback, asyncState);
         }
         
         private object[] OnEndaddFile(System.IAsyncResult result) {
@@ -2533,11 +2534,11 @@ namespace MainSL.MainSVC {
             }
         }
         
-        public void addFileAsync(string fileInfo, byte[] data) {
-            this.addFileAsync(fileInfo, data, null);
+        public void addFileAsync(string fileInfo, byte[] data, System.DateTime dateLoad) {
+            this.addFileAsync(fileInfo, data, dateLoad, null);
         }
         
-        public void addFileAsync(string fileInfo, byte[] data, object userState) {
+        public void addFileAsync(string fileInfo, byte[] data, System.DateTime dateLoad, object userState) {
             if ((this.onBeginaddFileDelegate == null)) {
                 this.onBeginaddFileDelegate = new BeginOperationDelegate(this.OnBeginaddFile);
             }
@@ -2549,7 +2550,8 @@ namespace MainSL.MainSVC {
             }
             base.InvokeAsync(this.onBeginaddFileDelegate, new object[] {
                         fileInfo,
-                        data}, this.onEndaddFileDelegate, this.onaddFileCompletedDelegate, userState);
+                        data,
+                        dateLoad}, this.onEndaddFileDelegate, this.onaddFileCompletedDelegate, userState);
         }
         
         private System.IAsyncResult OnBeginOpen(object[] inValues, System.AsyncCallback callback, object asyncState) {
@@ -2841,10 +2843,11 @@ namespace MainSL.MainSVC {
                 return _result;
             }
             
-            public System.IAsyncResult BeginaddFile(string fileInfo, byte[] data, System.AsyncCallback callback, object asyncState) {
-                object[] _args = new object[2];
+            public System.IAsyncResult BeginaddFile(string fileInfo, byte[] data, System.DateTime dateLoad, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[3];
                 _args[0] = fileInfo;
                 _args[1] = data;
+                _args[2] = dateLoad;
                 System.IAsyncResult _result = base.BeginInvoke("addFile", _args, callback, asyncState);
                 return _result;
             }

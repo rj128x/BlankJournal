@@ -17,11 +17,13 @@ namespace BlankJournal {
 		public ReturnMessage(bool result, string message) {
 			Message = message;
 			Result = result;
+			Logger.info(String.Format("Возврат: {0} (1)", result, message));
 		}
 
 		public ReturnMessage(int maxLSO, string lastOBP) {
 			MaxLSO = maxLSO;
 			LastOBP = lastOBP;
+			Logger.info(String.Format("Возврат: LSO:{0} OBP(1)", maxLSO, lastOBP));
 		}
 	
 	}
@@ -116,8 +118,8 @@ namespace BlankJournal {
 		}
 
 		[OperationContract]
-		public ReturnMessage addFile(string fileInfo, byte[] data) {
-			return new ReturnMessage(true, fileInfo + "ok");
+		public ReturnMessage addFile(string fileInfo, byte[] data,DateTime dateLoad) {
+			return InitDB.processFileData(fileInfo, data,dateLoad);
 		}
 
 		// Добавьте здесь дополнительные операции и отметьте их атрибутом [OperationContract]

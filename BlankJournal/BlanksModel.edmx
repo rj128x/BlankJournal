@@ -65,8 +65,8 @@
           <Property Name="TBPNumber" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="PrevPDFData" Type="varchar" MaxLength="50" />
           <Property Name="PrevWordData" Type="varchar" MaxLength="50" />
-          <Property Name="NewPDFData" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="NewWordData" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NewPDFData" Type="varchar" MaxLength="50" />
+          <Property Name="NewWordData" Type="varchar" MaxLength="50" />
           <Property Name="Author" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="DateCreate" Type="datetime" Nullable="false" />
         </EntityType>
@@ -200,7 +200,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TBPHistoryTable_DataTableNewPDF">
-          <End Role="DataTable" Type="Self.DataTable" Multiplicity="1" />
+          <End Role="DataTable" Type="Self.DataTable" Multiplicity="0..1" />
           <End Role="TBPHistoryTable" Type="Self.TBPHistoryTable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DataTable">
@@ -212,7 +212,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TBPHistoryTable_DataTableNewWord">
-          <End Role="DataTable" Type="Self.DataTable" Multiplicity="1" />
+          <End Role="DataTable" Type="Self.DataTable" Multiplicity="0..1" />
           <End Role="TBPHistoryTable" Type="Self.TBPHistoryTable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DataTable">
@@ -472,8 +472,8 @@
           <Property Name="TBPNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="PrevPDFData" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PrevWordData" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="NewPDFData" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="NewWordData" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NewPDFData" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NewWordData" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Author" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="DateCreate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="DataTable" Relationship="Self.FK_TBPHistoryTable_DataTableNewPDF" FromRole="TBPHistoryTable" ToRole="DataTable" />
@@ -588,7 +588,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TBPHistoryTable_DataTableNewPDF">
-          <End Role="DataTable" Type="Self.DataTable" Multiplicity="1" />
+          <End Role="DataTable" Type="Self.DataTable" Multiplicity="0..1" />
           <End Role="TBPHistoryTable" Type="Self.TBPHistoryTable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DataTable">
@@ -600,7 +600,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TBPHistoryTable_DataTableNewWord">
-          <End Role="DataTable" Type="Self.DataTable" Multiplicity="1" />
+          <End Role="DataTable" Type="Self.DataTable" Multiplicity="0..1" />
           <End Role="TBPHistoryTable" Type="Self.TBPHistoryTable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DataTable">

@@ -20,12 +20,14 @@ namespace MainSL.Views {
 		public KeyValuePair<string, byte[]> CurrentFile;
 		public ObservableCollection<string> logData { get; set; }
 		public ObservableCollection<string> fileNames { get; set; }
+		public DateTime LoadDate { get; set; }
 		public MultiLoadWindow() {
 			GlobalContext.Single.Client.addFileCompleted += Client_addFileCompleted;
 			SelectedFiles = new Dictionary<string,byte[]>();
 			fileNames=new ObservableCollection<string>();
 			logData = new ObservableCollection<string>();
 			
+
 			InitializeComponent();
 			pnlData.DataContext = this;
 		}
@@ -37,17 +39,18 @@ namespace MainSL.Views {
 			fileNames.Remove(CurrentFile.Key);
 			if (SelectedFiles.Count > 0) {
 				CurrentFile = SelectedFiles.First();
-				GlobalContext.Single.Client.addFileAsync(CurrentFile.Key, CurrentFile.Value);
+				GlobalContext.Single.Client.addFileAsync(CurrentFile.Key, CurrentFile.Value,LoadDate);
 			} else {
 				GlobalContext.Single.IsBusy = false;
 			}
 		}
 
 		private void OKButton_Click(object sender, RoutedEventArgs e) {
+			LoadDate = DateTime.Now;
 			if (SelectedFiles.Count > 0) {
 				CurrentFile = SelectedFiles.First();
 				GlobalContext.Single.IsBusy = true;
-				GlobalContext.Single.Client.addFileAsync(CurrentFile.Key, CurrentFile.Value);
+				GlobalContext.Single.Client.addFileAsync(CurrentFile.Key, CurrentFile.Value,LoadDate);
 			}
 		}
 
@@ -64,7 +67,7 @@ namespace MainSL.Views {
 		}
 		private void btnChoose_Click(object sender, RoutedEventArgs e) {
 			OpenFileDialog dlg = new OpenFileDialog();
-			dlg.Filter = "Файлы бланков |*.docx";
+			dlg.Filter = "Файлы бланков |*.docx;*.pdf";
 			dlg.Multiselect = true;
 			if (dlg.ShowDialog() == true) {
 				foreach (FileInfo file in dlg.Files) {
