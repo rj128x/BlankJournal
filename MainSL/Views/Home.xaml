@@ -57,16 +57,15 @@
                                 </DataTemplate>
                             </sdk:DataGridTemplateColumn.CellTemplate>
                         </sdk:DataGridTemplateColumn>
-                        <sdk:DataGridTemplateColumn Header="Последний" SortMemberPath="LastOper" Width="150" >
+                        <sdk:DataGridTemplateColumn Header="Замечаний" SortMemberPath="CountActiveComments" Width="100" >
                             <sdk:DataGridTemplateColumn.CellTemplate >
                                 <DataTemplate>
-                                    <StackPanel Orientation="Vertical" Visibility="{Binding HasLastOper, Converter={StaticResource visibilityConverter}}">
-                                        <ContentControl Content="{Binding LastOper, StringFormat='dd.MM.yyyy HH:mm'}" />
-                                        <ContentControl Content="{Binding LastNumber}" />
-                                    </StackPanel>
+                                    <ContentControl Content="{Binding CountActiveComments}" />
                                 </DataTemplate>
                             </sdk:DataGridTemplateColumn.CellTemplate>
-                        </sdk:DataGridTemplateColumn>                     
+                        </sdk:DataGridTemplateColumn>
+
+
                     </sdk:DataGrid.Columns>                    
                 </sdk:DataGrid>
             </Grid>

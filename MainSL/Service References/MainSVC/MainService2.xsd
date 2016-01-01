@@ -32,6 +32,7 @@
   <xs:element name="ArrayOfTBPInfo" nillable="true" type="tns:ArrayOfTBPInfo" />
   <xs:complexType name="TBPInfo">
     <xs:sequence>
+      <xs:element minOccurs="0" name="CountActiveComments" type="xs:int" />
       <xs:element minOccurs="0" name="EditingTBP" type="xs:boolean" />
       <xs:element minOccurs="0" name="FileInfoPDF" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="FileInfoWord" nillable="true" type="xs:string" />

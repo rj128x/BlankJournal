@@ -170,6 +170,8 @@ namespace MainSL.MainSVC {
     [System.Runtime.Serialization.DataContractAttribute(Name="TBPInfo", Namespace="http://schemas.datacontract.org/2004/07/BlankJournal.Models")]
     public partial class TBPInfo : object, System.ComponentModel.INotifyPropertyChanged {
         
+        private int CountActiveCommentsField;
+        
         private bool EditingTBPField;
         
         private string FileInfoPDFField;
@@ -201,6 +203,19 @@ namespace MainSL.MainSVC {
         private bool UpdatedWordField;
         
         private byte[] WordDataField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int CountActiveComments {
+            get {
+                return this.CountActiveCommentsField;
+            }
+            set {
+                if ((this.CountActiveCommentsField.Equals(value) != true)) {
+                    this.CountActiveCommentsField = value;
+                    this.RaisePropertyChanged("CountActiveComments");
+                }
+            }
+        }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public bool EditingTBP {
