@@ -32,6 +32,7 @@ namespace BlankJournal.Models {
 			int iEx = fileName.LastIndexOf(".");
 			string ext = fileName.Substring(iEx).ToLower();
 			string nameWithoutEx = fileName.Substring(0, iEx);
+			dateLoad = new DateTime(dateLoad.Year, dateLoad.Month, dateLoad.Day, dateLoad.Hour, dateLoad.Minute, dateLoad.Second);
 			if (ext.Contains("pdf") || ext.Contains("docx")) {
 				try {
 					string num = "";
@@ -54,7 +55,7 @@ namespace BlankJournal.Models {
 						TBPInfoTable tbp = list.First();
 
 
-						TBPHistoryTable hist = (from h in eni.TBPHistoryTable where h.TBPNumber == tbp.Number && dateLoad == h.DateCreate
+						TBPHistoryTable hist = (from h in eni.TBPHistoryTable where h.TBPNumber == tbp.Number && h.DateCreate==dateLoad
 																			 select h).FirstOrDefault();
 						if (hist == null) {
 							hist = new TBPHistoryTable();
