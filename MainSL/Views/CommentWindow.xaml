@@ -24,7 +24,7 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" Visibility="{Binding Finished, Converter={StaticResource visibilityNotConverter}}">
                 <TextBlock Text="Файл Word" Width="100" />
-                <TextBox Name="txtWord" Width="200" IsEnabled="False"/>
+                <TextBox Name="txtWord" Width="200" IsEnabled="False" Text="{Binding FileInfoData}"/>
                 <Button Content="  ...  " Name="btnChooseWord" Click="btnChooseWord_Click" />
             </StackPanel>
         </StackPanel>

@@ -109,7 +109,7 @@ namespace MainSL {
 			if (win.DialogResult == true) {
 				GlobalContext.Single.IsBusy = true;
 				GlobalContext.Single.Client.CreateTBPAsync(win.CurrentBlank);
-			}
+			} 
 		}
 
 		private void btnUseNextTBP_Click(object sender, RoutedEventArgs e) {
@@ -212,7 +212,7 @@ namespace MainSL {
 			if (win.DialogResult == true) {
 				GlobalContext.Single.IsBusy = true;
 				GlobalContext.Single.Client.CreateCommentTBPAsync(win.CurrentComment);
-			}
+			} 
 		}
 
 		void Client_CreateCommentTBPCompleted(object sender, CreateCommentTBPCompletedEventArgs e) {

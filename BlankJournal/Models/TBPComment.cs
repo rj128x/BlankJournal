@@ -14,6 +14,7 @@ namespace BlankJournal.Models {
 		public DateTime DatePerform { get; set; }
 		public bool Finished { get; set; }
 		public string DataID { get; set; }
+		public string FileInfoData { get; set; }
 		public byte[] Data { get; set; }
 		public string CommentPerform { get; set; }
 
@@ -52,6 +53,7 @@ namespace BlankJournal.Models {
 					dat.DateCreate = DateTime.Now;
 					dat.Author = DBContext.Single.GetCurrentUser().Login;
 					tbl.WordData=dat.ID;
+					dat.FileInfo = comment.FileInfoData;
 					dat.isPDF=false;
 					eni.DataTable.Add(dat);
 				}

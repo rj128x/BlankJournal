@@ -21,7 +21,7 @@ namespace BlankJournal.Controllers {
 			IQueryable<DataTable> data = from d in eni.DataTable where d.ID == id select d;
 			if (data.Count() > 0) {
 				DataTable dt = data.First();
-				string fn = dt.ID.ToString() + (dt.isPDF == true ? ".pdf" : ".docx");
+				string fn = dt.FileInfo.ToString();
 				string fullpath = Server.MapPath("/TempData/") + fn;
 				
 				System.IO.File.WriteAllBytes(fullpath, dt.Data);

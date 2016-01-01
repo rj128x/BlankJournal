@@ -68,6 +68,7 @@ namespace BlankJournal.Models {
 			rec.DateStart = rec.DateCreate;
 			rec.StartLSO = 0;
 			rec.EndLSO = 0;
+			rec.Comment = " ";
 
 			return rec;
 		}
@@ -95,6 +96,7 @@ namespace BlankJournal.Models {
 			rec.DateCreate = DateTime.Now;
 			rec.DateEnd = rec.DateCreate;
 			rec.DateStart = rec.DateCreate;
+			rec.Comment = " ";
 
 			rec.StartLSO = DBContext.Single.MaxLSO+1;
 			rec.EndLSO = DBContext.Single.MaxLSO+2;

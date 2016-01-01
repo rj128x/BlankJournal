@@ -16,7 +16,7 @@ namespace BlankJournal.Models {
 				return null;
 			}
 			DataTable dt = data.First();
-			string fn = Guid.NewGuid().ToString() + ".docx";
+			string fn = "ОБП "+dt.FileInfo;
 			string fullpath = folder + fn;
 			System.IO.File.WriteAllBytes(fullpath, dt.Data);
 			WordprocessingDocument doc = WordprocessingDocument.Open(fullpath,true);

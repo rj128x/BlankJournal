@@ -155,9 +155,14 @@ namespace BlankJournal.Models {
 			try {
 				List<TBPComment> result = new List<TBPComment>();
 				BlankJournal.BlanksEntities eni = new BlanksEntities();
-				IQueryable<TBPCommentsTable> comments = from c in eni.TBPCommentsTable orderby c.DateCreate descending select c;
-				foreach (TBPCommentsTable tbl in comments) {
-					result.Add(new TBPComment(tbl));
+				var comments = from c in eni.TBPCommentsTable
+									from dat in eni.DataTable.Where(dat => dat.ID == c.WordData).DefaultIfEmpty()
+									orderby c.DateCreate descending
+									select new { comment = c, Fileinfo = dat.FileInfo };
+				foreach (var tbl in comments) {
+					TBPComment com = new TBPComment(tbl.comment);
+					com.FileInfoData = tbl.Fileinfo;
+					result.Add(com);
 				}
 				return result;
 			} catch (Exception e) {

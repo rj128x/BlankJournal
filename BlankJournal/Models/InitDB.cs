@@ -49,6 +49,7 @@ namespace BlankJournal.Models {
 							dat.ID = Guid.NewGuid().ToString();
 							dat.Data = buffer;
 							dat.isPDF = file.Extension.ToLower().Contains("pdf");
+							dat.FileInfo = file.Name;
 
 							if (dat.isPDF) {
 								tbp.DataPDF = dat.ID;

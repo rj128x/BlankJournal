@@ -35,7 +35,7 @@ namespace MainSL.Views {
 				byte[] buffer = new byte[str.Length];
 				str.Read(buffer, 0, (int)str.Length);
 				str.Close();
-				txtWord.Text = "Файл выбран";
+				CurrentComment.FileInfoData = dlg.File.Name;
 				CurrentComment.Data = buffer;
 			}
 		}

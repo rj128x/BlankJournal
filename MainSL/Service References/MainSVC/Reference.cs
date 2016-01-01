@@ -919,6 +919,8 @@ namespace MainSL.MainSVC {
         
         private System.DateTime DatePerformField;
         
+        private string FileInfoDataField;
+        
         private bool FinishedField;
         
         private string IDField;
@@ -1014,6 +1016,19 @@ namespace MainSL.MainSVC {
                 if ((this.DatePerformField.Equals(value) != true)) {
                     this.DatePerformField = value;
                     this.RaisePropertyChanged("DatePerform");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FileInfoData {
+            get {
+                return this.FileInfoDataField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FileInfoDataField, value) != true)) {
+                    this.FileInfoDataField = value;
+                    this.RaisePropertyChanged("FileInfoData");
                 }
             }
         }
