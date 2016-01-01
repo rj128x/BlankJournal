@@ -20,7 +20,11 @@ namespace MainSL.Views {
 		}
 
 		private void OKButton_Click(object sender, RoutedEventArgs e) {
-			this.DialogResult = true;
+			GlobalContext.Single.IsBusy = true;
+			if (!CurrentComment.Finished)
+				GlobalContext.Single.Client.CreateCommentTBPAsync(CurrentComment);
+			else
+				GlobalContext.Single.Client.FinishCommentTBPAsync(CurrentComment);
 		}
 
 		private void CancelButton_Click(object sender, RoutedEventArgs e) {
@@ -43,6 +47,36 @@ namespace MainSL.Views {
 		public void Init(TBPComment comment) {
 			CurrentComment = comment;
 			pnlData.DataContext = comment;
+			GlobalContext.Single.Client.CreateCommentTBPCompleted += Client_CreateCommentTBPCompleted;
+			GlobalContext.Single.Client.FinishCommentTBPCompleted += Client_FinishCommentTBPCompleted;
+		}
+
+		void Client_FinishCommentTBPCompleted(object sender, FinishCommentTBPCompletedEventArgs e) {
+			GlobalContext.Single.IsBusy = false;
+			ReturnMessage msg = e.Result as ReturnMessage;
+			MessageBox.Show(msg.Message);
+			if (msg.Result) {
+				this.DialogResult = true;
+			}
+		}
+
+		void Client_CreateCommentTBPCompleted(object sender, CreateCommentTBPCompletedEventArgs e) {
+			GlobalContext.Single.IsBusy = false;
+			ReturnMessage msg = e.Result as ReturnMessage;
+			MessageBox.Show(msg.Message);
+			if (msg.Result) {
+				this.DialogResult = true;
+			}
+		}
+
+		public void deinit() {
+			GlobalContext.Single.Client.CreateCommentTBPCompleted -= Client_CreateCommentTBPCompleted;
+			GlobalContext.Single.Client.FinishCommentTBPCompleted -= Client_FinishCommentTBPCompleted;
+		}
+
+		protected override void OnClosed(EventArgs e) {
+			deinit();
+			base.OnClosed(e);
 		}
 	}
 }

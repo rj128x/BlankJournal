@@ -20,8 +20,12 @@ namespace MainSL.Views {
 			InitializeComponent();
 		}
 
-		private void OKButton_Click(object sender, RoutedEventArgs e) {			
-			this.DialogResult = true;
+		private void OKButton_Click(object sender, RoutedEventArgs e) {
+			GlobalContext.Single.IsBusy = true;
+			if (CurrentBlank.isInit)
+				GlobalContext.Single.Client.CreateBPAsync(CurrentBlank);
+			else
+				GlobalContext.Single.Client.FinishBPAsync(CurrentBlank);
 		}
 
 		private void CancelButton_Click(object sender, RoutedEventArgs e) {
@@ -31,6 +35,37 @@ namespace MainSL.Views {
 		public void Init(JournalRecord rec) {
 			CurrentBlank = rec;
 			pnlData.DataContext = rec;
+			GlobalContext.Single.Client.CreateBPCompleted += Client_CreateBPCompleted;
+			GlobalContext.Single.Client.FinishBPCompleted += Client_FinishBPCompleted;
+		}
+
+		void Client_FinishBPCompleted(object sender, FinishBPCompletedEventArgs e) {
+			GlobalContext.Single.IsBusy = false;
+			ReturnMessage msg = e.Result as ReturnMessage;
+			MessageBox.Show(msg.Message);
+			if (msg.Result) {
+				this.DialogResult = true;
+			}
+		}
+
+		void Client_CreateBPCompleted(object sender, CreateBPCompletedEventArgs e) {
+			GlobalContext.Single.IsBusy = false;
+			ReturnMessage msg = e.Result as ReturnMessage;
+			MessageBox.Show(msg.Message);
+			if (msg.Result) {
+				this.DialogResult = true;
+			}
+		}
+
+		protected override void OnClosed(EventArgs e) {
+			deinit();
+			base.OnClosed(e);
+		}
+
+
+		public void deinit() {
+			GlobalContext.Single.Client.CreateBPCompleted -= Client_CreateBPCompleted;
+			GlobalContext.Single.Client.FinishBPCompleted -= Client_FinishBPCompleted;
 		}
 
 		private void btnChooseWord_Click(object sender, RoutedEventArgs e) {

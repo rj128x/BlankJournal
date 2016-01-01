@@ -22,12 +22,10 @@ namespace MainSL.Views {
 		}
 
 		public void init() {
-			GlobalContext.Single.Client.FinishCommentTBPCompleted += Client_FinishCommentTBPCompleted;
 			GlobalContext.Single.Client.GetCommentsListCompleted += Client_GetCommentsListCompleted;
 		}
 
 		public void deInit() {
-			GlobalContext.Single.Client.FinishCommentTBPCompleted -= Client_FinishCommentTBPCompleted;
 			GlobalContext.Single.Client.GetCommentsListCompleted -= Client_GetCommentsListCompleted;
 		}
 
@@ -36,19 +34,11 @@ namespace MainSL.Views {
 			grdBlanks.ItemsSource = e.Result;
 		}
 
-		void Client_FinishCommentTBPCompleted(object sender, MainSVC.FinishCommentTBPCompletedEventArgs e) {
-			GlobalContext.Single.IsBusy = false;
-			ReturnMessage msg = e.Result;
-			MessageBox.Show(msg.Message);
-			GlobalContext.Single.IsBusy = true;
-			GlobalContext.Single.Client.GetCommentsListAsync();
-		}
-
 		void win_Closed(object sender, EventArgs e) {
 			CommentWindow win = sender as CommentWindow;
 			if (win.DialogResult == true) {
 				GlobalContext.Single.IsBusy = true;
-				GlobalContext.Single.Client.FinishCommentTBPAsync(win.CurrentComment);
+				GlobalContext.Single.Client.GetCommentsListAsync(win.CurrentComment);
 			} else {
 				win.CurrentComment.Finished = false;
 			}

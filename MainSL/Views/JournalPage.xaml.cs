@@ -23,20 +23,10 @@ namespace MainSL.Views {
 
 		public void init() {
 			GlobalContext.Single.Client.GetJournalBPCompleted += Client_GetJournalBPCompleted;
-			GlobalContext.Single.Client.FinishBPCompleted += Client_FinishBPCompleted;
 		}
 
 		public void deInit() {
 			GlobalContext.Single.Client.GetJournalBPCompleted -= Client_GetJournalBPCompleted;
-			GlobalContext.Single.Client.FinishBPCompleted -= Client_FinishBPCompleted;
-		}
-
-		void Client_FinishBPCompleted(object sender, FinishBPCompletedEventArgs e) {
-			GlobalContext.Single.IsBusy = false;
-			ReturnMessage msg = e.Result as ReturnMessage;
-			MessageBox.Show(msg.Message);
-			GlobalContext.Single.IsBusy = true;
-			GlobalContext.Single.Client.GetJournalBPAsync();
 		}
 
 		void Client_GetJournalBPCompleted(object sender, MainSVC.GetJournalBPCompletedEventArgs e) {
@@ -72,7 +62,7 @@ namespace MainSL.Views {
 			JournalRecordWindow win = sender as JournalRecordWindow;
 			if (win.DialogResult == true) {
 				GlobalContext.Single.IsBusy = true;
-				GlobalContext.Single.Client.FinishBPAsync(win.CurrentBlank);
+				GlobalContext.Single.Client.GetJournalBPAsync();
 			}
 		}
 

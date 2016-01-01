@@ -26,9 +26,6 @@ namespace MainSL {
 				GlobalContext.Single.Client.GetTBPBlanksByFolderCompleted += Client_GetTBPBlanksByFolderCompleted;
 				GlobalContext.Single.Client.InitOBPCompleted += Client_InitOBPCompleted;
 				GlobalContext.Single.Client.InitTBPCompleted += Client_InitTBPCompleted;
-				GlobalContext.Single.Client.CreateBPCompleted += Client_CreateBPCompleted;
-				GlobalContext.Single.Client.CreateTBPCompleted += Client_CreateTBPCompleted;
-				GlobalContext.Single.Client.CreateCommentTBPCompleted += Client_CreateCommentTBPCompleted;
 
 		}
 
@@ -36,24 +33,7 @@ namespace MainSL {
 				GlobalContext.Single.Client.GetTBPBlanksByFolderCompleted -= Client_GetTBPBlanksByFolderCompleted;
 				GlobalContext.Single.Client.InitOBPCompleted -= Client_InitOBPCompleted;
 				GlobalContext.Single.Client.InitTBPCompleted -= Client_InitTBPCompleted;
-				GlobalContext.Single.Client.CreateBPCompleted -= Client_CreateBPCompleted;
-				GlobalContext.Single.Client.CreateTBPCompleted -= Client_CreateTBPCompleted;
-				GlobalContext.Single.Client.CreateCommentTBPCompleted -= Client_CreateCommentTBPCompleted;
 		}
-
-		
-
-		void Client_CreateTBPCompleted(object sender, CreateTBPCompletedEventArgs e) {
-			GlobalContext.Single.IsBusy = false;
-			ReturnMessage msg = e.Result;
-			MessageBox.Show(msg.Message);
-			if (CurrentFolder != null) {
-				GlobalContext.Single.IsBusy = true;
-				GlobalContext.Single.Client.GetTBPBlanksByFolderAsync(CurrentFolder.ID);
-			}
-		}
-
-
 
 		void Client_GetTBPBlanksByFolderCompleted(object sender, GetTBPBlanksByFolderCompletedEventArgs e) {
 			GlobalContext.Single.IsBusy = false;
@@ -108,7 +88,10 @@ namespace MainSL {
 			TBPWindow win = sender as TBPWindow;
 			if (win.DialogResult == true) {
 				GlobalContext.Single.IsBusy = true;
-				GlobalContext.Single.Client.CreateTBPAsync(win.CurrentBlank);
+				if (CurrentFolder != null) {
+					GlobalContext.Single.IsBusy = true;
+					GlobalContext.Single.Client.GetTBPBlanksByFolderAsync(CurrentFolder.ID);
+				}
 			} 
 		}
 
@@ -149,18 +132,10 @@ namespace MainSL {
 		void win_Closed(object sender, EventArgs e) {
 			JournalRecordWindow win = sender as JournalRecordWindow;
 			if (win.DialogResult == true) {
-				GlobalContext.Single.IsBusy = true;
-				GlobalContext.Single.Client.CreateBPAsync(win.CurrentBlank);
-			}
-		}
-
-		void Client_CreateBPCompleted(object sender, CreateBPCompletedEventArgs e) {
-			GlobalContext.Single.IsBusy = false;
-			ReturnMessage msg = e.Result as ReturnMessage;
-			MessageBox.Show(msg.Message);
-			if (CurrentFolder != null) {
-				GlobalContext.Single.IsBusy = true;
-				GlobalContext.Single.Client.GetTBPBlanksByFolderAsync(CurrentFolder.ID);
+				if (CurrentFolder != null) {
+					GlobalContext.Single.IsBusy = true;
+					GlobalContext.Single.Client.GetTBPBlanksByFolderAsync(CurrentFolder.ID);
+				}
 			}
 		}
 
@@ -210,15 +185,11 @@ namespace MainSL {
 		void commentWin_Closed(object sender, EventArgs e) {
 			CommentWindow win = sender as CommentWindow;
 			if (win.DialogResult == true) {
-				GlobalContext.Single.IsBusy = true;
-				GlobalContext.Single.Client.CreateCommentTBPAsync(win.CurrentComment);
-			} 
-		}
-
-		void Client_CreateCommentTBPCompleted(object sender, CreateCommentTBPCompletedEventArgs e) {
-			GlobalContext.Single.IsBusy = false;
-			ReturnMessage msg = e.Result;
-			MessageBox.Show(msg.Message);
+				if (CurrentFolder != null) {
+					GlobalContext.Single.IsBusy = true;
+					GlobalContext.Single.Client.GetTBPBlanksByFolderAsync(CurrentFolder.ID);
+				}
+			}
 		}
 
 		private void btnShowWordOBP_Click(object sender, RoutedEventArgs e) {
@@ -243,8 +214,5 @@ namespace MainSL {
 				win.Show();
 			}
 		}
-
-
-
 	}
 }

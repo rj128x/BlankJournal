@@ -15,22 +15,43 @@ using System.Windows.Shapes;
 
 namespace MainSL {
 	public partial class TBPWindow : ChildWindow {
+
 		public TBPWindow() {
 			InitializeComponent();
 		}
 		public TBPInfo CurrentBlank { get; set; }
 
 		private void OKButton_Click(object sender, RoutedEventArgs e) {
-			this.DialogResult = true;
+			GlobalContext.Single.IsBusy = true;
+			GlobalContext.Single.Client.CreateTBPAsync(CurrentBlank);
 		}
 
 		private void CancelButton_Click(object sender, RoutedEventArgs e) {
 			this.DialogResult = false;
 		}
 
+		protected override void OnClosed(EventArgs e) {
+			deinit();
+			base.OnClosed(e);
+		}
+
 		public void Init(TBPInfo blank) {
 			CurrentBlank = blank;
 			LayoutRoot.DataContext = blank;
+			GlobalContext.Single.Client.CreateTBPCompleted += Client_CreateTBPCompleted;
+		}
+
+		public void deinit() {
+			GlobalContext.Single.Client.CreateTBPCompleted -= Client_CreateTBPCompleted;
+		}
+
+		void Client_CreateTBPCompleted(object sender, CreateTBPCompletedEventArgs e) {
+			GlobalContext.Single.IsBusy = false;
+			ReturnMessage msg = e.Result as ReturnMessage;
+			MessageBox.Show(msg.Message);
+			if (msg.Result == true) {				
+				this.DialogResult = true;
+			}
 		}
 
 		private void btnChoosePDF_Click(object sender, RoutedEventArgs e) {
