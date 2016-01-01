@@ -46,7 +46,6 @@ namespace MainSL {
 		void btn_Click(object sender, RoutedEventArgs e) {
 			Button btn = sender as Button;
 			string id = btn.Name.Replace("btnFolder_", "");
-			//MessageBox.Show(id.ToString());
 			CurrentFolder = GlobalContext.Single.AllFolders[id];
 			GlobalContext.Single.IsBusy = true;
 			GlobalContext.Single.Client.GetTBPBlanksByFolderAsync(CurrentFolder.ID);
@@ -66,8 +65,9 @@ namespace MainSL {
 			}
 		}
 
-		protected override void OnNavigatedFrom(NavigationEventArgs e) {
+		protected override void OnNavigatedFrom(NavigationEventArgs e) {			
 			deInit();
+			base.OnNavigatedFrom(e);
 		}
 
 		private void Button_Click(object sender, RoutedEventArgs e) {
@@ -86,13 +86,13 @@ namespace MainSL {
 
 		void newWindow_Closed(object sender, EventArgs e) {
 			TBPWindow win = sender as TBPWindow;
-			if (win.DialogResult == true) {
+			//if (win.DialogResult == true) {
 				GlobalContext.Single.IsBusy = true;
 				if (CurrentFolder != null) {
 					GlobalContext.Single.IsBusy = true;
 					GlobalContext.Single.Client.GetTBPBlanksByFolderAsync(CurrentFolder.ID);
 				}
-			} 
+			//} 
 		}
 
 		private void btnUseNextTBP_Click(object sender, RoutedEventArgs e) {
@@ -131,12 +131,12 @@ namespace MainSL {
 
 		void win_Closed(object sender, EventArgs e) {
 			JournalRecordWindow win = sender as JournalRecordWindow;
-			if (win.DialogResult == true) {
+			//if (win.DialogResult == true) {
 				if (CurrentFolder != null) {
 					GlobalContext.Single.IsBusy = true;
 					GlobalContext.Single.Client.GetTBPBlanksByFolderAsync(CurrentFolder.ID);
 				}
-			}
+			//}
 		}
 
 		private void btnNewOBP_Click(object sender, RoutedEventArgs e) {			
@@ -184,12 +184,12 @@ namespace MainSL {
 
 		void commentWin_Closed(object sender, EventArgs e) {
 			CommentWindow win = sender as CommentWindow;
-			if (win.DialogResult == true) {
+			//if (win.DialogResult == true) {
 				if (CurrentFolder != null) {
 					GlobalContext.Single.IsBusy = true;
 					GlobalContext.Single.Client.GetTBPBlanksByFolderAsync(CurrentFolder.ID);
 				}
-			}
+			//}
 		}
 
 		private void btnShowWordOBP_Click(object sender, RoutedEventArgs e) {

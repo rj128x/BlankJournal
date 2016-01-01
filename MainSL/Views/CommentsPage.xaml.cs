@@ -36,12 +36,10 @@ namespace MainSL.Views {
 
 		void win_Closed(object sender, EventArgs e) {
 			CommentWindow win = sender as CommentWindow;
-			if (win.DialogResult == true) {
+			//if (win.DialogResult == true) {
 				GlobalContext.Single.IsBusy = true;
 				GlobalContext.Single.Client.GetCommentsListAsync(win.CurrentComment);
-			} else {
-				win.CurrentComment.Finished = false;
-			}
+			//}
 		}
 
 

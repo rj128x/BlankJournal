@@ -40,6 +40,7 @@ namespace MainSL.Views {
 
 		protected override void OnNavigatedFrom(NavigationEventArgs e) {
 			deInit();
+			base.OnNavigatedFrom(e);
 		}
 
 		private void btnShow_Click(object sender, RoutedEventArgs e) {
@@ -60,10 +61,10 @@ namespace MainSL.Views {
 
 		void win_Closed(object sender, EventArgs e) {
 			JournalRecordWindow win = sender as JournalRecordWindow;
-			if (win.DialogResult == true) {
+			//if (win.DialogResult == true) {
 				GlobalContext.Single.IsBusy = true;
 				GlobalContext.Single.Client.GetJournalBPAsync();
-			}
+			//}
 		}
 
 	}

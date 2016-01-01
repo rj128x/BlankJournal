@@ -23,20 +23,10 @@ namespace MainSL.Views {
 
 		public void init() {
 			GlobalContext.Single.Client.getAllUsersCompleted += Client_getAllUsersCompleted;
-			GlobalContext.Single.Client.editUserCompleted += Client_editUserCompleted;
-		}
-
-		void Client_editUserCompleted(object sender, editUserCompletedEventArgs e) {
-			GlobalContext.Single.IsBusy = false;
-			ReturnMessage msg = e.Result;
-			MessageBox.Show(msg.Message);
-			GlobalContext.Single.IsBusy = true;
-			GlobalContext.Single.Client.getAllUsersAsync();
 		}
 
 		public void deinit() {
 			GlobalContext.Single.Client.getAllUsersCompleted -= Client_getAllUsersCompleted;
-			GlobalContext.Single.Client.editUserCompleted -= Client_editUserCompleted;
 		}
 
 		void Client_getAllUsersCompleted(object sender, MainSVC.getAllUsersCompletedEventArgs e) {
@@ -71,11 +61,10 @@ namespace MainSL.Views {
 
 		void newWindow_Closed(object sender, EventArgs e) {
 			UserWindow win=sender as UserWindow;
-			win.CurrentUser.IsEditing = false;
-			if (win.DialogResult == true) {
+			//if (win.DialogResult == true) {
 				GlobalContext.Single.IsBusy = true;
-				GlobalContext.Single.Client.editUserAsync(win.CurrentUser);
-			}
+				GlobalContext.Single.Client.getAllUsersAsync();
+			//}
 		}
 
 	}

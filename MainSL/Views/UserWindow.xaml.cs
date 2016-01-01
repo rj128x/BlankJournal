@@ -18,8 +18,10 @@ namespace MainSL.Views {
 			InitializeComponent();
 		}
 
+
 		private void OKButton_Click(object sender, RoutedEventArgs e) {
-			this.DialogResult = true;
+			GlobalContext.Single.IsBusy = true;
+			GlobalContext.Single.Client.editUserAsync(CurrentUser);
 		}
 
 		private void CancelButton_Click(object sender, RoutedEventArgs e) {
@@ -29,6 +31,26 @@ namespace MainSL.Views {
 		public void init(User user) {
 			CurrentUser = user;
 			pnlData.DataContext = CurrentUser;
+			GlobalContext.Single.Client.editUserCompleted += Client_editUserCompleted;
+		}
+
+		void Client_editUserCompleted(object sender, editUserCompletedEventArgs e) {
+			GlobalContext.Single.IsBusy = false;
+			ReturnMessage msg = e.Result as ReturnMessage;
+			MessageBox.Show(msg.Message);
+			if (msg.Result) {
+				this.DialogResult = true;
+			}
+		}
+
+		protected override void OnClosed(EventArgs e) {
+			deinit();
+			base.OnClosed(e);
+		}
+
+		public void deinit() {
+			GlobalContext.Single.Client.editUserCompleted -= Client_editUserCompleted;
+
 		}
 	}
 }
