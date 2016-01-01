@@ -47,7 +47,7 @@ namespace MainSL.Views {
 
 		private void btnPrevWord_Click(object sender, RoutedEventArgs e) {
 			TBPHistoryRecord rec = grdTBPHistory.SelectedItem as TBPHistoryRecord;
-			FloatWindow.OpenWindow("/Home/getFile?id=" + rec.PrewWordID);
+			FloatWindow.OpenWindow("/Home/getFile?id=" + rec.PrevWordID);
 		}
 
 		private void btnNewPDF_Click(object sender, RoutedEventArgs e) {

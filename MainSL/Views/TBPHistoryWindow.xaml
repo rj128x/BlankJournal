@@ -26,26 +26,33 @@
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
                 </sdk:DataGridTemplateColumn>
-                <sdk:DataGridTemplateColumn Header="Старая версия" SortMemberPath="Author" Width="110" >
+                <sdk:DataGridTemplateColumn Header="PDF" SortMemberPath="Author" Width="110" >
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <Button Name="btnPrevPDF" Content="PDF" Click="btnPrevPDF_Click"/>
-                                <Button Name="btnPrevWord" Content="Word" Click="btnPrevWord_Click"/>
+                                <TextBlock Text="***" Visibility="{Binding UpdatedPDF,Converter={StaticResource visibilityConverter}}"/>
+                                <Button Name="btnPrevPDF" Content="Старый" Click="btnPrevPDF_Click"
+                                        Visibility="{Binding HasPrevPDFData,Converter={StaticResource visibilityConverter}}"/>
+                                <Button Name="btnNewPDF" Content="Новый" Click="btnNewPDF_Click"
+                                        Visibility="{Binding HasNewPDFData,Converter={StaticResource visibilityConverter}}"/>
                             </StackPanel>
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
                 </sdk:DataGridTemplateColumn>
-                <sdk:DataGridTemplateColumn Header="Новая версия" SortMemberPath="Author" Width="110" >
+                <sdk:DataGridTemplateColumn Header="Word" SortMemberPath="Author" Width="110" >
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <Button Name="btnNewPDF" Content="PDF" Click="btnNewPDF_Click"/>
-                                <Button Name="btnNewWord" Content="Word" Click="btnNewWord_Click"/>
+                                <TextBlock Text="***" Visibility="{Binding UpdatedWord,Converter={StaticResource visibilityConverter}}"/>
+                                <Button Name="btnPrevWord" Content="Старый" Click="btnPrevWord_Click"
+                                        Visibility="{Binding HasPrevWordData,Converter={StaticResource visibilityConverter}}"/>
+                                <Button Name="btnNewWord" Content="Новый" Click="btnNewWord_Click"
+                                        Visibility="{Binding HasNewWordData,Converter={StaticResource visibilityConverter}}"/>
                             </StackPanel>
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
                 </sdk:DataGridTemplateColumn>
+                
             </sdk:DataGrid.Columns>
         </sdk:DataGrid>
 
