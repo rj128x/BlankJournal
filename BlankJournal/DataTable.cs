@@ -32,6 +32,7 @@ namespace BlankJournal
         public bool isPDF { get; set; }
         public System.DateTime DateCreate { get; set; }
         public string Author { get; set; }
+        public string FileInfo { get; set; }
     
         public virtual ICollection<BPJournalTable> BPJournalTable { get; set; }
         public virtual ICollection<BPJournalTable> BPJournalTable1 { get; set; }

@@ -92,10 +92,18 @@ namespace BlankJournal.Models {
 			try {
 				List<TBPInfo> result = new List<TBPInfo>();
 				BlankJournal.BlanksEntities eni = new BlanksEntities();
-				IQueryable<TBPInfoTable> blanks = from b in eni.TBPInfoTable  where b.Folder == folderID select b;
+				//IQueryable<TBPInfoTable> blanks = from b in eni.TBPInfoTable  where b.Folder == folderID select b;
+				var blanks = from b in eni.TBPInfoTable
+								 from dat in eni.DataTable.Where(dat=> dat.ID == b.DataPDF).DefaultIfEmpty()
+								 from dat2 in eni.DataTable.Where(dat2 => dat2.ID == b.DataWord).DefaultIfEmpty()
+								 where b.Folder == folderID
+								 select new { blank = b, FileInfoPDF = dat.FileInfo, FileInfoWord=dat2.FileInfo };
 				Dictionary<string, TBPInfo> res = new Dictionary<string, TBPInfo>();
-				foreach (TBPInfoTable tbl in blanks) {
-					res.Add(tbl.Number,new TBPInfo(tbl));
+				foreach (var tbl in blanks) {
+					TBPInfo tbp = new TBPInfo(tbl.blank);
+					tbp.FileInfoPDF = tbl.FileInfoPDF;
+					tbp.FileInfoWord = tbl.FileInfoWord;
+					res.Add(tbl.blank.Number,tbp);
 				}
 
 				IQueryable<BPJournalTable> latest = from j in eni.BPJournalTable orderby j.Number ascending 
@@ -110,6 +118,8 @@ namespace BlankJournal.Models {
 						Logger.info(e.ToString());
 					}
 				}
+			
+
 				return res.Values.ToList();
 			}
 			catch (Exception e) {
@@ -123,9 +133,14 @@ namespace BlankJournal.Models {
 			try {
 				List<JournalRecord> result = new List<JournalRecord>();
 				BlankJournal.BlanksEntities eni = new BlanksEntities();
-				IQueryable<BPJournalTable> blanks = from b in eni.BPJournalTable orderby b.DateCreate descending select b ;
-				foreach (BPJournalTable tbl in blanks) {
-					result.Add(new JournalRecord(tbl));
+				var blanks = from b in eni.BPJournalTable
+								 from dat in eni.DataTable.Where(dat => b.WordData == dat.ID && b.isOBP == true).DefaultIfEmpty()
+								 orderby b.DateCreate descending
+								 select new { blank = b, FileInfo = dat.FileInfo };
+				foreach (var tbl in blanks) {
+					JournalRecord blank = new JournalRecord(tbl.blank);
+					blank.FileInfoWord = tbl.FileInfo;
+					result.Add(blank);
 				}
 				return result;
 			}
@@ -225,6 +240,7 @@ namespace BlankJournal.Models {
 					hist.NewWordData = word.ID;
 					tbl.DataWord = word.ID;
 					word.Data = newBlank.WordData;
+					word.FileInfo = newBlank.FileInfoWord;
 					eni.DataTable.Add(word);
 				}
 
@@ -237,6 +253,7 @@ namespace BlankJournal.Models {
 					tbl.DataPDF = pdf.ID;
 					pdf.isPDF = true;
 					pdf.Data = newBlank.PDFData;
+					pdf.FileInfo = newBlank.FileInfoPDF;
 					eni.DataTable.Add(pdf);
 
 				}

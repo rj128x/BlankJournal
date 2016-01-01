@@ -172,6 +172,10 @@ namespace MainSL.MainSVC {
         
         private bool EditingTBPField;
         
+        private string FileInfoPDFField;
+        
+        private string FileInfoWordField;
+        
         private string FolderIDField;
         
         private bool HasLastOperField;
@@ -207,6 +211,32 @@ namespace MainSL.MainSVC {
                 if ((this.EditingTBPField.Equals(value) != true)) {
                     this.EditingTBPField = value;
                     this.RaisePropertyChanged("EditingTBP");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FileInfoPDF {
+            get {
+                return this.FileInfoPDFField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FileInfoPDFField, value) != true)) {
+                    this.FileInfoPDFField = value;
+                    this.RaisePropertyChanged("FileInfoPDF");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FileInfoWord {
+            get {
+                return this.FileInfoWordField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FileInfoWordField, value) != true)) {
+                    this.FileInfoWordField = value;
+                    this.RaisePropertyChanged("FileInfoWord");
                 }
             }
         }
@@ -411,6 +441,8 @@ namespace MainSL.MainSVC {
         
         private int EndLSOField;
         
+        private string FileInfoWordField;
+        
         private bool FinishedField;
         
         private string IDWordDataField;
@@ -529,6 +561,19 @@ namespace MainSL.MainSVC {
                 if ((this.EndLSOField.Equals(value) != true)) {
                     this.EndLSOField = value;
                     this.RaisePropertyChanged("EndLSO");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FileInfoWord {
+            get {
+                return this.FileInfoWordField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FileInfoWordField, value) != true)) {
+                    this.FileInfoWordField = value;
+                    this.RaisePropertyChanged("FileInfoWord");
                 }
             }
         }

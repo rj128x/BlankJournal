@@ -41,8 +41,8 @@ namespace MainSL.Views {
 				byte[] buffer = new byte[str.Length];
 				str.Read(buffer, 0, (int)str.Length);
 				str.Close();
-				txtWord.Text = "Файл выбран";
 				CurrentBlank.WordData = buffer;
+				CurrentBlank.FileInfoWord = String.Format("{0}", dlg.File.Name);
 			}
 		}
 

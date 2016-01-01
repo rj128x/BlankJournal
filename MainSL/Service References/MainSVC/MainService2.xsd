@@ -33,6 +33,8 @@
   <xs:complexType name="TBPInfo">
     <xs:sequence>
       <xs:element minOccurs="0" name="EditingTBP" type="xs:boolean" />
+      <xs:element minOccurs="0" name="FileInfoPDF" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FileInfoWord" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="FolderID" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="HasLastOper" type="xs:boolean" />
       <xs:element minOccurs="0" name="IDPDFData" nillable="true" type="xs:string" />
@@ -65,6 +67,7 @@
       <xs:element minOccurs="0" name="DateStart" type="xs:dateTime" />
       <xs:element minOccurs="0" name="DoubleNumber" type="xs:double" />
       <xs:element minOccurs="0" name="EndLSO" type="xs:int" />
+      <xs:element minOccurs="0" name="FileInfoWord" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Finished" type="xs:boolean" />
       <xs:element minOccurs="0" name="IDWordData" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Number" nillable="true" type="xs:string" />

@@ -17,6 +17,7 @@ namespace BlankJournal.Models {
 		public bool isInit { get; set; }
 		public byte[] WordData { get; set; }
 		public string IDWordData { get; set; }
+		public string FileInfoWord { get; set; }
 		public string TBPNumber { get; set; }
 		public bool Finished { get; set; }
 		public bool Closed { get; set; }
@@ -128,6 +129,7 @@ namespace BlankJournal.Models {
 					dat.ID = !string.IsNullOrEmpty(record.IDWordData)?record.IDWordData:Guid.NewGuid().ToString();
 					dat.DateCreate = DateTime.Now;
 					dat.Author = DBContext.Single.GetCurrentUser().Login;
+					dat.FileInfo = record.FileInfoWord;
 					IQueryable<DataTable> data=from d in eni.DataTable where d.ID==record.IDWordData select d;
 					if (data.Count() > 0)
 						dat = data.First();

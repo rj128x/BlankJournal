@@ -19,6 +19,8 @@ namespace BlankJournal.Models {
 		public String LastNumber { get; set; }
 		public bool HasLastOper { get; set; }
 		public string ObjectInfo { get; set; }
+		public string FileInfoPDF { get; set; }
+		public string FileInfoWord { get; set; }
 
 
 		public TBPInfo() {

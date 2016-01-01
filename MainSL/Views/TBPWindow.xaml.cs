@@ -41,8 +41,8 @@ namespace MainSL {
 				byte[]buffer=new byte[str.Length];
 				str.Read(buffer, 0, (int)str.Length);
 				str.Close();
-				txtPDF.Text = "Файл выбран";
 				CurrentBlank.PDFData = buffer;
+				CurrentBlank.FileInfoPDF = String.Format("{0}", dlg.File.Name);
 				CurrentBlank.UpdatedPDF = true;
 			}			
 		}
@@ -55,8 +55,8 @@ namespace MainSL {
 				byte[] buffer = new byte[str.Length];
 				str.Read(buffer, 0, (int)str.Length);
 				str.Close();
-				txtWord.Text = "Файл выбран";
 				CurrentBlank.WordData = buffer;
+				CurrentBlank.FileInfoWord = String.Format("{0}", dlg.File.Name);
 				CurrentBlank.UpdatedWord = true;
 			}
 		}

@@ -33,6 +33,7 @@
           <Property Name="isPDF" Type="bit" Nullable="false" />
           <Property Name="DateCreate" Type="datetime" Nullable="false" />
           <Property Name="Author" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FileInfo" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="FoldersTable">
           <Key>
@@ -424,6 +425,7 @@
           <Property Name="isPDF" Type="Boolean" Nullable="false" />
           <Property Name="DateCreate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Author" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FileInfo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="BPJournalTable" Relationship="Self.FK_BPJournalTable_DataTablePDF" FromRole="DataTable" ToRole="BPJournalTable" />
           <NavigationProperty Name="BPJournalTable1" Relationship="Self.FK_BPJournalTable_DataTableWord" FromRole="DataTable" ToRole="BPJournalTable" />
           <NavigationProperty Name="UsersTable" Relationship="Self.FK_DataTable_UsersTable" FromRole="DataTable" ToRole="UsersTable" />
@@ -844,6 +846,7 @@
                 <ScalarProperty Name="isPDF" ColumnName="isPDF" />
                 <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
                 <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="FileInfo" ColumnName="FileInfo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
