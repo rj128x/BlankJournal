@@ -85,6 +85,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BlankData.cs" />
     <Compile Include="Converters\LogicNotConverter.cs" />
     <Compile Include="Converters\VisibilityConverter.cs" />
     <Compile Include="Converters\VisibilityNotConverter.cs" />
@@ -106,6 +107,9 @@
     </Compile>
     <Compile Include="Views\JournalRecordWindow.xaml.cs">
       <DependentUpon>JournalRecordWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MultiLoadWindow.xaml.cs">
+      <DependentUpon>MultiLoadWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TBPHistoryWindow.xaml.cs">
       <DependentUpon>TBPHistoryWindow.xaml</DependentUpon>
@@ -138,6 +142,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Views\MultiLoadWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\UsersPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

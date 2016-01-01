@@ -25,6 +25,8 @@
                 <StackPanel Orientation="Horizontal" FlowDirection="LeftToRight" HorizontalAlignment="Left">
                     <Button Name="btnNewTBP" Content="Создать ТБП" Click="Button_Click" 
                         Visibility="{Binding Single.CurrentUser.CanEditTBP, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
+                    <Button Name="btnPacketLoad" Content="Пакетная загрузка ТБП" Click="btnPacketLoad_Click" 
+                        Visibility="{Binding Single.CurrentUser.CanEditTBP, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft" HorizontalAlignment="Right">
                     <Button Name="btnNewOBP" Content="Пустой ОБП" Click="btnNewOBP_Click"

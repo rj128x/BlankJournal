@@ -1198,6 +1198,11 @@ namespace MainSL.MainSVC {
         System.IAsyncResult BegineditUser(MainSL.MainSVC.User user, System.AsyncCallback callback, object asyncState);
         
         MainSL.MainSVC.ReturnMessage EndeditUser(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:MainService/addFile", ReplyAction="urn:MainService/addFileResponse")]
+        System.IAsyncResult BeginaddFile(string fileInfo, byte[] data, System.AsyncCallback callback, object asyncState);
+        
+        MainSL.MainSVC.ReturnMessage EndaddFile(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1510,6 +1515,25 @@ namespace MainSL.MainSVC {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class addFileCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public addFileCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public MainSL.MainSVC.ReturnMessage Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((MainSL.MainSVC.ReturnMessage)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class MainServiceClient : System.ServiceModel.ClientBase<MainSL.MainSVC.MainService>, MainSL.MainSVC.MainService {
         
         private BeginOperationDelegate onBeginDoWorkDelegate;
@@ -1614,6 +1638,12 @@ namespace MainSL.MainSVC {
         
         private System.Threading.SendOrPostCallback oneditUserCompletedDelegate;
         
+        private BeginOperationDelegate onBeginaddFileDelegate;
+        
+        private EndOperationDelegate onEndaddFileDelegate;
+        
+        private System.Threading.SendOrPostCallback onaddFileCompletedDelegate;
+        
         private BeginOperationDelegate onBeginOpenDelegate;
         
         private EndOperationDelegate onEndOpenDelegate;
@@ -1700,6 +1730,8 @@ namespace MainSL.MainSVC {
         public event System.EventHandler<getAllUsersCompletedEventArgs> getAllUsersCompleted;
         
         public event System.EventHandler<editUserCompletedEventArgs> editUserCompleted;
+        
+        public event System.EventHandler<addFileCompletedEventArgs> addFileCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
         
@@ -2472,6 +2504,54 @@ namespace MainSL.MainSVC {
                         user}, this.onEndeditUserDelegate, this.oneditUserCompletedDelegate, userState);
         }
         
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult MainSL.MainSVC.MainService.BeginaddFile(string fileInfo, byte[] data, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginaddFile(fileInfo, data, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        MainSL.MainSVC.ReturnMessage MainSL.MainSVC.MainService.EndaddFile(System.IAsyncResult result) {
+            return base.Channel.EndaddFile(result);
+        }
+        
+        private System.IAsyncResult OnBeginaddFile(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string fileInfo = ((string)(inValues[0]));
+            byte[] data = ((byte[])(inValues[1]));
+            return ((MainSL.MainSVC.MainService)(this)).BeginaddFile(fileInfo, data, callback, asyncState);
+        }
+        
+        private object[] OnEndaddFile(System.IAsyncResult result) {
+            MainSL.MainSVC.ReturnMessage retVal = ((MainSL.MainSVC.MainService)(this)).EndaddFile(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnaddFileCompleted(object state) {
+            if ((this.addFileCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.addFileCompleted(this, new addFileCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void addFileAsync(string fileInfo, byte[] data) {
+            this.addFileAsync(fileInfo, data, null);
+        }
+        
+        public void addFileAsync(string fileInfo, byte[] data, object userState) {
+            if ((this.onBeginaddFileDelegate == null)) {
+                this.onBeginaddFileDelegate = new BeginOperationDelegate(this.OnBeginaddFile);
+            }
+            if ((this.onEndaddFileDelegate == null)) {
+                this.onEndaddFileDelegate = new EndOperationDelegate(this.OnEndaddFile);
+            }
+            if ((this.onaddFileCompletedDelegate == null)) {
+                this.onaddFileCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnaddFileCompleted);
+            }
+            base.InvokeAsync(this.onBeginaddFileDelegate, new object[] {
+                        fileInfo,
+                        data}, this.onEndaddFileDelegate, this.onaddFileCompletedDelegate, userState);
+        }
+        
         private System.IAsyncResult OnBeginOpen(object[] inValues, System.AsyncCallback callback, object asyncState) {
             return ((System.ServiceModel.ICommunicationObject)(this)).BeginOpen(callback, asyncState);
         }
@@ -2758,6 +2838,20 @@ namespace MainSL.MainSVC {
             public MainSL.MainSVC.ReturnMessage EndeditUser(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 MainSL.MainSVC.ReturnMessage _result = ((MainSL.MainSVC.ReturnMessage)(base.EndInvoke("editUser", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginaddFile(string fileInfo, byte[] data, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[2];
+                _args[0] = fileInfo;
+                _args[1] = data;
+                System.IAsyncResult _result = base.BeginInvoke("addFile", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public MainSL.MainSVC.ReturnMessage EndaddFile(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                MainSL.MainSVC.ReturnMessage _result = ((MainSL.MainSVC.ReturnMessage)(base.EndInvoke("addFile", _args, result)));
                 return _result;
             }
         }

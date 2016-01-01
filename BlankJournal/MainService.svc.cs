@@ -115,6 +115,11 @@ namespace BlankJournal {
 			return User.EditUser(user);
 		}
 
+		[OperationContract]
+		public ReturnMessage addFile(string fileInfo, byte[] data) {
+			return new ReturnMessage(true, fileInfo + "ok");
+		}
+
 		// Добавьте здесь дополнительные операции и отметьте их атрибутом [OperationContract]
 	}
 }

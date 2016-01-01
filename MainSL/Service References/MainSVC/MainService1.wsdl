@@ -110,6 +110,12 @@
   <wsdl:message name="MainService_editUser_OutputMessage">
     <wsdl:part name="parameters" element="editUserResponse" />
   </wsdl:message>
+  <wsdl:message name="MainService_addFile_InputMessage">
+    <wsdl:part name="parameters" element="addFile" />
+  </wsdl:message>
+  <wsdl:message name="MainService_addFile_OutputMessage">
+    <wsdl:part name="parameters" element="addFileResponse" />
+  </wsdl:message>
   <wsdl:portType name="MainService">
     <wsdl:operation name="DoWork">
       <wsdl:input wsaw:Action="urn:MainService/DoWork" message="MainService_DoWork_InputMessage" />
@@ -178,6 +184,10 @@
     <wsdl:operation name="editUser">
       <wsdl:input wsaw:Action="urn:MainService/editUser" message="MainService_editUser_InputMessage" />
       <wsdl:output wsaw:Action="urn:MainService/editUserResponse" message="MainService_editUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="addFile">
+      <wsdl:input wsaw:Action="urn:MainService/addFile" message="MainService_addFile_InputMessage" />
+      <wsdl:output wsaw:Action="urn:MainService/addFileResponse" message="MainService_addFile_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
 </wsdl:definitions>

@@ -2,6 +2,7 @@
 using MainSL.Views;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Windows;
@@ -213,6 +214,11 @@ namespace MainSL {
 				win.init(CurrentTBP);
 				win.Show();
 			}
+		}
+
+		private void btnPacketLoad_Click(object sender, RoutedEventArgs e) {
+			MultiLoadWindow multiWin = new MultiLoadWindow();
+			multiWin.Show();
 		}
 	}
 }
