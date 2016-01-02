@@ -19,6 +19,7 @@ namespace BlankJournal.Models {
 		public string IDWordData { get; set; }
 		public string FileInfoWord { get; set; }
 		public string TBPNumber { get; set; }
+		public int TBPID { get; set; }
 		public bool Finished { get; set; }
 		public bool Closed { get; set; }
 		public int StartLSO { get; set; }
@@ -41,6 +42,7 @@ namespace BlankJournal.Models {
 			StartLSO = tbl.LSOStart;
 			EndLSO = tbl.LSOEnd;
 			TBPNumber = tbl.TBPNumber;
+			TBPID = tbl.TBPID;
 		}
 
 		public static JournalRecord initTBPRecord(TBPInfo tbp) {
@@ -63,6 +65,7 @@ namespace BlankJournal.Models {
 			rec.Task = tbp.Name;
 			rec.isOBP = false;
 			rec.TBPNumber = tbp.Number;
+			rec.TBPID = tbp.ID;
 			rec.DateCreate = DateTime.Now;
 			rec.DateEnd = rec.DateCreate;
 			rec.DateStart = rec.DateCreate;
@@ -93,6 +96,7 @@ namespace BlankJournal.Models {
 			rec.Task = tbp.Name;
 			rec.isOBP = true;
 			rec.TBPNumber = tbp.Number;
+			rec.TBPID = tbp.ID;
 			rec.DateCreate = DateTime.Now;
 			rec.DateEnd = rec.DateCreate;
 			rec.DateStart = rec.DateCreate;
@@ -118,6 +122,7 @@ namespace BlankJournal.Models {
 				tbl.Id = record.Number;
 				tbl.isOBP = record.isOBP;
 				tbl.TBPNumber = record.TBPNumber;
+				tbl.TBPID = record.TBPID;
 				tbl.Author = DBContext.Single.GetCurrentUser().Login;
 				tbl.Comment = record.Comment;
 				tbl.Name = record.Task;

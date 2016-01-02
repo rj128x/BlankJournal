@@ -7,6 +7,7 @@ namespace BlankJournal.Models {
 	public class TBPComment {
 		public string ID { get; set; }
 		public string TBPNumber { get; set; }
+		public int TBPID { get; set; }
 		public string Author { get; set; }
 		public string CommentText { get; set; }
 		public DateTime DateCreate { get; set; }
@@ -23,6 +24,7 @@ namespace BlankJournal.Models {
 		public TBPComment(TBPCommentsTable tbl){
 			ID = tbl.Id;
 			TBPNumber = tbl.TBPNumber;
+			TBPID = tbl.TBPID;
 			Author = DBContext.Single.getUserByLogin(tbl.Author).Name;
 			CommentText = tbl.Comment;
 			DateCreate = tbl.DateCreate;
@@ -45,6 +47,7 @@ namespace BlankJournal.Models {
 				tbl.DateCreate = DateTime.Now;
 				tbl.Finished=false;
 				tbl.TBPNumber=comment.TBPNumber;
+				tbl.TBPID = comment.TBPID;
 				tbl.Id=Guid.NewGuid().ToString();
 				if (comment.Data!=null && comment.Data.Length>0){
 					DataTable dat=new DataTable();

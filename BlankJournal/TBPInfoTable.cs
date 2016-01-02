@@ -21,12 +21,14 @@ namespace BlankJournal
             this.TBPHistoryTable = new HashSet<TBPHistoryTable>();
         }
     
+        public int ID { get; set; }
         public string Number { get; set; }
         public string Folder { get; set; }
         public string Name { get; set; }
         public string ObjectInfo { get; set; }
         public string DataPDF { get; set; }
         public string DataWord { get; set; }
+        public bool isActive { get; set; }
     
         public virtual ICollection<BPJournalTable> BPJournalTable { get; set; }
         public virtual DataTable DataTable { get; set; }

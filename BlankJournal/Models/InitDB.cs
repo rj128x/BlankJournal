@@ -73,6 +73,7 @@ namespace BlankJournal.Models {
 							hist.Author = DBContext.Single.GetCurrentUser().Login;
 							hist.Id = Guid.NewGuid().ToString();
 							hist.TBPNumber = tbp.Number;
+							hist.TBPID = tbp.ID;
 							eni.TBPHistoryTable.Add(hist);
 						}
 

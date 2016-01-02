@@ -17,6 +17,7 @@ namespace BlankJournal
         public string Id { get; set; }
         public double Number { get; set; }
         public string TBPNumber { get; set; }
+        public int TBPID { get; set; }
         public string Name { get; set; }
         public System.DateTime DateCreate { get; set; }
         public string Author { get; set; }

@@ -16,6 +16,7 @@ namespace BlankJournal
     {
         public string Id { get; set; }
         public string TBPNumber { get; set; }
+        public int TBPID { get; set; }
         public string PrevPDFData { get; set; }
         public string PrevWordData { get; set; }
         public string NewPDFData { get; set; }

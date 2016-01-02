@@ -6,6 +6,7 @@ using System.Web;
 namespace BlankJournal.Models {
 	public class TBPHistoryRecord {
 		public string TBPNumber { get; set; }
+		public int TBPID { get; set; }
 		public string PrevPDFID { get; set; }
 		public string PrevWordID { get; set; }
 		public string NewPDFID { get; set; }
@@ -25,6 +26,7 @@ namespace BlankJournal.Models {
 
 		public TBPHistoryRecord(TBPHistoryTable tbl) {
 			TBPNumber = tbl.TBPNumber;
+			TBPID = tbl.TBPID;
 			PrevPDFID = tbl.PrevPDFData;
 			PrevWordID = tbl.PrevWordData;
 			NewPDFID = tbl.NewPDFData;

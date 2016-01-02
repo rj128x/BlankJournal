@@ -7,8 +7,10 @@ using System.Web;
 namespace BlankJournal.Models {
 	public class TBPInfo  {
 		public string Number { get; set; }
+		public int ID { get; set; }
 		public string FolderID { get; set; }
 		public string Name { get; set; }
+		public bool Active { get; set; }
 		public byte[] WordData { get; set; }
 		public byte[] PDFData { get; set; }
 		public string IDPDFData { get; set; }
@@ -33,11 +35,13 @@ namespace BlankJournal.Models {
 
 		public TBPInfo(TBPInfoTable tbl) {
 			Number = tbl.Number;
+			ID = tbl.ID;
 			Name = tbl.Name;
 			FolderID = tbl.Folder;
 			IDPDFData = tbl.DataPDF;
 			IDWordData = tbl.DataWord;
 			ObjectInfo = tbl.ObjectInfo;
+			Active = tbl.isActive;
 		}
 
 	}

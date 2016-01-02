@@ -170,6 +170,8 @@ namespace MainSL.MainSVC {
     [System.Runtime.Serialization.DataContractAttribute(Name="TBPInfo", Namespace="http://schemas.datacontract.org/2004/07/BlankJournal.Models")]
     public partial class TBPInfo : object, System.ComponentModel.INotifyPropertyChanged {
         
+        private bool ActiveField;
+        
         private int CountActiveCommentsField;
         
         private bool EditingTBPField;
@@ -181,6 +183,8 @@ namespace MainSL.MainSVC {
         private string FolderIDField;
         
         private bool HasLastOperField;
+        
+        private int IDField;
         
         private string IDPDFDataField;
         
@@ -207,6 +211,19 @@ namespace MainSL.MainSVC {
         private string md5PDFField;
         
         private string md5WordField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Active {
+            get {
+                return this.ActiveField;
+            }
+            set {
+                if ((this.ActiveField.Equals(value) != true)) {
+                    this.ActiveField = value;
+                    this.RaisePropertyChanged("Active");
+                }
+            }
+        }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public int CountActiveComments {
@@ -282,6 +299,19 @@ namespace MainSL.MainSVC {
                 if ((this.HasLastOperField.Equals(value) != true)) {
                     this.HasLastOperField = value;
                     this.RaisePropertyChanged("HasLastOper");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((this.IDField.Equals(value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
                 }
             }
         }

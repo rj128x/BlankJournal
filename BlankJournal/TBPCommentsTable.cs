@@ -16,6 +16,7 @@ namespace BlankJournal
     {
         public string Id { get; set; }
         public string TBPNumber { get; set; }
+        public int TBPID { get; set; }
         public string Author { get; set; }
         public string Comment { get; set; }
         public string WordData { get; set; }

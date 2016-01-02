@@ -93,10 +93,11 @@ namespace BlankJournal.Models {
 				var blanks = from b in eni.TBPInfoTable
 								 from dat in eni.DataTable.Where(dat => dat.ID == b.DataPDF).DefaultIfEmpty()
 								 from dat2 in eni.DataTable.Where(dat2 => dat2.ID == b.DataWord).DefaultIfEmpty()
-								 where b.Folder == folderID
+								 where b.Folder == folderID && b.isActive
 								 select new { blank = b, FileInfoPDF = dat.FileInfo, FileInfoWord = dat2.FileInfo,
 								 md5PDF=dat.md5,md5Word=dat2.md5};
 				Dictionary<string, TBPInfo> res = new Dictionary<string, TBPInfo>();
+				Dictionary<int, TBPInfo> resID = new Dictionary<int, TBPInfo>();
 				foreach (var tbl in blanks) {
 					TBPInfo tbp = new TBPInfo(tbl.blank);
 					tbp.FileInfoPDF = tbl.FileInfoPDF;
@@ -104,6 +105,7 @@ namespace BlankJournal.Models {
 					tbp.md5PDF = tbl.md5PDF;
 					tbp.md5Word = tbl.md5Word;
 					res.Add(tbl.blank.Number, tbp);
+					resID.Add(tbl.blank.ID, tbp);
 				}
 
 				IQueryable<BPJournalTable> latest = from j in eni.BPJournalTable orderby j.Number ascending
@@ -120,11 +122,11 @@ namespace BlankJournal.Models {
 				}
 
 				IQueryable<TBPCommentsTable> comments = from c in eni.TBPCommentsTable
-																	 where res.Keys.Contains(c.TBPNumber) && c.Finished == false
+																	 where resID.Keys.Contains(c.TBPID) && c.Finished == false
 																	 select c;
 				foreach (TBPCommentsTable com in comments) {
 					try {
-						res[com.TBPNumber].CountActiveComments++;
+						resID[com.TBPID].CountActiveComments++;
 					} catch (Exception e) {
 						Logger.info(e.ToString());
 					}
@@ -184,12 +186,11 @@ namespace BlankJournal.Models {
 		public ReturnMessage createTBP(TBPInfo newBlank, bool edit = false) {
 			Logger.info("Создание ТБП");
 			BlankJournal.BlanksEntities eni = new BlanksEntities();
-			TBPInfoTable last = null;
+			TBPInfoTable blank = null;
 
 			try {
-				IQueryable<TBPInfoTable> exist = from b in eni.TBPInfoTable where b.Number == newBlank.Number select b;
-				if (exist.Count() > 0) {
-					last = exist.First();
+				blank = (from b in eni.TBPInfoTable where b.Number == newBlank.Number && b.isActive select b).FirstOrDefault();
+				if (blank!=null) {
 					if (!edit) {
 						Logger.info("Бланк не создан - дубль");
 						return new ReturnMessage(false, String.Format("Бланк с номером {0} уже существует", newBlank.Number));
@@ -200,13 +201,22 @@ namespace BlankJournal.Models {
 				return new ReturnMessage(false, String.Format("Ошибка при создании бланка"));
 			}
 			try {
-				TBPInfoTable tbl = edit ? last : new TBPInfoTable();
+				TBPInfoTable tbl = edit ? blank : new TBPInfoTable();
+				if (!edit) {
+					int newID = 0;
+					TBPInfoTable maxBlank = (from b in eni.TBPInfoTable orderby b.ID descending select b).FirstOrDefault();
+					if (maxBlank != null)
+						newID = maxBlank.ID + 1;
+					tbl.ID = newID;
+					newBlank.ID = newID;
+					eni.TBPInfoTable.Add(tbl);
+				}
 				tbl.Number = newBlank.Number;
 				tbl.Name = newBlank.Name;
 				tbl.ObjectInfo = newBlank.ObjectInfo;
 				tbl.Folder = newBlank.FolderID;
-				if (!edit)
-					eni.TBPInfoTable.Add(tbl);
+				tbl.isActive = true;
+
 				string md5PDF = ""; string md5Word = "";
 				try {
 					md5PDF = MD5Class.getString(newBlank.PDFData);
@@ -216,6 +226,9 @@ namespace BlankJournal.Models {
 				} catch { };
 				newBlank.UpdatedPDF = newBlank.UpdatedPDF && newBlank.md5PDF != md5PDF;
 				newBlank.UpdatedWord = newBlank.UpdatedWord && newBlank.md5Word != md5Word;
+				newBlank.md5PDF = newBlank.UpdatedPDF ? md5PDF : newBlank.md5PDF;
+				newBlank.md5Word = newBlank.UpdatedWord ? md5Word : newBlank.md5Word;
+
 				if (newBlank.UpdatedPDF || newBlank.UpdatedWord)
 					SaveTBPDataToDB(newBlank, tbl, eni);
 				eni.SaveChanges();
@@ -231,7 +244,7 @@ namespace BlankJournal.Models {
 			BlankJournal.BlanksEntities eni = new BlanksEntities();
 			try {
 				List<TBPHistoryRecord> result = new List<TBPHistoryRecord>();
-				IQueryable<TBPHistoryTable> list = from h in eni.TBPHistoryTable where h.TBPNumber == tbp.Number orderby h.DateCreate descending select h;
+				IQueryable<TBPHistoryTable> list = from h in eni.TBPHistoryTable where h.TBPID == tbp.ID orderby h.DateCreate descending select h;
 				foreach (TBPHistoryTable tbl in list) {
 					TBPHistoryRecord rec = new TBPHistoryRecord(tbl);
 					result.Add(rec);
@@ -281,6 +294,7 @@ namespace BlankJournal.Models {
 				}
 
 				hist.TBPNumber = tbl.Number;
+				hist.TBPID = tbl.ID;
 
 				eni.TBPHistoryTable.Add(hist);
 			} catch (Exception e) {
