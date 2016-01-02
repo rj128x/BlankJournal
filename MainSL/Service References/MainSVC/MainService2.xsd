@@ -49,6 +49,8 @@
       <xs:element minOccurs="0" name="UpdatedPDF" type="xs:boolean" />
       <xs:element minOccurs="0" name="UpdatedWord" type="xs:boolean" />
       <xs:element minOccurs="0" name="WordData" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="md5PDF" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="md5Word" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="TBPInfo" nillable="true" type="tns:TBPInfo" />

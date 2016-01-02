@@ -204,6 +204,10 @@ namespace MainSL.MainSVC {
         
         private byte[] WordDataField;
         
+        private string md5PDFField;
+        
+        private string md5WordField;
+        
         [System.Runtime.Serialization.DataMemberAttribute()]
         public int CountActiveComments {
             get {
@@ -421,6 +425,32 @@ namespace MainSL.MainSVC {
                 if ((object.ReferenceEquals(this.WordDataField, value) != true)) {
                     this.WordDataField = value;
                     this.RaisePropertyChanged("WordData");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string md5PDF {
+            get {
+                return this.md5PDFField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.md5PDFField, value) != true)) {
+                    this.md5PDFField = value;
+                    this.RaisePropertyChanged("md5PDF");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string md5Word {
+            get {
+                return this.md5WordField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.md5WordField, value) != true)) {
+                    this.md5WordField = value;
+                    this.RaisePropertyChanged("md5Word");
                 }
             }
         }

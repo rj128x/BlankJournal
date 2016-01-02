@@ -33,6 +33,7 @@ namespace BlankJournal
         public System.DateTime DateCreate { get; set; }
         public string Author { get; set; }
         public string FileInfo { get; set; }
+        public string md5 { get; set; }
     
         public virtual ICollection<BPJournalTable> BPJournalTable { get; set; }
         public virtual ICollection<BPJournalTable> BPJournalTable1 { get; set; }

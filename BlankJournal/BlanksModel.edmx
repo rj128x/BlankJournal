@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище BlanksModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище BlanksModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BPJournalTable">
           <Key>
             <PropertyRef Name="Id" />
@@ -34,6 +34,7 @@
           <Property Name="DateCreate" Type="datetime" Nullable="false" />
           <Property Name="Author" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="FileInfo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="md5" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="FoldersTable">
           <Key>
@@ -388,8 +389,7 @@
             <End Role="TBPInfoTable" EntitySet="TBPInfoTable" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BlanksModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -436,6 +436,7 @@
           <NavigationProperty Name="TBPHistoryTable3" Relationship="Self.FK_TBPHistoryTable_DataTablePrevWord" FromRole="DataTable" ToRole="TBPHistoryTable" />
           <NavigationProperty Name="TBPInfoTable" Relationship="Self.FK_TBPInfoTable_DataTablePDF" FromRole="DataTable" ToRole="TBPInfoTable" />
           <NavigationProperty Name="TBPInfoTable1" Relationship="Self.FK_TBPInfoTable_DataTableWord" FromRole="DataTable" ToRole="TBPInfoTable" />
+          <Property Name="md5" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="FoldersTable">
           <Key>
@@ -841,6 +842,7 @@
           <EntitySetMapping Name="DataTable">
             <EntityTypeMapping TypeName="BlanksModel.DataTable">
               <MappingFragment StoreEntitySet="DataTable">
+                <ScalarProperty Name="md5" ColumnName="md5" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Data" ColumnName="Data" />
                 <ScalarProperty Name="isPDF" ColumnName="isPDF" />

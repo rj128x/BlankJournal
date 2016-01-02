@@ -26,7 +26,7 @@
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
                 </sdk:DataGridTemplateColumn>
-                <sdk:DataGridTemplateColumn Header="PDF" SortMemberPath="Author" Width="110" >
+                <sdk:DataGridTemplateColumn Header="PDF" SortMemberPath="Author" Width="120" >
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -39,7 +39,7 @@
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
                 </sdk:DataGridTemplateColumn>
-                <sdk:DataGridTemplateColumn Header="Word" SortMemberPath="Author" Width="110" >
+                <sdk:DataGridTemplateColumn Header="Word" SortMemberPath="Author" Width="120" >
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">

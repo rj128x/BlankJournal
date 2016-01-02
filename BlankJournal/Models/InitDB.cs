@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Web;
 
 namespace BlankJournal.Models {
@@ -49,10 +50,19 @@ namespace BlankJournal.Models {
 						Logger.info("===Бланк не распознан");
 						return new ReturnMessage(false, String.Format("{0} - Бланк не распознан", fileName));
 					}
-					IQueryable<TBPInfoTable> list = from t in eni.TBPInfoTable where t.Number == num select t;
-					if (list.Count() == 1) {
+					var list = (from t in eni.TBPInfoTable
+								  from dat in eni.DataTable.Where(dat => dat.ID == t.DataPDF).DefaultIfEmpty()
+								  from dat2 in eni.DataTable.Where(dat2 => dat2.ID == t.DataWord).DefaultIfEmpty()
+								  where t.Number == num
+								  select new { blank = t, md5PDF = dat.md5, md5Word = dat2.md5 }).FirstOrDefault();
+					if (list!=null) {
 						Logger.info("Бланк найден в БД: " + num);
-						TBPInfoTable tbp = list.First();
+						string md5 = MD5Class.getString(data);
+						if (md5 == list.md5Word || md5 == list.md5PDF) {
+							return new ReturnMessage(true, string.Format("{0} Файл не изменен", fileName));
+						}
+
+						TBPInfoTable tbp = list.blank;
 
 
 						TBPHistoryTable hist = (from h in eni.TBPHistoryTable where h.TBPNumber == tbp.Number && h.DateCreate==dateLoad
@@ -73,6 +83,7 @@ namespace BlankJournal.Models {
 						dat.Data = data;
 						dat.isPDF = ext.Contains("pdf");
 						dat.FileInfo = fileName;
+						dat.md5 = md5;
 
 						if (dat.isPDF) {
 							hist.PrevPDFData = tbp.DataPDF;

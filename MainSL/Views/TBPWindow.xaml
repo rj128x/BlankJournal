@@ -24,11 +24,13 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Файл PDF" Width="100"/>
+                <TextBlock Text="*" Visibility="{Binding UpdatedPDF, Converter={StaticResource visibilityConverter}}"/>
                 <TextBox Name="txtPDF" Width="200" Text="{Binding FileInfoPDF}" IsEnabled="False"/>
                 <Button Content="  ...  " Name="btnChoosePDF" Click="btnChoosePDF_Click"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Файл Word" Width="100"/>
+                <TextBlock Text="*" Visibility="{Binding UpdatedWord, Converter={StaticResource visibilityConverter}}"/>
                 <TextBox Name="txtWord" Width="200" Text="{Binding FileInfoWord}" IsEnabled="False"/>
                 <Button Content="  ...  " Name="btnChooseWord" Click="btnChooseWord_Click"/>
             </StackPanel>

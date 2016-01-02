@@ -94,12 +94,15 @@ namespace BlankJournal.Models {
 								 from dat in eni.DataTable.Where(dat => dat.ID == b.DataPDF).DefaultIfEmpty()
 								 from dat2 in eni.DataTable.Where(dat2 => dat2.ID == b.DataWord).DefaultIfEmpty()
 								 where b.Folder == folderID
-								 select new { blank = b, FileInfoPDF = dat.FileInfo, FileInfoWord = dat2.FileInfo };
+								 select new { blank = b, FileInfoPDF = dat.FileInfo, FileInfoWord = dat2.FileInfo,
+								 md5PDF=dat.md5,md5Word=dat2.md5};
 				Dictionary<string, TBPInfo> res = new Dictionary<string, TBPInfo>();
 				foreach (var tbl in blanks) {
 					TBPInfo tbp = new TBPInfo(tbl.blank);
 					tbp.FileInfoPDF = tbl.FileInfoPDF;
 					tbp.FileInfoWord = tbl.FileInfoWord;
+					tbp.md5PDF = tbl.md5PDF;
+					tbp.md5Word = tbl.md5Word;
 					res.Add(tbl.blank.Number, tbp);
 				}
 
@@ -204,12 +207,21 @@ namespace BlankJournal.Models {
 				tbl.Folder = newBlank.FolderID;
 				if (!edit)
 					eni.TBPInfoTable.Add(tbl);
+				string md5PDF = ""; string md5Word = "";
+				try {
+					md5PDF = MD5Class.getString(newBlank.PDFData);
+				} catch { }
+				try {
+					md5Word = MD5Class.getString(newBlank.WordData);
+				} catch { };
+				newBlank.UpdatedPDF = newBlank.UpdatedPDF && newBlank.md5PDF != md5PDF;
+				newBlank.UpdatedWord = newBlank.UpdatedWord && newBlank.md5Word != md5Word;
 				if (newBlank.UpdatedPDF || newBlank.UpdatedWord)
 					SaveTBPDataToDB(newBlank, tbl, eni);
 				eni.SaveChanges();
 			} catch (Exception e) {
 				Logger.info("Ошибка при создании бланка " + e.ToString());
-				return new ReturnMessage(false, "Ошибка при создании бланка " + e.ToString());
+				return new ReturnMessage(false, "Ошибка при создании бланка " );
 			}
 			return new ReturnMessage(true, "Бланк успешно создан");
 		}
@@ -248,6 +260,7 @@ namespace BlankJournal.Models {
 					tbl.DataWord = word.ID;
 					word.Data = newBlank.WordData;
 					word.FileInfo = newBlank.FileInfoWord;
+					word.md5 = newBlank.md5Word;
 					eni.DataTable.Add(word);
 				}
 
@@ -262,6 +275,7 @@ namespace BlankJournal.Models {
 					pdf.isPDF = true;
 					pdf.Data = newBlank.PDFData;
 					pdf.FileInfo = newBlank.FileInfoPDF;
+					pdf.md5 = newBlank.md5PDF;
 					eni.DataTable.Add(pdf);
 
 				}

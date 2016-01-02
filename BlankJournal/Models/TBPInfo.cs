@@ -22,6 +22,8 @@ namespace BlankJournal.Models {
 		public string ObjectInfo { get; set; }
 		public string FileInfoPDF { get; set; }
 		public string FileInfoWord { get; set; }
+		public string md5Word { get; set; }
+		public string md5PDF { get; set; }
 		public int CountActiveComments { get; set; }
 
 

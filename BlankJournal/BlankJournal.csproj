@@ -166,6 +166,7 @@
     <Compile Include="Models\Folder.cs" />
     <Compile Include="Models\InitDB.cs" />
     <Compile Include="Models\Journal.cs" />
+    <Compile Include="Models\MD5Class.cs" />
     <Compile Include="Models\TBPComment.cs" />
     <Compile Include="Models\TBPHistoryRecord.cs" />
     <Compile Include="Models\TBPInfo.cs" />
