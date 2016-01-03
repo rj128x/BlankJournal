@@ -40,12 +40,11 @@ namespace BlankJournal.Controllers {
 			BPJournalTable data = (from d in eni.BPJournalTable where d.Id == id select d).FirstOrDefault();
 			if (data !=null) {
 				BPJournalTable dt = data;
-				string fileID = dt.isOBP ? dt.WordData : dt.PDFData;
 				if (!dt.isOBP) {
 					string fn = getPDFWithNumber(id);
-					Response.Redirect("/TempData/"+fn);
+					Response.Redirect("/TempData/"+fn+"?"+Guid.NewGuid().ToString());
 				} else {
-					processFile(fileID);
+					processFile(dt.WordData);
 				}
 			}
 			return View("View1");
@@ -70,7 +69,7 @@ namespace BlankJournal.Controllers {
 			if (data!=null) {
 				string fn = Server.MapPath("/TempData/"+data.data.FileInfo);
 				int num = (int)Math.Round((data.blank.Number - data.blank.DateCreate.Year) * 1000);
-				PDFClass.addTBPNumber(data.data.Data, fn,data.blank.Id);
+				PDFClass.addTBPNumber(data.data.Data, fn,num.ToString());
 				return data.data.FileInfo;
 			}
 			return "";
