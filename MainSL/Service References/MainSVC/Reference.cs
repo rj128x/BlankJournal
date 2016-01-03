@@ -1398,6 +1398,11 @@ namespace MainSL.MainSVC {
         System.IAsyncResult BeginaddFile(string fileInfo, byte[] data, System.DateTime dateLoad, System.AsyncCallback callback, object asyncState);
         
         MainSL.MainSVC.ReturnMessage EndaddFile(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:MainService/removeTBP", ReplyAction="urn:MainService/removeTBPResponse")]
+        System.IAsyncResult BeginremoveTBP(MainSL.MainSVC.TBPInfo tbp, System.AsyncCallback callback, object asyncState);
+        
+        MainSL.MainSVC.ReturnMessage EndremoveTBP(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1729,6 +1734,25 @@ namespace MainSL.MainSVC {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class removeTBPCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public removeTBPCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public MainSL.MainSVC.ReturnMessage Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((MainSL.MainSVC.ReturnMessage)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class MainServiceClient : System.ServiceModel.ClientBase<MainSL.MainSVC.MainService>, MainSL.MainSVC.MainService {
         
         private BeginOperationDelegate onBeginDoWorkDelegate;
@@ -1839,6 +1863,12 @@ namespace MainSL.MainSVC {
         
         private System.Threading.SendOrPostCallback onaddFileCompletedDelegate;
         
+        private BeginOperationDelegate onBeginremoveTBPDelegate;
+        
+        private EndOperationDelegate onEndremoveTBPDelegate;
+        
+        private System.Threading.SendOrPostCallback onremoveTBPCompletedDelegate;
+        
         private BeginOperationDelegate onBeginOpenDelegate;
         
         private EndOperationDelegate onEndOpenDelegate;
@@ -1927,6 +1957,8 @@ namespace MainSL.MainSVC {
         public event System.EventHandler<editUserCompletedEventArgs> editUserCompleted;
         
         public event System.EventHandler<addFileCompletedEventArgs> addFileCompleted;
+        
+        public event System.EventHandler<removeTBPCompletedEventArgs> removeTBPCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
         
@@ -2749,6 +2781,52 @@ namespace MainSL.MainSVC {
                         dateLoad}, this.onEndaddFileDelegate, this.onaddFileCompletedDelegate, userState);
         }
         
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult MainSL.MainSVC.MainService.BeginremoveTBP(MainSL.MainSVC.TBPInfo tbp, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginremoveTBP(tbp, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        MainSL.MainSVC.ReturnMessage MainSL.MainSVC.MainService.EndremoveTBP(System.IAsyncResult result) {
+            return base.Channel.EndremoveTBP(result);
+        }
+        
+        private System.IAsyncResult OnBeginremoveTBP(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            MainSL.MainSVC.TBPInfo tbp = ((MainSL.MainSVC.TBPInfo)(inValues[0]));
+            return ((MainSL.MainSVC.MainService)(this)).BeginremoveTBP(tbp, callback, asyncState);
+        }
+        
+        private object[] OnEndremoveTBP(System.IAsyncResult result) {
+            MainSL.MainSVC.ReturnMessage retVal = ((MainSL.MainSVC.MainService)(this)).EndremoveTBP(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnremoveTBPCompleted(object state) {
+            if ((this.removeTBPCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.removeTBPCompleted(this, new removeTBPCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void removeTBPAsync(MainSL.MainSVC.TBPInfo tbp) {
+            this.removeTBPAsync(tbp, null);
+        }
+        
+        public void removeTBPAsync(MainSL.MainSVC.TBPInfo tbp, object userState) {
+            if ((this.onBeginremoveTBPDelegate == null)) {
+                this.onBeginremoveTBPDelegate = new BeginOperationDelegate(this.OnBeginremoveTBP);
+            }
+            if ((this.onEndremoveTBPDelegate == null)) {
+                this.onEndremoveTBPDelegate = new EndOperationDelegate(this.OnEndremoveTBP);
+            }
+            if ((this.onremoveTBPCompletedDelegate == null)) {
+                this.onremoveTBPCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnremoveTBPCompleted);
+            }
+            base.InvokeAsync(this.onBeginremoveTBPDelegate, new object[] {
+                        tbp}, this.onEndremoveTBPDelegate, this.onremoveTBPCompletedDelegate, userState);
+        }
+        
         private System.IAsyncResult OnBeginOpen(object[] inValues, System.AsyncCallback callback, object asyncState) {
             return ((System.ServiceModel.ICommunicationObject)(this)).BeginOpen(callback, asyncState);
         }
@@ -3050,6 +3128,19 @@ namespace MainSL.MainSVC {
             public MainSL.MainSVC.ReturnMessage EndaddFile(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 MainSL.MainSVC.ReturnMessage _result = ((MainSL.MainSVC.ReturnMessage)(base.EndInvoke("addFile", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginremoveTBP(MainSL.MainSVC.TBPInfo tbp, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = tbp;
+                System.IAsyncResult _result = base.BeginInvoke("removeTBP", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public MainSL.MainSVC.ReturnMessage EndremoveTBP(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                MainSL.MainSVC.ReturnMessage _result = ((MainSL.MainSVC.ReturnMessage)(base.EndInvoke("removeTBP", _args, result)));
                 return _result;
             }
         }

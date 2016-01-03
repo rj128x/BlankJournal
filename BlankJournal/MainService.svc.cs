@@ -122,6 +122,11 @@ namespace BlankJournal {
 			return InitDB.processFileData(fileInfo, data,dateLoad);
 		}
 
+		[OperationContract]
+		public ReturnMessage removeTBP(TBPInfo tbp) {
+			return DBContext.Single.removeTBP(tbp);
+		}
+
 		// Добавьте здесь дополнительные операции и отметьте их атрибутом [OperationContract]
 	}
 }

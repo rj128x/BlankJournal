@@ -93,7 +93,7 @@ namespace BlankJournal.Models {
 				var blanks = from b in eni.TBPInfoTable
 								 from dat in eni.DataTable.Where(dat => dat.ID == b.DataPDF).DefaultIfEmpty()
 								 from dat2 in eni.DataTable.Where(dat2 => dat2.ID == b.DataWord).DefaultIfEmpty()
-								 where b.Folder == folderID && b.isActive
+								 where b.Folder == folderID && b.isActive orderby b.Number
 								 select new { blank = b, FileInfoPDF = dat.FileInfo, FileInfoWord = dat2.FileInfo,
 								 md5PDF=dat.md5,md5Word=dat2.md5};
 				Dictionary<string, TBPInfo> res = new Dictionary<string, TBPInfo>();
@@ -302,6 +302,24 @@ namespace BlankJournal.Models {
 				return false;
 			}
 			return true;
+		}
+
+		public ReturnMessage removeTBP(TBPInfo tbp) {
+			Logger.info("Удаление бланка " + tbp.Number);
+			try {
+				BlanksEntities eni = new BlanksEntities();
+				TBPInfoTable tbl = (from t in eni.TBPInfoTable where t.ID == tbp.ID select t).FirstOrDefault();
+				if (tbl != null) {
+					tbl.isActive = false;
+					eni.SaveChanges();
+					return new ReturnMessage(true,"Бланк удален");
+				} else {
+					return new ReturnMessage(true, "Бланк не найден");
+				}
+			} catch (Exception e) {
+				Logger.info("ошибка при удалении бланка " + e.ToString());
+				return new ReturnMessage(false, "Ошибка при удалении бланка");
+			}
 		}
 
 	}

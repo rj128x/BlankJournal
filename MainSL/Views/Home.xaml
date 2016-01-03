@@ -107,6 +107,8 @@
                                                 Visibility="{Binding Single.CurrentUser.CanEditTBP, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
                         <Button Content="История редактирования" Name="btnHistoryTBP" Click="btnHistoryTBP_Click"
                                                 Visibility="{Binding Single.CurrentUser.CanEditTBP, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
+                        <Button Content="Удалить" Name="btnDeleteTBP" Click="btnDeleteTBP_Click"
+                                                Visibility="{Binding Single.CurrentUser.CanEditTBP, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
                     </StackPanel>                    
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">

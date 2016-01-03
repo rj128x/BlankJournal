@@ -116,6 +116,12 @@
   <wsdl:message name="MainService_addFile_OutputMessage">
     <wsdl:part name="parameters" element="addFileResponse" />
   </wsdl:message>
+  <wsdl:message name="MainService_removeTBP_InputMessage">
+    <wsdl:part name="parameters" element="removeTBP" />
+  </wsdl:message>
+  <wsdl:message name="MainService_removeTBP_OutputMessage">
+    <wsdl:part name="parameters" element="removeTBPResponse" />
+  </wsdl:message>
   <wsdl:portType name="MainService">
     <wsdl:operation name="DoWork">
       <wsdl:input wsaw:Action="urn:MainService/DoWork" message="MainService_DoWork_InputMessage" />
@@ -188,6 +194,10 @@
     <wsdl:operation name="addFile">
       <wsdl:input wsaw:Action="urn:MainService/addFile" message="MainService_addFile_InputMessage" />
       <wsdl:output wsaw:Action="urn:MainService/addFileResponse" message="MainService_addFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="removeTBP">
+      <wsdl:input wsaw:Action="urn:MainService/removeTBP" message="MainService_removeTBP_InputMessage" />
+      <wsdl:output wsaw:Action="urn:MainService/removeTBPResponse" message="MainService_removeTBP_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
 </wsdl:definitions>

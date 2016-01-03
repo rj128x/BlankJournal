@@ -24,16 +24,20 @@ namespace MainSL {
 		}
 
 		public void init() {
-				GlobalContext.Single.Client.GetTBPBlanksByFolderCompleted += Client_GetTBPBlanksByFolderCompleted;
-				GlobalContext.Single.Client.InitOBPCompleted += Client_InitOBPCompleted;
-				GlobalContext.Single.Client.InitTBPCompleted += Client_InitTBPCompleted;
+			GlobalContext.Single.Client.GetTBPBlanksByFolderCompleted += Client_GetTBPBlanksByFolderCompleted;
+			GlobalContext.Single.Client.InitOBPCompleted += Client_InitOBPCompleted;
+			GlobalContext.Single.Client.InitTBPCompleted += Client_InitTBPCompleted;
+			GlobalContext.Single.Client.removeTBPCompleted += Client_removeTBPCompleted;
 
 		}
 
+
+
 		public void deInit() {
-				GlobalContext.Single.Client.GetTBPBlanksByFolderCompleted -= Client_GetTBPBlanksByFolderCompleted;
-				GlobalContext.Single.Client.InitOBPCompleted -= Client_InitOBPCompleted;
-				GlobalContext.Single.Client.InitTBPCompleted -= Client_InitTBPCompleted;
+			GlobalContext.Single.Client.GetTBPBlanksByFolderCompleted -= Client_GetTBPBlanksByFolderCompleted;
+			GlobalContext.Single.Client.InitOBPCompleted -= Client_InitOBPCompleted;
+			GlobalContext.Single.Client.InitTBPCompleted -= Client_InitTBPCompleted;
+			GlobalContext.Single.Client.removeTBPCompleted -= Client_removeTBPCompleted;
 		}
 
 		void Client_GetTBPBlanksByFolderCompleted(object sender, GetTBPBlanksByFolderCompletedEventArgs e) {
@@ -66,7 +70,7 @@ namespace MainSL {
 			}
 		}
 
-		protected override void OnNavigatedFrom(NavigationEventArgs e) {			
+		protected override void OnNavigatedFrom(NavigationEventArgs e) {
 			deInit();
 			base.OnNavigatedFrom(e);
 		}
@@ -74,7 +78,7 @@ namespace MainSL {
 		private void Button_Click(object sender, RoutedEventArgs e) {
 			if (CurrentFolder != null) {
 				TBPInfo newBlank = new TBPInfo();
-				newBlank.Number = CurrentFolder.ID+"-";
+				newBlank.Number = CurrentFolder.ID + "-";
 				newBlank.Name = "";
 				newBlank.FolderID = CurrentFolder.ID;
 				TBPWindow newWindow = new TBPWindow();
@@ -88,11 +92,11 @@ namespace MainSL {
 		void newWindow_Closed(object sender, EventArgs e) {
 			TBPWindow win = sender as TBPWindow;
 			//if (win.DialogResult == true) {
+			GlobalContext.Single.IsBusy = true;
+			if (CurrentFolder != null) {
 				GlobalContext.Single.IsBusy = true;
-				if (CurrentFolder != null) {
-					GlobalContext.Single.IsBusy = true;
-					GlobalContext.Single.Client.GetTBPBlanksByFolderAsync(CurrentFolder.ID);
-				}
+				GlobalContext.Single.Client.GetTBPBlanksByFolderAsync(CurrentFolder.ID);
+			}
 			//} 
 		}
 
@@ -133,18 +137,18 @@ namespace MainSL {
 		void win_Closed(object sender, EventArgs e) {
 			JournalRecordWindow win = sender as JournalRecordWindow;
 			//if (win.DialogResult == true) {
-				if (CurrentFolder != null) {
-					GlobalContext.Single.IsBusy = true;
-					GlobalContext.Single.Client.GetTBPBlanksByFolderAsync(CurrentFolder.ID);
-				}
+			if (CurrentFolder != null) {
+				GlobalContext.Single.IsBusy = true;
+				GlobalContext.Single.Client.GetTBPBlanksByFolderAsync(CurrentFolder.ID);
+			}
 			//}
 		}
 
-		private void btnNewOBP_Click(object sender, RoutedEventArgs e) {			
+		private void btnNewOBP_Click(object sender, RoutedEventArgs e) {
 			TBPInfo tbp = new TBPInfo();
 			tbp.Number = "-";
 			tbp.Name = "ОБП";
-			tbp.FolderID ="-";
+			tbp.FolderID = "-";
 			GlobalContext.Single.IsBusy = true;
 			GlobalContext.Single.Client.InitOBPAsync(tbp);
 		}
@@ -187,10 +191,10 @@ namespace MainSL {
 		void commentWin_Closed(object sender, EventArgs e) {
 			CommentWindow win = sender as CommentWindow;
 			//if (win.DialogResult == true) {
-				if (CurrentFolder != null) {
-					GlobalContext.Single.IsBusy = true;
-					GlobalContext.Single.Client.GetTBPBlanksByFolderAsync(CurrentFolder.ID);
-				}
+			if (CurrentFolder != null) {
+				GlobalContext.Single.IsBusy = true;
+				GlobalContext.Single.Client.GetTBPBlanksByFolderAsync(CurrentFolder.ID);
+			}
 			//}
 		}
 
@@ -220,6 +224,27 @@ namespace MainSL {
 		private void btnPacketLoad_Click(object sender, RoutedEventArgs e) {
 			MultiLoadWindow multiWin = new MultiLoadWindow();
 			multiWin.Show();
+		}
+
+		private void btnDeleteTBP_Click(object sender, RoutedEventArgs e) {
+			if (CurrentTBP != null) {
+				if (MessageBox.Show(String.Format("Вы уверены что хотите удалить бланк {0}?", CurrentTBP.Number), "Удаление бланка",
+					MessageBoxButton.OKCancel) == MessageBoxResult.OK) {
+					GlobalContext.Single.IsBusy = true;
+					GlobalContext.Single.Client.removeTBPAsync(CurrentTBP);
+
+				}
+			}
+		}
+
+		void Client_removeTBPCompleted(object sender, removeTBPCompletedEventArgs e) {
+			GlobalContext.Single.IsBusy = false;
+			ReturnMessage msg = e.Result as ReturnMessage;
+			MessageBox.Show(msg.Message);
+			if (CurrentFolder != null) {
+				GlobalContext.Single.IsBusy = true;
+				GlobalContext.Single.Client.GetTBPBlanksByFolderAsync(CurrentFolder.ID);
+			}
 		}
 	}
 }

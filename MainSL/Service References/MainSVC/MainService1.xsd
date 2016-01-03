@@ -240,4 +240,18 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="removeTBP">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/BlankJournal.Models" minOccurs="0" name="tbp" nillable="true" type="q27:TBPInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="removeTBPResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/BlankJournal" minOccurs="0" name="removeTBPResult" nillable="true" type="q28:ReturnMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>
