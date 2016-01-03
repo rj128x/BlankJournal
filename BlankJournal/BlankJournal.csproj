@@ -49,6 +49,9 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net40\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="itextsharp">
+      <HintPath>libs\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="log4net">
       <HintPath>libs\log4net.dll</HintPath>
     </Reference>
@@ -167,6 +170,7 @@
     <Compile Include="Models\InitDB.cs" />
     <Compile Include="Models\Journal.cs" />
     <Compile Include="Models\MD5Class.cs" />
+    <Compile Include="Models\PDFClass.cs" />
     <Compile Include="Models\TBPComment.cs" />
     <Compile Include="Models\TBPHistoryRecord.cs" />
     <Compile Include="Models\TBPInfo.cs" />

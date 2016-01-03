@@ -37,24 +37,43 @@ namespace BlankJournal.Controllers {
 
 		public ActionResult getBlank(string id) {
 			BlanksEntities eni = new BlanksEntities();
-			IQueryable<BPJournalTable> data = from d in eni.BPJournalTable where d.Id == id select d;
-			if (data.Count() > 0) {
-				BPJournalTable dt = data.First();
+			BPJournalTable data = (from d in eni.BPJournalTable where d.Id == id select d).FirstOrDefault();
+			if (data !=null) {
+				BPJournalTable dt = data;
 				string fileID = dt.isOBP ? dt.WordData : dt.PDFData;
-				processFile(fileID);
+				if (!dt.isOBP) {
+					string fn = getPDFWithNumber(id);
+					Response.Redirect("/TempData/"+fn);
+				} else {
+					processFile(fileID);
+				}
 			}
 			return View("View1");
 		}
 
 		public ActionResult getOBPWord(string id) {
 			BlanksEntities eni = new BlanksEntities();
-			IQueryable<TBPInfoTable> data = from d in eni.TBPInfoTable where d.Number == id select d;
-			if (data.Count() > 0) {
-				TBPInfo tbp = new TBPInfo(data.First());
+			TBPInfoTable data = (from d in eni.TBPInfoTable where d.Number == id select d).FirstOrDefault();
+			if (data !=null) {
+				TBPInfo tbp = new TBPInfo(data);
 				string fn=WordData.createOBP(Server.MapPath("/TempData/"),tbp);
 				Response.Redirect("/TempData/" + fn);
 			}
 			return View("View1");
+		}
+
+		public string getPDFWithNumber(string id) {
+			BlanksEntities eni = new BlanksEntities();
+			var data = (from d in eni.BPJournalTable where d.Id == id
+										  from dat in eni.DataTable.Where(dat => dat.ID == d.PDFData).DefaultIfEmpty()
+										  select new { blank = d, data = dat }).FirstOrDefault();
+			if (data!=null) {
+				string fn = Server.MapPath("/TempData/"+data.data.FileInfo);
+				int num = (int)Math.Round((data.blank.Number - data.blank.DateCreate.Year) * 1000);
+				PDFClass.addTBPNumber(data.data.Data, fn,data.blank.Id);
+				return data.data.FileInfo;
+			}
+			return "";
 		}
 
 		public ActionResult InitDB() {
