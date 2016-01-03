@@ -28,7 +28,6 @@ namespace BlankJournal
         public virtual DataTable DataTable1 { get; set; }
         public virtual DataTable DataTable2 { get; set; }
         public virtual DataTable DataTable3 { get; set; }
-        public virtual TBPInfoTable TBPInfoTable { get; set; }
         public virtual UsersTable UsersTable { get; set; }
     }
 }

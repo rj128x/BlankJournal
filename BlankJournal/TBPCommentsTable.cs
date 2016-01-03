@@ -27,7 +27,6 @@ namespace BlankJournal
         public bool Finished { get; set; }
     
         public virtual DataTable DataTable { get; set; }
-        public virtual TBPInfoTable TBPInfoTable { get; set; }
         public virtual UsersTable UsersTable { get; set; }
         public virtual UsersTable UsersTable1 { get; set; }
     }

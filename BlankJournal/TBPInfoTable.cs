@@ -14,13 +14,6 @@ namespace BlankJournal
     
     public partial class TBPInfoTable
     {
-        public TBPInfoTable()
-        {
-            this.BPJournalTable = new HashSet<BPJournalTable>();
-            this.TBPCommentsTable = new HashSet<TBPCommentsTable>();
-            this.TBPHistoryTable = new HashSet<TBPHistoryTable>();
-        }
-    
         public int ID { get; set; }
         public string Number { get; set; }
         public string Folder { get; set; }
@@ -30,11 +23,8 @@ namespace BlankJournal
         public string DataWord { get; set; }
         public bool isActive { get; set; }
     
-        public virtual ICollection<BPJournalTable> BPJournalTable { get; set; }
         public virtual DataTable DataTable { get; set; }
         public virtual DataTable DataTable1 { get; set; }
         public virtual FoldersTable FoldersTable { get; set; }
-        public virtual ICollection<TBPCommentsTable> TBPCommentsTable { get; set; }
-        public virtual ICollection<TBPHistoryTable> TBPHistoryTable { get; set; }
     }
 }
