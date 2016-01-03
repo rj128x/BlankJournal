@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 
@@ -91,12 +92,30 @@ namespace BlankJournal.Models {
 			else {
 				rec.DoubleNumber = date.Year + 0.001;
 			}
-			rec.Number = String.Format("ОБП № {1}/{0}", Math.Truncate(rec.DoubleNumber), Math.Round((rec.DoubleNumber - date.Year) * 1000));
+			int FullNum=(int) Math.Round((rec.DoubleNumber - date.Year) * 1000);
+			rec.Number = String.Format("ОБП № {1}/{0}", Math.Truncate(rec.DoubleNumber),FullNum);
 			rec.Author = DBContext.Single.GetCurrentUser().Login;
 			rec.Task = tbp.Name;
 			rec.isOBP = true;
 			rec.TBPNumber = tbp.Number;
 			rec.TBPID = tbp.ID;
+			if (tbp.Number != "-") {
+				try {
+					string obpFile = BlankJournal.Models.WordData.createOBP(DBContext.TempFolder, tbp, FullNum);
+					rec.WordData = File.ReadAllBytes(DBContext.TempFolder + "/" + obpFile);
+					rec.FileInfoWord = obpFile;
+				} catch (Exception e) {
+					Logger.info("Ошибка при создании ОБП из ТБП" + e.ToString());
+				}
+			} else {
+				try {
+					string obpFile = BlankJournal.Models.WordData.createEmptyOBP(DBContext.TempFolder, FullNum);
+					rec.WordData = File.ReadAllBytes(DBContext.TempFolder + "/" + obpFile);
+					rec.FileInfoWord = obpFile;
+				} catch (Exception e) {
+					Logger.info("Ошибка при создании ОБП пустог" + e.ToString());
+				}
+			} 
 			rec.DateCreate = DateTime.Now;
 			rec.DateEnd = rec.DateCreate;
 			rec.DateStart = rec.DateCreate;

@@ -24,6 +24,8 @@ namespace BlankJournal {
 
 			Settings.init(Server.MapPath("/bin/Data/MainSettings.xml"));
 			DBContext.Init();
+			DBContext.TempFolder = Server.MapPath("/TempData/");
+			DBContext.DataFolder = Server.MapPath("/Data/");
 			//BlanksModel.init();
 		}
 	}

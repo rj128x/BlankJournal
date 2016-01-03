@@ -7,6 +7,8 @@ using System.Web;
 namespace BlankJournal.Models {
 	public class DBContext {
 		public static DBContext Single { get; protected set; }
+		public static String TempFolder { get; set; }
+		public static String DataFolder { get; set; }
 		public static void Init() {
 			Single = new DBContext();
 			Single.createInitData();
