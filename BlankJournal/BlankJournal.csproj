@@ -199,6 +199,9 @@
     <Content Include="ClientBin\MainSL.xap" />
     <Content Include="Data\ClearDB.sql" />
     <Content Include="Global.asax" />
+    <Content Include="libs\itextsharp.dll" />
+    <Content Include="libs\log4net.dll" />
+    <Content Include="libs\log4net.xml" />
     <Content Include="MainService.svc" />
     <Content Include="Data\MainSettings.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
