@@ -42,82 +42,12 @@ namespace BlankJournal.Models {
 					}
 				}
 			}
-
 	
 			foreach (OpenXmlElement p in forDel) {
 				body.RemoveChild<OpenXmlElement>(p);
 			}
 
-			Justification just = new Justification() { Val = JustificationValues.Center };
-			RunProperties rPr = new RunProperties();
-			rPr.FontSize = new FontSize();
-			rPr.FontSize.Val = new StringValue("48");
-			rPr.Bold = new Bold();
-			rPr.Bold.Val = new OnOffValue(true);
-
-			Run headerRun = new Run(new Text("Бланк перелючений №"+(num>0?num.ToString():"____")));
-			headerRun.RunProperties = rPr;
-			Paragraph par = new Paragraph(headerRun);
-			par.ParagraphProperties = new ParagraphProperties();
-			par.ParagraphProperties.AppendChild(just);
-			body.PrependChild(par);
-
-			headerRun = new Run(new Text("Объект переключений: " + tbp.ObjectInfo));
-			rPr = new RunProperties();
-			rPr.FontSize = new FontSize();
-			rPr.FontSize.Val = new StringValue("32");
-			rPr.Bold = new Bold();
-			rPr.Bold.Val = new OnOffValue(true);
-			headerRun.AppendChild(rPr);
-			par = new Paragraph(headerRun);
-			par.ParagraphProperties = new ParagraphProperties();
-			par.ParagraphProperties.AppendChild(new Justification() { Val = JustificationValues.Center });
-			body.InsertAfter(par, body.FirstChild);
-
-			Run footerRun = new Run(new Text("Бланк заполнил и переключение производит:   ___________________________________"));
-			footerRun.RunProperties = new RunProperties() {
-				FontSize = new FontSize() { Val = new StringValue("20") }
-			};
-			body.AppendChild(new Paragraph(footerRun));
-
-			footerRun = new Run(new Text("(должность, ФИО, подпись)"));
-			footerRun.RunProperties = new RunProperties() {
-				FontSize = new FontSize() { Val = new StringValue("15") }
-			};
-			par = new Paragraph(footerRun);
-			par.ParagraphProperties = new ParagraphProperties();
-			par.ParagraphProperties.AppendChild(new Justification() { Val = JustificationValues.Right });
-			body.AppendChild(par);
-
-			footerRun = new Run(new Text("Бланк проверил и переключение контролирует: ___________________________________"));
-			footerRun.RunProperties = new RunProperties() {
-				FontSize = new FontSize() { Val = new StringValue("20") }
-			};
-			body.AppendChild(new Paragraph(footerRun));
-
-			footerRun = new Run(new Text("(должность, ФИО, подпись)"));
-			footerRun.RunProperties = new RunProperties() {
-				FontSize = new FontSize() { Val = new StringValue("15") }
-			};
-			par = new Paragraph(footerRun);
-			par.ParagraphProperties = new ParagraphProperties();
-			par.ParagraphProperties.AppendChild(new Justification() { Val = JustificationValues.Right });
-			body.AppendChild(par);
-
-			footerRun = new Run(new Text("Бланк проверил, переключения разрешаю:      ___________________________________"));
-			footerRun.RunProperties = new RunProperties() {
-				FontSize = new FontSize() { Val = new StringValue("20") }
-			};
-			body.AppendChild(new Paragraph(footerRun));
-
-			footerRun = new Run(new Text("(должность, ФИО, подпись)"));
-			footerRun.RunProperties = new RunProperties() {
-				FontSize = new FontSize() { Val = new StringValue("15") }
-			};
-			par = new Paragraph(footerRun);
-			par.ParagraphProperties = new ParagraphProperties();
-			par.ParagraphProperties.AppendChild(new Justification() { Val = JustificationValues.Right });
-			body.AppendChild(par);
+			WriteRegularData(body, tbp.ObjectInfo, num);
 
 			
 			doc.Close();
@@ -133,6 +63,14 @@ namespace BlankJournal.Models {
 			Body body = doc.MainDocumentPart.Document.Body;
 			IEnumerable<OpenXmlElement> paragraphs = body.Elements<OpenXmlElement>();
 
+			WriteRegularData(body, "", num);
+
+
+			doc.Close();
+			return fn;
+		}
+
+		protected static void WriteRegularData(Body body,string obj, int num=-1){
 			Justification just = new Justification() { Val = JustificationValues.Center };
 			RunProperties rPr = new RunProperties();
 			rPr.FontSize = new FontSize();
@@ -203,10 +141,6 @@ namespace BlankJournal.Models {
 			par.ParagraphProperties = new ParagraphProperties();
 			par.ParagraphProperties.AppendChild(new Justification() { Val = JustificationValues.Right });
 			body.AppendChild(par);
-
-
-			doc.Close();
-			return fn;
 		}
 	}
 }
