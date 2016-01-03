@@ -137,6 +137,7 @@ namespace BlankJournal.Models {
 					dat.DateCreate = DateTime.Now;
 					dat.Author = DBContext.Single.GetCurrentUser().Login;
 					dat.FileInfo = record.FileInfoWord;
+					dat.md5 = MD5Class.getString(record.WordData);
 					IQueryable<DataTable> data=from d in eni.DataTable where d.ID==record.IDWordData select d;
 					if (data.Count() > 0)
 						dat = data.First();

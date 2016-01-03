@@ -526,6 +526,8 @@ namespace MainSL.MainSVC {
         
         private int StartLSOField;
         
+        private int TBPIDField;
+        
         private string TBPNumberField;
         
         private string TaskField;
@@ -706,6 +708,19 @@ namespace MainSL.MainSVC {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TBPID {
+            get {
+                return this.TBPIDField;
+            }
+            set {
+                if ((this.TBPIDField.Equals(value) != true)) {
+                    this.TBPIDField = value;
+                    this.RaisePropertyChanged("TBPID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string TBPNumber {
             get {
                 return this.TBPNumberField;
@@ -880,6 +895,8 @@ namespace MainSL.MainSVC {
         
         private string PrevWordIDField;
         
+        private int TBPIDField;
+        
         private string TBPNumberField;
         
         private bool UpdatedPDFField;
@@ -1017,6 +1034,19 @@ namespace MainSL.MainSVC {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TBPID {
+            get {
+                return this.TBPIDField;
+            }
+            set {
+                if ((this.TBPIDField.Equals(value) != true)) {
+                    this.TBPIDField = value;
+                    this.RaisePropertyChanged("TBPID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string TBPNumber {
             get {
                 return this.TBPNumberField;
@@ -1091,6 +1121,8 @@ namespace MainSL.MainSVC {
         private string IDField;
         
         private string PerformerField;
+        
+        private int TBPIDField;
         
         private string TBPNumberField;
         
@@ -1233,6 +1265,19 @@ namespace MainSL.MainSVC {
                 if ((object.ReferenceEquals(this.PerformerField, value) != true)) {
                     this.PerformerField = value;
                     this.RaisePropertyChanged("Performer");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TBPID {
+            get {
+                return this.TBPIDField;
+            }
+            set {
+                if ((this.TBPIDField.Equals(value) != true)) {
+                    this.TBPIDField = value;
+                    this.RaisePropertyChanged("TBPID");
                 }
             }
         }

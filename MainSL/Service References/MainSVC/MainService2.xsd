@@ -77,6 +77,7 @@
       <xs:element minOccurs="0" name="IDWordData" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Number" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="StartLSO" type="xs:int" />
+      <xs:element minOccurs="0" name="TBPID" type="xs:int" />
       <xs:element minOccurs="0" name="TBPNumber" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Task" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="WordData" nillable="true" type="xs:base64Binary" />
@@ -103,6 +104,7 @@
       <xs:element minOccurs="0" name="NewWordID" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="PrevPDFID" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="PrevWordID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TBPID" type="xs:int" />
       <xs:element minOccurs="0" name="TBPNumber" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="UpdatedPDF" type="xs:boolean" />
       <xs:element minOccurs="0" name="UpdatedWord" type="xs:boolean" />
@@ -122,6 +124,7 @@
       <xs:element minOccurs="0" name="Finished" type="xs:boolean" />
       <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Performer" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TBPID" type="xs:int" />
       <xs:element minOccurs="0" name="TBPNumber" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>

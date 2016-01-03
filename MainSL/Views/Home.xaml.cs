@@ -177,6 +177,7 @@ namespace MainSL {
 				CurrentTBP.EditingTBP = true;
 				TBPComment newCom = new TBPComment();
 				newCom.TBPNumber = CurrentTBP.Number;
+				newCom.TBPID = CurrentTBP.ID;
 				commentWin.Init(newCom);
 				commentWin.Closed += commentWin_Closed;
 				commentWin.Show();

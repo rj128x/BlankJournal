@@ -58,6 +58,7 @@ namespace BlankJournal.Models {
 					tbl.WordData=dat.ID;
 					dat.FileInfo = comment.FileInfoData;
 					dat.isPDF=false;
+					dat.md5 = MD5Class.getString(comment.Data);
 					eni.DataTable.Add(dat);
 				}
 				eni.TBPCommentsTable.Add(tbl);
