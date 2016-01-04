@@ -57,11 +57,15 @@ namespace BlankJournal.Models {
 
 		public void InitUsers() {
 			Logger.info("Чтение пользователей");
-			BlankJournal.BlanksEntities eni = new BlanksEntities();
-			IQueryable<UsersTable> users = from u in eni.UsersTable select u;
-			AllUsers = new Dictionary<string, User>();
-			foreach (UsersTable user in users) {
-				AllUsers.Add(user.Login.ToLower(), new User(user));
+			try {
+				BlankJournal.BlanksEntities eni = new BlanksEntities();
+				IQueryable<UsersTable> users = from u in eni.UsersTable select u;
+				AllUsers = new Dictionary<string, User>();
+				foreach (UsersTable user in users) {
+					AllUsers.Add(user.Login.ToLower(), new User(user));
+				}
+			} catch (Exception e) {
+				Logger.info("Ошибка при чтении списка пользователей");
 			}
 		}
 
@@ -91,13 +95,14 @@ namespace BlankJournal.Models {
 			try {
 				List<TBPInfo> result = new List<TBPInfo>();
 				BlankJournal.BlanksEntities eni = new BlanksEntities();
-				//IQueryable<TBPInfoTable> blanks = from b in eni.TBPInfoTable  where b.Folder == folderID select b;
 				var blanks = from b in eni.TBPInfoTable
 								 from dat in eni.DataTable.Where(dat => dat.ID == b.DataPDF).DefaultIfEmpty()
 								 from dat2 in eni.DataTable.Where(dat2 => dat2.ID == b.DataWord).DefaultIfEmpty()
 								 where b.Folder == folderID && b.isActive orderby b.Number
-								 select new { blank = b, FileInfoPDF = dat.FileInfo, FileInfoWord = dat2.FileInfo,
-								 md5PDF=dat.md5,md5Word=dat2.md5};
+								 select new {
+									 blank = b, FileInfoPDF = dat.FileInfo, FileInfoWord = dat2.FileInfo,
+									 md5PDF = dat.md5, md5Word = dat2.md5
+								 };
 				Dictionary<string, TBPInfo> res = new Dictionary<string, TBPInfo>();
 				Dictionary<int, TBPInfo> resID = new Dictionary<int, TBPInfo>();
 				foreach (var tbl in blanks) {
@@ -186,25 +191,19 @@ namespace BlankJournal.Models {
 
 
 		public ReturnMessage createTBP(TBPInfo newBlank, bool edit = false) {
-			Logger.info("Создание ТБП");
+			Logger.info(edit ? "Редактирование ТБП" : "Создание ТБП");
+			Logger.info(String.Format("ID={0} Number={1}", newBlank.ID, newBlank.Number));
 			BlankJournal.BlanksEntities eni = new BlanksEntities();
 			TBPInfoTable blank = null;
 
 			try {
 				blank = (from b in eni.TBPInfoTable where b.Number == newBlank.Number && b.isActive select b).FirstOrDefault();
-				if (blank!=null) {
-					if (!edit) {
-						Logger.info("Бланк не создан - дубль");
-						return new ReturnMessage(false, String.Format("Бланк с номером {0} уже существует", newBlank.Number));
-					}
+				if (!edit && blank != null) {
+					return new ReturnMessage(false, String.Format("Бланк с номером {0} уже существует", newBlank.Number));
 				}
-			} catch (Exception e) {
-				Logger.info("Ошибка при создании бланка " + e.ToString());
-				return new ReturnMessage(false, String.Format("Ошибка при создании бланка"));
-			}
-			try {
 				TBPInfoTable tbl = edit ? blank : new TBPInfoTable();
 				if (!edit) {
+					Logger.info("Поиск номера нового бланка");
 					int newID = 0;
 					TBPInfoTable maxBlank = (from b in eni.TBPInfoTable orderby b.ID descending select b).FirstOrDefault();
 					if (maxBlank != null)
@@ -212,6 +211,7 @@ namespace BlankJournal.Models {
 					tbl.ID = newID;
 					newBlank.ID = newID;
 					eni.TBPInfoTable.Add(tbl);
+					Logger.info("присвое номер " + newID);
 				}
 				tbl.Number = newBlank.Number;
 				tbl.Name = newBlank.Name;
@@ -226,6 +226,7 @@ namespace BlankJournal.Models {
 				try {
 					md5Word = MD5Class.getString(newBlank.WordData);
 				} catch { };
+
 				newBlank.UpdatedPDF = newBlank.UpdatedPDF && newBlank.md5PDF != md5PDF;
 				newBlank.UpdatedWord = newBlank.UpdatedWord && newBlank.md5Word != md5Word;
 				newBlank.md5PDF = newBlank.UpdatedPDF ? md5PDF : newBlank.md5PDF;
@@ -236,13 +237,13 @@ namespace BlankJournal.Models {
 				eni.SaveChanges();
 			} catch (Exception e) {
 				Logger.info("Ошибка при создании бланка " + e.ToString());
-				return new ReturnMessage(false, "Ошибка при создании бланка " );
+				return new ReturnMessage(false, "Ошибка при создании бланка ");
 			}
 			return new ReturnMessage(true, "Бланк успешно создан");
 		}
 
 		public List<TBPHistoryRecord> getTBPHistory(TBPInfo tbp) {
-			Logger.info("Получение истории изменения ТБП");
+			Logger.info("Получение истории изменения ТБП "+tbp.Number);
 			BlankJournal.BlanksEntities eni = new BlanksEntities();
 			try {
 				List<TBPHistoryRecord> result = new List<TBPHistoryRecord>();
@@ -259,14 +260,15 @@ namespace BlankJournal.Models {
 		}
 
 		public bool SaveTBPDataToDB(TBPInfo newBlank, TBPInfoTable tbl, BlanksEntities eni) {
+			Logger.info("Сохранение загруженных данных бланка в БД");
 			try {
 				TBPHistoryTable hist = new TBPHistoryTable();
 				hist.Id = Guid.NewGuid().ToString();
 				hist.Author = GetCurrentUser().Login;
 				hist.DateCreate = DateTime.Now;
-				
+
 				if (newBlank.UpdatedWord) {
-					hist.PrevWordData = tbl.DataWord;					
+					hist.PrevWordData = tbl.DataWord;
 					DataTable word = new DataTable();
 					word.ID = Guid.NewGuid().ToString();
 					word.Author = GetCurrentUser().Login;
@@ -299,6 +301,7 @@ namespace BlankJournal.Models {
 				hist.TBPID = tbl.ID;
 
 				eni.TBPHistoryTable.Add(hist);
+				Logger.info("Данные успешно сохранены");
 			} catch (Exception e) {
 				Logger.info("Ошиба при записи файлов в БД " + e.ToString());
 				return false;
@@ -314,7 +317,7 @@ namespace BlankJournal.Models {
 				if (tbl != null) {
 					tbl.isActive = false;
 					eni.SaveChanges();
-					return new ReturnMessage(true,"Бланк удален");
+					return new ReturnMessage(true, "Бланк удален");
 				} else {
 					return new ReturnMessage(true, "Бланк не найден");
 				}

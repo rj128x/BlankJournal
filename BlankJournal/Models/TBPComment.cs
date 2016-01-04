@@ -39,6 +39,7 @@ namespace BlankJournal.Models {
 		}
 
 		public static ReturnMessage createComment(TBPComment comment) {
+			Logger.info("Добавление замечания к бланку " + comment.TBPNumber);
 			BlanksEntities eni = new BlanksEntities();
 			try {
 				TBPCommentsTable tbl=new TBPCommentsTable();
@@ -50,6 +51,7 @@ namespace BlankJournal.Models {
 				tbl.TBPID = comment.TBPID;
 				tbl.Id=Guid.NewGuid().ToString();
 				if (comment.Data!=null && comment.Data.Length>0){
+					Logger.info("Загрузка прикрепленного файла");
 					DataTable dat=new DataTable();
 					dat.Data=comment.Data;
 					dat.ID=Guid.NewGuid().ToString();
@@ -71,15 +73,15 @@ namespace BlankJournal.Models {
 		}
 
 		public static ReturnMessage finishComment(TBPComment comment) {
+			Logger.info("Закрытие замечания к бланку " + comment.TBPNumber);
 			BlanksEntities eni = new BlanksEntities();
 			try {
-				IQueryable<TBPCommentsTable> lst = from c in eni.TBPCommentsTable where c.Id == comment.ID select c;
-				if (lst.Count() > 0) {
-					TBPCommentsTable last = lst.First();
-					last.Performer = DBContext.Single.GetCurrentUser().Login;
-					last.DatePerform = DateTime.Now;
-					last.Finished = true;
-					last.CommentPerform = comment.CommentPerform;
+				TBPCommentsTable com = (from c in eni.TBPCommentsTable where c.Id == comment.ID select c).FirstOrDefault();
+				if (com!=null) {
+					com.Performer = DBContext.Single.GetCurrentUser().Login;
+					com.DatePerform = DateTime.Now;
+					com.Finished = true;
+					com.CommentPerform = comment.CommentPerform;
 					eni.SaveChanges();
 					return new ReturnMessage(true, "Замечание успешно закрыто");
 				} else {

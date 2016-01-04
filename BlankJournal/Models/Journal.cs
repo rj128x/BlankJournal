@@ -6,7 +6,7 @@ using System.Web;
 
 namespace BlankJournal.Models {
 	public class JournalRecord {
-		public string Number{get;set;}
+		public string Number { get; set; }
 		public string Task { get; set; }
 		public string Comment { get; set; }
 		public string Author { get; set; }
@@ -47,18 +47,17 @@ namespace BlankJournal.Models {
 		}
 
 		public static JournalRecord initTBPRecord(TBPInfo tbp) {
+			Logger.info("Инициализация нового ТБП (в журнале)");
 			JournalRecord rec = new JournalRecord();
 			BlankJournal.BlanksEntities eni = new BlanksEntities();
-			DateTime date=DateTime.Now;
+			DateTime date = DateTime.Now;
 			BPJournalTable last = null;
 			try {
 				last = eni.BPJournalTable.Where(bp => bp.isOBP == false && Math.Truncate(bp.Number) == date.Year).OrderByDescending(bp => bp.Number).First(bp => bp.TBPNumber == tbp.Number);
-			}
-			catch { };
+			} catch { };
 			if (last != null) {
-				rec.DoubleNumber = last.Number + 0.001;				
-			}
-			else {
+				rec.DoubleNumber = last.Number + 0.001;
+			} else {
 				rec.DoubleNumber = date.Year + 0.001;
 			}
 			rec.Number = String.Format("ТБП № {0}-{2}/{1}", tbp.Number, Math.Truncate(rec.DoubleNumber), Math.Round((rec.DoubleNumber - date.Year) * 1000));
@@ -73,71 +72,76 @@ namespace BlankJournal.Models {
 			rec.StartLSO = 0;
 			rec.EndLSO = 0;
 			rec.Comment = " ";
-
+			Logger.info("Номер ТБП присвоен");
 			return rec;
 		}
 
 		public static JournalRecord initOBPRecord(TBPInfo tbp) {
+			Logger.info("Инициализация нового ОБП (в журнале)");
 			JournalRecord rec = new JournalRecord();
 			BlankJournal.BlanksEntities eni = new BlanksEntities();
 			DateTime date = DateTime.Now;
 			BPJournalTable last = null;
 			try {
 				last = eni.BPJournalTable.Where(bp => bp.isOBP == true && Math.Truncate(bp.Number) == date.Year).OrderByDescending(bp => bp.Number).First();
-			}
-			catch { }
+			} catch { }
 			if (last != null) {
 				rec.DoubleNumber = last.Number + 0.001;
-			}
-			else {
+			} else {
 				rec.DoubleNumber = date.Year + 0.001;
 			}
-			int FullNum=(int) Math.Round((rec.DoubleNumber - date.Year) * 1000);
-			rec.Number = String.Format("ОБП № {1}/{0}", Math.Truncate(rec.DoubleNumber),FullNum);
+			int FullNum = (int)Math.Round((rec.DoubleNumber - date.Year) * 1000);
+			rec.Number = String.Format("ОБП № {1}/{0}", Math.Truncate(rec.DoubleNumber), FullNum);
 			rec.Author = DBContext.Single.GetCurrentUser().Login;
 			rec.Task = tbp.Name;
 			rec.isOBP = true;
 			rec.TBPNumber = tbp.Number;
 			rec.TBPID = tbp.ID;
 			if (tbp.Number != "-") {
-				try {
-					string obpFile = BlankJournal.Models.WordData.createOBP(DBContext.TempFolder, tbp, FullNum);
-					rec.WordData = File.ReadAllBytes(DBContext.TempFolder + "/" + obpFile);
-					rec.FileInfoWord = obpFile;
-				} catch (Exception e) {
-					Logger.info("Ошибка при создании ОБП из ТБП" + e.ToString());
+				if (!String.IsNullOrEmpty(tbp.IDWordData)) {
+					try {
+						Logger.info("Создание файла ОБП с номером из ТБП");
+						string obpFile = BlankJournal.Models.WordData.createOBP(DBContext.TempFolder, tbp, FullNum);
+						rec.WordData = File.ReadAllBytes(DBContext.TempFolder + "/" + obpFile);
+						rec.FileInfoWord = obpFile;
+					} catch (Exception e) {
+						Logger.info("Ошибка при создании ОБП из ТБП" + e.ToString());
+					}
 				}
 			} else {
 				try {
+					Logger.info("Создание пустого файла ОБП с номером из ТБП");
 					string obpFile = BlankJournal.Models.WordData.createEmptyOBP(DBContext.TempFolder, FullNum);
 					rec.WordData = File.ReadAllBytes(DBContext.TempFolder + "/" + obpFile);
 					rec.FileInfoWord = obpFile;
 				} catch (Exception e) {
-					Logger.info("Ошибка при создании ОБП пустог" + e.ToString());
+					Logger.info("Ошибка при создании ОБП пустого" + e.ToString());
 				}
-			} 
+			}
 			rec.DateCreate = DateTime.Now;
 			rec.DateEnd = rec.DateCreate;
 			rec.DateStart = rec.DateCreate;
 			rec.Comment = " ";
 
-			rec.StartLSO = DBContext.Single.MaxLSO+1;
-			rec.EndLSO = DBContext.Single.MaxLSO+2;
+			rec.StartLSO = DBContext.Single.MaxLSO + 1;
+			rec.EndLSO = DBContext.Single.MaxLSO + 2;
 
+			Logger.info("шаблон ОБП создан");
 			return rec;
 		}
 
 		public static ReturnMessage CreateBP(JournalRecord record) {
+			Logger.info("Создание/изменение зписи о переключении в журнале");
 			BlankJournal.BlanksEntities eni = new BlanksEntities();
-			IQueryable<BPJournalTable> blanks = from b in eni.BPJournalTable where b.Number == record.DoubleNumber && b.TBPNumber == record.TBPNumber && b.isOBP==record.isOBP select b;
-			BPJournalTable last = null;
-			if (blanks.Count() > 0) {
-				last = blanks.First();
+			BPJournalTable blank = (from b in eni.BPJournalTable where 
+												b.Number == record.DoubleNumber && b.TBPNumber == record.TBPNumber && b.isOBP == record.isOBP
+											select b).FirstOrDefault();
+			if (blank!=null) {
 				if (record.isInit)
 					return new ReturnMessage(false, "Ошибка при создании бланка переключений. Бланк с такими параметрами уже создан");
 			}
 			try {
-				BPJournalTable tbl=record.isInit?new BPJournalTable():last;
+				BPJournalTable tbl = record.isInit ? new BPJournalTable() : blank;
 				tbl.Id = record.Number;
 				tbl.isOBP = record.isOBP;
 				tbl.TBPNumber = record.TBPNumber;
@@ -150,40 +154,40 @@ namespace BlankJournal.Models {
 				tbl.DateCreate = record.DateCreate;
 				tbl.DateEnd = record.DateEnd;
 
-				if (record.WordData!=null && record.isOBP) {
-					DataTable dat=new DataTable();
-					dat.ID = !string.IsNullOrEmpty(record.IDWordData)?record.IDWordData:Guid.NewGuid().ToString();
-					dat.DateCreate = DateTime.Now;
-					dat.Author = DBContext.Single.GetCurrentUser().Login;
-					dat.FileInfo = record.FileInfoWord;
-					dat.md5 = MD5Class.getString(record.WordData);
-					IQueryable<DataTable> data=from d in eni.DataTable where d.ID==record.IDWordData select d;
-					if (data.Count() > 0)
-						dat = data.First();
-					else
-						eni.DataTable.Add(dat);
-					dat.Data = record.WordData;
-					tbl.WordData = dat.ID;
+				if (record.WordData != null && record.isOBP) {
+					Logger.info("Загрузка прикрепленного файла ");
+					DataTable data = (from d in eni.DataTable where d.ID == record.IDWordData select d).FirstOrDefault();
+					if (data == null){
+						data=new DataTable();
+						data.ID = Guid.NewGuid().ToString();
+						eni.DataTable.Add(data);						
+					}
+					data.DateCreate = DateTime.Now;
+					data.Author = DBContext.Single.GetCurrentUser().Login;
+					data.FileInfo = record.FileInfoWord;
+					data.md5 = MD5Class.getString(record.WordData);
+					
+					data.Data = record.WordData;
+					tbl.WordData = data.ID;
 				}
 
 				if (!record.isOBP) {
-					try {						
-						IQueryable<TBPInfoTable> tbpList = from t in eni.TBPInfoTable where t.Number == tbl.TBPNumber select t;
-						if (tbpList.Count() > 0) {
-							TBPInfoTable tbpInfo = tbpList.First();
-							tbl.PDFData = tbpInfo.DataPDF;
+					Logger.info("Поиск связанного ТБП (для сохранения сылки на файл");
+					try {
+						TBPInfoTable tbp = (from t in eni.TBPInfoTable where t.Number == tbl.TBPNumber select t).FirstOrDefault();
+						if (tbp!=null) {
+							tbl.PDFData = tbp.DataPDF;
 						} else {
 							throw new Exception("Бланк не найден" + tbl.TBPNumber);
 						}
 					} catch (Exception e) {
 						Logger.info("ошибка при формировании записи в журнале переключений. ТБП не найден");
 					}
-				}
-				else {
+				} else {
 					tbl.LSOStart = record.StartLSO;
 					tbl.LSOEnd = record.EndLSO;
 				}
-				
+
 				if (record.isInit)
 					eni.BPJournalTable.Add(tbl);
 				eni.SaveChanges();
@@ -191,15 +195,12 @@ namespace BlankJournal.Models {
 					DBContext.Single.MaxLSO = record.EndLSO > DBContext.Single.MaxLSO ? record.EndLSO : DBContext.Single.MaxLSO;
 					DBContext.Single.LastOBP = tbl.Id;
 				}
-				Logger.info("Бланк создан");
 				return new ReturnMessage(true, "Бланк успешно создан");
-			}
-			catch (Exception e) {
+			} catch (Exception e) {
 				Logger.info("Ошибка при создаии бланка " + e.ToString());
-				Logger.info(e.StackTrace);
 				return new ReturnMessage(false, "Ошибка при создании бланка");
 			}
-			
+
 		}
 	}
 }
