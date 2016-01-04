@@ -13,7 +13,7 @@ namespace BlankJournal.Models {
 			Logger.info("Формирование ОБП из ТБП " + tbp.Number);
 			BlanksEntities eni = new BlanksEntities();
 			DataTable dt = (from d in eni.DataTable where d.ID == tbp.IDWordData select d).FirstOrDefault();
-			if (dt != null) {
+			if (dt == null) {
 				Logger.info("Файл не найден");
 				return null;
 			}
@@ -106,7 +106,7 @@ namespace BlankJournal.Models {
 			par.ParagraphProperties.AppendChild(just);
 			body.PrependChild(par);
 
-			headerRun = new Run(new Text("Объект переключений: "));
+			headerRun = new Run(new Text("Объект переключений: "+obj));
 			rPr = new RunProperties();
 			rPr.FontSize = new FontSize();
 			rPr.FontSize.Val = new StringValue("32");
