@@ -9,68 +9,89 @@ using System.IO;
 
 namespace BlankJournal.Models {
 	public class WordData {
-		public static string createOBP(string folder, TBPInfo tbp, int num=-1) {
+		public static string createOBP(string folder, TBPInfo tbp, int num = -1) {
+			Logger.info("Формирование ОБП из ТБП " + tbp.Number);
 			BlanksEntities eni = new BlanksEntities();
-			IQueryable<DataTable> data = from d in eni.DataTable where d.ID == tbp.IDWordData select d;
-			if (data.Count() == 0) {
+			DataTable dt = (from d in eni.DataTable where d.ID == tbp.IDWordData select d).FirstOrDefault();
+			if (dt != null) {
 				Logger.info("Файл не найден");
 				return null;
 			}
-			DataTable dt = data.First();
-			string fn = "ОБП "+dt.FileInfo;
-			string fullpath = folder  + fn;
-			System.IO.File.WriteAllBytes(fullpath, dt.Data);
-			WordprocessingDocument doc = WordprocessingDocument.Open(fullpath,true);
-			Body body = doc.MainDocumentPart.Document.Body;
-			IEnumerable<OpenXmlElement> paragraphs = body.Elements<OpenXmlElement>();
-			Logger.info(paragraphs.Count().ToString());
-			List<OpenXmlElement> forDel = new List<OpenXmlElement>();
-			bool foundCel=false;
-			bool foundEnd=false;
-			foreach (OpenXmlElement elem in paragraphs) {
-				if (!foundCel && !elem.InnerText.ToLower().Contains("цель переключений")) {
-					forDel.Add(elem);
-				} else {
-					foundCel = true;
-				}
 
-				if (elem.InnerText.ToLower().Contains("окончание:")) {
-					foundEnd = true;
-				} else {
-					if (foundEnd) {
+			string fn = "ОБП " + dt.FileInfo;
+			string fullpath = folder + fn;
+			try {
+				Logger.info("Формирование временного файла " + fullpath);
+				System.IO.File.WriteAllBytes(fullpath, dt.Data);
+			} catch (Exception e) {
+				Logger.info("ошибка при формировании временног файла " + e.ToString());
+				return null;
+			}
+
+			try {
+				Logger.info("Открытие документа");
+				WordprocessingDocument doc = WordprocessingDocument.Open(fullpath, true);
+				Body body = doc.MainDocumentPart.Document.Body;
+				IEnumerable<OpenXmlElement> paragraphs = body.Elements<OpenXmlElement>();
+				Logger.info("Абзацев:  "+paragraphs.Count().ToString());
+				List<OpenXmlElement> forDel = new List<OpenXmlElement>();
+				bool foundCel = false;
+				bool foundEnd = false;
+				foreach (OpenXmlElement elem in paragraphs) {
+					if (!foundCel && !elem.InnerText.ToLower().Contains("цель переключений")) {
 						forDel.Add(elem);
+					} else {
+						foundCel = true;
+					}
+
+					if (elem.InnerText.ToLower().Contains("окончание:")) {
+						foundEnd = true;
+					} else {
+						if (foundEnd) {
+							forDel.Add(elem);
+						}
 					}
 				}
-			}
-	
-			foreach (OpenXmlElement p in forDel) {
-				body.RemoveChild<OpenXmlElement>(p);
-			}
 
-			WriteRegularData(body, tbp.ObjectInfo, num);
+				Logger.info("Удаление шапки и окончания бланка");
+				foreach (OpenXmlElement p in forDel) {
+					body.RemoveChild<OpenXmlElement>(p);
+				}
 
-			
-			doc.Close();
-			return fn;
+				Logger.info("Добавление новой шапки и окончания");
+				WriteRegularData(body, tbp.ObjectInfo, num);
+				doc.Close();
+				return fn;
+			} catch (Exception e) {
+				Logger.info("Ошибка при формировании обп" + e.ToString());
+				return null;
+			}
 		}
 
 		public static string createEmptyOBP(string folder, int num = -1) {
-			string fn = String.Format("ОБП {0}.docx",num);
-			string fullpath = folder + fn;
-			byte[] data = File.ReadAllBytes( DBContext.DataFolder + "BodyOBP.docx");
-			System.IO.File.WriteAllBytes(fullpath, data);
-			WordprocessingDocument doc = WordprocessingDocument.Open(fullpath, true);
-			Body body = doc.MainDocumentPart.Document.Body;
-			IEnumerable<OpenXmlElement> paragraphs = body.Elements<OpenXmlElement>();
+			Logger.info("Создание пустого ОБП");
+			try {
+				Logger.info("Получение шаблона ОБП");
+				string fn = String.Format("ОБП {0}.docx", num);
+				string fullpath = folder + fn;
+				byte[] data = File.ReadAllBytes(DBContext.DataFolder + "BodyOBP.docx");
+				Logger.info("Запись шаблона ОБП в файл " + fullpath);
+				System.IO.File.WriteAllBytes(fullpath, data);
+				WordprocessingDocument doc = WordprocessingDocument.Open(fullpath, true);
+				Body body = doc.MainDocumentPart.Document.Body;
+				IEnumerable<OpenXmlElement> paragraphs = body.Elements<OpenXmlElement>();
+				Logger.info("Добавление новой шапки и окончания");
+				WriteRegularData(body, "", num);
 
-			WriteRegularData(body, "", num);
-
-
-			doc.Close();
-			return fn;
+				doc.Close();
+				return fn;
+			} catch (Exception e) {
+				Logger.info("ошибка при формировании пустого ОБП "+e.ToString());
+				return null;
+			}
 		}
 
-		protected static void WriteRegularData(Body body,string obj, int num=-1){
+		protected static void WriteRegularData(Body body, string obj, int num = -1) {
 			Justification just = new Justification() { Val = JustificationValues.Center };
 			RunProperties rPr = new RunProperties();
 			rPr.FontSize = new FontSize();
@@ -85,7 +106,7 @@ namespace BlankJournal.Models {
 			par.ParagraphProperties.AppendChild(just);
 			body.PrependChild(par);
 
-			headerRun = new Run(new Text("Объект переключений: " ));
+			headerRun = new Run(new Text("Объект переключений: "));
 			rPr = new RunProperties();
 			rPr.FontSize = new FontSize();
 			rPr.FontSize.Val = new StringValue("32");
