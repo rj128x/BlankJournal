@@ -1305,6 +1305,111 @@ namespace MainSL.MainSVC {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DataRecord", Namespace="http://schemas.datacontract.org/2004/07/BlankJournal.Models")]
+    public partial class DataRecord : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private string AuthorField;
+        
+        private byte[] DataField;
+        
+        private System.DateTime DateCreateField;
+        
+        private string FileInfoField;
+        
+        private string IDField;
+        
+        private string md5Field;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Author {
+            get {
+                return this.AuthorField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AuthorField, value) != true)) {
+                    this.AuthorField = value;
+                    this.RaisePropertyChanged("Author");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] Data {
+            get {
+                return this.DataField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DataField, value) != true)) {
+                    this.DataField = value;
+                    this.RaisePropertyChanged("Data");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime DateCreate {
+            get {
+                return this.DateCreateField;
+            }
+            set {
+                if ((this.DateCreateField.Equals(value) != true)) {
+                    this.DateCreateField = value;
+                    this.RaisePropertyChanged("DateCreate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FileInfo {
+            get {
+                return this.FileInfoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FileInfoField, value) != true)) {
+                    this.FileInfoField = value;
+                    this.RaisePropertyChanged("FileInfo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IDField, value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string md5 {
+            get {
+                return this.md5Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.md5Field, value) != true)) {
+                    this.md5Field = value;
+                    this.RaisePropertyChanged("md5");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(Namespace="", ConfigurationName="MainSVC.MainService")]
     public interface MainService {
@@ -1403,6 +1508,16 @@ namespace MainSL.MainSVC {
         System.IAsyncResult BeginremoveTBP(MainSL.MainSVC.TBPInfo tbp, System.AsyncCallback callback, object asyncState);
         
         MainSL.MainSVC.ReturnMessage EndremoveTBP(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:MainService/getDataRecord", ReplyAction="urn:MainService/getDataRecordResponse")]
+        System.IAsyncResult BegingetDataRecord(string id, System.AsyncCallback callback, object asyncState);
+        
+        MainSL.MainSVC.DataRecord EndgetDataRecord(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:MainService/updateDataRecord", ReplyAction="urn:MainService/updateDataRecordResponse")]
+        System.IAsyncResult BeginupdateDataRecord(MainSL.MainSVC.DataRecord rec, System.AsyncCallback callback, object asyncState);
+        
+        MainSL.MainSVC.ReturnMessage EndupdateDataRecord(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1753,6 +1868,44 @@ namespace MainSL.MainSVC {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class getDataRecordCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public getDataRecordCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public MainSL.MainSVC.DataRecord Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((MainSL.MainSVC.DataRecord)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class updateDataRecordCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public updateDataRecordCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public MainSL.MainSVC.ReturnMessage Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((MainSL.MainSVC.ReturnMessage)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class MainServiceClient : System.ServiceModel.ClientBase<MainSL.MainSVC.MainService>, MainSL.MainSVC.MainService {
         
         private BeginOperationDelegate onBeginDoWorkDelegate;
@@ -1869,6 +2022,18 @@ namespace MainSL.MainSVC {
         
         private System.Threading.SendOrPostCallback onremoveTBPCompletedDelegate;
         
+        private BeginOperationDelegate onBegingetDataRecordDelegate;
+        
+        private EndOperationDelegate onEndgetDataRecordDelegate;
+        
+        private System.Threading.SendOrPostCallback ongetDataRecordCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginupdateDataRecordDelegate;
+        
+        private EndOperationDelegate onEndupdateDataRecordDelegate;
+        
+        private System.Threading.SendOrPostCallback onupdateDataRecordCompletedDelegate;
+        
         private BeginOperationDelegate onBeginOpenDelegate;
         
         private EndOperationDelegate onEndOpenDelegate;
@@ -1959,6 +2124,10 @@ namespace MainSL.MainSVC {
         public event System.EventHandler<addFileCompletedEventArgs> addFileCompleted;
         
         public event System.EventHandler<removeTBPCompletedEventArgs> removeTBPCompleted;
+        
+        public event System.EventHandler<getDataRecordCompletedEventArgs> getDataRecordCompleted;
+        
+        public event System.EventHandler<updateDataRecordCompletedEventArgs> updateDataRecordCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
         
@@ -2827,6 +2996,98 @@ namespace MainSL.MainSVC {
                         tbp}, this.onEndremoveTBPDelegate, this.onremoveTBPCompletedDelegate, userState);
         }
         
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult MainSL.MainSVC.MainService.BegingetDataRecord(string id, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BegingetDataRecord(id, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        MainSL.MainSVC.DataRecord MainSL.MainSVC.MainService.EndgetDataRecord(System.IAsyncResult result) {
+            return base.Channel.EndgetDataRecord(result);
+        }
+        
+        private System.IAsyncResult OnBegingetDataRecord(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string id = ((string)(inValues[0]));
+            return ((MainSL.MainSVC.MainService)(this)).BegingetDataRecord(id, callback, asyncState);
+        }
+        
+        private object[] OnEndgetDataRecord(System.IAsyncResult result) {
+            MainSL.MainSVC.DataRecord retVal = ((MainSL.MainSVC.MainService)(this)).EndgetDataRecord(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OngetDataRecordCompleted(object state) {
+            if ((this.getDataRecordCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.getDataRecordCompleted(this, new getDataRecordCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void getDataRecordAsync(string id) {
+            this.getDataRecordAsync(id, null);
+        }
+        
+        public void getDataRecordAsync(string id, object userState) {
+            if ((this.onBegingetDataRecordDelegate == null)) {
+                this.onBegingetDataRecordDelegate = new BeginOperationDelegate(this.OnBegingetDataRecord);
+            }
+            if ((this.onEndgetDataRecordDelegate == null)) {
+                this.onEndgetDataRecordDelegate = new EndOperationDelegate(this.OnEndgetDataRecord);
+            }
+            if ((this.ongetDataRecordCompletedDelegate == null)) {
+                this.ongetDataRecordCompletedDelegate = new System.Threading.SendOrPostCallback(this.OngetDataRecordCompleted);
+            }
+            base.InvokeAsync(this.onBegingetDataRecordDelegate, new object[] {
+                        id}, this.onEndgetDataRecordDelegate, this.ongetDataRecordCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult MainSL.MainSVC.MainService.BeginupdateDataRecord(MainSL.MainSVC.DataRecord rec, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginupdateDataRecord(rec, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        MainSL.MainSVC.ReturnMessage MainSL.MainSVC.MainService.EndupdateDataRecord(System.IAsyncResult result) {
+            return base.Channel.EndupdateDataRecord(result);
+        }
+        
+        private System.IAsyncResult OnBeginupdateDataRecord(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            MainSL.MainSVC.DataRecord rec = ((MainSL.MainSVC.DataRecord)(inValues[0]));
+            return ((MainSL.MainSVC.MainService)(this)).BeginupdateDataRecord(rec, callback, asyncState);
+        }
+        
+        private object[] OnEndupdateDataRecord(System.IAsyncResult result) {
+            MainSL.MainSVC.ReturnMessage retVal = ((MainSL.MainSVC.MainService)(this)).EndupdateDataRecord(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnupdateDataRecordCompleted(object state) {
+            if ((this.updateDataRecordCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.updateDataRecordCompleted(this, new updateDataRecordCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void updateDataRecordAsync(MainSL.MainSVC.DataRecord rec) {
+            this.updateDataRecordAsync(rec, null);
+        }
+        
+        public void updateDataRecordAsync(MainSL.MainSVC.DataRecord rec, object userState) {
+            if ((this.onBeginupdateDataRecordDelegate == null)) {
+                this.onBeginupdateDataRecordDelegate = new BeginOperationDelegate(this.OnBeginupdateDataRecord);
+            }
+            if ((this.onEndupdateDataRecordDelegate == null)) {
+                this.onEndupdateDataRecordDelegate = new EndOperationDelegate(this.OnEndupdateDataRecord);
+            }
+            if ((this.onupdateDataRecordCompletedDelegate == null)) {
+                this.onupdateDataRecordCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnupdateDataRecordCompleted);
+            }
+            base.InvokeAsync(this.onBeginupdateDataRecordDelegate, new object[] {
+                        rec}, this.onEndupdateDataRecordDelegate, this.onupdateDataRecordCompletedDelegate, userState);
+        }
+        
         private System.IAsyncResult OnBeginOpen(object[] inValues, System.AsyncCallback callback, object asyncState) {
             return ((System.ServiceModel.ICommunicationObject)(this)).BeginOpen(callback, asyncState);
         }
@@ -3141,6 +3402,32 @@ namespace MainSL.MainSVC {
             public MainSL.MainSVC.ReturnMessage EndremoveTBP(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 MainSL.MainSVC.ReturnMessage _result = ((MainSL.MainSVC.ReturnMessage)(base.EndInvoke("removeTBP", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BegingetDataRecord(string id, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = id;
+                System.IAsyncResult _result = base.BeginInvoke("getDataRecord", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public MainSL.MainSVC.DataRecord EndgetDataRecord(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                MainSL.MainSVC.DataRecord _result = ((MainSL.MainSVC.DataRecord)(base.EndInvoke("getDataRecord", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginupdateDataRecord(MainSL.MainSVC.DataRecord rec, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = rec;
+                System.IAsyncResult _result = base.BeginInvoke("updateDataRecord", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public MainSL.MainSVC.ReturnMessage EndupdateDataRecord(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                MainSL.MainSVC.ReturnMessage _result = ((MainSL.MainSVC.ReturnMessage)(base.EndInvoke("updateDataRecord", _args, result)));
                 return _result;
             }
         }

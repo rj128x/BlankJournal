@@ -44,6 +44,7 @@ namespace BlankJournal.Models {
 			EndLSO = tbl.LSOEnd;
 			TBPNumber = tbl.TBPNumber;
 			TBPID = tbl.TBPID;
+			IDWordData = tbl.WordData;
 		}
 
 		public static JournalRecord initTBPRecord(TBPInfo tbp) {

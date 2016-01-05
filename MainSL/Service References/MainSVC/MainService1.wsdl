@@ -122,6 +122,18 @@
   <wsdl:message name="MainService_removeTBP_OutputMessage">
     <wsdl:part name="parameters" element="removeTBPResponse" />
   </wsdl:message>
+  <wsdl:message name="MainService_getDataRecord_InputMessage">
+    <wsdl:part name="parameters" element="getDataRecord" />
+  </wsdl:message>
+  <wsdl:message name="MainService_getDataRecord_OutputMessage">
+    <wsdl:part name="parameters" element="getDataRecordResponse" />
+  </wsdl:message>
+  <wsdl:message name="MainService_updateDataRecord_InputMessage">
+    <wsdl:part name="parameters" element="updateDataRecord" />
+  </wsdl:message>
+  <wsdl:message name="MainService_updateDataRecord_OutputMessage">
+    <wsdl:part name="parameters" element="updateDataRecordResponse" />
+  </wsdl:message>
   <wsdl:portType name="MainService">
     <wsdl:operation name="DoWork">
       <wsdl:input wsaw:Action="urn:MainService/DoWork" message="MainService_DoWork_InputMessage" />
@@ -198,6 +210,14 @@
     <wsdl:operation name="removeTBP">
       <wsdl:input wsaw:Action="urn:MainService/removeTBP" message="MainService_removeTBP_InputMessage" />
       <wsdl:output wsaw:Action="urn:MainService/removeTBPResponse" message="MainService_removeTBP_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getDataRecord">
+      <wsdl:input wsaw:Action="urn:MainService/getDataRecord" message="MainService_getDataRecord_InputMessage" />
+      <wsdl:output wsaw:Action="urn:MainService/getDataRecordResponse" message="MainService_getDataRecord_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="updateDataRecord">
+      <wsdl:input wsaw:Action="urn:MainService/updateDataRecord" message="MainService_updateDataRecord_InputMessage" />
+      <wsdl:output wsaw:Action="urn:MainService/updateDataRecordResponse" message="MainService_updateDataRecord_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
 </wsdl:definitions>

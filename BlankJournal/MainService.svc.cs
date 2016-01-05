@@ -127,6 +127,16 @@ namespace BlankJournal {
 			return DBContext.Single.removeTBP(tbp);
 		}
 
+		[OperationContract]
+		public DataRecord getDataRecord(string id) {
+			return DataRecord.getDataRecord(id);
+		}
+
+		[OperationContract]
+		public ReturnMessage updateDataRecord(DataRecord rec) {
+			return DataRecord.UpdateFile(rec);
+		}
+
 		// Добавьте здесь дополнительные операции и отметьте их атрибутом [OperationContract]
 	}
 }

@@ -254,4 +254,32 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="getDataRecord">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getDataRecordResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/BlankJournal.Models" minOccurs="0" name="getDataRecordResult" nillable="true" type="q29:DataRecord" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="updateDataRecord">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/BlankJournal.Models" minOccurs="0" name="rec" nillable="true" type="q30:DataRecord" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="updateDataRecordResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/BlankJournal" minOccurs="0" name="updateDataRecordResult" nillable="true" type="q31:ReturnMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

@@ -18,12 +18,14 @@ namespace MainSL {
 	public class GlobalContext : DependencyObject {
 		public static GlobalContext Single { get; protected set; }
 		public static PropertyMetadata META = new PropertyMetadata(null);
+		public bool IsOOB { get; set; }
 		public static void init() {
 			Single = new GlobalContext();
 		}
 		public GlobalContext() {
 			CurrentUser = new User();
 			CurrentUser.Name = "Noname";
+			IsOOB = Application.Current.IsRunningOutOfBrowser;
 		}
 
 		public static readonly DependencyProperty CurrentUserProperty = DependencyProperty.Register("CurrentUser", typeof(User), typeof(GlobalContext), META);

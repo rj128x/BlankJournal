@@ -26,6 +26,8 @@
                 <TextBlock Text="Файл бланка: " Width="100"/>
                 <TextBox Name="txtWord" Width="200" Text="{Binding FileInfoWord}" IsEnabled="False"/>
                 <Button Content="  ...  " Name="btnChooseWord" Click="btnChooseWord_Click"/>
+                <Button Content="Редактор" Name="btnEditWord" Click="btnEditWord_Click" 
+                        Visibility="{Binding Single.IsOOB, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Visibility="{Binding isOBP, Converter={StaticResource visibilityConverter}}">
                 <TextBlock Text="ЛСО: " Width="100" />

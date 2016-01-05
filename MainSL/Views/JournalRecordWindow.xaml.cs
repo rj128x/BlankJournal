@@ -14,7 +14,7 @@ using System.Windows.Shapes;
 
 namespace MainSL.Views {
 	public partial class JournalRecordWindow : ChildWindow {
-
+		public string EditingFileName { get; set; }
 		public JournalRecord CurrentBlank { get; set; }
 		public JournalRecordWindow() {
 			InitializeComponent();
@@ -22,10 +22,16 @@ namespace MainSL.Views {
 
 		private void OKButton_Click(object sender, RoutedEventArgs e) {
 			GlobalContext.Single.IsBusy = true;
+			if (!String.IsNullOrEmpty(EditingFileName)) {
+				try {
+					CurrentBlank.WordData = File.ReadAllBytes(EditingFileName);
+				} catch { }
+			}
 			if (CurrentBlank.isInit)
 				GlobalContext.Single.Client.CreateBPAsync(CurrentBlank);
-			else
+			else {
 				GlobalContext.Single.Client.FinishBPAsync(CurrentBlank);
+			}
 		}
 
 		private void CancelButton_Click(object sender, RoutedEventArgs e) {
@@ -37,7 +43,10 @@ namespace MainSL.Views {
 			pnlData.DataContext = rec;
 			GlobalContext.Single.Client.CreateBPCompleted += Client_CreateBPCompleted;
 			GlobalContext.Single.Client.FinishBPCompleted += Client_FinishBPCompleted;
+			GlobalContext.Single.Client.getDataRecordCompleted += Client_getDataRecordCompleted;
 		}
+
+
 
 		void Client_FinishBPCompleted(object sender, FinishBPCompletedEventArgs e) {
 			GlobalContext.Single.IsBusy = false;
@@ -66,6 +75,7 @@ namespace MainSL.Views {
 		public void deinit() {
 			GlobalContext.Single.Client.CreateBPCompleted -= Client_CreateBPCompleted;
 			GlobalContext.Single.Client.FinishBPCompleted -= Client_FinishBPCompleted;
+			GlobalContext.Single.Client.getDataRecordCompleted -= Client_getDataRecordCompleted;
 		}
 
 		private void btnChooseWord_Click(object sender, RoutedEventArgs e) {
@@ -78,6 +88,38 @@ namespace MainSL.Views {
 				str.Close();
 				CurrentBlank.WordData = buffer;
 				CurrentBlank.FileInfoWord = String.Format("{0}", dlg.File.Name);
+			}
+		}
+
+		private void btnEditWord_Click(object sender, RoutedEventArgs e) {
+			if (CurrentBlank.WordData == null) {
+				GlobalContext.Single.IsBusy = true;
+				GlobalContext.Single.Client.getDataRecordAsync(CurrentBlank.IDWordData);
+			} else {
+				editFile();
+			}
+		}
+
+		void Client_getDataRecordCompleted(object sender, getDataRecordCompletedEventArgs e) {
+			GlobalContext.Single.IsBusy = false;
+			if (e.Result!=null) {
+				DataRecord rec = e.Result as DataRecord;
+				CurrentBlank.WordData = rec.Data;
+				editFile();
+			} 
+		}
+
+		protected void editFile() {
+			if (CurrentBlank.WordData != null) {
+				try {
+					string str = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+					str = string.Format("{0}/{1}_{2}", str, DateTime.Now.ToString("yyyyMMddhhmmss"), CurrentBlank.FileInfoWord);
+					EditingFileName = str;
+					File.WriteAllBytes(str, CurrentBlank.WordData);
+					WebBrowserBridge.OpenURL(new Uri("file://"+str), "_blank");
+				}catch{
+					
+				}
 			}
 		}
 

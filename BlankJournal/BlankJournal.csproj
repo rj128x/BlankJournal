@@ -158,6 +158,7 @@
     <Compile Include="FoldersTable.cs">
       <DependentUpon>BlanksModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DataRecord.cs" />
     <Compile Include="Models\DBContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

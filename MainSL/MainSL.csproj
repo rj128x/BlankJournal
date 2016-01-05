@@ -29,6 +29,7 @@
     <UsePlatformExtensions>false</UsePlatformExtensions>
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
     <LinkedServerProject>..\BlankJournal\BlankJournal.csproj</LinkedServerProject>
+    <RequireInBrowserElevation>true</RequireInBrowserElevation>
   </PropertyGroup>
   <!-- This property group is only here to support building this project using the 
        MSBuild 3.5 toolset. In order to work correctly with this older toolset, it needs 
@@ -56,6 +57,15 @@
     <NoConfig>true</NoConfig>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>11271F90FD6FC42EFFF73D2D30ABF32A059F7FD7</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>MainSL_1_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
@@ -204,6 +214,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <None Include="MainSL_1_TemporaryKey.pfx" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Service References\MainSVC\MainService.wsdl" />
     <None Include="Service References\MainSVC\MainService.xsd" />
@@ -229,6 +240,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\MainSVC\MainService3.xsd" />
+    <None Include="Service References\MainSVC\MainSL.MainSVC.DataRecord.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\MainSVC\MainSL.MainSVC.Folder.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
