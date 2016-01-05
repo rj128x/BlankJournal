@@ -14,10 +14,13 @@ using System.Windows.Shapes;
 namespace MainSL {
 	public partial class MainPage : UserControl {
 		public MainPage() {
+			GlobalContext.init();
+			GlobalContext.Single.onFinishLoad += Single_onFinishLoad;
+			GlobalContext.Single.Connect();
+		}
+
+		void Single_onFinishLoad() {
 			InitializeComponent();
-			//loginContainer.DataContext = GlobalContext.Single;
-			
-			
 		}
 
 		// После перехода в фрейме убедиться, что выбрана кнопка HyperlinkButton, представляющая текущую страницу

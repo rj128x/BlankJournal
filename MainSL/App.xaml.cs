@@ -15,17 +15,18 @@ namespace MainSL {
 		public App() {
 			this.Startup += this.Application_Startup;
 			this.UnhandledException += this.Application_UnhandledException;			
-			GlobalContext.init();
-			GlobalContext.Single.onFinishLoad+=Single_onFinishLoad;
+			
 			InitializeComponent();
+			this.RootVisual = new MainPage();
+
 		}
 
 		public void Single_onFinishLoad() {
-			this.RootVisual = new MainPage();
+			
 		}
 
 		private void Application_Startup(object sender, StartupEventArgs e) {			
-			GlobalContext.Single.Connect();
+			
 		}
 
 		private void Application_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e) {
