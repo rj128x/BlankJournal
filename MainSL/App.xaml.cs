@@ -17,7 +17,6 @@ namespace MainSL {
 			this.UnhandledException += this.Application_UnhandledException;			
 			
 			InitializeComponent();
-			this.RootVisual = new MainPage();
 
 		}
 
@@ -25,9 +24,33 @@ namespace MainSL {
 			
 		}
 
-		private void Application_Startup(object sender, StartupEventArgs e) {			
-			
+		private void Application_Startup(object sender, StartupEventArgs e) {
+			if (Application.Current.IsRunningOutOfBrowser) {
+				// Проверка наличия новых версий
+				Application.Current.CheckAndDownloadUpdateCompleted +=
+					 Application_CheckAndDownloadUpdateComplete;
+				Application.Current.CheckAndDownloadUpdateAsync();
+
+				this.RootVisual = new MainPage();
+			} else {
+				this.RootVisual = new MainPage();
+			}
 		}
+
+		private void Application_CheckAndDownloadUpdateComplete(object sender,
+		CheckAndDownloadUpdateCompletedEventArgs e) {
+			if (e.UpdateAvailable) {
+				GlobalContext.Single.IsBusy = true;
+				GlobalContext.Single.BusyText = "Установлена новая версия. Перезапустите приложение.";
+				// Здесь можно ввести код вызова пользовательского 
+				// метода в объекте MainPage, который отключает интерфейс
+			} else if (e.Error != null && e.Error is PlatformNotSupportedException) {
+				MessageBox.Show("Есть новые версии приложения"
+					 + "однако для их применения необходима новая версия Silverlight. " +
+					 "Посетите сайт http://silverlight.net для обновления Silverlight.");
+			}
+		}
+
 
 		private void Application_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e) {
 			// Если приложение выполняется вне отладчика, воспользуйтесь для сообщения об исключении

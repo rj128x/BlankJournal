@@ -30,14 +30,21 @@ namespace MainSL {
 
 		public static readonly DependencyProperty CurrentUserProperty = DependencyProperty.Register("CurrentUser", typeof(User), typeof(GlobalContext), META);
 		public static readonly DependencyProperty IsBusyProperty = DependencyProperty.Register("IsBusy", typeof(bool), typeof(GlobalContext), META);
+		public static readonly DependencyProperty BusyTextProperty = DependencyProperty.Register("BusyText", typeof(string), typeof(GlobalContext), META);
 
 		public Dictionary<string, Folder> AllFolders;
 		public event FinishLoad onFinishLoad;
 
 		public  MainServiceClient Client;
-		public bool IsBusy { 
-			get { return (bool)GetValue(IsBusyProperty);}
-			set {SetValue(IsBusyProperty,value);}
+
+		public bool IsBusy {
+			get { return (bool)GetValue(IsBusyProperty); }
+			set { SetValue(IsBusyProperty, value); }
+		}
+
+		public string BusyText {
+			get { return (string)GetValue(BusyTextProperty); }
+			set { SetValue(BusyTextProperty, value); }
 		}
 
 				
@@ -69,8 +76,9 @@ namespace MainSL {
 
 		void Client_GetUserCompleted(object sender, GetUserCompletedEventArgs e) {
 			IsBusy = false;
-			CurrentUser = e.Result;			
-			MessageBox.Show(String.Format("Добро пожаловать, {0}!", CurrentUser.Name));
+			CurrentUser = e.Result;
+			BusyText = "Загрузка данных. Подождите";
+			//MessageBox.Show(String.Format("Добро пожаловать, {0}!", CurrentUser.Name));
 			Client.GetAllFoldersCompleted += Client_GetAllFoldersCompleted;
 			Client.GetAllFoldersAsync();
 		}
