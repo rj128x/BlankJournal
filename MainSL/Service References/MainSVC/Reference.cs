@@ -872,6 +872,216 @@ namespace MainSL.MainSVC {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TBPComment", Namespace="http://schemas.datacontract.org/2004/07/BlankJournal.Models")]
+    public partial class TBPComment : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private string AuthorField;
+        
+        private string CommentPerformField;
+        
+        private string CommentTextField;
+        
+        private byte[] DataField;
+        
+        private string DataIDField;
+        
+        private System.DateTime DateCreateField;
+        
+        private System.DateTime DatePerformField;
+        
+        private string FileInfoDataField;
+        
+        private bool FinishedField;
+        
+        private string IDField;
+        
+        private string PerformerField;
+        
+        private int TBPIDField;
+        
+        private string TBPNumberField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Author {
+            get {
+                return this.AuthorField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AuthorField, value) != true)) {
+                    this.AuthorField = value;
+                    this.RaisePropertyChanged("Author");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CommentPerform {
+            get {
+                return this.CommentPerformField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CommentPerformField, value) != true)) {
+                    this.CommentPerformField = value;
+                    this.RaisePropertyChanged("CommentPerform");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CommentText {
+            get {
+                return this.CommentTextField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CommentTextField, value) != true)) {
+                    this.CommentTextField = value;
+                    this.RaisePropertyChanged("CommentText");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] Data {
+            get {
+                return this.DataField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DataField, value) != true)) {
+                    this.DataField = value;
+                    this.RaisePropertyChanged("Data");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string DataID {
+            get {
+                return this.DataIDField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DataIDField, value) != true)) {
+                    this.DataIDField = value;
+                    this.RaisePropertyChanged("DataID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime DateCreate {
+            get {
+                return this.DateCreateField;
+            }
+            set {
+                if ((this.DateCreateField.Equals(value) != true)) {
+                    this.DateCreateField = value;
+                    this.RaisePropertyChanged("DateCreate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime DatePerform {
+            get {
+                return this.DatePerformField;
+            }
+            set {
+                if ((this.DatePerformField.Equals(value) != true)) {
+                    this.DatePerformField = value;
+                    this.RaisePropertyChanged("DatePerform");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FileInfoData {
+            get {
+                return this.FileInfoDataField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FileInfoDataField, value) != true)) {
+                    this.FileInfoDataField = value;
+                    this.RaisePropertyChanged("FileInfoData");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Finished {
+            get {
+                return this.FinishedField;
+            }
+            set {
+                if ((this.FinishedField.Equals(value) != true)) {
+                    this.FinishedField = value;
+                    this.RaisePropertyChanged("Finished");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IDField, value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Performer {
+            get {
+                return this.PerformerField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PerformerField, value) != true)) {
+                    this.PerformerField = value;
+                    this.RaisePropertyChanged("Performer");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TBPID {
+            get {
+                return this.TBPIDField;
+            }
+            set {
+                if ((this.TBPIDField.Equals(value) != true)) {
+                    this.TBPIDField = value;
+                    this.RaisePropertyChanged("TBPID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TBPNumber {
+            get {
+                return this.TBPNumberField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TBPNumberField, value) != true)) {
+                    this.TBPNumberField = value;
+                    this.RaisePropertyChanged("TBPNumber");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="TBPHistoryRecord", Namespace="http://schemas.datacontract.org/2004/07/BlankJournal.Models")]
     public partial class TBPHistoryRecord : object, System.ComponentModel.INotifyPropertyChanged {
         
@@ -1097,216 +1307,6 @@ namespace MainSL.MainSVC {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="TBPComment", Namespace="http://schemas.datacontract.org/2004/07/BlankJournal.Models")]
-    public partial class TBPComment : object, System.ComponentModel.INotifyPropertyChanged {
-        
-        private string AuthorField;
-        
-        private string CommentPerformField;
-        
-        private string CommentTextField;
-        
-        private byte[] DataField;
-        
-        private string DataIDField;
-        
-        private System.DateTime DateCreateField;
-        
-        private System.DateTime DatePerformField;
-        
-        private string FileInfoDataField;
-        
-        private bool FinishedField;
-        
-        private string IDField;
-        
-        private string PerformerField;
-        
-        private int TBPIDField;
-        
-        private string TBPNumberField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Author {
-            get {
-                return this.AuthorField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AuthorField, value) != true)) {
-                    this.AuthorField = value;
-                    this.RaisePropertyChanged("Author");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string CommentPerform {
-            get {
-                return this.CommentPerformField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CommentPerformField, value) != true)) {
-                    this.CommentPerformField = value;
-                    this.RaisePropertyChanged("CommentPerform");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string CommentText {
-            get {
-                return this.CommentTextField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CommentTextField, value) != true)) {
-                    this.CommentTextField = value;
-                    this.RaisePropertyChanged("CommentText");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public byte[] Data {
-            get {
-                return this.DataField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DataField, value) != true)) {
-                    this.DataField = value;
-                    this.RaisePropertyChanged("Data");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string DataID {
-            get {
-                return this.DataIDField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DataIDField, value) != true)) {
-                    this.DataIDField = value;
-                    this.RaisePropertyChanged("DataID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime DateCreate {
-            get {
-                return this.DateCreateField;
-            }
-            set {
-                if ((this.DateCreateField.Equals(value) != true)) {
-                    this.DateCreateField = value;
-                    this.RaisePropertyChanged("DateCreate");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime DatePerform {
-            get {
-                return this.DatePerformField;
-            }
-            set {
-                if ((this.DatePerformField.Equals(value) != true)) {
-                    this.DatePerformField = value;
-                    this.RaisePropertyChanged("DatePerform");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string FileInfoData {
-            get {
-                return this.FileInfoDataField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.FileInfoDataField, value) != true)) {
-                    this.FileInfoDataField = value;
-                    this.RaisePropertyChanged("FileInfoData");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool Finished {
-            get {
-                return this.FinishedField;
-            }
-            set {
-                if ((this.FinishedField.Equals(value) != true)) {
-                    this.FinishedField = value;
-                    this.RaisePropertyChanged("Finished");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ID {
-            get {
-                return this.IDField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.IDField, value) != true)) {
-                    this.IDField = value;
-                    this.RaisePropertyChanged("ID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Performer {
-            get {
-                return this.PerformerField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PerformerField, value) != true)) {
-                    this.PerformerField = value;
-                    this.RaisePropertyChanged("Performer");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int TBPID {
-            get {
-                return this.TBPIDField;
-            }
-            set {
-                if ((this.TBPIDField.Equals(value) != true)) {
-                    this.TBPIDField = value;
-                    this.RaisePropertyChanged("TBPID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string TBPNumber {
-            get {
-                return this.TBPNumberField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.TBPNumberField, value) != true)) {
-                    this.TBPNumberField = value;
-                    this.RaisePropertyChanged("TBPNumber");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="DataRecord", Namespace="http://schemas.datacontract.org/2004/07/BlankJournal.Models")]
     public partial class DataRecord : object, System.ComponentModel.INotifyPropertyChanged {
         
@@ -1453,6 +1453,11 @@ namespace MainSL.MainSVC {
         System.IAsyncResult BeginInitOBP(MainSL.MainSVC.TBPInfo tbp, System.AsyncCallback callback, object asyncState);
         
         MainSL.MainSVC.JournalRecord EndInitOBP(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:MainService/InitComment", ReplyAction="urn:MainService/InitCommentResponse")]
+        System.IAsyncResult BeginInitComment(MainSL.MainSVC.TBPInfo tbp, System.AsyncCallback callback, object asyncState);
+        
+        MainSL.MainSVC.TBPComment EndInitComment(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:MainService/getHistory", ReplyAction="urn:MainService/getHistoryResponse")]
         System.IAsyncResult BegingetHistory(MainSL.MainSVC.TBPInfo tbp, System.AsyncCallback callback, object asyncState);
@@ -1653,6 +1658,25 @@ namespace MainSL.MainSVC {
             get {
                 base.RaiseExceptionIfNecessary();
                 return ((MainSL.MainSVC.JournalRecord)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class InitCommentCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public InitCommentCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public MainSL.MainSVC.TBPComment Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((MainSL.MainSVC.TBPComment)(this.results[0]));
             }
         }
     }
@@ -1956,6 +1980,12 @@ namespace MainSL.MainSVC {
         
         private System.Threading.SendOrPostCallback onInitOBPCompletedDelegate;
         
+        private BeginOperationDelegate onBeginInitCommentDelegate;
+        
+        private EndOperationDelegate onEndInitCommentDelegate;
+        
+        private System.Threading.SendOrPostCallback onInitCommentCompletedDelegate;
+        
         private BeginOperationDelegate onBegingetHistoryDelegate;
         
         private EndOperationDelegate onEndgetHistoryDelegate;
@@ -2102,6 +2132,8 @@ namespace MainSL.MainSVC {
         public event System.EventHandler<InitTBPCompletedEventArgs> InitTBPCompleted;
         
         public event System.EventHandler<InitOBPCompletedEventArgs> InitOBPCompleted;
+        
+        public event System.EventHandler<InitCommentCompletedEventArgs> InitCommentCompleted;
         
         public event System.EventHandler<getHistoryCompletedEventArgs> getHistoryCompleted;
         
@@ -2490,6 +2522,52 @@ namespace MainSL.MainSVC {
             }
             base.InvokeAsync(this.onBeginInitOBPDelegate, new object[] {
                         tbp}, this.onEndInitOBPDelegate, this.onInitOBPCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult MainSL.MainSVC.MainService.BeginInitComment(MainSL.MainSVC.TBPInfo tbp, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginInitComment(tbp, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        MainSL.MainSVC.TBPComment MainSL.MainSVC.MainService.EndInitComment(System.IAsyncResult result) {
+            return base.Channel.EndInitComment(result);
+        }
+        
+        private System.IAsyncResult OnBeginInitComment(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            MainSL.MainSVC.TBPInfo tbp = ((MainSL.MainSVC.TBPInfo)(inValues[0]));
+            return ((MainSL.MainSVC.MainService)(this)).BeginInitComment(tbp, callback, asyncState);
+        }
+        
+        private object[] OnEndInitComment(System.IAsyncResult result) {
+            MainSL.MainSVC.TBPComment retVal = ((MainSL.MainSVC.MainService)(this)).EndInitComment(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnInitCommentCompleted(object state) {
+            if ((this.InitCommentCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.InitCommentCompleted(this, new InitCommentCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void InitCommentAsync(MainSL.MainSVC.TBPInfo tbp) {
+            this.InitCommentAsync(tbp, null);
+        }
+        
+        public void InitCommentAsync(MainSL.MainSVC.TBPInfo tbp, object userState) {
+            if ((this.onBeginInitCommentDelegate == null)) {
+                this.onBeginInitCommentDelegate = new BeginOperationDelegate(this.OnBeginInitComment);
+            }
+            if ((this.onEndInitCommentDelegate == null)) {
+                this.onEndInitCommentDelegate = new EndOperationDelegate(this.OnEndInitComment);
+            }
+            if ((this.onInitCommentCompletedDelegate == null)) {
+                this.onInitCommentCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnInitCommentCompleted);
+            }
+            base.InvokeAsync(this.onBeginInitCommentDelegate, new object[] {
+                        tbp}, this.onEndInitCommentDelegate, this.onInitCommentCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -3260,6 +3338,19 @@ namespace MainSL.MainSVC {
             public MainSL.MainSVC.JournalRecord EndInitOBP(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 MainSL.MainSVC.JournalRecord _result = ((MainSL.MainSVC.JournalRecord)(base.EndInvoke("InitOBP", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginInitComment(MainSL.MainSVC.TBPInfo tbp, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = tbp;
+                System.IAsyncResult _result = base.BeginInvoke("InitComment", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public MainSL.MainSVC.TBPComment EndInitComment(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                MainSL.MainSVC.TBPComment _result = ((MainSL.MainSVC.TBPComment)(base.EndInvoke("InitComment", _args, result)));
                 return _result;
             }
             

@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 
 namespace MainSL.Views {
 	public partial class CommentWindow : ChildWindow {
+		public string EditingFileName { get; set; }
 		public TBPComment CurrentComment{get;set;}
 		public CommentWindow() {
 			InitializeComponent();
@@ -21,6 +22,11 @@ namespace MainSL.Views {
 
 		private void OKButton_Click(object sender, RoutedEventArgs e) {
 			GlobalContext.Single.IsBusy = true;
+			if (!String.IsNullOrEmpty(EditingFileName)) {
+				try {
+					CurrentComment.Data = File.ReadAllBytes(EditingFileName);
+				} catch { }
+			}
 			if (!CurrentComment.Finished)
 				GlobalContext.Single.Client.CreateCommentTBPAsync(CurrentComment);
 			else
@@ -41,6 +47,7 @@ namespace MainSL.Views {
 				str.Close();
 				CurrentComment.FileInfoData = dlg.File.Name;
 				CurrentComment.Data = buffer;
+				EditingFileName = null;
 			}
 		}
 
@@ -78,6 +85,21 @@ namespace MainSL.Views {
 			deinit();
 			base.OnClosed(e);
 		}
+
+		private void btnEditWord_Click(object sender, RoutedEventArgs e) {
+			if (CurrentComment.Data != null) {
+				try {
+					string str = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+					str = string.Format("{0}/{1}_{2}", str, DateTime.Now.ToString("yyyyMMddhhmmss"), CurrentComment.FileInfoData);
+					EditingFileName = str;
+					File.WriteAllBytes(str, CurrentComment.Data);
+					WebBrowserBridge.OpenURL(new Uri("file://" + str), "_blank");
+				} catch {
+
+				}
+			}
+		}
+
 	}
 }
 

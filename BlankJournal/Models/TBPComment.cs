@@ -38,6 +38,22 @@ namespace BlankJournal.Models {
 
 		}
 
+		public static TBPComment initTBPComment(TBPInfo tbp) {
+			TBPComment com = new TBPComment();
+			com.TBPNumber = tbp.Number;
+			com.TBPID = tbp.ID;
+			if (!string.IsNullOrEmpty(tbp.IDWordData)) {
+				BlanksEntities eni=new BlanksEntities();
+				DataTable dat=(from d in eni.DataTable where d.ID==tbp.IDWordData select d).FirstOrDefault();
+				if (dat!=null){
+					com.Data=dat.Data;
+					com.FileInfoData="comment_"+dat.FileInfo;
+					com.DataID=Guid.NewGuid().ToString();
+				}
+			}
+			return com;
+		}
+
 		public static ReturnMessage createComment(TBPComment comment) {
 			Logger.info("Добавление замечания к бланку " + comment.TBPNumber);
 			BlanksEntities eni = new BlanksEntities();

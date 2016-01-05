@@ -73,6 +73,11 @@ namespace BlankJournal {
 		}
 
 		[OperationContract]
+		public TBPComment InitComment(TBPInfo tbp) {
+			return TBPComment.initTBPComment(tbp);
+		}
+
+		[OperationContract]
 		public IQueryable<TBPHistoryRecord> getHistory(TBPInfo tbp) {
 			return DBContext.Single.getTBPHistory(tbp).AsQueryable();
 		}

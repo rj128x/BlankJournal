@@ -56,6 +56,12 @@
   <wsdl:message name="MainService_InitOBP_OutputMessage">
     <wsdl:part name="parameters" element="InitOBPResponse" />
   </wsdl:message>
+  <wsdl:message name="MainService_InitComment_InputMessage">
+    <wsdl:part name="parameters" element="InitComment" />
+  </wsdl:message>
+  <wsdl:message name="MainService_InitComment_OutputMessage">
+    <wsdl:part name="parameters" element="InitCommentResponse" />
+  </wsdl:message>
   <wsdl:message name="MainService_getHistory_InputMessage">
     <wsdl:part name="parameters" element="getHistory" />
   </wsdl:message>
@@ -166,6 +172,10 @@
     <wsdl:operation name="InitOBP">
       <wsdl:input wsaw:Action="urn:MainService/InitOBP" message="MainService_InitOBP_InputMessage" />
       <wsdl:output wsaw:Action="urn:MainService/InitOBPResponse" message="MainService_InitOBP_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InitComment">
+      <wsdl:input wsaw:Action="urn:MainService/InitComment" message="MainService_InitComment_InputMessage" />
+      <wsdl:output wsaw:Action="urn:MainService/InitCommentResponse" message="MainService_InitComment_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="getHistory">
       <wsdl:input wsaw:Action="urn:MainService/getHistory" message="MainService_getHistory_InputMessage" />

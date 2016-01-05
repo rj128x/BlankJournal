@@ -88,6 +88,7 @@ namespace MainSL.Views {
 				str.Close();
 				CurrentBlank.WordData = buffer;
 				CurrentBlank.FileInfoWord = String.Format("{0}", dlg.File.Name);
+				EditingFileName = null;
 			}
 		}
 

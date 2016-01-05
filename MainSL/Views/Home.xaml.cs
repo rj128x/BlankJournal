@@ -28,8 +28,11 @@ namespace MainSL {
 			GlobalContext.Single.Client.InitOBPCompleted += Client_InitOBPCompleted;
 			GlobalContext.Single.Client.InitTBPCompleted += Client_InitTBPCompleted;
 			GlobalContext.Single.Client.removeTBPCompleted += Client_removeTBPCompleted;
+			GlobalContext.Single.Client.InitCommentCompleted += Client_InitCommentCompleted;
 
 		}
+
+
 
 
 
@@ -38,6 +41,7 @@ namespace MainSL {
 			GlobalContext.Single.Client.InitOBPCompleted -= Client_InitOBPCompleted;
 			GlobalContext.Single.Client.InitTBPCompleted -= Client_InitTBPCompleted;
 			GlobalContext.Single.Client.removeTBPCompleted -= Client_removeTBPCompleted;
+			GlobalContext.Single.Client.InitCommentCompleted -= Client_InitCommentCompleted;
 		}
 
 		void Client_GetTBPBlanksByFolderCompleted(object sender, GetTBPBlanksByFolderCompletedEventArgs e) {
@@ -177,16 +181,22 @@ namespace MainSL {
 
 		private void btnCommentTBP_Click(object sender, RoutedEventArgs e) {
 			if (CurrentTBP != null) {
+				GlobalContext.Single.IsBusy = true;
+				GlobalContext.Single.Client.InitCommentAsync(CurrentTBP);
+			}
+		}
+
+		void Client_InitCommentCompleted(object sender, InitCommentCompletedEventArgs e) {
+			GlobalContext.Single.IsBusy = false;
+			TBPComment com = e.Result as TBPComment;
+			if (com != null) {
 				CommentWindow commentWin = new CommentWindow();
-				CurrentTBP.EditingTBP = true;
-				TBPComment newCom = new TBPComment();
-				newCom.TBPNumber = CurrentTBP.Number;
-				newCom.TBPID = CurrentTBP.ID;
-				commentWin.Init(newCom);
+				commentWin.Init(com);
 				commentWin.Closed += commentWin_Closed;
 				commentWin.Show();
 			}
 		}
+
 
 		void commentWin_Closed(object sender, EventArgs e) {
 			CommentWindow win = sender as CommentWindow;
