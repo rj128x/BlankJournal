@@ -2,6 +2,7 @@
 using MainSL.Views;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -15,12 +16,30 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace MainSL {
-	public partial class Home : Page {
-		public TBPInfo CurrentTBP { get; set; }
+	public partial class Home : Page, INotifyPropertyChanged
+	{		
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		public void NotifyChanged(string propName) {
+			if (PropertyChanged != null)
+				PropertyChanged(this, new PropertyChangedEventArgs(propName));
+		}
+
+		protected TBPInfo _currentTBP;
+		public TBPInfo CurrentTBP {
+			get {
+				return _currentTBP;
+			}
+			set {
+				_currentTBP = value;
+				NotifyChanged("CurrentTBP");
+			}
+		}
 
 		public Home() {
 			InitializeComponent();
 			init();
+			this.DataContext = this;
 		}
 
 		public void init() {
@@ -31,10 +50,6 @@ namespace MainSL {
 			GlobalContext.Single.Client.InitCommentCompleted += Client_InitCommentCompleted;
 
 		}
-
-
-
-
 
 		public void deInit() {
 			GlobalContext.Single.Client.GetTBPBlanksByFolderCompleted -= Client_GetTBPBlanksByFolderCompleted;
@@ -216,7 +231,6 @@ namespace MainSL {
 
 		private void grdTBPBlanks_SelectionChanged(object sender, SelectionChangedEventArgs e) {
 			CurrentTBP = grdTBPBlanks.SelectedItem as TBPInfo;
-			pnlInfo.DataContext = CurrentTBP;
 		}
 
 		private void btnTemplateOBP_Click(object sender, RoutedEventArgs e) {

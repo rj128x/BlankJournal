@@ -10,7 +10,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="200"/>
+            <RowDefinition MaxHeight="170" Height="Auto" MinHeight="20"/>
         </Grid.RowDefinitions>
         <StackPanel Name="pnlFolders" Orientation="Horizontal" Grid.Row="0">
 
@@ -82,64 +82,61 @@
             </Grid>
         </Grid>
         <Grid Grid.Row="2">
-            <StackPanel Name="pnlInfo"  Orientation="Horizontal">
-                <Border Width="500">
-                    <StackPanel Orientation="Vertical">
-                        <TextBlock Text="Информация о бланке"/>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Номер бланка" Width="150"/>
-                            <TextBlock Text="{Binding Number}"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Имя" Width="150"/>
-                            <TextBlock Text="{Binding Name}" TextWrapping="Wrap"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Объект" Width="150"/>
-                            <TextBlock Text="{Binding ObjectInfo}" TextWrapping="Wrap"/>
-                        </StackPanel>
-                        <TextBlock Text="Связанные файлы" Width="150"/>
-                        <Button Content="Файл скан (PDF)" Name="btnShowPDF" Click="btnShowPDF_Click"  Width="150"/>
-                        <Button Content="Файл ТБП (Word)" Name="btnShowWord" Click="btnShowWord_Click" Width="150"/>
-                        <Button Content="Файл ОБП (Word)" Name="btnShowWordOBP" Click="btnShowWordOBP_Click" Width="150" />
-
-                        <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
-                            <Button Content="История редактирования" Name="btnHistoryTBP" Click="btnHistoryTBP_Click" Width="150"
-                                                Visibility="{Binding Single.CurrentUser.CanDoOper, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
-                            <Button Content="Создать замечание" Name="btnCommentTBP" Click="btnCommentTBP_Click" Width="150"
-                                                Visibility="{Binding Single.CurrentUser.CanDoOper, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
-                        </StackPanel>
-                    </StackPanel>
-                </Border>
-
-                <Border Width="200">
-                    <StackPanel Orientation="Vertical">
+            <Border Visibility="{Binding CurrentTBP, Converter={StaticResource visibilityConverter}}">
+                <StackPanel Name="pnlInfo"  Orientation="Horizontal"  
+                        DataContext="{Binding CurrentTBP}">
+                    <Border Width="500">
                         <StackPanel Orientation="Vertical">
-                            <TextBlock Text="Журнал переключений" Width="150"/>
-                            <Button Content="Создать запись в журнал (ТБП)" Name="btnUseNextTBP" Click="btnUseNextTBP_Click" 
-                                                Visibility="{Binding Single.CurrentUser.CanDoOper, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
-                            <Button Content="Создать запись в журнал (ОБП)" Name="btnUseOBP" Click="btnUseOBP_Click"
-                                                Visibility="{Binding Single.CurrentUser.CanDoOper, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
-                        </StackPanel>
-
-                        <Border>
-                            <StackPanel Orientation="Vertical">
-                                <TextBlock Text="Редактирование" Width="150" Margin="0,20,0,0"/>
-                                <Button Content="Редактировать" Name="btnEditTBP" Click="btnEditTBP_Click"
-                                                Visibility="{Binding Single.CurrentUser.CanEditTBP, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
-
-                                <Button Content="Удалить" Name="btnDeleteTBP" Click="btnDeleteTBP_Click"
-                                                Visibility="{Binding Single.CurrentUser.CanEditTBP, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
+                            <TextBlock Text="Информация о бланке" Style="{StaticResource Label}"/>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Номер бланка" Width="150" Style="{StaticResource Label}"/>
+                                <TextBlock Text="{Binding Number}" Style="{StaticResource ValueText}" Width="350"/>
                             </StackPanel>
-                        </Border>
-                    </StackPanel>
-                </Border>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Имя" Width="150" Style="{StaticResource Label}"/>
+                                <TextBlock Text="{Binding Name}" TextWrapping="Wrap" Style="{StaticResource ValueText}" Width="350"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Объект" Width="150" Style="{StaticResource Label}"/>
+                                <TextBlock Text="{Binding ObjectInfo}" TextWrapping="Wrap" Style="{StaticResource ValueText}" Width="350"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Связанные файлы" Width="150" Style="{StaticResource Label}"/>
+                                <Button Content="Файл скан (PDF)" Name="btnShowPDF" Click="btnShowPDF_Click"  Width="110"/>
+                                <Button Content="Файл ТБП (Word)" Name="btnShowWord" Click="btnShowWord_Click" Width="110"/>
+                                <Button Content="Файл ОБП (Word)" Name="btnShowWordOBP" Click="btnShowWordOBP_Click" Width="110" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,20,0,0" Visibility="{Binding Single.CurrentUser.CanDoOper, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}">
+                                <TextBlock Text="Дополнительно" Width="150" Style="{StaticResource Label}"/>
+                                <Button Content="История редактирования" Name="btnHistoryTBP" Click="btnHistoryTBP_Click" Width="150"/>
+                            </StackPanel>
+                            <Button Content="Создать замечание" Name="btnCommentTBP" Click="btnCommentTBP_Click" HorizontalAlignment="Right"
+                            Visibility="{Binding Single.CurrentUser.CanCommentTBP, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"
+                                />
+                        </StackPanel>
+                    </Border>
 
+                    <Border Width="200">
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Vertical" Visibility="{Binding Single.CurrentUser.CanDoOper, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}">
+                                <TextBlock Text="Журнал переключений" Width="150" Style="{StaticResource Label}"/>
+                                <Button Content="Создать запись в журнал (ТБП)" Name="btnUseNextTBP" Click="btnUseNextTBP_Click"/>
+                                <Button Content="Создать запись в журнал (ОБП)" Name="btnUseOBP" Click="btnUseOBP_Click"/>
+                            </StackPanel>
 
-                <StackPanel Orientation="Horizontal">
+                            <Border>
+                                <StackPanel Orientation="Vertical" Visibility="{Binding Single.CurrentUser.CanEditTBP, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}">
+                                    <TextBlock Text="Редактирование" Width="150" Margin="0,20,0,0" Style="{StaticResource Label}"/>
+                                    <Button Content="Редактировать" Name="btnEditTBP" Click="btnEditTBP_Click"/>
+                                    <Button Content="Удалить" Name="btnDeleteTBP" Click="btnDeleteTBP_Click"/>
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+
 
                 </StackPanel>
-            </StackPanel>
+            </Border>
         </Grid>
     </Grid>
 
