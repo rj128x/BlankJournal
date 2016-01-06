@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Управление общими сведениями о сборке осуществляется с помощью 
 // набора атрибутов. Измените значения этих атрибутов для изменения сведений,
 // связанных со сборкой.
-[assembly: AssemblyTitle("MainSL")]
+[assembly: AssemblyTitle("Журнал БП")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("RusHydro")]
-[assembly: AssemblyProduct("MainSL")]
+[assembly: AssemblyCompany("РусГидро")]
+[assembly: AssemblyProduct("Журнал БП")]
 [assembly: AssemblyCopyright("© RusHydro 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

@@ -26,10 +26,7 @@
 
             <Border x:Name="BrandingBorder" Style="{StaticResource BrandingBorderStyle}">
                 <StackPanel x:Name="BrandingStackPanel" Style="{StaticResource BrandingStackPanelStyle}">
-
-                    <ContentControl Style="{StaticResource LogoIcon}"/>
-                    <TextBlock x:Name="ApplicationNameTextBlock" Style="{StaticResource ApplicationNameStyle}" 
-                               Text="Бланки переключений"/>
+                    <Image Source="/Images/votges.png" />
 
                 </StackPanel>
             </Border>
@@ -83,12 +80,13 @@
 
         </Border>
 
+       <!--
         <Grid Name="grdLoading" Visibility="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"
               OpacityMask="Aqua" Background="LightBlue" Opacity="0.7">
-            
+
             <TextBlock Text="{Binding Single.BusyText, Source={StaticResource globalContext} }" 
                        HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" FontStyle="Italic" FontWeight="Bold"/>
-        </Grid>
+        </Grid>-->
 
 
     </Grid>

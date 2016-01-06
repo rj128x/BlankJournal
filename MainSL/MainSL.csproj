@@ -221,6 +221,13 @@
     <None Include="Service References\MainSVC\MainService1.wsdl" />
     <None Include="Service References\MainSVC\MainService1.xsd" />
     <None Include="Service References\MainSVC\MainService2.xsd" />
+    <Content Include="Images\small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Images\small ish.png" />
+    <Content Include="Images\votges.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="ServiceReferences.ClientConfig" />
   </ItemGroup>
   <ItemGroup>

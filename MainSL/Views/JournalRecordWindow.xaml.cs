@@ -93,6 +93,10 @@ namespace MainSL.Views {
 		}
 
 		private void btnEditWord_Click(object sender, RoutedEventArgs e) {
+			if (!String.IsNullOrEmpty(EditingFileName)) {
+				WebBrowserBridge.OpenURL(new Uri("file://" + EditingFileName), "_blank");
+				return;
+			}
 			if (CurrentBlank.WordData == null) {
 				GlobalContext.Single.IsBusy = true;
 				GlobalContext.Single.Client.getDataRecordAsync(CurrentBlank.IDWordData);

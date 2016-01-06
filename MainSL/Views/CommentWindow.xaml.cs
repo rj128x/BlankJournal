@@ -87,6 +87,10 @@ namespace MainSL.Views {
 		}
 
 		private void btnEditWord_Click(object sender, RoutedEventArgs e) {
+			if (!String.IsNullOrEmpty(EditingFileName)) {
+				WebBrowserBridge.OpenURL(new Uri("file://" + EditingFileName), "_blank");
+				return;
+			}
 			if (CurrentComment.Data != null) {
 				try {
 					string str = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
