@@ -3,7 +3,8 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
   xmlns:conv ="clr-namespace:MainSL.Converters"  
-    xmlns:gl ="clr-namespace:MainSL" >
+    xmlns:gl ="clr-namespace:MainSL" 
+    xmlns:prim="clr-namespace:System.Windows.Controls.Primitives;assembly=System.Windows.Controls.Data">
 
     <conv:VisibilityConverter x:Key="visibilityConverter"/>
     <conv:VisibilityNotConverter x:Key="visibilityNotConverter"/>
@@ -56,4 +57,48 @@
         <Setter Property="TextDecorations" Value="Underline"/>
         <Setter Property="TextAlignment" Value="Center"/>
     </Style>
+
+    <Style x:Name="CenterHeaderText" TargetType="prim:DataGridColumnHeader">
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="Background">
+            <Setter.Value>
+                <LinearGradientBrush >
+                    <GradientStop Color="Blue"/>
+                    <GradientStop Color="DarkBlue"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="FontFamily" Value="Comic Sans MS"></Setter>
+        <Setter Property="FontSize" Value="11"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="Opacity" Value="0.9"></Setter>
+        <Setter Property="Margin" Value="0,0,0,0"/>
+        <Setter Property="Padding" Value="0,0,0,0"/>
+    </Style>
+    <Style TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="Comic Sans MS"></Setter>
+        <Setter Property="FontSize" Value="11"></Setter>
+        <Setter Property="Margin" Value="0,0,0,0"/>
+        <Setter Property="Padding" Value="0,0,0,0"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+    </Style>
+    <Style TargetType="ContentControl">
+        <Setter Property="FontFamily" Value="Comic Sans MS"></Setter>
+        <Setter Property="FontSize" Value="11"></Setter>
+        <Setter Property="Margin" Value="0,0,0,0"/>
+        <Setter Property="Padding" Value="0,0,0,0"/>
+    </Style>
+
+
+
 </ResourceDictionary>

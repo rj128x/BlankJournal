@@ -42,6 +42,7 @@ namespace BlankJournal.Models {
 			IDWordData = tbl.DataWord;
 			ObjectInfo = tbl.ObjectInfo;
 			Active = tbl.isActive;
+			CountActiveComments = 0;
 		}
 
 	}

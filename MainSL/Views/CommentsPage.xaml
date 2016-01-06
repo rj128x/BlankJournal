@@ -8,7 +8,7 @@
            d:DesignWidth="640" d:DesignHeight="480"
            Title="CommentsPage Page">
     <Grid x:Name="LayoutRoot">
-        <sdk:DataGrid Name="grdBlanks" AutoGenerateColumns="False">
+        <sdk:DataGrid Name="grdBlanks" AutoGenerateColumns="False" ColumnHeaderStyle="{StaticResource CenterHeaderText}">
             <sdk:DataGrid.Columns>
                 <sdk:DataGridTemplateColumn Header="Дата созд" SortMemberPath="DateCreate" Width="150"  >
                     <sdk:DataGridTemplateColumn.CellTemplate >
