@@ -221,10 +221,19 @@
     <None Include="Service References\MainSVC\MainService1.wsdl" />
     <None Include="Service References\MainSVC\MainService1.xsd" />
     <None Include="Service References\MainSVC\MainService2.xsd" />
-    <Content Include="Images\small.png">
+    <Resource Include="Images\small.png" />
+    <Content Include="Images\16.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Images\small ish.png" />
+    <Content Include="Images\32.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\48.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\128.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\votges.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
