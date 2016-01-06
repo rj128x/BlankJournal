@@ -16,11 +16,11 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Задание: " Width="100"/>
-                <TextBox Text="{Binding Task, Mode=TwoWay}" TextWrapping="Wrap" Height="70" Width="300"/>
+                <TextBox Text="{Binding Task, Mode=TwoWay}" TextWrapping="Wrap" Height="70" Width="300" AcceptsReturn="True"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Комментарий: " Width="100"/>
-                <TextBox Text="{Binding Comment, Mode=TwoWay}" TextWrapping="Wrap" Height="70" Width="300"/>
+                <TextBox Text="{Binding Comment, Mode=TwoWay}" TextWrapping="Wrap" Height="70" Width="300" AcceptsReturn="True"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Visibility="{Binding isOBP, Converter={StaticResource visibilityConverter}}">
                 <TextBlock Text="Файл бланка: " Width="100"/>

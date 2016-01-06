@@ -16,11 +16,11 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" Visibility="{Binding Finished, Converter={StaticResource visibilityNotConverter}}">
                 <TextBlock Text="Комментарий: " Width="100"/>
-                <TextBox Text="{Binding CommentText, Mode=TwoWay}" TextWrapping="Wrap" Height="70" Width="300" />
+                <TextBox Text="{Binding CommentText, Mode=TwoWay}" TextWrapping="Wrap" Height="70" Width="300" AcceptsReturn="True" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Visibility="{Binding Finished, Converter={StaticResource visibilityConverter}}">
                 <TextBlock Text="Комментарий закрытия: " Width="100" TextWrapping="Wrap"/>
-                <TextBox Text="{Binding CommentPerform, Mode=TwoWay}" TextWrapping="Wrap" Height="70" Width="300" />
+                <TextBox Text="{Binding CommentPerform, Mode=TwoWay}" TextWrapping="Wrap" Height="70" Width="300" AcceptsReturn="True" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Visibility="{Binding Finished, Converter={StaticResource visibilityNotConverter}}">
                 <TextBlock Text="Файл Word" Width="100" />
