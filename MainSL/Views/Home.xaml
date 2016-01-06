@@ -83,7 +83,7 @@
         </Grid>
         <Grid Grid.Row="2">
             <Border Visibility="{Binding CurrentTBP, Converter={StaticResource visibilityConverter}}">
-                <StackPanel Name="pnlInfo"  Orientation="Horizontal"  
+                <StackPanel Name="pnlInfo"  Orientation="Horizontal"  Margin="0,0,0,30"
                         DataContext="{Binding CurrentTBP}">
                     <Border Width="500">
                         <StackPanel Orientation="Vertical">
@@ -102,11 +102,11 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="Связанные файлы" Width="150" Style="{StaticResource Label}"/>
-                                <Button Content="Файл скан (PDF)" Name="btnShowPDF" Click="btnShowPDF_Click"  Width="110"/>
-                                <Button Content="Файл ТБП (Word)" Name="btnShowWord" Click="btnShowWord_Click" Width="110"/>
-                                <Button Content="Файл ОБП (Word)" Name="btnShowWordOBP" Click="btnShowWordOBP_Click" Width="110" />
+                                <Button Content="ТБП (PDF)" Name="btnShowPDF" Click="btnShowPDF_Click"  Width="110"/>
+                                <Button Content= "ТБП (Word)" Name="btnShowWord" Click="btnShowWord_Click" Width="110"/>
+                                <Button Content= "ОБП (Word)" Name="btnShowWordOBP" Click="btnShowWordOBP_Click" Width="110" />
                             </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0,20,0,0" Visibility="{Binding Single.CurrentUser.CanDoOper, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}">
+                            <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
                                 <TextBlock Text="Дополнительно" Width="150" Style="{StaticResource Label}"/>
                                 <Button Content="История редактирования" Name="btnHistoryTBP" Click="btnHistoryTBP_Click" Width="150"/>
                             </StackPanel>
@@ -116,7 +116,7 @@
                         </StackPanel>
                     </Border>
 
-                    <Border Width="200">
+                    <Border Width="200" Margin="30,0,0,0">
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Vertical" Visibility="{Binding Single.CurrentUser.CanDoOper, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}">
                                 <TextBlock Text="Журнал переключений" Width="150" Style="{StaticResource Label}"/>
