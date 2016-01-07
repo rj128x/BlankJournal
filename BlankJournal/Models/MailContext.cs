@@ -39,7 +39,9 @@ namespace BlankJournal.Models {
 			mess.From = new MailAddress(mail_from);
 			mess.Subject = subject; mess.Body = message;
 			foreach (string mail in mailToList) {
-				mess.To.Add(mail);
+				try {
+					mess.To.Add(mail);
+				} catch { }
 			}
 
 			mess.SubjectEncoding = System.Text.Encoding.UTF8;
