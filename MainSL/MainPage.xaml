@@ -73,20 +73,19 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="2">
-                    <TextBlock x:Name="LoginText" Text="Вы вошли как: "/>
+                    <TextBlock x:Name="LoginText" Text="Авторизация: "/>
                     <TextBlock x:Name="LoginName" Text="{Binding Single.CurrentUser.Name, Mode=OneWay, Source={StaticResource globalContext}}"/>
                 </StackPanel>
             </Grid>
 
         </Border>
 
-       <!--
         <Grid Name="grdLoading" Visibility="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"
               OpacityMask="Aqua" Background="LightBlue" Opacity="0.7">
 
             <TextBlock Text="{Binding Single.BusyText, Source={StaticResource globalContext} }" 
                        HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" FontStyle="Italic" FontWeight="Bold"/>
-        </Grid>-->
+        </Grid>
 
 
     </Grid>
