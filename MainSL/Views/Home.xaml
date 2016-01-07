@@ -74,7 +74,9 @@
                         <sdk:DataGridTemplateColumn Header="Замечаний" SortMemberPath="CountActiveComments" Width="100" >
                             <sdk:DataGridTemplateColumn.CellTemplate >
                                 <DataTemplate>
-                                    <ContentControl Content="{Binding CountActiveComments}" />
+                                    <StackPanel Visibility="{Binding CountActiveComments, Converter={StaticResource visibilityConverter}}">
+                                        <TextBlock Text="{Binding CountActiveComments}" />
+                                    </StackPanel>
                                 </DataTemplate>
                             </sdk:DataGridTemplateColumn.CellTemplate>
                         </sdk:DataGridTemplateColumn>

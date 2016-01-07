@@ -15,13 +15,19 @@ using System.Windows.Shapes;
 
 namespace MainSL {
 	public partial class TBPWindow : ChildWindow {
-
+		public string EditingFileName { get; set; }
 		public TBPWindow() {
 			InitializeComponent();
 		}
 		public TBPInfo CurrentBlank { get; set; }
 
 		private void OKButton_Click(object sender, RoutedEventArgs e) {
+			if (!String.IsNullOrEmpty(EditingFileName)) {
+				try {
+					CurrentBlank.UpdatedWord = true;
+					CurrentBlank.WordData = File.ReadAllBytes(EditingFileName);
+				} catch { }
+			}
 			GlobalContext.Single.IsBusy = true;
 			GlobalContext.Single.Client.CreateTBPAsync(CurrentBlank);
 		}
@@ -39,10 +45,12 @@ namespace MainSL {
 			CurrentBlank = blank;
 			LayoutRoot.DataContext = blank;
 			GlobalContext.Single.Client.CreateTBPCompleted += Client_CreateTBPCompleted;
+			GlobalContext.Single.Client.getDataRecordCompleted += Client_getDataRecordCompleted;
 		}
 
 		public void deinit() {
 			GlobalContext.Single.Client.CreateTBPCompleted -= Client_CreateTBPCompleted;
+			GlobalContext.Single.Client.getDataRecordCompleted -= Client_getDataRecordCompleted;
 		}
 
 		void Client_CreateTBPCompleted(object sender, CreateTBPCompletedEventArgs e) {
@@ -79,6 +87,43 @@ namespace MainSL {
 				CurrentBlank.WordData = buffer;
 				CurrentBlank.FileInfoWord = String.Format("{0}", dlg.File.Name);
 				CurrentBlank.UpdatedWord = true;
+				EditingFileName = null;
+			}
+		}
+
+		private void btnEdit_Click(object sender, RoutedEventArgs e) {
+			if (!String.IsNullOrEmpty(EditingFileName)) {
+				WebBrowserBridge.OpenURL(new Uri("file://" + EditingFileName), "_blank");
+				return;
+			}
+			if (CurrentBlank.WordData == null) {
+				GlobalContext.Single.IsBusy = true;
+				GlobalContext.Single.Client.getDataRecordAsync(CurrentBlank.IDWordData);
+			} else {
+				editFile();
+			}
+		}
+
+		void Client_getDataRecordCompleted(object sender, getDataRecordCompletedEventArgs e) {
+			GlobalContext.Single.IsBusy = false;
+			if (e.Result != null) {
+				DataRecord rec = e.Result as DataRecord;
+				CurrentBlank.WordData = rec.Data;
+				editFile();
+			}
+		}
+
+		protected void editFile() {
+			if (CurrentBlank.WordData != null) {
+				try {
+					string str = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+					str = string.Format("{0}/{1}_{2}", str, DateTime.Now.ToString("yyyyMMddhhmmss"), CurrentBlank.FileInfoWord);
+					EditingFileName = str;
+					File.WriteAllBytes(str, CurrentBlank.WordData);
+					WebBrowserBridge.OpenURL(new Uri("file://" + str), "_blank");
+				} catch {
+
+				}
 			}
 		}
 

@@ -21,6 +21,14 @@ namespace MainSL.Converters {
 				} catch {
 					return System.Windows.Visibility.Collapsed;
 				}
+			} else if (value is Int32) {
+				try {
+					int val = (Int32)value;
+					return val>0 ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
+				} catch {
+					return System.Windows.Visibility.Collapsed;
+				}
+
 			} else return value == null ? System.Windows.Visibility.Collapsed : System.Windows.Visibility.Visible;
 		}
 
