@@ -1,5 +1,6 @@
 ﻿using BlankJournal.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
@@ -28,6 +29,12 @@ namespace BlankJournal {
 	
 	}
 
+	public class JournalAnswer {
+		public DateTime? dateStart { get; set; }
+		public DateTime? dateEnd { get; set; }
+		public List<JournalRecord> Data{get;set;}
+	}
+
 	[ServiceContract(Namespace = "")]
 	[AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
 	public class MainService {
@@ -53,8 +60,9 @@ namespace BlankJournal {
 		}
 
 		[OperationContract]
-		public IQueryable<JournalRecord> GetJournalBP() {
-			return DBContext.Single.GetJournalBP().AsQueryable();
+		public JournalAnswer GetJournalBP(JournalAnswer Filter) {
+			
+			return DBContext.Single.GetJournalBP(Filter);
 		}
 
 		[OperationContract]

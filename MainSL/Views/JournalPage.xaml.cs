@@ -11,14 +11,32 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Windows.Navigation;
 using MainSL.MainSVC;
+using System.ComponentModel;
 
 namespace MainSL.Views {
-	public partial class JournalPage : Page {
+	public partial class JournalPage : Page , INotifyPropertyChanged
+	{		
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		public void NotifyChanged(string propName) {
+			if (PropertyChanged != null)
+				PropertyChanged(this, new PropertyChangedEventArgs(propName));
+		}
+
+		private JournalAnswer _currentFilter;
+
+		protected JournalAnswer CurrentFilter {
+			get { return _currentFilter; }
+			set { _currentFilter = value;
+			NotifyChanged("CurrentFilter");
+			}
+		}
+
 		public JournalPage() {
 			InitializeComponent();
 			init();
 			GlobalContext.Single.IsBusy = true;
-			GlobalContext.Single.Client.GetJournalBPAsync();
+			GlobalContext.Single.Client.GetJournalBPAsync(CurrentFilter);
 		}
 
 		public void init() {
@@ -31,7 +49,9 @@ namespace MainSL.Views {
 
 		void Client_GetJournalBPCompleted(object sender, MainSVC.GetJournalBPCompletedEventArgs e) {
 			GlobalContext.Single.IsBusy = false;
-			grdBlanks.ItemsSource = e.Result;
+			CurrentFilter = e.Result as JournalAnswer;
+			pnlFilter.DataContext = CurrentFilter;
+			grdBlanks.ItemsSource = CurrentFilter.Data;
 		}
 
 		// Выполняется, когда пользователь переходит на эту страницу.
@@ -63,8 +83,13 @@ namespace MainSL.Views {
 			JournalRecordWindow win = sender as JournalRecordWindow;
 			//if (win.DialogResult == true) {
 				GlobalContext.Single.IsBusy = true;
-				GlobalContext.Single.Client.GetJournalBPAsync();
+				GlobalContext.Single.Client.GetJournalBPAsync(CurrentFilter);
 			//}
+		}
+
+		private void btnRefresh_Click(object sender, RoutedEventArgs e) {
+			GlobalContext.Single.IsBusy = true;
+			GlobalContext.Single.Client.GetJournalBPAsync(CurrentFilter);
 		}
 
 	}

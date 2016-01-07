@@ -527,6 +527,66 @@ namespace MainSL.MainSVC {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="JournalAnswer", Namespace="http://schemas.datacontract.org/2004/07/BlankJournal")]
+    public partial class JournalAnswer : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.JournalRecord> DataField;
+        
+        private System.Nullable<System.DateTime> dateEndField;
+        
+        private System.Nullable<System.DateTime> dateStartField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.JournalRecord> Data {
+            get {
+                return this.DataField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DataField, value) != true)) {
+                    this.DataField = value;
+                    this.RaisePropertyChanged("Data");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> dateEnd {
+            get {
+                return this.dateEndField;
+            }
+            set {
+                if ((this.dateEndField.Equals(value) != true)) {
+                    this.dateEndField = value;
+                    this.RaisePropertyChanged("dateEnd");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> dateStart {
+            get {
+                return this.dateStartField;
+            }
+            set {
+                if ((this.dateStartField.Equals(value) != true)) {
+                    this.dateStartField = value;
+                    this.RaisePropertyChanged("dateStart");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="JournalRecord", Namespace="http://schemas.datacontract.org/2004/07/BlankJournal.Models")]
     public partial class JournalRecord : object, System.ComponentModel.INotifyPropertyChanged {
         
@@ -1465,9 +1525,9 @@ namespace MainSL.MainSVC {
         System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPInfo> EndGetTBPBlanksByFolder(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:MainService/GetJournalBP", ReplyAction="urn:MainService/GetJournalBPResponse")]
-        System.IAsyncResult BeginGetJournalBP(System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginGetJournalBP(MainSL.MainSVC.JournalAnswer Filter, System.AsyncCallback callback, object asyncState);
         
-        System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.JournalRecord> EndGetJournalBP(System.IAsyncResult result);
+        MainSL.MainSVC.JournalAnswer EndGetJournalBP(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:MainService/CreateTBP", ReplyAction="urn:MainService/CreateTBPResponse")]
         System.IAsyncResult BeginCreateTBP(MainSL.MainSVC.TBPInfo newBlank, System.AsyncCallback callback, object asyncState);
@@ -1627,10 +1687,10 @@ namespace MainSL.MainSVC {
             this.results = results;
         }
         
-        public System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.JournalRecord> Result {
+        public MainSL.MainSVC.JournalAnswer Result {
             get {
                 base.RaiseExceptionIfNecessary();
-                return ((System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.JournalRecord>)(this.results[0]));
+                return ((MainSL.MainSVC.JournalAnswer)(this.results[0]));
             }
         }
     }
@@ -2373,21 +2433,22 @@ namespace MainSL.MainSVC {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult MainSL.MainSVC.MainService.BeginGetJournalBP(System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginGetJournalBP(callback, asyncState);
+        System.IAsyncResult MainSL.MainSVC.MainService.BeginGetJournalBP(MainSL.MainSVC.JournalAnswer Filter, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetJournalBP(Filter, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.JournalRecord> MainSL.MainSVC.MainService.EndGetJournalBP(System.IAsyncResult result) {
+        MainSL.MainSVC.JournalAnswer MainSL.MainSVC.MainService.EndGetJournalBP(System.IAsyncResult result) {
             return base.Channel.EndGetJournalBP(result);
         }
         
         private System.IAsyncResult OnBeginGetJournalBP(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            return ((MainSL.MainSVC.MainService)(this)).BeginGetJournalBP(callback, asyncState);
+            MainSL.MainSVC.JournalAnswer Filter = ((MainSL.MainSVC.JournalAnswer)(inValues[0]));
+            return ((MainSL.MainSVC.MainService)(this)).BeginGetJournalBP(Filter, callback, asyncState);
         }
         
         private object[] OnEndGetJournalBP(System.IAsyncResult result) {
-            System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.JournalRecord> retVal = ((MainSL.MainSVC.MainService)(this)).EndGetJournalBP(result);
+            MainSL.MainSVC.JournalAnswer retVal = ((MainSL.MainSVC.MainService)(this)).EndGetJournalBP(result);
             return new object[] {
                     retVal};
         }
@@ -2399,11 +2460,11 @@ namespace MainSL.MainSVC {
             }
         }
         
-        public void GetJournalBPAsync() {
-            this.GetJournalBPAsync(null);
+        public void GetJournalBPAsync(MainSL.MainSVC.JournalAnswer Filter) {
+            this.GetJournalBPAsync(Filter, null);
         }
         
-        public void GetJournalBPAsync(object userState) {
+        public void GetJournalBPAsync(MainSL.MainSVC.JournalAnswer Filter, object userState) {
             if ((this.onBeginGetJournalBPDelegate == null)) {
                 this.onBeginGetJournalBPDelegate = new BeginOperationDelegate(this.OnBeginGetJournalBP);
             }
@@ -2413,7 +2474,8 @@ namespace MainSL.MainSVC {
             if ((this.onGetJournalBPCompletedDelegate == null)) {
                 this.onGetJournalBPCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetJournalBPCompleted);
             }
-            base.InvokeAsync(this.onBeginGetJournalBPDelegate, null, this.onEndGetJournalBPDelegate, this.onGetJournalBPCompletedDelegate, userState);
+            base.InvokeAsync(this.onBeginGetJournalBPDelegate, new object[] {
+                        Filter}, this.onEndGetJournalBPDelegate, this.onGetJournalBPCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -3320,15 +3382,16 @@ namespace MainSL.MainSVC {
                 return _result;
             }
             
-            public System.IAsyncResult BeginGetJournalBP(System.AsyncCallback callback, object asyncState) {
-                object[] _args = new object[0];
+            public System.IAsyncResult BeginGetJournalBP(MainSL.MainSVC.JournalAnswer Filter, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = Filter;
                 System.IAsyncResult _result = base.BeginInvoke("GetJournalBP", _args, callback, asyncState);
                 return _result;
             }
             
-            public System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.JournalRecord> EndGetJournalBP(System.IAsyncResult result) {
+            public MainSL.MainSVC.JournalAnswer EndGetJournalBP(System.IAsyncResult result) {
                 object[] _args = new object[0];
-                System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.JournalRecord> _result = ((System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.JournalRecord>)(base.EndInvoke("GetJournalBP", _args, result)));
+                MainSL.MainSVC.JournalAnswer _result = ((MainSL.MainSVC.JournalAnswer)(base.EndInvoke("GetJournalBP", _args, result)));
                 return _result;
             }
             

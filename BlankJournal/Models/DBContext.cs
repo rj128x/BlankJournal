@@ -147,13 +147,21 @@ namespace BlankJournal.Models {
 			}
 		}
 
-		public List<JournalRecord> GetJournalBP() {
+		public JournalAnswer GetJournalBP(JournalAnswer Filter) {
 			Logger.info("Получение журнала переключений ");
 			try {
 				List<JournalRecord> result = new List<JournalRecord>();
 				BlankJournal.BlanksEntities eni = new BlanksEntities();
+				if (Filter == null) {
+					Filter = new JournalAnswer();
+				}
+				if (!Filter.dateStart.HasValue)
+					Filter.dateStart = DateTime.Now.Date.AddDays(-20);
+				if (!Filter.dateEnd.HasValue)
+					Filter.dateEnd = DateTime.Now.Date.AddDays(1);
 				var blanks = from b in eni.BPJournalTable
 								 from dat in eni.DataTable.Where(dat => b.WordData == dat.ID && b.isOBP == true).DefaultIfEmpty()
+								 where b.DateCreate > Filter.dateStart && b.DateCreate < Filter.dateEnd
 								 orderby b.DateCreate descending
 								 select new { blank = b, FileInfo = dat.FileInfo };
 				foreach (var tbl in blanks) {
@@ -161,10 +169,11 @@ namespace BlankJournal.Models {
 					blank.FileInfoWord = tbl.FileInfo;
 					result.Add(blank);
 				}
-				return result;
+				Filter.Data = result;
+				return Filter;
 			} catch (Exception e) {
 				Logger.info("Ошибка при получении журнала переключений " + e.ToString());
-				return new List<JournalRecord>();
+				return Filter;
 			}
 		}
 
