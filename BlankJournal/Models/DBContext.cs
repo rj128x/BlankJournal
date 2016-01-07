@@ -149,16 +149,17 @@ namespace BlankJournal.Models {
 
 		public JournalAnswer GetJournalBP(JournalAnswer Filter) {
 			Logger.info("Получение журнала переключений ");
+			if (Filter == null) {
+				Filter = new JournalAnswer();
+			}
+			if (!Filter.dateStart.HasValue)
+				Filter.dateStart = DateTime.Now.Date.AddDays(-20);
+			if (!Filter.dateEnd.HasValue)
+				Filter.dateEnd = DateTime.Now.Date.AddDays(1);
 			try {
 				List<JournalRecord> result = new List<JournalRecord>();
 				BlankJournal.BlanksEntities eni = new BlanksEntities();
-				if (Filter == null) {
-					Filter = new JournalAnswer();
-				}
-				if (!Filter.dateStart.HasValue)
-					Filter.dateStart = DateTime.Now.Date.AddDays(-20);
-				if (!Filter.dateEnd.HasValue)
-					Filter.dateEnd = DateTime.Now.Date.AddDays(1);
+				
 				var blanks = from b in eni.BPJournalTable
 								 from dat in eni.DataTable.Where(dat => b.WordData == dat.ID && b.isOBP == true).DefaultIfEmpty()
 								 where b.DateCreate > Filter.dateStart && b.DateCreate < Filter.dateEnd
@@ -177,13 +178,24 @@ namespace BlankJournal.Models {
 			}
 		}
 
-		public List<TBPComment> GetCommentsList() {
+		public CommentAnswer GetCommentsList(CommentAnswer Filter) {
 			Logger.info("Получение списка замечаний ");
+			if (Filter == null) {
+				Filter = new CommentAnswer();
+				Filter.onlyActive = true;
+			}
+			if (!Filter.dateStart.HasValue)
+				Filter.dateStart = DateTime.Now.Date.AddDays(-30);
+			if (!Filter.dateEnd.HasValue)
+				Filter.dateEnd = DateTime.Now.Date.AddDays(1);
+			
 			try {
 				List<TBPComment> result = new List<TBPComment>();
 				BlankJournal.BlanksEntities eni = new BlanksEntities();
 				var comments = from c in eni.TBPCommentsTable
 									from dat in eni.DataTable.Where(dat => dat.ID == c.WordData).DefaultIfEmpty()
+									where c.DateCreate>Filter.dateStart && c.DateCreate<Filter.dateEnd && 
+									((Filter.onlyActive==true && c.Finished==false)||(Filter.onlyActive==false))
 									orderby c.DateCreate descending
 									select new { comment = c, Fileinfo = dat.FileInfo };
 				foreach (var tbl in comments) {
@@ -191,10 +203,11 @@ namespace BlankJournal.Models {
 					com.FileInfoData = tbl.Fileinfo;
 					result.Add(com);
 				}
-				return result;
+				Filter.Data = result;
+				return Filter;
 			} catch (Exception e) {
 				Logger.info("Ошибка при получении списка замечаний " + e.ToString());
-				return new List<TBPComment>();
+				return new CommentAnswer();
 			}
 		}
 

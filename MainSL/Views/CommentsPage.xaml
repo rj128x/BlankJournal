@@ -8,72 +8,89 @@
            d:DesignWidth="640" d:DesignHeight="480"
            Title="CommentsPage Page">
     <Grid x:Name="LayoutRoot">
-        <sdk:DataGrid Name="grdBlanks" AutoGenerateColumns="False" ColumnHeaderStyle="{StaticResource CenterHeaderText}">
-            <sdk:DataGrid.Columns>
-                <sdk:DataGridTemplateColumn Header="Дата созд" SortMemberPath="DateCreate" Width="150"  >
-                    <sdk:DataGridTemplateColumn.CellTemplate >
-                        <DataTemplate>
-                            <ContentControl Content="{Binding DateCreate, StringFormat='dd.MM.yyyy HH:mm'}"  />
-                        </DataTemplate>
-                    </sdk:DataGridTemplateColumn.CellTemplate>
-                </sdk:DataGridTemplateColumn>
-                <sdk:DataGridTemplateColumn Header="№ бланка" SortMemberPath="Number" Width="150" >
-                    <sdk:DataGridTemplateColumn.CellTemplate >
-                        <DataTemplate>
-                            <ContentControl Content="{Binding TBPNumber}" />
-                        </DataTemplate>
-                    </sdk:DataGridTemplateColumn.CellTemplate>
-                </sdk:DataGridTemplateColumn>
-                <sdk:DataGridTemplateColumn Header="Замечание" SortMemberPath="Number" Width="200" >
-                    <sdk:DataGridTemplateColumn.CellTemplate >
-                        <DataTemplate>
-                            <TextBlock Text="{Binding CommentText}" TextWrapping="Wrap" />
-                        </DataTemplate>
-                    </sdk:DataGridTemplateColumn.CellTemplate>
-                </sdk:DataGridTemplateColumn>
-                <sdk:DataGridTemplateColumn Header="Автор" SortMemberPath="Author" Width="100" >
-                    <sdk:DataGridTemplateColumn.CellTemplate >
-                        <DataTemplate>
-                            <ContentControl Content="{Binding Author}" />
-                        </DataTemplate>
-                    </sdk:DataGridTemplateColumn.CellTemplate>
-                </sdk:DataGridTemplateColumn>
-                <sdk:DataGridTemplateColumn Header="Дата закрытия" SortMemberPath="DateStart" Width="150" >
-                    <sdk:DataGridTemplateColumn.CellTemplate >
-                        <DataTemplate>
-                            <ContentControl Content="{Binding DatePerform,StringFormat='dd.MM.yyyy HH:mm'}" Visibility="{Binding Finished, Converter={StaticResource visibilityConverter}}"  />
-                        </DataTemplate>
-                    </sdk:DataGridTemplateColumn.CellTemplate>
-                </sdk:DataGridTemplateColumn>
-                <sdk:DataGridTemplateColumn Header="Закрыл" SortMemberPath="Performer" Width="100" >
-                    <sdk:DataGridTemplateColumn.CellTemplate >
-                        <DataTemplate>
-                            <ContentControl Content="{Binding Performer}" Visibility="{Binding Finished, Converter={StaticResource visibilityConverter}}" />
-                        </DataTemplate>
-                    </sdk:DataGridTemplateColumn.CellTemplate>
-                </sdk:DataGridTemplateColumn>
-                <sdk:DataGridTemplateColumn Header="Комментарий" SortMemberPath="Number" Width="200" >
-                    <sdk:DataGridTemplateColumn.CellTemplate >
-                        <DataTemplate>
-                            <TextBlock Text="{Binding CommentPerform}" TextWrapping="Wrap" Visibility="{Binding Finished, Converter={StaticResource visibilityConverter}}" />
-                        </DataTemplate>
-                    </sdk:DataGridTemplateColumn.CellTemplate>
-                </sdk:DataGridTemplateColumn>
-                <sdk:DataGridTemplateColumn Header="Команды"  Width="300" >
-                    <sdk:DataGridTemplateColumn.CellTemplate >
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <Button Content="Файл" Name="btnShow" Click="btnShow_Click" Height="30"/>
-                                <StackPanel Orientation="Horizontal" Visibility="{Binding Finished, Converter={StaticResource visibilityNotConverter}}">
-                                    <Button Content="Закрыть" Name="btnFinish" Click="btnFinish_Click" Height="30" 
-                                            Visibility="{Binding Single.CurrentUser.CanEditTBP, Source={StaticResource globalContext}}"/>
-                                </StackPanel>
-                            </StackPanel>
-                        </DataTemplate>
-                    </sdk:DataGridTemplateColumn.CellTemplate>
-                </sdk:DataGridTemplateColumn>
-            </sdk:DataGrid.Columns>
+        <Grid >
+            <Grid.RowDefinitions >
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <StackPanel Orientation="Horizontal" Name="pnlFilter">
+                    <TextBlock Text="Записи " Style="{StaticResource Label}"/>
+                    <sdk:DatePicker Name="dateStart" SelectedDate="{Binding dateStart,Mode=TwoWay}"/>
+                    <TextBlock Text="по " Style="{StaticResource Label}"/>
+                    <sdk:DatePicker Name="dateEnd" SelectedDate="{Binding dateEnd,Mode=TwoWay}"/>
+                    <CheckBox Content="Только активные" IsChecked="{Binding onlyActive,Mode=TwoWay}"/>
+                    <Button Name="btnRefresh" Content="Обновить" Click="btnRefresh_Click"/>
+                </StackPanel>
+            </Grid>
 
-        </sdk:DataGrid>
+            <sdk:DataGrid Grid.Row="1" Name="grdBlanks" AutoGenerateColumns="False" ColumnHeaderStyle="{StaticResource CenterHeaderText}">
+                <sdk:DataGrid.Columns>
+                    <sdk:DataGridTemplateColumn Header="Дата созд" SortMemberPath="DateCreate" Width="100"  >
+                        <sdk:DataGridTemplateColumn.CellTemplate >
+                            <DataTemplate>
+                                <ContentControl Content="{Binding DateCreate, StringFormat='dd.MM.yyyy HH:mm'}"  />
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+                    <sdk:DataGridTemplateColumn Header="№ бланка" SortMemberPath="TBPNumber" Width="100" >
+                        <sdk:DataGridTemplateColumn.CellTemplate >
+                            <DataTemplate>
+                                <ContentControl Content="{Binding TBPNumber}" />
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+                    <sdk:DataGridTemplateColumn Header="Замечание" SortMemberPath="CommentText" Width="150" >
+                        <sdk:DataGridTemplateColumn.CellTemplate >
+                            <DataTemplate>
+                                <TextBlock Text="{Binding CommentText}" TextWrapping="Wrap" />
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+                    <sdk:DataGridTemplateColumn Header="Автор" SortMemberPath="Author" Width="100" >
+                        <sdk:DataGridTemplateColumn.CellTemplate >
+                            <DataTemplate>
+                                <ContentControl Content="{Binding Author}" />
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+                    <sdk:DataGridTemplateColumn Header="Дата закрытия" SortMemberPath="DateStart" Width="100" >
+                        <sdk:DataGridTemplateColumn.CellTemplate >
+                            <DataTemplate>
+                                <ContentControl Content="{Binding DatePerform,StringFormat='dd.MM.yyyy HH:mm'}" Visibility="{Binding Finished, Converter={StaticResource visibilityConverter}}"  />
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+                    <sdk:DataGridTemplateColumn Header="Закрыл" SortMemberPath="Performer" Width="100" >
+                        <sdk:DataGridTemplateColumn.CellTemplate >
+                            <DataTemplate>
+                                <ContentControl Content="{Binding Performer}" Visibility="{Binding Finished, Converter={StaticResource visibilityConverter}}" />
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+                    <sdk:DataGridTemplateColumn Header="Комментарий" SortMemberPath="Number" Width="150" >
+                        <sdk:DataGridTemplateColumn.CellTemplate >
+                            <DataTemplate>
+                                <TextBlock Text="{Binding CommentPerform}" TextWrapping="Wrap" Visibility="{Binding Finished, Converter={StaticResource visibilityConverter}}" />
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+                    <sdk:DataGridTemplateColumn Header="Команды"  Width="100" >
+                        <sdk:DataGridTemplateColumn.CellTemplate >
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Content="Файл" Name="btnShow" Click="btnShow_Click" Height="30"/>
+                                    <StackPanel Orientation="Horizontal" Visibility="{Binding Finished, Converter={StaticResource visibilityNotConverter}}">
+                                        <Button Content="Закрыть" Name="btnFinish" Click="btnFinish_Click" Height="30" 
+                                            Visibility="{Binding Single.CurrentUser.CanEditTBP, Source={StaticResource globalContext}}"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+                </sdk:DataGrid.Columns>
+
+            </sdk:DataGrid>
+        </Grid>
     </Grid>
 </navigation:Page>

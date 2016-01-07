@@ -1397,6 +1397,81 @@ namespace MainSL.MainSVC {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CommentAnswer", Namespace="http://schemas.datacontract.org/2004/07/BlankJournal")]
+    public partial class CommentAnswer : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPComment> DataField;
+        
+        private System.Nullable<System.DateTime> dateEndField;
+        
+        private System.Nullable<System.DateTime> dateStartField;
+        
+        private bool onlyActiveField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPComment> Data {
+            get {
+                return this.DataField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DataField, value) != true)) {
+                    this.DataField = value;
+                    this.RaisePropertyChanged("Data");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> dateEnd {
+            get {
+                return this.dateEndField;
+            }
+            set {
+                if ((this.dateEndField.Equals(value) != true)) {
+                    this.dateEndField = value;
+                    this.RaisePropertyChanged("dateEnd");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> dateStart {
+            get {
+                return this.dateStartField;
+            }
+            set {
+                if ((this.dateStartField.Equals(value) != true)) {
+                    this.dateStartField = value;
+                    this.RaisePropertyChanged("dateStart");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool onlyActive {
+            get {
+                return this.onlyActiveField;
+            }
+            set {
+                if ((this.onlyActiveField.Equals(value) != true)) {
+                    this.onlyActiveField = value;
+                    this.RaisePropertyChanged("onlyActive");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="DataRecord", Namespace="http://schemas.datacontract.org/2004/07/BlankJournal.Models")]
     public partial class DataRecord : object, System.ComponentModel.INotifyPropertyChanged {
         
@@ -1575,9 +1650,9 @@ namespace MainSL.MainSVC {
         MainSL.MainSVC.ReturnMessage EndFinishCommentTBP(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:MainService/GetCommentsList", ReplyAction="urn:MainService/GetCommentsListResponse")]
-        System.IAsyncResult BeginGetCommentsList(System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginGetCommentsList(MainSL.MainSVC.CommentAnswer Filter, System.AsyncCallback callback, object asyncState);
         
-        System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPComment> EndGetCommentsList(System.IAsyncResult result);
+        MainSL.MainSVC.CommentAnswer EndGetCommentsList(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:MainService/getOperationsInfo", ReplyAction="urn:MainService/getOperationsInfoResponse")]
         System.IAsyncResult BegingetOperationsInfo(System.AsyncCallback callback, object asyncState);
@@ -1877,10 +1952,10 @@ namespace MainSL.MainSVC {
             this.results = results;
         }
         
-        public System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPComment> Result {
+        public MainSL.MainSVC.CommentAnswer Result {
             get {
                 base.RaiseExceptionIfNecessary();
-                return ((System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPComment>)(this.results[0]));
+                return ((MainSL.MainSVC.CommentAnswer)(this.results[0]));
             }
         }
     }
@@ -2893,21 +2968,22 @@ namespace MainSL.MainSVC {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult MainSL.MainSVC.MainService.BeginGetCommentsList(System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginGetCommentsList(callback, asyncState);
+        System.IAsyncResult MainSL.MainSVC.MainService.BeginGetCommentsList(MainSL.MainSVC.CommentAnswer Filter, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetCommentsList(Filter, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPComment> MainSL.MainSVC.MainService.EndGetCommentsList(System.IAsyncResult result) {
+        MainSL.MainSVC.CommentAnswer MainSL.MainSVC.MainService.EndGetCommentsList(System.IAsyncResult result) {
             return base.Channel.EndGetCommentsList(result);
         }
         
         private System.IAsyncResult OnBeginGetCommentsList(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            return ((MainSL.MainSVC.MainService)(this)).BeginGetCommentsList(callback, asyncState);
+            MainSL.MainSVC.CommentAnswer Filter = ((MainSL.MainSVC.CommentAnswer)(inValues[0]));
+            return ((MainSL.MainSVC.MainService)(this)).BeginGetCommentsList(Filter, callback, asyncState);
         }
         
         private object[] OnEndGetCommentsList(System.IAsyncResult result) {
-            System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPComment> retVal = ((MainSL.MainSVC.MainService)(this)).EndGetCommentsList(result);
+            MainSL.MainSVC.CommentAnswer retVal = ((MainSL.MainSVC.MainService)(this)).EndGetCommentsList(result);
             return new object[] {
                     retVal};
         }
@@ -2919,11 +2995,11 @@ namespace MainSL.MainSVC {
             }
         }
         
-        public void GetCommentsListAsync() {
-            this.GetCommentsListAsync(null);
+        public void GetCommentsListAsync(MainSL.MainSVC.CommentAnswer Filter) {
+            this.GetCommentsListAsync(Filter, null);
         }
         
-        public void GetCommentsListAsync(object userState) {
+        public void GetCommentsListAsync(MainSL.MainSVC.CommentAnswer Filter, object userState) {
             if ((this.onBeginGetCommentsListDelegate == null)) {
                 this.onBeginGetCommentsListDelegate = new BeginOperationDelegate(this.OnBeginGetCommentsList);
             }
@@ -2933,7 +3009,8 @@ namespace MainSL.MainSVC {
             if ((this.onGetCommentsListCompletedDelegate == null)) {
                 this.onGetCommentsListCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetCommentsListCompleted);
             }
-            base.InvokeAsync(this.onBeginGetCommentsListDelegate, null, this.onEndGetCommentsListDelegate, this.onGetCommentsListCompletedDelegate, userState);
+            base.InvokeAsync(this.onBeginGetCommentsListDelegate, new object[] {
+                        Filter}, this.onEndGetCommentsListDelegate, this.onGetCommentsListCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -3512,15 +3589,16 @@ namespace MainSL.MainSVC {
                 return _result;
             }
             
-            public System.IAsyncResult BeginGetCommentsList(System.AsyncCallback callback, object asyncState) {
-                object[] _args = new object[0];
+            public System.IAsyncResult BeginGetCommentsList(MainSL.MainSVC.CommentAnswer Filter, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = Filter;
                 System.IAsyncResult _result = base.BeginInvoke("GetCommentsList", _args, callback, asyncState);
                 return _result;
             }
             
-            public System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPComment> EndGetCommentsList(System.IAsyncResult result) {
+            public MainSL.MainSVC.CommentAnswer EndGetCommentsList(System.IAsyncResult result) {
                 object[] _args = new object[0];
-                System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPComment> _result = ((System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPComment>)(base.EndInvoke("GetCommentsList", _args, result)));
+                MainSL.MainSVC.CommentAnswer _result = ((MainSL.MainSVC.CommentAnswer)(base.EndInvoke("GetCommentsList", _args, result)));
                 return _result;
             }
             

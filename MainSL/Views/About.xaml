@@ -3,9 +3,9 @@
     <Grid x:Name="LayoutRoot">
         <ScrollViewer x:Name="PageScrollViewer" Style="{StaticResource PageScrollViewerStyle}">
 
-            <StackPanel Name="pnlData">
+            <StackPanel Name="pnlData" HorizontalAlignment="Center" VerticalAlignment="Center">
 
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" >
                     <TextBlock Text="Последний лист ЛСО" Width="200"/>
                     <TextBlock Text="{Binding MaxLSO}"/>
                 </StackPanel>

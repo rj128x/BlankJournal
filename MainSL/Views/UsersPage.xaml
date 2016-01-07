@@ -36,28 +36,28 @@
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
                 </sdk:DataGridTemplateColumn>
-                <sdk:DataGridTemplateColumn Header="Редактирование ТБП" SortMemberPath="CanEditTBP" Width="150"  >
+                <sdk:DataGridTemplateColumn Header="Редактирование ТБП" SortMemberPath="CanEditTBP" Width="50"  >
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
                             <TextBlock Text="Да" Visibility="{Binding CanEditTBP,Converter={StaticResource visibilityConverter}}"/>
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
                 </sdk:DataGridTemplateColumn>
-                <sdk:DataGridTemplateColumn Header="Заполнение журнала" SortMemberPath="CanDoOper" Width="150"  >
+                <sdk:DataGridTemplateColumn Header="Заполнение журнала" SortMemberPath="CanDoOper" Width="50"  >
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
                             <TextBlock Text="Да" Visibility="{Binding CanDoOper,Converter={StaticResource visibilityConverter}}"/>
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
                 </sdk:DataGridTemplateColumn>
-                <sdk:DataGridTemplateColumn Header="Замечания к ТБП" SortMemberPath="CanCommentTBP" Width="150"  >
+                <sdk:DataGridTemplateColumn Header="Замечания к ТБП" SortMemberPath="CanCommentTBP" Width="50"  >
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
                             <TextBlock Text="Да" Visibility="{Binding CanCommentTBP,Converter={StaticResource visibilityConverter}}"/>
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
                 </sdk:DataGridTemplateColumn>
-                <sdk:DataGridTemplateColumn Header="Оповещать о замечаниях" SortMemberPath="SendMailComment" Width="150"  >
+                <sdk:DataGridTemplateColumn Header="Оповещать о замечаниях" SortMemberPath="SendMailComment" Width="50"  >
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
                             <TextBlock Text="Да" Visibility="{Binding SendMailComment,Converter={StaticResource visibilityConverter}}"/>

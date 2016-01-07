@@ -262,6 +262,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\MainSVC\MainService3.xsd" />
+    <None Include="Service References\MainSVC\MainSL.MainSVC.CommentAnswer.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\MainSVC\MainSL.MainSVC.DataRecord.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

@@ -35,6 +35,13 @@ namespace BlankJournal {
 		public List<JournalRecord> Data{get;set;}
 	}
 
+	public class CommentAnswer {
+		public DateTime? dateStart { get; set; }
+		public DateTime? dateEnd { get; set; }
+		public bool onlyActive { get; set; }
+		public List<TBPComment> Data { get; set; }
+	}
+
 	[ServiceContract(Namespace = "")]
 	[AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
 	public class MainService {
@@ -111,8 +118,8 @@ namespace BlankJournal {
 		}
 
 		[OperationContract]
-		public IQueryable<TBPComment> GetCommentsList() {
-			return DBContext.Single.GetCommentsList().AsQueryable();
+		public CommentAnswer GetCommentsList(CommentAnswer Filter) {
+			return DBContext.Single.GetCommentsList(Filter);
 		}
 
 		[OperationContract]

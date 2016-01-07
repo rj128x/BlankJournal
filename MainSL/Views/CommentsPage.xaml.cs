@@ -11,14 +11,32 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Windows.Navigation;
 using MainSL.MainSVC;
+using System.ComponentModel;
 
 namespace MainSL.Views {
-	public partial class CommentsPage : Page {
+	public partial class CommentsPage : Page, INotifyPropertyChanged {
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		public void NotifyChanged(string propName) {
+			if (PropertyChanged != null)
+				PropertyChanged(this, new PropertyChangedEventArgs(propName));
+		}
+
+		private CommentAnswer _currentFilter;
+
+		protected CommentAnswer CurrentFilter {
+			get { return _currentFilter; }
+			set {
+				_currentFilter = value;
+				NotifyChanged("CurrentFilter");
+			}
+		}
+
 		public CommentsPage() {
 			InitializeComponent();
 			init();
 			GlobalContext.Single.IsBusy = true;
-			GlobalContext.Single.Client.GetCommentsListAsync();
+			GlobalContext.Single.Client.GetCommentsListAsync(CurrentFilter);
 		}
 
 		public void init() {
@@ -31,14 +49,16 @@ namespace MainSL.Views {
 
 		void Client_GetCommentsListCompleted(object sender, MainSVC.GetCommentsListCompletedEventArgs e) {
 			GlobalContext.Single.IsBusy = false;
-			grdBlanks.ItemsSource = e.Result;
+			CurrentFilter = e.Result as CommentAnswer;
+			grdBlanks.ItemsSource = CurrentFilter.Data;
+			pnlFilter.DataContext = CurrentFilter;
 		}
 
 		void win_Closed(object sender, EventArgs e) {
 			CommentWindow win = sender as CommentWindow;
 			//if (win.DialogResult == true) {
 				GlobalContext.Single.IsBusy = true;
-				GlobalContext.Single.Client.GetCommentsListAsync(win.CurrentComment);
+				GlobalContext.Single.Client.GetCommentsListAsync(CurrentFilter);
 			//}
 		}
 
@@ -64,6 +84,11 @@ namespace MainSL.Views {
 			win.Init(current);
 			win.Closed += win_Closed;
 			win.Show();
+		}
+
+		private void btnRefresh_Click(object sender, RoutedEventArgs e) {
+			GlobalContext.Single.IsBusy = true;
+			GlobalContext.Single.Client.GetCommentsListAsync(CurrentFilter);
 		}
 
 	}

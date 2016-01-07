@@ -18,4 +18,13 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ReturnMessage" nillable="true" type="tns:ReturnMessage" />
+  <xs:complexType name="CommentAnswer">
+    <xs:sequence>
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/BlankJournal.Models" minOccurs="0" name="Data" nillable="true" type="q2:ArrayOfTBPComment" />
+      <xs:element minOccurs="0" name="dateEnd" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="dateStart" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="onlyActive" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CommentAnswer" nillable="true" type="tns:CommentAnswer" />
 </xs:schema>
