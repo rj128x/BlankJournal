@@ -11,7 +11,9 @@ namespace BlankJournal.Models {
 		public bool CanEditTBP { get; set; }
 		public bool CanDoOper {get;set;}
 		public bool CanCommentTBP { get; set; }
+		public bool SendMailComment { get; set; }
 		public bool IsEditing { get; set; }
+		public string Mail { get; set; }
 
 		public User() {
 			Login = "noname";
@@ -27,6 +29,8 @@ namespace BlankJournal.Models {
 			CanDoOper = tbl.CanDoOper;
 			CanEditTBP = tbl.CanEditTBP;
 			CanCommentTBP = tbl.CanCommentTBP;
+			SendMailComment = tbl.SendMailComments;
+			Mail = tbl.Mail;
 		}
 
 		public static ReturnMessage EditUser(User user) {
@@ -43,6 +47,8 @@ namespace BlankJournal.Models {
 				last.CanEditTBP = user.CanEditTBP;
 				last.CanDoOper = user.CanDoOper;
 				last.CanCommentTBP=user.CanCommentTBP;
+				last.Mail = user.Mail;
+				last.SendMailComments = user.SendMailComment;
 				eni.SaveChanges();
 				DBContext.Single.InitUsers();
 				return new ReturnMessage(true, "Информация о пользоватле сохранена");

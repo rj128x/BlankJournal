@@ -2,8 +2,10 @@
 <Settings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 			 xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 
-  <DBServer>localhost</DBServer>
-  <DBName>Blanks</DBName>
-  <DBUser>sa</DBUser>
-  <DBPassword>1</DBPassword>
+  <smtpServer>mx-votges-021.corp.gidroogk.com</smtpServer>
+  <smtpUser></smtpUser>
+  <smtpPassword></smtpPassword>
+  <smtpDomain></smtpDomain>
+  <smtpPort>25</smtpPort>
+  <smtpFrom>SR-VOTGES-015@votges.rushydro.ru</smtpFrom>
 </Settings>

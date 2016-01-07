@@ -29,6 +29,13 @@
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
                 </sdk:DataGridTemplateColumn>
+                <sdk:DataGridTemplateColumn Header="Почта" SortMemberPath="Mail" Width="150"  >
+                    <sdk:DataGridTemplateColumn.CellTemplate >
+                        <DataTemplate>
+                            <ContentControl Content="{Binding Mail}"/>
+                        </DataTemplate>
+                    </sdk:DataGridTemplateColumn.CellTemplate>
+                </sdk:DataGridTemplateColumn>
                 <sdk:DataGridTemplateColumn Header="Редактирование ТБП" SortMemberPath="CanEditTBP" Width="150"  >
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
@@ -47,6 +54,13 @@
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
                             <TextBlock Text="Да" Visibility="{Binding CanCommentTBP,Converter={StaticResource visibilityConverter}}"/>
+                        </DataTemplate>
+                    </sdk:DataGridTemplateColumn.CellTemplate>
+                </sdk:DataGridTemplateColumn>
+                <sdk:DataGridTemplateColumn Header="Оповещать о замечаниях" SortMemberPath="SendMailComment" Width="150"  >
+                    <sdk:DataGridTemplateColumn.CellTemplate >
+                        <DataTemplate>
+                            <TextBlock Text="Да" Visibility="{Binding SendMailComment,Converter={StaticResource visibilityConverter}}"/>
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
                 </sdk:DataGridTemplateColumn>

@@ -81,6 +81,7 @@ namespace BlankJournal.Models {
 				}
 				eni.TBPCommentsTable.Add(tbl);
 				eni.SaveChanges();
+				MailContext.SendComment(comment);
 				return new ReturnMessage(true,"Замечание успешно создано");
 			} catch (Exception e) {
 				Logger.info("Ошибка при добавлении комментария к записи " + e.ToString());

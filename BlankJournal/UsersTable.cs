@@ -28,6 +28,8 @@ namespace BlankJournal
         public bool CanEditTBP { get; set; }
         public bool CanDoOper { get; set; }
         public bool CanCommentTBP { get; set; }
+        public string Mail { get; set; }
+        public bool SendMailComments { get; set; }
     
         public virtual ICollection<BPJournalTable> BPJournalTable { get; set; }
         public virtual ICollection<DataTable> DataTable { get; set; }

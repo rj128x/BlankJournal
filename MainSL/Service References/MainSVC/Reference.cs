@@ -30,7 +30,11 @@ namespace MainSL.MainSVC {
         
         private string LoginField;
         
+        private string MailField;
+        
         private string NameField;
+        
+        private bool SendMailCommentField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public bool CanCommentTBP {
@@ -98,6 +102,19 @@ namespace MainSL.MainSVC {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Mail {
+            get {
+                return this.MailField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MailField, value) != true)) {
+                    this.MailField = value;
+                    this.RaisePropertyChanged("Mail");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string Name {
             get {
                 return this.NameField;
@@ -106,6 +123,19 @@ namespace MainSL.MainSVC {
                 if ((object.ReferenceEquals(this.NameField, value) != true)) {
                     this.NameField = value;
                     this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool SendMailComment {
+            get {
+                return this.SendMailCommentField;
+            }
+            set {
+                if ((this.SendMailCommentField.Equals(value) != true)) {
+                    this.SendMailCommentField = value;
+                    this.RaisePropertyChanged("SendMailComment");
                 }
             }
         }
