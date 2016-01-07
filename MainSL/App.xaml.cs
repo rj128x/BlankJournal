@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MainSL.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -33,7 +34,11 @@ namespace MainSL {
 
 				this.RootVisual = new MainPage();
 			} else {
+				InstallWindow win = new InstallWindow();
+				win.Installed = Application.Current.InstallState == System.Windows.InstallState.Installed;
 				this.RootVisual = new MainPage();
+				
+				win.Show();
 			}
 		}
 
