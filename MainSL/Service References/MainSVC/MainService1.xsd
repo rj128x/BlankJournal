@@ -242,6 +242,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="deleteUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/BlankJournal.Models" minOccurs="0" name="user" nillable="true" type="q30:User" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="deleteUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/BlankJournal" minOccurs="0" name="deleteUserResult" nillable="true" type="q31:ReturnMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="addFile">
     <xs:complexType>
       <xs:sequence>
@@ -254,21 +268,21 @@
   <xs:element name="addFileResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/BlankJournal" minOccurs="0" name="addFileResult" nillable="true" type="q30:ReturnMessage" />
+        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/BlankJournal" minOccurs="0" name="addFileResult" nillable="true" type="q32:ReturnMessage" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="removeTBP">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/BlankJournal.Models" minOccurs="0" name="tbp" nillable="true" type="q31:TBPInfo" />
+        <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/BlankJournal.Models" minOccurs="0" name="tbp" nillable="true" type="q33:TBPInfo" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="removeTBPResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/BlankJournal" minOccurs="0" name="removeTBPResult" nillable="true" type="q32:ReturnMessage" />
+        <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/BlankJournal" minOccurs="0" name="removeTBPResult" nillable="true" type="q34:ReturnMessage" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -282,21 +296,21 @@
   <xs:element name="getDataRecordResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/BlankJournal.Models" minOccurs="0" name="getDataRecordResult" nillable="true" type="q33:DataRecord" />
+        <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/BlankJournal.Models" minOccurs="0" name="getDataRecordResult" nillable="true" type="q35:DataRecord" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="updateDataRecord">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/BlankJournal.Models" minOccurs="0" name="rec" nillable="true" type="q34:DataRecord" />
+        <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/BlankJournal.Models" minOccurs="0" name="rec" nillable="true" type="q36:DataRecord" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="updateDataRecordResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/BlankJournal" minOccurs="0" name="updateDataRecordResult" nillable="true" type="q35:ReturnMessage" />
+        <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/BlankJournal" minOccurs="0" name="updateDataRecordResult" nillable="true" type="q37:ReturnMessage" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

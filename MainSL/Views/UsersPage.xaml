@@ -67,7 +67,10 @@
                 <sdk:DataGridTemplateColumn Header="Команды" Width="150"  >
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
-                            <Button Content="Редактировать" Name="btnEdit" Click="btnEdit_Click"/>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="Редактировать" Name="btnEdit" Click="btnEdit_Click"/>
+                                <Button Content="Удалить" Name="btnDel" Click="btnDel_Click"/>
+                            </StackPanel>
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
                 </sdk:DataGridTemplateColumn>

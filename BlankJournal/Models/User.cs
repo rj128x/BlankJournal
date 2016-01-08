@@ -57,5 +57,23 @@ namespace BlankJournal.Models {
 				return new ReturnMessage(false, "Ошибка при добавлении/изменении пользователя");
 			}
 		}
+
+		public static ReturnMessage DeleteUser(User user) {
+			Logger.info("удаление пльзователя");
+			try {
+				BlanksEntities eni = new BlanksEntities();
+				UsersTable last = (from u in eni.UsersTable where u.Login.ToLower() == user.Login.ToLower() select u).FirstOrDefault();
+				if (last == null) {
+					return new ReturnMessage(false,"Пользователь не найден");
+				}
+				eni.UsersTable.Remove(last);
+				eni.SaveChanges();
+				DBContext.Single.InitUsers();
+				return new ReturnMessage(true, "Пользователь удален из системы");
+			} catch (Exception e) {
+				Logger.info("Ошибка при удалении пользователя" + e.ToString());
+				return new ReturnMessage(false, "Ошибка при удалении пользователя");
+			}
+		}
 	}
 }

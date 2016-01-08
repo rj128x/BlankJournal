@@ -23,10 +23,21 @@ namespace MainSL.Views {
 
 		public void init() {
 			GlobalContext.Single.Client.getAllUsersCompleted += Client_getAllUsersCompleted;
+			GlobalContext.Single.Client.deleteUserCompleted += Client_deleteUserCompleted;
+		}
+
+		void Client_deleteUserCompleted(object sender, deleteUserCompletedEventArgs e) {
+			GlobalContext.Single.IsBusy = false;
+			ReturnMessage msg = e.Result as ReturnMessage;
+			MessageBox.Show(msg.Message);
+			GlobalContext.Single.IsBusy = true;
+			GlobalContext.Single.Client.getAllUsersAsync();
+
 		}
 
 		public void deinit() {
 			GlobalContext.Single.Client.getAllUsersCompleted -= Client_getAllUsersCompleted;
+			GlobalContext.Single.Client.deleteUserCompleted -= Client_deleteUserCompleted;
 		}
 
 		void Client_getAllUsersCompleted(object sender, MainSVC.getAllUsersCompletedEventArgs e) {
@@ -65,6 +76,14 @@ namespace MainSL.Views {
 				GlobalContext.Single.IsBusy = true;
 				GlobalContext.Single.Client.getAllUsersAsync();
 			//}
+		}
+
+		private void btnDel_Click(object sender, RoutedEventArgs e) {
+			User currentUser = grdUsers.SelectedItem as User;
+			if (MessageBox.Show("Вы уверены что хотите удалить пользователя " + currentUser.Name, "Удаление", MessageBoxButton.OKCancel) == MessageBoxResult.OK) {
+				GlobalContext.Single.IsBusy = true;
+				GlobalContext.Single.Client.deleteUserAsync(currentUser);
+			}
 		}
 
 	}

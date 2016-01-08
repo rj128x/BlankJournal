@@ -138,6 +138,11 @@ namespace BlankJournal {
 		}
 
 		[OperationContract]
+		public ReturnMessage deleteUser(User user) {
+			return User.DeleteUser(user);
+		}
+
+		[OperationContract]
 		public ReturnMessage addFile(string fileInfo, byte[] data,DateTime dateLoad) {
 			return InitDB.processFileData(fileInfo, data,dateLoad);
 		}

@@ -1669,6 +1669,11 @@ namespace MainSL.MainSVC {
         
         MainSL.MainSVC.ReturnMessage EndeditUser(System.IAsyncResult result);
         
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:MainService/deleteUser", ReplyAction="urn:MainService/deleteUserResponse")]
+        System.IAsyncResult BegindeleteUser(MainSL.MainSVC.User user, System.AsyncCallback callback, object asyncState);
+        
+        MainSL.MainSVC.ReturnMessage EnddeleteUser(System.IAsyncResult result);
+        
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:MainService/addFile", ReplyAction="urn:MainService/addFileResponse")]
         System.IAsyncResult BeginaddFile(string fileInfo, byte[] data, System.DateTime dateLoad, System.AsyncCallback callback, object asyncState);
         
@@ -2019,6 +2024,25 @@ namespace MainSL.MainSVC {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class deleteUserCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public deleteUserCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public MainSL.MainSVC.ReturnMessage Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((MainSL.MainSVC.ReturnMessage)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class addFileCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
@@ -2205,6 +2229,12 @@ namespace MainSL.MainSVC {
         
         private System.Threading.SendOrPostCallback oneditUserCompletedDelegate;
         
+        private BeginOperationDelegate onBegindeleteUserDelegate;
+        
+        private EndOperationDelegate onEnddeleteUserDelegate;
+        
+        private System.Threading.SendOrPostCallback ondeleteUserCompletedDelegate;
+        
         private BeginOperationDelegate onBeginaddFileDelegate;
         
         private EndOperationDelegate onEndaddFileDelegate;
@@ -2317,6 +2347,8 @@ namespace MainSL.MainSVC {
         public event System.EventHandler<getAllUsersCompletedEventArgs> getAllUsersCompleted;
         
         public event System.EventHandler<editUserCompletedEventArgs> editUserCompleted;
+        
+        public event System.EventHandler<deleteUserCompletedEventArgs> deleteUserCompleted;
         
         public event System.EventHandler<addFileCompletedEventArgs> addFileCompleted;
         
@@ -3148,6 +3180,52 @@ namespace MainSL.MainSVC {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult MainSL.MainSVC.MainService.BegindeleteUser(MainSL.MainSVC.User user, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BegindeleteUser(user, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        MainSL.MainSVC.ReturnMessage MainSL.MainSVC.MainService.EnddeleteUser(System.IAsyncResult result) {
+            return base.Channel.EnddeleteUser(result);
+        }
+        
+        private System.IAsyncResult OnBegindeleteUser(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            MainSL.MainSVC.User user = ((MainSL.MainSVC.User)(inValues[0]));
+            return ((MainSL.MainSVC.MainService)(this)).BegindeleteUser(user, callback, asyncState);
+        }
+        
+        private object[] OnEnddeleteUser(System.IAsyncResult result) {
+            MainSL.MainSVC.ReturnMessage retVal = ((MainSL.MainSVC.MainService)(this)).EnddeleteUser(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OndeleteUserCompleted(object state) {
+            if ((this.deleteUserCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.deleteUserCompleted(this, new deleteUserCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void deleteUserAsync(MainSL.MainSVC.User user) {
+            this.deleteUserAsync(user, null);
+        }
+        
+        public void deleteUserAsync(MainSL.MainSVC.User user, object userState) {
+            if ((this.onBegindeleteUserDelegate == null)) {
+                this.onBegindeleteUserDelegate = new BeginOperationDelegate(this.OnBegindeleteUser);
+            }
+            if ((this.onEnddeleteUserDelegate == null)) {
+                this.onEnddeleteUserDelegate = new EndOperationDelegate(this.OnEnddeleteUser);
+            }
+            if ((this.ondeleteUserCompletedDelegate == null)) {
+                this.ondeleteUserCompletedDelegate = new System.Threading.SendOrPostCallback(this.OndeleteUserCompleted);
+            }
+            base.InvokeAsync(this.onBegindeleteUserDelegate, new object[] {
+                        user}, this.onEnddeleteUserDelegate, this.ondeleteUserCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.IAsyncResult MainSL.MainSVC.MainService.BeginaddFile(string fileInfo, byte[] data, System.DateTime dateLoad, System.AsyncCallback callback, object asyncState) {
             return base.Channel.BeginaddFile(fileInfo, data, dateLoad, callback, asyncState);
         }
@@ -3636,6 +3714,19 @@ namespace MainSL.MainSVC {
             public MainSL.MainSVC.ReturnMessage EndeditUser(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 MainSL.MainSVC.ReturnMessage _result = ((MainSL.MainSVC.ReturnMessage)(base.EndInvoke("editUser", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BegindeleteUser(MainSL.MainSVC.User user, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = user;
+                System.IAsyncResult _result = base.BeginInvoke("deleteUser", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public MainSL.MainSVC.ReturnMessage EnddeleteUser(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                MainSL.MainSVC.ReturnMessage _result = ((MainSL.MainSVC.ReturnMessage)(base.EndInvoke("deleteUser", _args, result)));
                 return _result;
             }
             

@@ -116,6 +116,12 @@
   <wsdl:message name="MainService_editUser_OutputMessage">
     <wsdl:part name="parameters" element="editUserResponse" />
   </wsdl:message>
+  <wsdl:message name="MainService_deleteUser_InputMessage">
+    <wsdl:part name="parameters" element="deleteUser" />
+  </wsdl:message>
+  <wsdl:message name="MainService_deleteUser_OutputMessage">
+    <wsdl:part name="parameters" element="deleteUserResponse" />
+  </wsdl:message>
   <wsdl:message name="MainService_addFile_InputMessage">
     <wsdl:part name="parameters" element="addFile" />
   </wsdl:message>
@@ -212,6 +218,10 @@
     <wsdl:operation name="editUser">
       <wsdl:input wsaw:Action="urn:MainService/editUser" message="MainService_editUser_InputMessage" />
       <wsdl:output wsaw:Action="urn:MainService/editUserResponse" message="MainService_editUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteUser">
+      <wsdl:input wsaw:Action="urn:MainService/deleteUser" message="MainService_deleteUser_InputMessage" />
+      <wsdl:output wsaw:Action="urn:MainService/deleteUserResponse" message="MainService_deleteUser_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="addFile">
       <wsdl:input wsaw:Action="urn:MainService/addFile" message="MainService_addFile_InputMessage" />
