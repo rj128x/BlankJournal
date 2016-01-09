@@ -5,42 +5,50 @@
            Width="389" Height="246" 
            Title="UserWindow">
     <Grid x:Name="LayoutRoot" Margin="2">
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <StackPanel Name="pnlData">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Width="150" Text="Логин"/>
-                <TextBox Text="{Binding Login,Mode=TwoWay}" Width="200" IsEnabled="{Binding IsEditing,Converter={StaticResource logicNotConverter}}"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <StackPanel Name="pnlData">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Width="150" Text="Логин"/>
+                    <TextBox Text="{Binding Login,Mode=TwoWay}" Width="200" IsEnabled="{Binding IsEditing,Converter={StaticResource logicNotConverter}}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Width="150" Text="Имя"/>
+                    <TextBox Text="{Binding Name, Mode=TwoWay}" Width="200"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Width="150" Text="Почта"/>
+                    <TextBox Text="{Binding Mail, Mode=TwoWay}" Width="200" Height="45" TextWrapping="Wrap"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Width="150" Text="Редактирование ТБП"/>
+                    <CheckBox  IsChecked="{Binding CanEditTBP,Mode=TwoWay}" Content="Доступно"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Width="150" Text="Заполнение журнала"/>
+                    <CheckBox IsChecked="{Binding CanDoOper,Mode=TwoWay}" Content="Доступно"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Width="150" Text="Замечания к ТБП"/>
+                    <CheckBox IsChecked="{Binding CanCommentTBP,Mode=TwoWay}" Content="Доступно"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Width="150" Text="Оповещать о замечаниях"/>
+                    <CheckBox IsChecked="{Binding SendMailComment,Mode=TwoWay}" Content="Оповещать"/>
+                </StackPanel>
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Width="150" Text="Имя"/>
-                <TextBox Text="{Binding Name, Mode=TwoWay}" Width="200"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Width="150" Text="Почта"/>
-                <TextBox Text="{Binding Mail, Mode=TwoWay}" Width="200" Height="45" TextWrapping="Wrap"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Width="150" Text="Редактирование ТБП"/>
-                <CheckBox  IsChecked="{Binding CanEditTBP,Mode=TwoWay}" Content="Доступно"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Width="150" Text="Заполнение журнала"/>
-                <CheckBox IsChecked="{Binding CanDoOper,Mode=TwoWay}" Content="Доступно"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Width="150" Text="Замечания к ТБП"/>
-                <CheckBox IsChecked="{Binding CanCommentTBP,Mode=TwoWay}" Content="Доступно"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Width="150" Text="Оповещать о замечаниях"/>
-                <CheckBox IsChecked="{Binding SendMailComment,Mode=TwoWay}" Content="Оповещать"/>
-            </StackPanel>
-        </StackPanel>
 
-        <Button x:Name="CancelButton" Content="Отмена" Click="CancelButton_Click" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,12,0,0" Grid.Row="1" />
-        <Button x:Name="OKButton" Content="ОК" Click="OKButton_Click" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,12,79,0" Grid.Row="1" />
+            <Button x:Name="CancelButton" Content="Отмена" Click="CancelButton_Click" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,12,0,0" Grid.Row="1" />
+            <Button x:Name="OKButton" Content="ОК" Click="OKButton_Click" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,12,79,0" Grid.Row="1" />
+        </Grid>
+        <Grid Name="grdLoading" Visibility="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"
+              OpacityMask="Aqua" Background="LightBlue" Opacity="0.7">
+
+            <TextBlock Text="{Binding Single.BusyText, Source={StaticResource globalContext} }" 
+                       HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" FontStyle="Italic" FontWeight="Bold"/>
+        </Grid>
     </Grid>
 </controls:ChildWindow>

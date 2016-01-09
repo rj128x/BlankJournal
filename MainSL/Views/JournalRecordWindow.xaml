@@ -5,54 +5,62 @@
            Width="450" Height="335" 
            Title="Новое задание на переключение">
     <Grid x:Name="LayoutRoot" Margin="2">
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <StackPanel Name="pnlData">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Номер бланка: " Width="100"/>
-                <TextBlock Text="{Binding Number, Mode=OneWay}"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Задание: " Width="100"/>
-                <TextBox Text="{Binding Task, Mode=TwoWay}" TextWrapping="Wrap" Height="70" Width="300" AcceptsReturn="True"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Комментарий: " Width="100"/>
-                <TextBox Text="{Binding Comment, Mode=TwoWay}" TextWrapping="Wrap" Height="70" Width="300" AcceptsReturn="True"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Visibility="{Binding isOBP, Converter={StaticResource visibilityConverter}}">
-                <TextBlock Text="Файл бланка: " Width="100"/>
-                <TextBox Name="txtWord" Width="200" Text="{Binding FileInfoWord}" IsEnabled="False"/>
-                <Button Content="  ...  " Name="btnChooseWord" Click="btnChooseWord_Click"/>
-                <Button Content="Редактор" Name="btnEditWord" Click="btnEditWord_Click" 
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <StackPanel Name="pnlData">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Номер бланка: " Width="100"/>
+                    <TextBlock Text="{Binding Number, Mode=OneWay}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Задание: " Width="100"/>
+                    <TextBox Text="{Binding Task, Mode=TwoWay}" TextWrapping="Wrap" Height="70" Width="300" AcceptsReturn="True"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Комментарий: " Width="100"/>
+                    <TextBox Text="{Binding Comment, Mode=TwoWay}" TextWrapping="Wrap" Height="70" Width="300" AcceptsReturn="True"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Visibility="{Binding isOBP, Converter={StaticResource visibilityConverter}}">
+                    <TextBlock Text="Файл бланка: " Width="100"/>
+                    <TextBox Name="txtWord" Width="200" Text="{Binding FileInfoWord}" IsEnabled="False"/>
+                    <Button Content="  ...  " Name="btnChooseWord" Click="btnChooseWord_Click"/>
+                    <Button Content="Редактор" Name="btnEditWord" Click="btnEditWord_Click" 
                         Visibility="{Binding Single.IsOOB, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Visibility="{Binding isOBP, Converter={StaticResource visibilityConverter}}">
-                <TextBlock Text="ЛСО: " Width="100" />
-                <TextBox Text="{Binding StartLSO, Mode=TwoWay}" Width="50"/>
-                <TextBlock Text=" - " />
-                <TextBox Text="{Binding EndLSO, Mode=TwoWay}" Width="50"/>
-            </StackPanel>
-            <StackPanel Orientation="Vertical" Visibility="{Binding isInit, Converter={StaticResource visibilityNotConverter}}">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Дата начала: " Width="100"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Visibility="{Binding isOBP, Converter={StaticResource visibilityConverter}}">
+                    <TextBlock Text="ЛСО: " Width="100" />
+                    <TextBox Text="{Binding StartLSO, Mode=TwoWay}" Width="50"/>
+                    <TextBlock Text=" - " />
+                    <TextBox Text="{Binding EndLSO, Mode=TwoWay}" Width="50"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Visibility="{Binding isInit, Converter={StaticResource visibilityNotConverter}}">
                     <StackPanel Orientation="Horizontal">
-                        <controls:DatePicker SelectedDate="{Binding DateStart, Mode=TwoWay}"/>
-                        <toolkit:TimePicker Value="{Binding DateStart, Mode=TwoWay}"/>
+                        <TextBlock Text="Дата начала: " Width="100"/>
+                        <StackPanel Orientation="Horizontal">
+                            <controls:DatePicker SelectedDate="{Binding DateStart, Mode=TwoWay}"/>
+                            <toolkit:TimePicker Value="{Binding DateStart, Mode=TwoWay}"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Дата окончания: " Width="100"/>
+                        <StackPanel Orientation="Horizontal">
+                            <controls:DatePicker SelectedDate="{Binding DateEnd, Mode=TwoWay}"/>
+                            <toolkit:TimePicker Value="{Binding DateEnd, Mode=TwoWay}"/>
+                        </StackPanel>
                     </StackPanel>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Дата окончания: " Width="100"/>
-                    <StackPanel Orientation="Horizontal">
-                        <controls:DatePicker SelectedDate="{Binding DateEnd, Mode=TwoWay}"/>
-                        <toolkit:TimePicker Value="{Binding DateEnd, Mode=TwoWay}"/>
-                    </StackPanel>
-                </StackPanel>
             </StackPanel>
-        </StackPanel>
-        <Button x:Name="CancelButton" Content="Отмена" Click="CancelButton_Click" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,12,0,0" Grid.Row="1" />
-        <Button x:Name="OKButton" Content="ОК" Click="OKButton_Click" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,12,79,0" Grid.Row="1" />
+            <Button x:Name="CancelButton" Content="Отмена" Click="CancelButton_Click" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,12,0,0" Grid.Row="1" />
+            <Button x:Name="OKButton" Content="ОК" Click="OKButton_Click" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,12,79,0" Grid.Row="1" />
+        </Grid>
+        <Grid Name="grdLoading" Visibility="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"
+              OpacityMask="Aqua" Background="LightBlue" Opacity="0.7">
+
+            <TextBlock Text="{Binding Single.BusyText, Source={StaticResource globalContext} }" 
+                       HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" FontStyle="Italic" FontWeight="Bold"/>
+        </Grid>
     </Grid>
 </controls:ChildWindow>

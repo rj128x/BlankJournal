@@ -5,33 +5,42 @@
            Width="474" Height="275" 
            Title="CommentWindow">
     <Grid x:Name="LayoutRoot" Margin="2">
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <StackPanel Name="pnlData">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Номер бланка: " Width="100"/>
-                <TextBlock Text="{Binding TBPNumber, Mode=OneWay}"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Visibility="{Binding Finished, Converter={StaticResource visibilityNotConverter}}">
-                <TextBlock Text="Комментарий: " Width="100"/>
-                <TextBox Text="{Binding CommentText, Mode=TwoWay}" TextWrapping="Wrap" Height="70" Width="300" AcceptsReturn="True" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Visibility="{Binding Finished, Converter={StaticResource visibilityConverter}}">
-                <TextBlock Text="Комментарий закрытия: " Width="100" TextWrapping="Wrap"/>
-                <TextBox Text="{Binding CommentPerform, Mode=TwoWay}" TextWrapping="Wrap" Height="70" Width="300" AcceptsReturn="True" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Visibility="{Binding Finished, Converter={StaticResource visibilityNotConverter}}">
-                <TextBlock Text="Файл Word" Width="100" />
-                <TextBox Name="txtWord" Width="200" IsEnabled="False" Text="{Binding FileInfoData}"/>
-                <Button Content="  ...  " Name="btnChooseWord" Click="btnChooseWord_Click" />
-                <Button Content="Редактор" Name="btnEditWord" Click="btnEditWord_Click" 
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <StackPanel Name="pnlData">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Номер бланка: " Width="100"/>
+                    <TextBlock Text="{Binding TBPNumber, Mode=OneWay}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Visibility="{Binding Finished, Converter={StaticResource visibilityNotConverter}}">
+                    <TextBlock Text="Комментарий: " Width="100"/>
+                    <TextBox Text="{Binding CommentText, Mode=TwoWay}" TextWrapping="Wrap" Height="70" Width="300" AcceptsReturn="True" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Visibility="{Binding Finished, Converter={StaticResource visibilityConverter}}">
+                    <TextBlock Text="Комментарий закрытия: " Width="100" TextWrapping="Wrap"/>
+                    <TextBox Text="{Binding CommentPerform, Mode=TwoWay}" TextWrapping="Wrap" Height="70" Width="300" AcceptsReturn="True" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Visibility="{Binding Finished, Converter={StaticResource visibilityNotConverter}}">
+                    <TextBlock Text="Файл Word" Width="100" />
+                    <TextBox Name="txtWord" Width="200" IsEnabled="False" Text="{Binding FileInfoData}"/>
+                    <Button Content="  ...  " Name="btnChooseWord" Click="btnChooseWord_Click" />
+                    <Button Content="Редактор" Name="btnEditWord" Click="btnEditWord_Click" 
                         Visibility="{Binding Single.IsOOB, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
+                </StackPanel>
             </StackPanel>
-        </StackPanel>
 
-        <Button x:Name="CancelButton" Content="Отмена" Click="CancelButton_Click" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,12,0,0" Grid.Row="1" />
-        <Button x:Name="OKButton" Content="ОК" Click="OKButton_Click" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,12,79,0" Grid.Row="1" />
+            <Button x:Name="CancelButton" Content="Отмена" Click="CancelButton_Click" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,12,0,0" Grid.Row="1" />
+            <Button x:Name="OKButton" Content="ОК" Click="OKButton_Click" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,12,79,0" Grid.Row="1" />
+
+        </Grid>
+        <Grid Name="grdLoading" Visibility="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"
+              OpacityMask="Aqua" Background="LightBlue" Opacity="0.7">
+
+            <TextBlock Text="{Binding Single.BusyText, Source={StaticResource globalContext} }" 
+                       HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" FontStyle="Italic" FontWeight="Bold"/>
+        </Grid>
     </Grid>
 </controls:ChildWindow>
