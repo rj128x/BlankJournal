@@ -73,6 +73,7 @@ namespace BlankJournal.Models {
 					dat.ID=Guid.NewGuid().ToString();
 					dat.DateCreate = DateTime.Now;
 					dat.Author = DBContext.Single.GetCurrentUser().Login;
+					comment.Author = dat.Author;
 					tbl.WordData=dat.ID;
 					dat.FileInfo = comment.FileInfoData;
 					dat.isPDF=false;

@@ -21,12 +21,15 @@ namespace BlankJournal.Models {
 						}
 					}
 				}
-				string message = String.Format("<h3>Создано замечание к бланку № {0}<h3><br/>Текст комментария: {1} <br/>",
-					comment.TBPNumber, comment.CommentText);
-				SendMailLocal(Settings.Single.smtpServer, Settings.Single.smtpPort, Settings.Single.smtpUser, 
-					Settings.Single.smtpPassword,Settings.Single.smtpDomain,Settings.Single.smtpFrom, mailTo, "Новое замечание", message, true);
+				string message = String.Format("<h3>Создано замечание к бланку № {0}<h3><br/>Текст комментария: {1} <br/> Автор замечения: {2} <br/>", 
+					comment.TBPNumber, comment.CommentText,DBContext.Single.getUserByLogin(comment.Author).Name);
+				message += String.Format("<h3><a href='{0}'>Перейти к списку ТБП</a></h3>", String.Format("http://{0}:{1}", HttpContext.Current.Request.Url.Host, HttpContext.Current.Request.Url.Port));
+
+				SendMailLocal(Settings.Single.smtpServer, Settings.Single.smtpPort, Settings.Single.smtpUser,
+					Settings.Single.smtpPassword, Settings.Single.smtpDomain, Settings.Single.smtpFrom, mailTo, "Новое замечание", message, true);
 				return true;
-			} catch (Exception e) {
+			}
+			catch (Exception e) {
 				Logger.info("ошибка при отправке почты " + e.ToString());
 				return false;
 			}
@@ -41,7 +44,8 @@ namespace BlankJournal.Models {
 			foreach (string mail in mailToList) {
 				try {
 					mess.To.Add(mail);
-				} catch { }
+				}
+				catch { }
 			}
 
 			mess.SubjectEncoding = System.Text.Encoding.UTF8;
@@ -51,7 +55,8 @@ namespace BlankJournal.Models {
 			client.EnableSsl = true;
 			if (string.IsNullOrEmpty(mail_user)) {
 				client.UseDefaultCredentials = true;
-			} else {
+			}
+			else {
 				client.Credentials = new System.Net.NetworkCredential(mail_user, mail_password, domain);
 			}
 			// Отправляем письмо
