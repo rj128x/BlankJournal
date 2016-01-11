@@ -196,10 +196,10 @@ namespace BlankJournal.Models {
 					DBContext.Single.MaxLSO = record.EndLSO > DBContext.Single.MaxLSO ? record.EndLSO : DBContext.Single.MaxLSO;
 					DBContext.Single.LastOBP = tbl.Id;
 				}
-				return new ReturnMessage(true, "Бланк успешно создан");
+				return new ReturnMessage(true, record.isInit?"Бланк успешно создан":"Бланк успешно изменен");
 			} catch (Exception e) {
 				Logger.info("Ошибка при создаии бланка " + e.ToString());
-				return new ReturnMessage(false, "Ошибка при создании бланка");
+				return new ReturnMessage(false, record.isInit?"Ошибка при создании бланка":"Ошибка при изменении бланка");
 			}
 
 		}
