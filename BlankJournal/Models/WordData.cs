@@ -99,7 +99,7 @@ namespace BlankJournal.Models {
 			rPr.Bold = new Bold();
 			rPr.Bold.Val = new OnOffValue(true);
 
-			Run headerRun = new Run(new Text("Бланк перелючений №" + (num > 0 ? num.ToString() : "____")));
+			Run headerRun = new Run(new Text("Бланк переключений №" + (num > 0 ? num.ToString() : "____")));
 			headerRun.RunProperties = rPr;
 			Paragraph par = new Paragraph(headerRun);
 			par.ParagraphProperties = new ParagraphProperties();
