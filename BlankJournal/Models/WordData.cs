@@ -107,26 +107,29 @@ namespace BlankJournal.Models {
 			body.PrependChild(par);
 
 			headerRun = new Run(new Text("Объект переключений: Воткинская ГЭС, "+obj));
-			rPr = new RunProperties();
+			rPr = new RunProperties();			
 			rPr.FontSize = new FontSize();
 			rPr.FontSize.Val = new StringValue("32");
 			rPr.Bold = new Bold();
 			rPr.Bold.Val = new OnOffValue(true);
+			rPr.RunFonts = new RunFonts() { Ascii = "Courier New" };
 			headerRun.AppendChild(rPr);
 			par = new Paragraph(headerRun);
-			par.ParagraphProperties = new ParagraphProperties();
+			par.ParagraphProperties = new ParagraphProperties();			
 			par.ParagraphProperties.AppendChild(new Justification() { Val = JustificationValues.Center });
 			body.InsertAfter(par, body.FirstChild);
 
 			Run footerRun = new Run(new Text("Бланк заполнил и переключение производит:"));
 			footerRun.RunProperties = new RunProperties() {
-				FontSize = new FontSize() { Val = new StringValue("20") }
+				FontSize = new FontSize() { Val = new StringValue("20") },
+				RunFonts = new RunFonts() { Ascii = "Courier New" }
 			};
 			body.AppendChild(new Paragraph(footerRun));
 
 			footerRun = new Run(new Text(" ___________________________________________"));
 			footerRun.RunProperties = new RunProperties() {
-				FontSize = new FontSize() { Val = new StringValue("15") }
+				FontSize = new FontSize() { Val = new StringValue("15") },
+				RunFonts = new RunFonts() { Ascii = "Courier New" }
 			};
 			par = new Paragraph(footerRun);
 			par.ParagraphProperties = new ParagraphProperties();
@@ -136,7 +139,8 @@ namespace BlankJournal.Models {
 
 			footerRun = new Run(new Text("(должность, ФИО, подпись)"));
 			footerRun.RunProperties = new RunProperties() {
-				FontSize = new FontSize() { Val = new StringValue("15") }
+				FontSize = new FontSize() { Val = new StringValue("15") },
+				RunFonts = new RunFonts() { Ascii = "Courier New" }
 			};
 			par = new Paragraph(footerRun);
 			par.ParagraphProperties = new ParagraphProperties();
@@ -145,13 +149,15 @@ namespace BlankJournal.Models {
 
 			footerRun = new Run(new Text("Бланк проверил и переключение контролирует:"));
 			footerRun.RunProperties = new RunProperties() {
-				FontSize = new FontSize() { Val = new StringValue("20") }
+				FontSize = new FontSize() { Val = new StringValue("20") },
+				RunFonts = new RunFonts() { Ascii = "Courier New" }
 			};
 			body.AppendChild(new Paragraph(footerRun));
 
 			footerRun = new Run(new Text(" ___________________________________________"));
 			footerRun.RunProperties = new RunProperties() {
-				FontSize = new FontSize() { Val = new StringValue("15") }
+				FontSize = new FontSize() { Val = new StringValue("15") },
+				RunFonts = new RunFonts() { Ascii = "Courier New" }
 			};
 			par = new Paragraph(footerRun);
 			par.ParagraphProperties = new ParagraphProperties();
@@ -160,7 +166,8 @@ namespace BlankJournal.Models {
 
 			footerRun = new Run(new Text("(должность, ФИО, подпись)"));
 			footerRun.RunProperties = new RunProperties() {
-				FontSize = new FontSize() { Val = new StringValue("15") }
+				FontSize = new FontSize() { Val = new StringValue("15") },
+				RunFonts = new RunFonts() { Ascii = "Courier New" }
 			};
 			par = new Paragraph(footerRun);
 			par.ParagraphProperties = new ParagraphProperties();
@@ -169,13 +176,15 @@ namespace BlankJournal.Models {
 
 			footerRun = new Run(new Text("Бланк проверил, переключения разрешаю:"));
 			footerRun.RunProperties = new RunProperties() {
-				FontSize = new FontSize() { Val = new StringValue("20") }
+				FontSize = new FontSize() { Val = new StringValue("20") },
+				RunFonts = new RunFonts() { Ascii = "Courier New" }
 			};
 			body.AppendChild(new Paragraph(footerRun));
 
 			footerRun = new Run(new Text(" ___________________________________________"));
 			footerRun.RunProperties = new RunProperties() {
-				FontSize = new FontSize() { Val = new StringValue("15") }
+				FontSize = new FontSize() { Val = new StringValue("15") },
+				RunFonts = new RunFonts() { Ascii = "Courier New" }
 			};
 			par = new Paragraph(footerRun);
 			par.ParagraphProperties = new ParagraphProperties();
@@ -184,7 +193,8 @@ namespace BlankJournal.Models {
 
 			footerRun = new Run(new Text("(должность, ФИО, подпись)"));
 			footerRun.RunProperties = new RunProperties() {
-				FontSize = new FontSize() { Val = new StringValue("15") }
+				FontSize = new FontSize() { Val = new StringValue("15") },
+				RunFonts = new RunFonts() { Ascii = "Courier New" }
 			};
 			par = new Paragraph(footerRun);
 			par.ParagraphProperties = new ParagraphProperties();
