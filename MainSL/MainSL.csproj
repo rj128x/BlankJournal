@@ -30,6 +30,7 @@
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
     <LinkedServerProject>..\BlankJournal\BlankJournal.csproj</LinkedServerProject>
     <RequireInBrowserElevation>true</RequireInBrowserElevation>
+    <InBrowserSettingsFile>Properties\InBrowserSettings.xml</InBrowserSettingsFile>
   </PropertyGroup>
   <!-- This property group is only here to support building this project using the 
        MSBuild 3.5 toolset. In order to work correctly with this older toolset, it needs 
@@ -59,13 +60,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>false</SignManifests>
+    <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>11271F90FD6FC42EFFF73D2D30ABF32A059F7FD7</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>DCC3ACE550FE763A4CE08C47450038DB8BE94D0D</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>MainSL_1_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>MainSL_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
@@ -221,6 +222,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <None Include="MainSL_1_TemporaryKey.pfx" />
+    <None Include="MainSL_TemporaryKey.pfx" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Service References\MainSVC\MainService.wsdl" />
     <None Include="Service References\MainSVC\MainService.xsd" />
@@ -243,6 +245,7 @@
     <Content Include="Images\votges.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Properties\InBrowserSettings.xml" />
     <Content Include="Properties\OutOfBrowserSettings.xml" />
     <Content Include="ServiceReferences.ClientConfig" />
   </ItemGroup>

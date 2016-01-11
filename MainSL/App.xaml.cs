@@ -45,8 +45,7 @@ namespace MainSL {
 		private void Application_CheckAndDownloadUpdateComplete(object sender,
 		CheckAndDownloadUpdateCompletedEventArgs e) {
 			if (e.UpdateAvailable) {
-				GlobalContext.Single.IsBusy = true;
-				GlobalContext.Single.BusyText = "Установлена новая версия. Перезапустите приложение.";
+				GlobalContext.Single.IsLocked = true;
 				// Здесь можно ввести код вызова пользовательского 
 				// метода в объекте MainPage, который отключает интерфейс
 			} else if (e.Error != null && e.Error is PlatformNotSupportedException) {

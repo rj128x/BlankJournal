@@ -30,7 +30,7 @@ namespace MainSL {
 
 		public static readonly DependencyProperty CurrentUserProperty = DependencyProperty.Register("CurrentUser", typeof(User), typeof(GlobalContext), META);
 		public static readonly DependencyProperty IsBusyProperty = DependencyProperty.Register("IsBusy", typeof(bool), typeof(GlobalContext), META);
-		public static readonly DependencyProperty BusyTextProperty = DependencyProperty.Register("BusyText", typeof(string), typeof(GlobalContext), META);
+		public static readonly DependencyProperty IsLockedProperty = DependencyProperty.Register("IsLocked", typeof(bool), typeof(GlobalContext), META);
 
 		public Dictionary<string, Folder> AllFolders;
 		public event FinishLoad onFinishLoad;
@@ -42,10 +42,11 @@ namespace MainSL {
 			set { SetValue(IsBusyProperty, value); }
 		}
 
-		public string BusyText {
-			get { return (string)GetValue(BusyTextProperty); }
-			set { SetValue(BusyTextProperty, value); }
+		public bool IsLocked {
+			get { return (bool)GetValue(IsLockedProperty); }
+			set { SetValue(IsLockedProperty, value); }
 		}
+
 
 				
 		public User CurrentUser {
@@ -77,7 +78,6 @@ namespace MainSL {
 		void Client_GetUserCompleted(object sender, GetUserCompletedEventArgs e) {
 			IsBusy = false;
 			CurrentUser = e.Result;
-			BusyText = "Загрузка данных. Подождите";
 			//MessageBox.Show(String.Format("Добро пожаловать, {0}!", CurrentUser.Name));
 			Client.GetAllFoldersCompleted += Client_GetAllFoldersCompleted;
 			Client.GetAllFoldersAsync();

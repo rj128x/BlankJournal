@@ -106,7 +106,7 @@ namespace BlankJournal.Models {
 			par.ParagraphProperties.AppendChild(just);
 			body.PrependChild(par);
 
-			headerRun = new Run(new Text("Объект переключений: "+obj));
+			headerRun = new Run(new Text("Объект переключений: Воткинская ГЭС, "+obj));
 			rPr = new RunProperties();
 			rPr.FontSize = new FontSize();
 			rPr.FontSize.Val = new StringValue("32");
@@ -118,11 +118,21 @@ namespace BlankJournal.Models {
 			par.ParagraphProperties.AppendChild(new Justification() { Val = JustificationValues.Center });
 			body.InsertAfter(par, body.FirstChild);
 
-			Run footerRun = new Run(new Text("Бланк заполнил и переключение производит:   ___________________________________"));
+			Run footerRun = new Run(new Text("Бланк заполнил и переключение производит:"));
 			footerRun.RunProperties = new RunProperties() {
 				FontSize = new FontSize() { Val = new StringValue("20") }
 			};
 			body.AppendChild(new Paragraph(footerRun));
+
+			footerRun = new Run(new Text(" ___________________________________________"));
+			footerRun.RunProperties = new RunProperties() {
+				FontSize = new FontSize() { Val = new StringValue("15") }
+			};
+			par = new Paragraph(footerRun);
+			par.ParagraphProperties = new ParagraphProperties();
+			par.ParagraphProperties.AppendChild(new Justification() { Val = JustificationValues.Right });
+			body.AppendChild(par);
+
 
 			footerRun = new Run(new Text("(должность, ФИО, подпись)"));
 			footerRun.RunProperties = new RunProperties() {
@@ -133,11 +143,20 @@ namespace BlankJournal.Models {
 			par.ParagraphProperties.AppendChild(new Justification() { Val = JustificationValues.Right });
 			body.AppendChild(par);
 
-			footerRun = new Run(new Text("Бланк проверил и переключение контролирует: ___________________________________"));
+			footerRun = new Run(new Text("Бланк проверил и переключение контролирует:"));
 			footerRun.RunProperties = new RunProperties() {
 				FontSize = new FontSize() { Val = new StringValue("20") }
 			};
 			body.AppendChild(new Paragraph(footerRun));
+
+			footerRun = new Run(new Text(" ___________________________________________"));
+			footerRun.RunProperties = new RunProperties() {
+				FontSize = new FontSize() { Val = new StringValue("15") }
+			};
+			par = new Paragraph(footerRun);
+			par.ParagraphProperties = new ParagraphProperties();
+			par.ParagraphProperties.AppendChild(new Justification() { Val = JustificationValues.Right });
+			body.AppendChild(par);
 
 			footerRun = new Run(new Text("(должность, ФИО, подпись)"));
 			footerRun.RunProperties = new RunProperties() {
@@ -148,11 +167,20 @@ namespace BlankJournal.Models {
 			par.ParagraphProperties.AppendChild(new Justification() { Val = JustificationValues.Right });
 			body.AppendChild(par);
 
-			footerRun = new Run(new Text("Бланк проверил, переключения разрешаю:      ___________________________________"));
+			footerRun = new Run(new Text("Бланк проверил, переключения разрешаю:"));
 			footerRun.RunProperties = new RunProperties() {
 				FontSize = new FontSize() { Val = new StringValue("20") }
 			};
 			body.AppendChild(new Paragraph(footerRun));
+
+			footerRun = new Run(new Text(" ___________________________________________"));
+			footerRun.RunProperties = new RunProperties() {
+				FontSize = new FontSize() { Val = new StringValue("15") }
+			};
+			par = new Paragraph(footerRun);
+			par.ParagraphProperties = new ParagraphProperties();
+			par.ParagraphProperties.AppendChild(new Justification() { Val = JustificationValues.Right });
+			body.AppendChild(par);
 
 			footerRun = new Run(new Text("(должность, ФИО, подпись)"));
 			footerRun.RunProperties = new RunProperties() {
