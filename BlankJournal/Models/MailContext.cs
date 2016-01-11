@@ -21,8 +21,8 @@ namespace BlankJournal.Models {
 						}
 					}
 				}
-				string message = String.Format("<h3>Создано замечание к бланку № {0}<h3><br/>Текст комментария: {1} <br/> Автор замечания: {2}",
-					comment.TBPNumber, comment.CommentText, comment.CommentPerform);
+				string message = String.Format("<h3>Создано замечание к бланку № {0}<h3><br/>Текст комментария: {1} <br/>",
+					comment.TBPNumber, comment.CommentText);
 				SendMailLocal(Settings.Single.smtpServer, Settings.Single.smtpPort, Settings.Single.smtpUser, 
 					Settings.Single.smtpPassword,Settings.Single.smtpDomain,Settings.Single.smtpFrom, mailTo, "Новое замечание", message, true);
 				return true;

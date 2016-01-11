@@ -17,8 +17,6 @@ namespace BlankJournal
         public string Id { get; set; }
         public string TBPNumber { get; set; }
         public int TBPID { get; set; }
-        public string PrevPDFData { get; set; }
-        public string PrevWordData { get; set; }
         public string NewPDFData { get; set; }
         public string NewWordData { get; set; }
         public string Author { get; set; }
@@ -26,8 +24,6 @@ namespace BlankJournal
     
         public virtual DataTable DataTable { get; set; }
         public virtual DataTable DataTable1 { get; set; }
-        public virtual DataTable DataTable2 { get; set; }
-        public virtual DataTable DataTable3 { get; set; }
         public virtual UsersTable UsersTable { get; set; }
     }
 }

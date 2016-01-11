@@ -25,10 +25,10 @@ namespace BlankJournal
     
         public string Login { get; set; }
         public string Name { get; set; }
+        public string Mail { get; set; }
         public bool CanEditTBP { get; set; }
         public bool CanDoOper { get; set; }
         public bool CanCommentTBP { get; set; }
-        public string Mail { get; set; }
         public bool SendMailComments { get; set; }
     
         public virtual ICollection<BPJournalTable> BPJournalTable { get; set; }

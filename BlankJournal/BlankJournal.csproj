@@ -236,6 +236,7 @@
     <Content Include="Data\ПЕРЕЧЕНЬ ТБП 23 09 15.xlsx" />
     <Content Include="Data\EmptyOBP.docx" />
     <Content Include="Data\Копия ПЕРЕЧЕНЬ ТБП 23 09 15.xlsx" />
+    <Content Include="Data\BodyOBP.docx" />
     <EntityDeploy Include="BlanksModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>BlanksModel.Designer.cs</LastGenOutput>
@@ -253,7 +254,6 @@
       <DependentUpon>BlanksModel.edmx</DependentUpon>
       <LastGenOutput>BlanksModel.cs</LastGenOutput>
     </Content>
-    <Content Include="Data\BodyOBP.docx" />
     <None Include="Properties\PublishProfiles\Blanks.pubxml" />
   </ItemGroup>
   <ItemGroup>

@@ -1183,10 +1183,6 @@ namespace MainSL.MainSVC {
         
         private bool HasNewWordDataField;
         
-        private bool HasPrevPDFDataField;
-        
-        private bool HasPrevWordDataField;
-        
         private string NewPDFIDField;
         
         private string NewWordIDField;
@@ -1198,10 +1194,6 @@ namespace MainSL.MainSVC {
         private int TBPIDField;
         
         private string TBPNumberField;
-        
-        private bool UpdatedPDFField;
-        
-        private bool UpdatedWordField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string Author {
@@ -1251,32 +1243,6 @@ namespace MainSL.MainSVC {
                 if ((this.HasNewWordDataField.Equals(value) != true)) {
                     this.HasNewWordDataField = value;
                     this.RaisePropertyChanged("HasNewWordData");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool HasPrevPDFData {
-            get {
-                return this.HasPrevPDFDataField;
-            }
-            set {
-                if ((this.HasPrevPDFDataField.Equals(value) != true)) {
-                    this.HasPrevPDFDataField = value;
-                    this.RaisePropertyChanged("HasPrevPDFData");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool HasPrevWordData {
-            get {
-                return this.HasPrevWordDataField;
-            }
-            set {
-                if ((this.HasPrevWordDataField.Equals(value) != true)) {
-                    this.HasPrevWordDataField = value;
-                    this.RaisePropertyChanged("HasPrevWordData");
                 }
             }
         }
@@ -1355,32 +1321,6 @@ namespace MainSL.MainSVC {
                 if ((object.ReferenceEquals(this.TBPNumberField, value) != true)) {
                     this.TBPNumberField = value;
                     this.RaisePropertyChanged("TBPNumber");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool UpdatedPDF {
-            get {
-                return this.UpdatedPDFField;
-            }
-            set {
-                if ((this.UpdatedPDFField.Equals(value) != true)) {
-                    this.UpdatedPDFField = value;
-                    this.RaisePropertyChanged("UpdatedPDF");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool UpdatedWord {
-            get {
-                return this.UpdatedWordField;
-            }
-            set {
-                if ((this.UpdatedWordField.Equals(value) != true)) {
-                    this.UpdatedWordField = value;
-                    this.RaisePropertyChanged("UpdatedWord");
                 }
             }
         }

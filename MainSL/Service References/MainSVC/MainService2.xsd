@@ -118,16 +118,12 @@
       <xs:element minOccurs="0" name="DateCreate" type="xs:dateTime" />
       <xs:element minOccurs="0" name="HasNewPDFData" type="xs:boolean" />
       <xs:element minOccurs="0" name="HasNewWordData" type="xs:boolean" />
-      <xs:element minOccurs="0" name="HasPrevPDFData" type="xs:boolean" />
-      <xs:element minOccurs="0" name="HasPrevWordData" type="xs:boolean" />
       <xs:element minOccurs="0" name="NewPDFID" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="NewWordID" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="PrevPDFID" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="PrevWordID" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="TBPID" type="xs:int" />
       <xs:element minOccurs="0" name="TBPNumber" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="UpdatedPDF" type="xs:boolean" />
-      <xs:element minOccurs="0" name="UpdatedWord" type="xs:boolean" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="TBPHistoryRecord" nillable="true" type="tns:TBPHistoryRecord" />

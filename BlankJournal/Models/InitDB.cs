@@ -7,12 +7,11 @@ using System.Web;
 
 namespace BlankJournal.Models {
 	public class InitDB {
-		public static void doInit(DirectoryInfo dir) {
+		public static void doInit(DirectoryInfo dir,DateTime load) {
 			DirectoryInfo[] dirs=dir.GetDirectories();
 			foreach (DirectoryInfo d in dirs) {
-				doInit(d);
+				doInit(d,load);
 			}
-			DateTime load = DateTime.Now;
 			FileInfo[] files = dir.GetFiles();
 			BlanksEntities eni = new BlanksEntities();
 			foreach (FileInfo file in files) {
@@ -87,11 +86,9 @@ namespace BlankJournal.Models {
 						dat.md5 = md5;
 
 						if (dat.isPDF) {
-							hist.PrevPDFData = tbp.DataPDF;
 							tbp.DataPDF = dat.ID;
 							hist.NewPDFData = dat.ID;
 						} else {
-							hist.PrevWordData = tbp.DataWord;
 							tbp.DataWord = dat.ID;
 							hist.NewWordData = dat.ID;
 						}

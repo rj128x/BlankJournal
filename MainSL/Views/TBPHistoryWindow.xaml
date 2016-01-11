@@ -30,10 +30,7 @@
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="***" Visibility="{Binding UpdatedPDF,Converter={StaticResource visibilityConverter}}"/>
-                                <Button Name="btnPrevPDF" Content="Старый" Click="btnPrevPDF_Click"
-                                        Visibility="{Binding HasPrevPDFData,Converter={StaticResource visibilityConverter}}"/>
-                                <Button Name="btnNewPDF" Content="Новый" Click="btnNewPDF_Click"
+                                <Button Name="btnNewPDF" Content="Файл" Click="btnNewPDF_Click"
                                         Visibility="{Binding HasNewPDFData,Converter={StaticResource visibilityConverter}}"/>
                             </StackPanel>
                         </DataTemplate>
@@ -43,10 +40,7 @@
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="***" Visibility="{Binding UpdatedWord,Converter={StaticResource visibilityConverter}}"/>
-                                <Button Name="btnPrevWord" Content="Старый" Click="btnPrevWord_Click"
-                                        Visibility="{Binding HasPrevWordData,Converter={StaticResource visibilityConverter}}"/>
-                                <Button Name="btnNewWord" Content="Новый" Click="btnNewWord_Click"
+                                <Button Name="btnNewWord" Content="Файл" Click="btnNewWord_Click"
                                         Visibility="{Binding HasNewWordData,Converter={StaticResource visibilityConverter}}"/>
                             </StackPanel>
                         </DataTemplate>

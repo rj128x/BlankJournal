@@ -48,11 +48,11 @@
                                      NavigateUri="/CommentsPage" TargetName="ContentFrame" Content="Замечания"/>
                     <Rectangle x:Name="Divider3" Style="{StaticResource DividerStyle}"/>
 
-                    <Rectangle x:Name="Divider4" Style="{StaticResource DividerStyle}"/>
+                    
                     <HyperlinkButton x:Name="Link4" Style="{StaticResource LinkStyle}" 
                                      NavigateUri="/UsersPage" TargetName="ContentFrame" Content="Пользователи"/>
 
-                    
+                    <Rectangle x:Name="Divider4" Style="{StaticResource DividerStyle}"/>
 
                     <HyperlinkButton x:Name="Link5" Style="{StaticResource LinkStyle}" 
                                      NavigateUri="/About" TargetName="ContentFrame" Content="О переключниях"/>

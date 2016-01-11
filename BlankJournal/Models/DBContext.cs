@@ -290,7 +290,6 @@ namespace BlankJournal.Models {
 				hist.DateCreate = DateTime.Now;
 
 				if (newBlank.UpdatedWord) {
-					hist.PrevWordData = tbl.DataWord;
 					DataTable word = new DataTable();
 					word.ID = Guid.NewGuid().ToString();
 					word.Author = GetCurrentUser().Login;
@@ -304,7 +303,6 @@ namespace BlankJournal.Models {
 				}
 
 				if (newBlank.UpdatedPDF) {
-					hist.PrevPDFData = tbl.DataPDF;
 					DataTable pdf = new DataTable();
 					pdf.ID = Guid.NewGuid().ToString();
 					pdf.Author = GetCurrentUser().Login;
