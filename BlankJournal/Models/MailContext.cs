@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Mail;
 using System.Web;
@@ -26,7 +27,7 @@ namespace BlankJournal.Models {
 				message += String.Format("<h3><a href='{0}'>Перейти к списку ТБП</a></h3>", String.Format("http://{0}:{1}", HttpContext.Current.Request.Url.Host, HttpContext.Current.Request.Url.Port));
 
 				SendMailLocal(Settings.Single.smtpServer, Settings.Single.smtpPort, Settings.Single.smtpUser,
-					Settings.Single.smtpPassword, Settings.Single.smtpDomain, Settings.Single.smtpFrom, mailTo, "Новое замечание", message, true);
+					Settings.Single.smtpPassword, Settings.Single.smtpDomain, Settings.Single.smtpFrom, mailTo, "Новое замечание", message, true,comment.Data);
 				return true;
 			}
 			catch (Exception e) {
@@ -35,7 +36,7 @@ namespace BlankJournal.Models {
 			}
 		}
 
-		private static bool SendMailLocal(string smtp_server, int port, string mail_user, string mail_password, string domain, string mail_from, List<string> mailToList, string subject, string message, bool is_html) {
+		private static bool SendMailLocal(string smtp_server, int port, string mail_user, string mail_password, string domain, string mail_from, List<string> mailToList, string subject, string message, bool is_html,byte[]data) {
 
 			System.Net.Mail.MailMessage mess = new System.Net.Mail.MailMessage();
 
@@ -44,6 +45,14 @@ namespace BlankJournal.Models {
 			foreach (string mail in mailToList) {
 				try {
 					mess.To.Add(mail);
+				}
+				catch { }
+			}
+
+			if (data != null) {
+				try {
+					Attachment att = new Attachment(new MemoryStream(data), "file.docx");
+					mess.Attachments.Add(att);
 				}
 				catch { }
 			}
