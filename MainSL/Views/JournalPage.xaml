@@ -5,7 +5,7 @@
            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
            mc:Ignorable="d"
            xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
-           d:DesignWidth="640" d:DesignHeight="480"
+           d:DesignWidth="1000" d:DesignHeight="600"
            Title="JournalPage Page">
     <Grid x:Name="LayoutRoot">
         <Grid >
@@ -27,14 +27,14 @@
 
             <sdk:DataGrid Grid.Row="1" Name="grdBlanks" AutoGenerateColumns="False" ColumnHeaderStyle="{StaticResource CenterHeaderText}">
                 <sdk:DataGrid.Columns>
-                    <sdk:DataGridTemplateColumn Header="Дата созд" SortMemberPath="DateCreate" Width="100"  >
+                    <sdk:DataGridTemplateColumn Header="Дата созд" SortMemberPath="DateCreate" Width="1*"  >
                         <sdk:DataGridTemplateColumn.CellTemplate >
                             <DataTemplate>
                                 <ContentControl Content="{Binding DateCreate, StringFormat='dd.MM.yyyy HH:mm'}" />
                             </DataTemplate>
                         </sdk:DataGridTemplateColumn.CellTemplate>
                     </sdk:DataGridTemplateColumn>
-                    <sdk:DataGridTemplateColumn Header="№ бланка" SortMemberPath="ShortNumber" Width="120" >
+                    <sdk:DataGridTemplateColumn Header="№ бланка" SortMemberPath="ShortNumber" Width="1*" >
                         <sdk:DataGridTemplateColumn.CellTemplate >
                             <DataTemplate>
                                 <StackPanel Orientation="Vertical">
@@ -51,28 +51,28 @@
                             </DataTemplate>
                         </sdk:DataGridTemplateColumn.CellTemplate>
                     </sdk:DataGridTemplateColumn>
-                    <sdk:DataGridTemplateColumn Header="Задание" SortMemberPath="Task" Width="150" >
+                    <sdk:DataGridTemplateColumn Header="Задание" SortMemberPath="Task" Width="2*" >
                         <sdk:DataGridTemplateColumn.CellTemplate >
                             <DataTemplate>
                                 <TextBlock Text="{Binding Task}" TextWrapping="Wrap" />
                             </DataTemplate>
                         </sdk:DataGridTemplateColumn.CellTemplate>
                     </sdk:DataGridTemplateColumn>
-                    <sdk:DataGridTemplateColumn Header="Комментарий" SortMemberPath="Task" Width="150" >
+                    <sdk:DataGridTemplateColumn Header="Комментарий" SortMemberPath="Task" Width="2*" >
                         <sdk:DataGridTemplateColumn.CellTemplate >
                             <DataTemplate>
                                 <TextBlock Text="{Binding Comment}" TextWrapping="Wrap" />
                             </DataTemplate>
                         </sdk:DataGridTemplateColumn.CellTemplate>
                     </sdk:DataGridTemplateColumn>
-                    <sdk:DataGridTemplateColumn Header="Автор" SortMemberPath="Author" Width="100" >
+                    <sdk:DataGridTemplateColumn Header="Автор" SortMemberPath="Author" Width="1*" >
                         <sdk:DataGridTemplateColumn.CellTemplate >
                             <DataTemplate>
                                 <ContentControl Content="{Binding Author}" />
                             </DataTemplate>
                         </sdk:DataGridTemplateColumn.CellTemplate>
                     </sdk:DataGridTemplateColumn>
-                    <sdk:DataGridTemplateColumn Header="Дата" SortMemberPath="DateStart" Width="110" >
+                    <sdk:DataGridTemplateColumn Header="Дата" SortMemberPath="DateStart" Width="1*" >
                         <sdk:DataGridTemplateColumn.CellTemplate >
                             <DataTemplate>
                                 <StackPanel Orientation="Vertical"  Visibility="{Binding Finished, Converter={StaticResource visibilityConverter}}">
@@ -84,7 +84,7 @@
                     </sdk:DataGridTemplateColumn>
 
 
-                    <sdk:DataGridTemplateColumn Header="Команды"  Width="110" >
+                    <sdk:DataGridTemplateColumn Header="Команды"  Width="1*" >
                         <sdk:DataGridTemplateColumn.CellTemplate >
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">

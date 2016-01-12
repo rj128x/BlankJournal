@@ -44,7 +44,7 @@ namespace BlankJournal.Models {
 				Logger.info("Чтение ОБП");
 				BPJournalTable lastOBP = (from j in eni.BPJournalTable where j.isOBP && j.DateCreate.Year == DateTime.Now.Year orderby j.Number descending select j).FirstOrDefault();
 				try {
-					LastOBP = lastOBP.Id;
+					LastOBP = lastOBP.IDShort;
 				} catch (Exception e) {
 					Logger.info("Ошибка при получении максимального номера ЛСО из БД" + e.ToString());
 					LastOBP = "";
@@ -121,7 +121,7 @@ namespace BlankJournal.Models {
 				foreach (BPJournalTable bp in latest) {
 					try {
 						res[bp.TBPNumber].LastOper = bp.DateCreate;
-						res[bp.TBPNumber].LastNumber = bp.Id;
+						res[bp.TBPNumber].LastNumber = bp.IDShort;
 						res[bp.TBPNumber].HasLastOper = true;
 					} catch (Exception e) {
 						Logger.info(e.ToString());

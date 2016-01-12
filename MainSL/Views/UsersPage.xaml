@@ -5,7 +5,7 @@
            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
            mc:Ignorable="d"
            xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
-           d:DesignWidth="640" d:DesignHeight="480"
+           d:DesignWidth="1000" d:DesignHeight="480"
            Title="UsersPage Page">
     <Grid x:Name="LayoutRoot">
         <Grid.RowDefinitions>
@@ -15,56 +15,56 @@
         <Button Name="btnNewUser" Click="btnNewUser_Click" Content="Добавить" Width="70" HorizontalAlignment="Left"/>
         <sdk:DataGrid Name="grdUsers" AutoGenerateColumns="False" Grid.Row="1" ColumnHeaderStyle="{StaticResource CenterHeaderText}">
             <sdk:DataGrid.Columns>
-                <sdk:DataGridTemplateColumn Header="Login" SortMemberPath="Login" Width="150"  >
+                <sdk:DataGridTemplateColumn Header="Login" SortMemberPath="Login" Width="2*"  >
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
                             <ContentControl Content="{Binding Login}"/>
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
                 </sdk:DataGridTemplateColumn>
-                <sdk:DataGridTemplateColumn Header="Имя" SortMemberPath="Name" Width="150"  >
+                <sdk:DataGridTemplateColumn Header="Имя" SortMemberPath="Name" Width="2*"  >
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
                             <ContentControl Content="{Binding Name}"/>
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
                 </sdk:DataGridTemplateColumn>
-                <sdk:DataGridTemplateColumn Header="Почта" SortMemberPath="Mail" Width="150"  >
+                <sdk:DataGridTemplateColumn Header="Почта" SortMemberPath="Mail" Width="3*"  >
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
                             <ContentControl Content="{Binding Mail}"/>
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
                 </sdk:DataGridTemplateColumn>
-                <sdk:DataGridTemplateColumn Header="Редактирование ТБП" SortMemberPath="CanEditTBP" Width="50"  >
+                <sdk:DataGridTemplateColumn Header="Редактирование ТБП" SortMemberPath="CanEditTBP" Width="1*"  >
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
                             <TextBlock Text="Да" Visibility="{Binding CanEditTBP,Converter={StaticResource visibilityConverter}}"/>
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
                 </sdk:DataGridTemplateColumn>
-                <sdk:DataGridTemplateColumn Header="Заполнение журнала" SortMemberPath="CanDoOper" Width="50"  >
+                <sdk:DataGridTemplateColumn Header="Заполнение журнала" SortMemberPath="CanDoOper" Width="1*"  >
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
                             <TextBlock Text="Да" Visibility="{Binding CanDoOper,Converter={StaticResource visibilityConverter}}"/>
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
                 </sdk:DataGridTemplateColumn>
-                <sdk:DataGridTemplateColumn Header="Замечания к ТБП" SortMemberPath="CanCommentTBP" Width="50"  >
+                <sdk:DataGridTemplateColumn Header="Замечания к ТБП" SortMemberPath="CanCommentTBP" Width="1*"  >
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
                             <TextBlock Text="Да" Visibility="{Binding CanCommentTBP,Converter={StaticResource visibilityConverter}}"/>
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
                 </sdk:DataGridTemplateColumn>
-                <sdk:DataGridTemplateColumn Header="Оповещать о замечаниях" SortMemberPath="SendMailComment" Width="50"  >
+                <sdk:DataGridTemplateColumn Header="Оповещать о замечаниях" SortMemberPath="SendMailComment" Width="1*"  >
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
                             <TextBlock Text="Да" Visibility="{Binding SendMailComment,Converter={StaticResource visibilityConverter}}"/>
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
                 </sdk:DataGridTemplateColumn>
-                <sdk:DataGridTemplateColumn Header="Команды" Width="150"  >
+                <sdk:DataGridTemplateColumn Header="Команды" Width="2*"  >
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">

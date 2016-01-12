@@ -22,8 +22,8 @@ namespace BlankJournal.Models {
 					PdfContentByte over = pdfStamper.GetOverContent(1);
 
 					Rectangle rect = reader.GetPageSizeWithRotation(1);
-					float x = (float)(rect.Width/2 - w/2);
-					float y = (float)(rect.Height-h*2);
+					float x = (float)(rect.Width / 2 - w / 2);
+					float y = (float)(rect.Height - h * 2);
 
 					ColumnText.ShowTextAligned(over, Element.ALIGN_LEFT, p, x, y, 0);
 

@@ -4,7 +4,7 @@
                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
                  xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation" 
-                 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600" Title="Домашняя страница" Style="{StaticResource PageStyle}">
+                 mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="600" Title="Домашняя страница" Style="{StaticResource PageStyle}">
 
     <Grid x:Name="LayoutRoot">
         <Grid.RowDefinitions>
@@ -39,28 +39,28 @@
                 <sdk:DataGrid Name="grdTBPBlanks" AutoGenerateColumns="False" SelectionChanged="grdTBPBlanks_SelectionChanged" 
                               ColumnHeaderStyle="{StaticResource CenterHeaderText}">
                     <sdk:DataGrid.Columns>
-                        <sdk:DataGridTemplateColumn Header="№ бланка" SortMemberPath="Number" Width="100" >
+                        <sdk:DataGridTemplateColumn Header="№ бланка" SortMemberPath="Number" Width="1*" >
                             <sdk:DataGridTemplateColumn.CellTemplate >
                                 <DataTemplate>
                                     <ContentControl Content="{Binding Number}" />
                                 </DataTemplate>
                             </sdk:DataGridTemplateColumn.CellTemplate>
                         </sdk:DataGridTemplateColumn>
-                        <sdk:DataGridTemplateColumn Header="Имя бланка" SortMemberPath="Number" Width="300" >
+                        <sdk:DataGridTemplateColumn Header="Имя бланка" SortMemberPath="Number" Width="2*" >
                             <sdk:DataGridTemplateColumn.CellTemplate >
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Name}" TextWrapping="Wrap" />
                                 </DataTemplate>
                             </sdk:DataGridTemplateColumn.CellTemplate>
                         </sdk:DataGridTemplateColumn>
-                        <sdk:DataGridTemplateColumn Header="Объект" SortMemberPath="ObjectInfo" Width="120" >
+                        <sdk:DataGridTemplateColumn Header="Объект" SortMemberPath="ObjectInfo" Width="1*" >
                             <sdk:DataGridTemplateColumn.CellTemplate >
                                 <DataTemplate>
                                     <TextBlock Text="{Binding ObjectInfo}" TextWrapping="Wrap" />
                                 </DataTemplate>
                             </sdk:DataGridTemplateColumn.CellTemplate>
                         </sdk:DataGridTemplateColumn>
-                        <sdk:DataGridTemplateColumn Header="Последний" SortMemberPath="LastOper" Width="130" >
+                        <sdk:DataGridTemplateColumn Header="Последний" SortMemberPath="LastOper" Width="1*" >
                             <sdk:DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Vertical" Visibility="{Binding HasLastOper, Converter={StaticResource visibilityConverter}}">
@@ -71,7 +71,7 @@
                                 </DataTemplate>
                             </sdk:DataGridTemplateColumn.CellTemplate>
                         </sdk:DataGridTemplateColumn>
-                        <sdk:DataGridTemplateColumn Header="Замечаний" SortMemberPath="CountActiveComments" Width="75" >
+                        <sdk:DataGridTemplateColumn Header="Замечаний" SortMemberPath="CountActiveComments" Width="1*" >
                             <sdk:DataGridTemplateColumn.CellTemplate >
                                 <DataTemplate>
                                     <StackPanel Visibility="{Binding CountActiveComments, Converter={StaticResource visibilityConverter}}">
@@ -80,7 +80,7 @@
                                 </DataTemplate>
                             </sdk:DataGridTemplateColumn.CellTemplate>
                         </sdk:DataGridTemplateColumn>
-                        <sdk:DataGridTemplateColumn Header="Файлы" SortMemberPath="CountActiveComments" Width="75" >
+                        <sdk:DataGridTemplateColumn Header="Файлы" SortMemberPath="CountActiveComments" Width="1*" >
                             <sdk:DataGridTemplateColumn.CellTemplate >
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
