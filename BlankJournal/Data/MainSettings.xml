@@ -7,5 +7,5 @@
   <smtpPassword></smtpPassword>
   <smtpDomain></smtpDomain>
   <smtpPort>25</smtpPort>
-  <smtpFrom>SR-VOTGES-TBP@votges.rushydro.ru</smtpFrom>
+  <smtpFrom>TBP@votges.rushydro.ru</smtpFrom>
 </Settings>
