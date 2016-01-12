@@ -10,16 +10,21 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Windows.Navigation;
+using MainSL.Views;
 
 namespace MainSL {
 	public partial class EmptyPage : Page {
 		public EmptyPage() {
 			InitializeComponent();
+			
 		}
 
 		// Выполняется, когда пользователь переходит на эту страницу.
 		protected override void OnNavigatedTo(NavigationEventArgs e) {
+			
 		}
+
+		
 
 	}
 }

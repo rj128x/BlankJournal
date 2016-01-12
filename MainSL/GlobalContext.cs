@@ -19,19 +19,25 @@ namespace MainSL {
 		public static GlobalContext Single { get; protected set; }
 		public static PropertyMetadata META = new PropertyMetadata(null);
 		public bool IsOOB { get; set; }
-		public static void init() {
+
+		static GlobalContext() {
 			Single = new GlobalContext();
 		}
+
+		public static void init() {
+			Single.Client=new MainServiceClient();
+			Single.IsOOB = Application.Current.IsRunningOutOfBrowser;
+		}
+
 		public GlobalContext() {
 			CurrentUser = new User();
 			CurrentUser.Name = "Noname";
-			IsOOB = Application.Current.IsRunningOutOfBrowser;
-			Client = new MainServiceClient();
 		}
 
 		public static readonly DependencyProperty CurrentUserProperty = DependencyProperty.Register("CurrentUser", typeof(User), typeof(GlobalContext), META);
 		public static readonly DependencyProperty IsBusyProperty = DependencyProperty.Register("IsBusy", typeof(bool), typeof(GlobalContext), META);
 		public static readonly DependencyProperty IsLockedProperty = DependencyProperty.Register("IsLocked", typeof(bool), typeof(GlobalContext), META);
+		public static readonly DependencyProperty LockedTextProperty = DependencyProperty.Register("LockedText", typeof(string), typeof(GlobalContext), META);
 
 		public Dictionary<string, Folder> AllFolders;
 		public event FinishLoad onFinishLoad;
@@ -48,6 +54,11 @@ namespace MainSL {
 			set { SetValue(IsLockedProperty, value); }
 		}
 
+		public string LockedText {
+			get { return (string)GetValue(LockedTextProperty); }
+			set { SetValue(LockedTextProperty, value); }
+		}
+
 
 				
 		public User CurrentUser {
@@ -57,12 +68,9 @@ namespace MainSL {
 		
 		
 		public void Connect() {			
-			
 			IsBusy = true;
-
 			Client.GetUserCompleted += Client_GetUserCompleted;
 			Client.GetUserAsync();
-			
 		}
 
 

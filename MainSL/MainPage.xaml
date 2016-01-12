@@ -5,7 +5,7 @@
     xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation" 
     xmlns:uriMapper="clr-namespace:System.Windows.Navigation;assembly=System.Windows.Controls.Navigation"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-    mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="600">
+    mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="600" Loaded="UserControl_Loaded">
 
     <Grid x:Name="LayoutRoot" Style="{StaticResource LayoutRootGridStyle}">
 
@@ -90,7 +90,7 @@
         <Grid Name="grdLock" Visibility="{Binding Single.IsLocked, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"
               OpacityMask="Aqua" Background="LightGray" Opacity="0.7">
 
-            <TextBlock Text="Установлена новая версия. Перезапустите приложение" 
+            <TextBlock Text="{Binding Single.LockedText,Source={StaticResource globalContext}}" 
                        HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" FontStyle="Italic" FontWeight="Bold"/>
         </Grid>
 

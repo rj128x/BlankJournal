@@ -16,49 +16,11 @@ namespace MainSL {
 		public App() {			
 			this.Startup += this.Application_Startup;
 			this.UnhandledException += this.Application_UnhandledException;
-			GlobalContext.init();
 			InitializeComponent();
 		}
 
-		public void Single_onFinishLoad() {
-			
-		}
-
-
 		private void Application_Startup(object sender, StartupEventArgs e) {
-			this.RootVisual = new MainPage();
-			
-			if (Application.Current.IsRunningOutOfBrowser) {
-				// Проверка наличия новых версий
-				Application.Current.CheckAndDownloadUpdateCompleted +=
-					 Application_CheckAndDownloadUpdateComplete;
-				Application.Current.CheckAndDownloadUpdateAsync();
-			} else {
-				(this.RootVisual as MainPage).startLoad();
-				InstallWindow win = new InstallWindow();
-				win.Installed = Application.Current.InstallState == System.Windows.InstallState.Installed;
-				
-				win.Show();
-			}
-		}
-
-		private void Application_CheckAndDownloadUpdateComplete(object sender,
-		CheckAndDownloadUpdateCompletedEventArgs e) {
-			if (e.UpdateAvailable) {
-				GlobalContext.Log("Установка обновлений");
-				GlobalContext.Single.IsLocked = true;
-				// Здесь можно ввести код вызова пользовательского 
-				// метода в объекте MainPage, который отключает интерфейс
-			} else if (e.Error != null && e.Error is PlatformNotSupportedException) {
-				GlobalContext.Single.IsLocked = true;
-				MessageBox.Show("Есть новые версии приложения"
-					 + "однако для их применения необходима новая версия Silverlight. " +
-					 "Посетите сайт http://silverlight.net для обновления Silverlight.");
-			}
-			else {
-				GlobalContext.Log("Нет обновлений");
-				(this.RootVisual as MainPage).startLoad();
-			}
+			this.RootVisual = new MainPage(); ;
 		}
 
 		private void Application_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e) {
