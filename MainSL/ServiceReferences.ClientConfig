@@ -11,7 +11,7 @@
         <client>
             <endpoint address="../MainService.svc" binding="customBinding"
                 bindingConfiguration="CustomBinding_MainService" contract="MainSVC.MainService"
-                name="CustomBinding_MainService" />
+                name="CustomBinding_MainService"/>
         </client>
     </system.serviceModel>
 </configuration>

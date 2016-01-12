@@ -15,23 +15,28 @@ namespace MainSL {
 	public partial class App : Application {
 		public App() {
 			GlobalContext.init();
-			InitializeComponent();
+			GlobalContext.Log("Запуск приложения ");
 			this.Startup += this.Application_Startup;
 			this.UnhandledException += this.Application_UnhandledException;
+			InitializeComponent();
+			this.RootVisual = new MainPage();
 		}
 
 		public void Single_onFinishLoad() {
 			
 		}
 
+
 		private void Application_Startup(object sender, StartupEventArgs e) {
-			this.RootVisual = new MainPage();
+			GlobalContext.Log("Application_startup");
 			if (Application.Current.IsRunningOutOfBrowser) {
+				GlobalContext.Log("Проверка обновлений");
 				// Проверка наличия новых версий
 				Application.Current.CheckAndDownloadUpdateCompleted +=
 					 Application_CheckAndDownloadUpdateComplete;
 				Application.Current.CheckAndDownloadUpdateAsync();
 			} else {
+				GlobalContext.Log("Запуск в браузере");
 				(this.RootVisual as MainPage).startLoad();
 				InstallWindow win = new InstallWindow();
 				win.Installed = Application.Current.InstallState == System.Windows.InstallState.Installed;
@@ -43,6 +48,7 @@ namespace MainSL {
 		private void Application_CheckAndDownloadUpdateComplete(object sender,
 		CheckAndDownloadUpdateCompletedEventArgs e) {
 			if (e.UpdateAvailable) {
+				GlobalContext.Log("Установка обновлений");
 				GlobalContext.Single.IsLocked = true;
 				// Здесь можно ввести код вызова пользовательского 
 				// метода в объекте MainPage, который отключает интерфейс
@@ -53,10 +59,10 @@ namespace MainSL {
 					 "Посетите сайт http://silverlight.net для обновления Silverlight.");
 			}
 			else {
+				GlobalContext.Log("Нет обновлений");
 				(this.RootVisual as MainPage).startLoad();
 			}
 		}
-
 
 		private void Application_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e) {
 			// Если приложение выполняется вне отладчика, воспользуйтесь для сообщения об исключении

@@ -146,6 +146,12 @@
   <wsdl:message name="MainService_updateDataRecord_OutputMessage">
     <wsdl:part name="parameters" element="updateDataRecordResponse" />
   </wsdl:message>
+  <wsdl:message name="MainService_LogInfo_InputMessage">
+    <wsdl:part name="parameters" element="LogInfo" />
+  </wsdl:message>
+  <wsdl:message name="MainService_LogInfo_OutputMessage">
+    <wsdl:part name="parameters" element="LogInfoResponse" />
+  </wsdl:message>
   <wsdl:portType name="MainService">
     <wsdl:operation name="DoWork">
       <wsdl:input wsaw:Action="urn:MainService/DoWork" message="MainService_DoWork_InputMessage" />
@@ -238,6 +244,10 @@
     <wsdl:operation name="updateDataRecord">
       <wsdl:input wsaw:Action="urn:MainService/updateDataRecord" message="MainService_updateDataRecord_InputMessage" />
       <wsdl:output wsaw:Action="urn:MainService/updateDataRecordResponse" message="MainService_updateDataRecord_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LogInfo">
+      <wsdl:input wsaw:Action="urn:MainService/LogInfo" message="MainService_LogInfo_InputMessage" />
+      <wsdl:output wsaw:Action="urn:MainService/LogInfoResponse" message="MainService_LogInfo_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
 </wsdl:definitions>

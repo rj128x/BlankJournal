@@ -26,6 +26,7 @@ namespace MainSL {
 			CurrentUser = new User();
 			CurrentUser.Name = "Noname";
 			IsOOB = Application.Current.IsRunningOutOfBrowser;
+			Client = new MainServiceClient();			
 		}
 
 		public static readonly DependencyProperty CurrentUserProperty = DependencyProperty.Register("CurrentUser", typeof(User), typeof(GlobalContext), META);
@@ -56,7 +57,7 @@ namespace MainSL {
 		
 		
 		public void Connect() {			
-			Client = new MainServiceClient();			
+			
 			IsBusy = true;
 
 			Client.GetUserCompleted += Client_GetUserCompleted;
@@ -83,6 +84,9 @@ namespace MainSL {
 			Client.GetAllFoldersAsync();
 		}
 
+		public static void Log(string message) {
+			Single.Client.LogInfoAsync(message, DateTime.Now);
+		}
 
 		public void CreateBlank(TBPInfo newBlank) {
 			

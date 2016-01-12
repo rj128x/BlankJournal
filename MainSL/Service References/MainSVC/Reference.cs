@@ -1633,6 +1633,11 @@ namespace MainSL.MainSVC {
         System.IAsyncResult BeginupdateDataRecord(MainSL.MainSVC.DataRecord rec, System.AsyncCallback callback, object asyncState);
         
         MainSL.MainSVC.ReturnMessage EndupdateDataRecord(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:MainService/LogInfo", ReplyAction="urn:MainService/LogInfoResponse")]
+        System.IAsyncResult BeginLogInfo(string message, System.DateTime date, System.AsyncCallback callback, object asyncState);
+        
+        void EndLogInfo(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2199,6 +2204,12 @@ namespace MainSL.MainSVC {
         
         private System.Threading.SendOrPostCallback onupdateDataRecordCompletedDelegate;
         
+        private BeginOperationDelegate onBeginLogInfoDelegate;
+        
+        private EndOperationDelegate onEndLogInfoDelegate;
+        
+        private System.Threading.SendOrPostCallback onLogInfoCompletedDelegate;
+        
         private BeginOperationDelegate onBeginOpenDelegate;
         
         private EndOperationDelegate onEndOpenDelegate;
@@ -2297,6 +2308,8 @@ namespace MainSL.MainSVC {
         public event System.EventHandler<getDataRecordCompletedEventArgs> getDataRecordCompleted;
         
         public event System.EventHandler<updateDataRecordCompletedEventArgs> updateDataRecordCompleted;
+        
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> LogInfoCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
         
@@ -3353,6 +3366,53 @@ namespace MainSL.MainSVC {
                         rec}, this.onEndupdateDataRecordDelegate, this.onupdateDataRecordCompletedDelegate, userState);
         }
         
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult MainSL.MainSVC.MainService.BeginLogInfo(string message, System.DateTime date, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginLogInfo(message, date, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        void MainSL.MainSVC.MainService.EndLogInfo(System.IAsyncResult result) {
+            base.Channel.EndLogInfo(result);
+        }
+        
+        private System.IAsyncResult OnBeginLogInfo(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string message = ((string)(inValues[0]));
+            System.DateTime date = ((System.DateTime)(inValues[1]));
+            return ((MainSL.MainSVC.MainService)(this)).BeginLogInfo(message, date, callback, asyncState);
+        }
+        
+        private object[] OnEndLogInfo(System.IAsyncResult result) {
+            ((MainSL.MainSVC.MainService)(this)).EndLogInfo(result);
+            return null;
+        }
+        
+        private void OnLogInfoCompleted(object state) {
+            if ((this.LogInfoCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.LogInfoCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void LogInfoAsync(string message, System.DateTime date) {
+            this.LogInfoAsync(message, date, null);
+        }
+        
+        public void LogInfoAsync(string message, System.DateTime date, object userState) {
+            if ((this.onBeginLogInfoDelegate == null)) {
+                this.onBeginLogInfoDelegate = new BeginOperationDelegate(this.OnBeginLogInfo);
+            }
+            if ((this.onEndLogInfoDelegate == null)) {
+                this.onEndLogInfoDelegate = new EndOperationDelegate(this.OnEndLogInfo);
+            }
+            if ((this.onLogInfoCompletedDelegate == null)) {
+                this.onLogInfoCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnLogInfoCompleted);
+            }
+            base.InvokeAsync(this.onBeginLogInfoDelegate, new object[] {
+                        message,
+                        date}, this.onEndLogInfoDelegate, this.onLogInfoCompletedDelegate, userState);
+        }
+        
         private System.IAsyncResult OnBeginOpen(object[] inValues, System.AsyncCallback callback, object asyncState) {
             return ((System.ServiceModel.ICommunicationObject)(this)).BeginOpen(callback, asyncState);
         }
@@ -3722,6 +3782,19 @@ namespace MainSL.MainSVC {
                 object[] _args = new object[0];
                 MainSL.MainSVC.ReturnMessage _result = ((MainSL.MainSVC.ReturnMessage)(base.EndInvoke("updateDataRecord", _args, result)));
                 return _result;
+            }
+            
+            public System.IAsyncResult BeginLogInfo(string message, System.DateTime date, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[2];
+                _args[0] = message;
+                _args[1] = date;
+                System.IAsyncResult _result = base.BeginInvoke("LogInfo", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public void EndLogInfo(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                base.EndInvoke("LogInfo", _args, result);
             }
         }
     }

@@ -19,10 +19,12 @@ namespace MainSL {
 		}
 
 		void Single_onFinishLoad() {
+			GlobalContext.Log("Загрузка завершена");
 			this.ContentFrame.Source = new Uri("/Home", UriKind.Relative);
 		}
 
 		public void startLoad() {
+			GlobalContext.Log("Загрузка пользоветелей и папок");
 			GlobalContext.Single.onFinishLoad += Single_onFinishLoad;
 			GlobalContext.Single.Connect();
 		}

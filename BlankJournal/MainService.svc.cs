@@ -162,6 +162,12 @@ namespace BlankJournal {
 			return DataRecord.UpdateFile(rec);
 		}
 
+		[OperationContract]
+		public void LogInfo(string message, DateTime date) {
+			Logger.info(String.Format("Client: {0}: {1}", date.ToString("dd.MM.yyyy hh:mm:ss,fff"), message));
+		}
+
+	
 		// Добавьте здесь дополнительные операции и отметьте их атрибутом [OperationContract]
 	}
 }
