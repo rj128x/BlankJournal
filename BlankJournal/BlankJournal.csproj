@@ -254,6 +254,10 @@
       <DependentUpon>BlanksModel.edmx</DependentUpon>
       <LastGenOutput>BlanksModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Data\COUR.TTF" />
+    <Content Include="Data\COURBD.TTF" />
+    <Content Include="Data\COURBI.TTF" />
+    <Content Include="Data\COURI.TTF" />
     <None Include="Properties\PublishProfiles\Blanks.pubxml" />
   </ItemGroup>
   <ItemGroup>

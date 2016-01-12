@@ -614,6 +614,8 @@ namespace MainSL.MainSVC {
         
         private string NumberField;
         
+        private string ShortNumberField;
+        
         private int StartLSOField;
         
         private int TBPIDField;
@@ -780,6 +782,19 @@ namespace MainSL.MainSVC {
                 if ((object.ReferenceEquals(this.NumberField, value) != true)) {
                     this.NumberField = value;
                     this.RaisePropertyChanged("Number");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ShortNumber {
+            get {
+                return this.ShortNumberField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ShortNumberField, value) != true)) {
+                    this.ShortNumberField = value;
+                    this.RaisePropertyChanged("ShortNumber");
                 }
             }
         }

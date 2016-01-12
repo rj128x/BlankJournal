@@ -78,6 +78,7 @@
       <xs:element minOccurs="0" name="Finished" type="xs:boolean" />
       <xs:element minOccurs="0" name="IDWordData" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Number" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShortNumber" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="StartLSO" type="xs:int" />
       <xs:element minOccurs="0" name="TBPID" type="xs:int" />
       <xs:element minOccurs="0" name="TBPNumber" nillable="true" type="xs:string" />

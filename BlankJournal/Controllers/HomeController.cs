@@ -84,7 +84,7 @@ namespace BlankJournal.Controllers {
 			if (data!=null) {
 				string fn = Server.MapPath("/TempData/"+data.data.FileInfo);
 				int num = (int)Math.Round((data.blank.Number - data.blank.DateCreate.Year) * 1000);
-				PDFClass.addTBPNumber(data.data.Data, fn,data.blank.Id);
+				PDFClass.addTBPNumber(data.data.Data, fn,data.blank.IDShort);
 				return data.data.FileInfo;
 			}
 			return null;

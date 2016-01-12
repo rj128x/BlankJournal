@@ -13,7 +13,7 @@
             <StackPanel Name="pnlData">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Номер бланка: " Width="100"/>
-                    <TextBlock Text="{Binding Number, Mode=OneWay}"/>
+                    <TextBlock Text="{Binding ShortNumber, Mode=OneWay}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Задание: " Width="100"/>

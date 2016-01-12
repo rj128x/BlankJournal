@@ -29,6 +29,7 @@ namespace BlankJournal
         public bool isOBP { get; set; }
         public int LSOStart { get; set; }
         public int LSOEnd { get; set; }
+        public string IDShort { get; set; }
     
         public virtual DataTable DataTable { get; set; }
         public virtual DataTable DataTable1 { get; set; }

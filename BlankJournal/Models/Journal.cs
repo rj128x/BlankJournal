@@ -7,6 +7,7 @@ using System.Web;
 namespace BlankJournal.Models {
 	public class JournalRecord {
 		public string Number { get; set; }
+		public string ShortNumber { get; set; }
 		public string Task { get; set; }
 		public string Comment { get; set; }
 		public string Author { get; set; }
@@ -30,6 +31,7 @@ namespace BlankJournal.Models {
 
 		public JournalRecord(BPJournalTable tbl) {
 			Number = tbl.Id;
+			ShortNumber = tbl.IDShort;
 			Task = tbl.Name;
 			Comment = tbl.Comment;
 			Author = DBContext.Single.getUserByLogin(tbl.Author).Name;
@@ -42,8 +44,9 @@ namespace BlankJournal.Models {
 			isOBP = tbl.isOBP;
 			StartLSO = tbl.LSOStart;
 			EndLSO = tbl.LSOEnd;
-			TBPNumber = tbl.TBPNumber;
+			TBPNumber = tbl.TBPNumber;		
 			TBPID = tbl.TBPID;
+
 			IDWordData = tbl.WordData;
 		}
 
@@ -62,6 +65,7 @@ namespace BlankJournal.Models {
 				rec.DoubleNumber = date.Year + 0.001;
 			}
 			rec.Number = String.Format("ТБП № {0}-{2}/{1}", tbp.Number, Math.Truncate(rec.DoubleNumber), Math.Round((rec.DoubleNumber - date.Year) * 1000));
+			rec.ShortNumber = String.Format("ТБП № {0}-{1}", tbp.Number, Math.Round((rec.DoubleNumber - date.Year) * 1000));
 			rec.Author = DBContext.Single.GetCurrentUser().Login;
 			rec.Task = tbp.Name;
 			rec.isOBP = false;
@@ -93,6 +97,7 @@ namespace BlankJournal.Models {
 			}
 			int FullNum = (int)Math.Round((rec.DoubleNumber - date.Year) * 1000);
 			rec.Number = String.Format("ОБП № {1}/{0}", Math.Truncate(rec.DoubleNumber), FullNum);
+			rec.ShortNumber = String.Format("ОБП № {0}", FullNum);
 			rec.Author = DBContext.Single.GetCurrentUser().Login;
 			rec.Task = tbp.Name;
 			rec.isOBP = true;
@@ -144,6 +149,7 @@ namespace BlankJournal.Models {
 			try {
 				BPJournalTable tbl = record.isInit ? new BPJournalTable() : blank;
 				tbl.Id = record.Number;
+				tbl.IDShort = record.ShortNumber;
 				tbl.isOBP = record.isOBP;
 				tbl.TBPNumber = record.TBPNumber;
 				tbl.TBPID = record.TBPID;
