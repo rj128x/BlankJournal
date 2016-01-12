@@ -10,7 +10,7 @@
     <Grid x:Name="LayoutRoot">
         <Grid OpacityMask="Aqua" Background="LightGray" Opacity="0.7">
 
-            <TextBlock Text="Загрузка приложения" Name="txtLoad"
+            <TextBlock Text="Загрузка приложения..." Name="txtLoad"
                        HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" FontStyle="Italic" FontWeight="Bold"/>
         </Grid>
     </Grid>
