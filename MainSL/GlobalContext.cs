@@ -26,7 +26,7 @@ namespace MainSL {
 			CurrentUser = new User();
 			CurrentUser.Name = "Noname";
 			IsOOB = Application.Current.IsRunningOutOfBrowser;
-			Client = new MainServiceClient();			
+			Client = new MainServiceClient();
 		}
 
 		public static readonly DependencyProperty CurrentUserProperty = DependencyProperty.Register("CurrentUser", typeof(User), typeof(GlobalContext), META);

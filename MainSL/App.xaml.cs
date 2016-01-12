@@ -13,13 +13,11 @@ using System.Windows.Shapes;
 
 namespace MainSL {
 	public partial class App : Application {
-		public App() {
-			GlobalContext.init();
-			GlobalContext.Log("Запуск приложения ");
+		public App() {			
 			this.Startup += this.Application_Startup;
 			this.UnhandledException += this.Application_UnhandledException;
+			GlobalContext.init();
 			InitializeComponent();
-			this.RootVisual = new MainPage();
 		}
 
 		public void Single_onFinishLoad() {
@@ -28,15 +26,14 @@ namespace MainSL {
 
 
 		private void Application_Startup(object sender, StartupEventArgs e) {
-			GlobalContext.Log("Application_startup");
+			this.RootVisual = new MainPage();
+			
 			if (Application.Current.IsRunningOutOfBrowser) {
-				GlobalContext.Log("Проверка обновлений");
 				// Проверка наличия новых версий
 				Application.Current.CheckAndDownloadUpdateCompleted +=
 					 Application_CheckAndDownloadUpdateComplete;
 				Application.Current.CheckAndDownloadUpdateAsync();
 			} else {
-				GlobalContext.Log("Запуск в браузере");
 				(this.RootVisual as MainPage).startLoad();
 				InstallWindow win = new InstallWindow();
 				win.Installed = Application.Current.InstallState == System.Windows.InstallState.Installed;
