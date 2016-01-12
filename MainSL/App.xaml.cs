@@ -14,11 +14,10 @@ using System.Windows.Shapes;
 namespace MainSL {
 	public partial class App : Application {
 		public App() {
-			this.Startup += this.Application_Startup;
-			this.UnhandledException += this.Application_UnhandledException;			
-			
+			GlobalContext.init();
 			InitializeComponent();
-
+			this.Startup += this.Application_Startup;
+			this.UnhandledException += this.Application_UnhandledException;
 		}
 
 		public void Single_onFinishLoad() {
@@ -26,17 +25,16 @@ namespace MainSL {
 		}
 
 		private void Application_Startup(object sender, StartupEventArgs e) {
+			this.RootVisual = new MainPage();
 			if (Application.Current.IsRunningOutOfBrowser) {
 				// Проверка наличия новых версий
 				Application.Current.CheckAndDownloadUpdateCompleted +=
 					 Application_CheckAndDownloadUpdateComplete;
 				Application.Current.CheckAndDownloadUpdateAsync();
-
-				this.RootVisual = new MainPage();
 			} else {
+				(this.RootVisual as MainPage).startLoad();
 				InstallWindow win = new InstallWindow();
 				win.Installed = Application.Current.InstallState == System.Windows.InstallState.Installed;
-				this.RootVisual = new MainPage();
 				
 				win.Show();
 			}
@@ -49,9 +47,13 @@ namespace MainSL {
 				// Здесь можно ввести код вызова пользовательского 
 				// метода в объекте MainPage, который отключает интерфейс
 			} else if (e.Error != null && e.Error is PlatformNotSupportedException) {
+				GlobalContext.Single.IsLocked = true;
 				MessageBox.Show("Есть новые версии приложения"
 					 + "однако для их применения необходима новая версия Silverlight. " +
 					 "Посетите сайт http://silverlight.net для обновления Silverlight.");
+			}
+			else {
+				(this.RootVisual as MainPage).startLoad();
 			}
 		}
 

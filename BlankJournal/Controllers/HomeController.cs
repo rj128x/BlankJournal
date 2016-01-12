@@ -91,7 +91,7 @@ namespace BlankJournal.Controllers {
 		}
 
 		public ActionResult InitDB() {
-			DirectoryInfo dir = new DirectoryInfo("D:/TBP");
+			DirectoryInfo dir = new DirectoryInfo("d:/tbp/");
 			BlankJournal.Models.InitDB.doInit(dir,DateTime.Now);
 			return View("View1");
 		}

@@ -100,6 +100,9 @@
     <Compile Include="Converters\LogicNotConverter.cs" />
     <Compile Include="Converters\VisibilityConverter.cs" />
     <Compile Include="Converters\VisibilityNotConverter.cs" />
+    <Compile Include="Views\EmptyPage.xaml.cs">
+      <DependentUpon>EmptyPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FloatWindow.cs" />
     <Compile Include="GlobalContext.cs" />
     <Compile Include="Service References\MainSVC\Reference.cs">
@@ -231,6 +234,10 @@
     <None Include="Service References\MainSVC\MainService1.xsd" />
     <None Include="Service References\MainSVC\MainService2.xsd" />
     <Resource Include="Images\small.png" />
+    <Page Include="Views\EmptyPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Content Include="Images\16.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -14,13 +14,17 @@ using System.Windows.Shapes;
 namespace MainSL {
 	public partial class MainPage : UserControl {
 		public MainPage() {
-			GlobalContext.init();
-			GlobalContext.Single.onFinishLoad += Single_onFinishLoad;
-			GlobalContext.Single.Connect();
+			InitializeComponent();
+			
 		}
 
 		void Single_onFinishLoad() {
-			InitializeComponent();
+			this.ContentFrame.Source = new Uri("/Home", UriKind.Relative);
+		}
+
+		public void startLoad() {
+			GlobalContext.Single.onFinishLoad += Single_onFinishLoad;
+			GlobalContext.Single.Connect();
 		}
 
 		// После перехода в фрейме убедиться, что выбрана кнопка HyperlinkButton, представляющая текущую страницу
