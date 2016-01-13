@@ -1,0 +1,87 @@
+﻿<UserControl xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  x:Class="MainSL.Views.JournalGridControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           mc:Ignorable="d"
+    xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+    d:DesignHeight="300" d:DesignWidth="800">
+    
+    <Grid x:Name="LayoutRoot" Background="White">
+
+        <sdk:DataGrid  Name="grdBlanks" ColumnHeaderStyle="{StaticResource CenterHeaderText}" AutoGenerateColumns="False" >
+            
+            <sdk:DataGrid.Columns>
+                <sdk:DataGridTemplateColumn Header="Дата созд" SortMemberPath="DateCreate" Width="1*"  >
+                    <sdk:DataGridTemplateColumn.CellTemplate >
+                        <DataTemplate>
+                            <ContentControl Content="{Binding DateCreate, StringFormat='dd.MM.yyyy HH:mm'}" />
+                        </DataTemplate>
+                    </sdk:DataGridTemplateColumn.CellTemplate>
+                </sdk:DataGridTemplateColumn>
+                <sdk:DataGridTemplateColumn Header="№ бланка" SortMemberPath="ShortNumber" Width="1*" >
+                    <sdk:DataGridTemplateColumn.CellTemplate >
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical">
+                                <ContentControl Content="{Binding ShortNumber}" />
+                                <StackPanel Orientation="Horizontal" 
+                                            Visibility="{Binding isOBP, Converter={StaticResource visibilityConverter}}"
+                                            HorizontalAlignment="Right">
+                                    <TextBlock Text="ЛСО"/>
+                                    <TextBlock Text="{Binding StartLSO}"/>
+                                    <TextBlock Text=" - "/>
+                                    <TextBlock Text="{Binding EndLSO}"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </sdk:DataGridTemplateColumn.CellTemplate>
+                </sdk:DataGridTemplateColumn>
+                <sdk:DataGridTemplateColumn Header="Задание" SortMemberPath="Task" Width="2*" >
+                    <sdk:DataGridTemplateColumn.CellTemplate >
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Task}" TextWrapping="Wrap" />
+                        </DataTemplate>
+                    </sdk:DataGridTemplateColumn.CellTemplate>
+                </sdk:DataGridTemplateColumn>
+                <sdk:DataGridTemplateColumn Header="Комментарий" SortMemberPath="Task" Width="2*" >
+                    <sdk:DataGridTemplateColumn.CellTemplate >
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Comment}" TextWrapping="Wrap" />
+                        </DataTemplate>
+                    </sdk:DataGridTemplateColumn.CellTemplate>
+                </sdk:DataGridTemplateColumn>
+                <sdk:DataGridTemplateColumn Header="Автор" SortMemberPath="Author" Width="1*" >
+                    <sdk:DataGridTemplateColumn.CellTemplate >
+                        <DataTemplate>
+                            <ContentControl Content="{Binding Author}" />
+                        </DataTemplate>
+                    </sdk:DataGridTemplateColumn.CellTemplate>
+                </sdk:DataGridTemplateColumn>
+                <sdk:DataGridTemplateColumn Header="Дата" SortMemberPath="DateStart" Width="1*" >
+                    <sdk:DataGridTemplateColumn.CellTemplate >
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical"  Visibility="{Binding Finished, Converter={StaticResource visibilityConverter}}">
+                                <TextBlock Text="{Binding DateStart , StringFormat='dd.MM.yyyy HH:mm'}"  HorizontalAlignment="Left"/>
+                                <TextBlock Text="{Binding DateEnd , StringFormat='dd.MM.yyyy HH:mm'}"  HorizontalAlignment="Right"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </sdk:DataGridTemplateColumn.CellTemplate>
+                </sdk:DataGridTemplateColumn>
+
+
+                <sdk:DataGridTemplateColumn Header="Команды"  Width="1*" >
+                    <sdk:DataGridTemplateColumn.CellTemplate >
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="Бланк" Name="btnShow" Click="btnShow_Click" Height="30"/>
+                                <Button Content="Изменить" Name="btnEdit" Click="btnEdit_Click" Height="30" 
+                                        Visibility="{Binding Closed, Converter={StaticResource visibilityNotConverter}}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </sdk:DataGridTemplateColumn.CellTemplate>
+                </sdk:DataGridTemplateColumn>
+            </sdk:DataGrid.Columns>
+
+        </sdk:DataGrid>
+    </Grid>
+</UserControl>

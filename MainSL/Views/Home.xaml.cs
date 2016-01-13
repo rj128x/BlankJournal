@@ -48,8 +48,11 @@ namespace MainSL {
 			GlobalContext.Single.Client.InitTBPCompleted += Client_InitTBPCompleted;
 			GlobalContext.Single.Client.removeTBPCompleted += Client_removeTBPCompleted;
 			GlobalContext.Single.Client.InitCommentCompleted += Client_InitCommentCompleted;
+			GlobalContext.Single.Client.GetJournalBPCompleted += Client_GetJournalBPCompleted;
 
 		}
+
+		
 
 		public void deInit() {
 			GlobalContext.Single.Client.GetTBPBlanksByFolderCompleted -= Client_GetTBPBlanksByFolderCompleted;
@@ -57,6 +60,7 @@ namespace MainSL {
 			GlobalContext.Single.Client.InitTBPCompleted -= Client_InitTBPCompleted;
 			GlobalContext.Single.Client.removeTBPCompleted -= Client_removeTBPCompleted;
 			GlobalContext.Single.Client.InitCommentCompleted -= Client_InitCommentCompleted;
+			GlobalContext.Single.Client.GetJournalBPCompleted -= Client_GetJournalBPCompleted;
 		}
 
 		void Client_GetTBPBlanksByFolderCompleted(object sender, GetTBPBlanksByFolderCompletedEventArgs e) {
@@ -269,6 +273,22 @@ namespace MainSL {
 				GlobalContext.Single.IsBusy = true;
 				GlobalContext.Single.Client.GetTBPBlanksByFolderAsync(CurrentFolder.ID);
 			}
+		}
+
+		void Client_GetJournalBPCompleted(object sender, GetJournalBPCompletedEventArgs e) {
+			GlobalContext.Single.IsBusy = false;
+			TBPJournalWindow win = new TBPJournalWindow();
+			win.cntrlJournal.grdBlanks.ItemsSource = e.Result.Data;
+			win.Show();
+		}
+
+		private void btnJournalTBP_Click(object sender, RoutedEventArgs e) {
+			GlobalContext.Single.IsBusy = true;
+			JournalAnswer Filter = new JournalAnswer();
+			Filter.dateStart = new DateTime(DateTime.Now.Year, 1, 1);
+			Filter.dateEnd = DateTime.Now.Date.AddDays(1);
+			Filter.tbpNumber = CurrentTBP.Number;
+			GlobalContext.Single.Client.GetJournalBPAsync(Filter);
 		}
 	}
 }

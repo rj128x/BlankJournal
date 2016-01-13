@@ -125,6 +125,9 @@
     <Compile Include="Views\InstallWindow.xaml.cs">
       <DependentUpon>InstallWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\JournalGridControl.xaml.cs">
+      <DependentUpon>JournalGridControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\JournalPage.xaml.cs">
       <DependentUpon>JournalPage.xaml</DependentUpon>
     </Compile>
@@ -136,6 +139,9 @@
     </Compile>
     <Compile Include="Views\TBPHistoryWindow.xaml.cs">
       <DependentUpon>TBPHistoryWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TBPJournalWindow.xaml.cs">
+      <DependentUpon>TBPJournalWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TBPWindow.xaml.cs">
       <DependentUpon>TBPWindow.xaml</DependentUpon>
@@ -215,6 +221,14 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\TBPJournalWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\JournalGridControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\TBPHistoryWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

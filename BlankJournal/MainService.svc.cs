@@ -32,6 +32,7 @@ namespace BlankJournal {
 	public class JournalAnswer {
 		public DateTime? dateStart { get; set; }
 		public DateTime? dateEnd { get; set; }
+		public string tbpNumber { get; set; }		
 		public List<JournalRecord> Data{get;set;}
 	}
 

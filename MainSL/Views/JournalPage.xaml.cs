@@ -37,6 +37,16 @@ namespace MainSL.Views {
 			init();
 			GlobalContext.Single.IsBusy = true;
 			GlobalContext.Single.Client.GetJournalBPAsync(CurrentFilter);
+			cntrlJournal.OnEditButtonPressed += cntrlJournal_OnEditButtonPressed;
+		}
+
+		void cntrlJournal_OnEditButtonPressed(JournalRecord blank) {
+			GlobalContext.Single.IsBusy = false;
+			blank.isInit = false;
+			JournalRecordWindow win = new JournalRecordWindow();
+			win.Init(blank);
+			win.Closed += win_Closed;
+			win.Show();
 		}
 
 		public void init() {
@@ -51,7 +61,7 @@ namespace MainSL.Views {
 			GlobalContext.Single.IsBusy = false;
 			CurrentFilter = e.Result as JournalAnswer;
 			pnlFilter.DataContext = CurrentFilter;
-			grdBlanks.ItemsSource = CurrentFilter.Data;
+			cntrlJournal.grdBlanks.ItemsSource = CurrentFilter.Data;
 		}
 
 		// Выполняется, когда пользователь переходит на эту страницу.
@@ -61,22 +71,6 @@ namespace MainSL.Views {
 		protected override void OnNavigatedFrom(NavigationEventArgs e) {
 			deInit();
 			base.OnNavigatedFrom(e);
-		}
-
-		private void btnShow_Click(object sender, RoutedEventArgs e) {
-			JournalRecord blank = grdBlanks.SelectedItem as JournalRecord;
-
-			FloatWindow.OpenWindow("Home/getBlank?id=" + blank.Number);
-		}
-
-		private void btnEdit_Click(object sender, RoutedEventArgs e) {
-			GlobalContext.Single.IsBusy = false;
-			JournalRecord newBlank = grdBlanks.SelectedItem as JournalRecord;
-			newBlank.isInit = false;
-			JournalRecordWindow win = new JournalRecordWindow();
-			win.Init(newBlank);
-			win.Closed += win_Closed;
-			win.Show();
 		}
 
 		void win_Closed(object sender, EventArgs e) {

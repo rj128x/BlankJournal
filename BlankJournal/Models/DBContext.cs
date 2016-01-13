@@ -159,12 +159,15 @@ namespace BlankJournal.Models {
 			try {
 				List<JournalRecord> result = new List<JournalRecord>();
 				BlankJournal.BlanksEntities eni = new BlanksEntities();
-				
-				var blanks = from b in eni.BPJournalTable
+
+				var blanks =
+								 from b in eni.BPJournalTable
 								 from dat in eni.DataTable.Where(dat => b.WordData == dat.ID && b.isOBP == true).DefaultIfEmpty()
-								 where b.DateCreate > Filter.dateStart && b.DateCreate < Filter.dateEnd
+								 where b.DateCreate > Filter.dateStart && b.DateCreate < Filter.dateEnd && (string.IsNullOrEmpty(Filter.tbpNumber) || b.TBPNumber == Filter.tbpNumber)
 								 orderby b.DateCreate descending
 								 select new { blank = b, FileInfo = dat.FileInfo };
+
+
 				foreach (var tbl in blanks) {
 					JournalRecord blank = new JournalRecord(tbl.blank);
 					blank.FileInfoWord = tbl.FileInfo;
