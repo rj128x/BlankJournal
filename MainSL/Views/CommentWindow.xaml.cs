@@ -93,8 +93,10 @@ namespace MainSL.Views {
 			}
 			if (CurrentComment.Data != null) {
 				try {
-					string str = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-					str = string.Format("{0}/{1}_{2}", str, DateTime.Now.ToString("yyyyMMddhhmmss"), CurrentComment.FileInfoData);
+					string str = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\TempTBP";
+					if (!Directory.Exists(str))
+						Directory.CreateDirectory(str);
+					str = string.Format("{0}\\{1}_{2}", str, DateTime.Now.ToString("yyyyMMddhhmmss"), CurrentComment.FileInfoData);
 					EditingFileName = str;
 					File.WriteAllBytes(str, CurrentComment.Data);
 					WebBrowserBridge.OpenURL(new Uri("file://" + str), "_blank");

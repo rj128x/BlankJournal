@@ -116,9 +116,11 @@ namespace MainSL.Views {
 
 		protected void editFile() {
 			if (CurrentBlank.WordData != null) {
-				try {
-					string str = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-					str = string.Format("{0}/{1}_{2}", str, DateTime.Now.ToString("yyyyMMddhhmmss"), CurrentBlank.FileInfoWord);
+				try {					
+					string str = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)+"\\TempTBP";
+					if (!Directory.Exists(str))
+						Directory.CreateDirectory(str);
+					str = string.Format("{0}\\{1}_{2}", str, DateTime.Now.ToString("yyyyMMddhhmmss"), CurrentBlank.FileInfoWord);
 					EditingFileName = str;
 					File.WriteAllBytes(str, CurrentBlank.WordData);
 					WebBrowserBridge.OpenURL(new Uri("file://"+str), "_blank");
