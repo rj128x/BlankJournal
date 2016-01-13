@@ -1,7 +1,7 @@
 <OutOfBrowserSettings ShortName="Журнал БП" EnableGPUAcceleration="False" ShowInstallMenuItem="True">
   <OutOfBrowserSettings.Blurb>Учет бланков переключений</OutOfBrowserSettings.Blurb>
   <OutOfBrowserSettings.WindowSettings>
-    <WindowSettings Title="Журнал БП" Height="600" Width="1000" />
+    <WindowSettings Title="Журнал БП" Height="600" Width="1200" />
   </OutOfBrowserSettings.WindowSettings>
   <OutOfBrowserSettings.SecuritySettings>
     <SecuritySettings ElevatedPermissions="Required" />

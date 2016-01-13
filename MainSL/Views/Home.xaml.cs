@@ -85,7 +85,7 @@ namespace MainSL {
 		protected override void OnNavigatedTo(NavigationEventArgs e) {
 			foreach (Folder folder in GlobalContext.Single.AllFolders.Values) {
 				Button btn = new Button();
-				btn.Content = folder.Name;
+				btn.Content = folder.ID+" "+folder.Name;
 				btn.Height = 30;
 				btn.Name = "btnFolder_" + folder.ID;
 				btn.Click += btn_Click;
