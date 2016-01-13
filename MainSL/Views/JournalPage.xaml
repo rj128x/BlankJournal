@@ -21,6 +21,7 @@
                     <TextBlock Text="по " Style="{StaticResource Label}"/>
                     <sdk:DatePicker Name="dateEnd" SelectedDate="{Binding dateEnd,Mode=TwoWay}"/>
                     <Button Name="btnRefresh" Content="Обновить" Click="btnRefresh_Click"/>
+                    <Button Name="btnPrint" Content="Печать" Click="btnPrint_Click"/>
                 </StackPanel>
 
             </Grid>

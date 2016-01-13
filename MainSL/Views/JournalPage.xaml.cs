@@ -92,5 +92,11 @@ namespace MainSL.Views {
 			GlobalContext.Single.Client.GetJournalBPAsync(CurrentFilter);
 		}
 
+		private void btnPrint_Click(object sender, RoutedEventArgs e) {			
+			FloatWindow.OpenWindow(String.Format("/Print/PrintJournalBP?year1={0}&month1={1}&day1={2}&year2={3}&month2={4}&day2={5}",
+				CurrentFilter.dateStart.Value.Year,CurrentFilter.dateStart.Value.Month,CurrentFilter.dateStart.Value.Day,
+				CurrentFilter.dateEnd.Value.Year,CurrentFilter.dateEnd.Value.Month,CurrentFilter.dateEnd.Value.Day));
+		}
+
 	}
 }

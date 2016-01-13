@@ -152,6 +152,7 @@
       <DependentUpon>BlanksModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PrintController.cs" />
     <Compile Include="DataTable.cs">
       <DependentUpon>BlanksModel.tt</DependentUpon>
     </Compile>
@@ -211,6 +212,7 @@
     <Content Include="Silverlight.js" />
     <Content Include="Views\Home\MainPage.aspx" />
     <Content Include="Views\Home\View1.aspx" />
+    <Content Include="Views\Print\PrintJournalBP.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
