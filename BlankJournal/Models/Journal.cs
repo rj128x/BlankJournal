@@ -46,6 +46,8 @@ namespace BlankJournal.Models {
 			EndLSO = tbl.LSOEnd;
 			TBPNumber = tbl.TBPNumber;		
 			TBPID = tbl.TBPID;
+			
+
 
 			IDWordData = tbl.WordData;
 		}
@@ -64,8 +66,8 @@ namespace BlankJournal.Models {
 			} else {
 				rec.DoubleNumber = date.Year + 0.001;
 			}
-			rec.Number = String.Format("ТБП № {0}-{2}/{1}", tbp.Number, Math.Truncate(rec.DoubleNumber), Math.Round((rec.DoubleNumber - date.Year) * 1000));
-			rec.ShortNumber = String.Format("ТБП № {0}-{1}", tbp.Number, Math.Round((rec.DoubleNumber - date.Year) * 1000));
+			rec.Number = String.Format("ТБП № {0}/{2}/{1}", tbp.Number, Math.Truncate(rec.DoubleNumber), Math.Round((rec.DoubleNumber - date.Year) * 1000));
+			rec.ShortNumber = String.Format("ТБП № {0}/{1}", tbp.Number, Math.Round((rec.DoubleNumber - date.Year) * 1000));
 			rec.Author = DBContext.Single.GetCurrentUser().Login;
 			rec.Task = tbp.Name;
 			rec.isOBP = false;

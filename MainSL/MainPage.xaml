@@ -35,7 +35,7 @@
                 <StackPanel x:Name="LinksStackPanel" Style="{StaticResource LinksStackPanelStyle}">
 
                     <HyperlinkButton x:Name="Link1" Style="{StaticResource LinkStyle}" 
-                                     NavigateUri="/Home" TargetName="ContentFrame" Content="ТБП"/>
+                                     NavigateUri="/Home" TargetName="ContentFrame" Content="Бланки"/>
 									 
                     <Rectangle x:Name="Divider1" Style="{StaticResource DividerStyle}"/>
 

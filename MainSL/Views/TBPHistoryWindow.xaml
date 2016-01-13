@@ -10,7 +10,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <sdk:DataGrid Name="grdTBPHistory" AutoGenerateColumns="False" ColumnHeaderStyle="{StaticResource CenterHeaderText}">
+        <sdk:DataGrid Name="grdTBPHistory" AutoGenerateColumns="False" >
             <sdk:DataGrid.Columns>
                 <sdk:DataGridTemplateColumn Header="Дата" SortMemberPath="DateCreate" Width="150" >
                     <sdk:DataGridTemplateColumn.CellTemplate >

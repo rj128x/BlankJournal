@@ -36,8 +36,7 @@
                 </StackPanel>
             </Grid>
             <Grid Grid.Row="1" VerticalAlignment="Stretch">
-                <sdk:DataGrid Name="grdTBPBlanks" AutoGenerateColumns="False" SelectionChanged="grdTBPBlanks_SelectionChanged" 
-                              ColumnHeaderStyle="{StaticResource CenterHeaderText}">
+                <sdk:DataGrid Name="grdTBPBlanks" AutoGenerateColumns="False" SelectionChanged="grdTBPBlanks_SelectionChanged" >
                     <sdk:DataGrid.Columns>
                         <sdk:DataGridTemplateColumn Header="№ бланка" SortMemberPath="Number" Width="1*" >
                             <sdk:DataGridTemplateColumn.CellTemplate >

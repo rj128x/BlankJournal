@@ -6,10 +6,9 @@
            mc:Ignorable="d"
     xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
     d:DesignHeight="300" d:DesignWidth="800">
-    
     <Grid x:Name="LayoutRoot" Background="White">
 
-        <sdk:DataGrid  Name="grdBlanks" ColumnHeaderStyle="{StaticResource CenterHeaderText}" AutoGenerateColumns="False" >
+        <sdk:DataGrid  Name="grdBlanks" AutoGenerateColumns="False" >
             
             <sdk:DataGrid.Columns>
                 <sdk:DataGridTemplateColumn Header="Дата созд" SortMemberPath="DateCreate" Width="1*"  >
@@ -70,10 +69,10 @@
 
 
                 <sdk:DataGridTemplateColumn Header="Команды"  Width="1*" >
-                    <sdk:DataGridTemplateColumn.CellTemplate >
+                    <sdk:DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <Button Content="Бланк" Name="btnShow" Click="btnShow_Click" Height="30"/>
+                                <Button Content="Бланк" Name="btnShow" Click="btnShow_Click" Height="30"/>                                
                                 <Button Content="Изменить" Name="btnEdit" Click="btnEdit_Click" Height="30" 
                                         Visibility="{Binding Closed, Converter={StaticResource visibilityNotConverter}}"/>
                             </StackPanel>

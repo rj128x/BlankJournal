@@ -58,7 +58,7 @@
         <Setter Property="TextAlignment" Value="Center"/>
     </Style>
 
-    <Style x:Name="CenterHeaderText" TargetType="prim:DataGridColumnHeader">
+    <Style TargetType="prim:DataGridColumnHeader">
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="VerticalContentAlignment" Value="Stretch"/>
         <Setter Property="ContentTemplate">
@@ -85,6 +85,8 @@
         <Setter Property="Margin" Value="0,0,0,0"/>
         <Setter Property="Padding" Value="0,0,0,0"/>
     </Style>
+
+
     <Style TargetType="TextBlock">
         <Setter Property="FontFamily" Value="Comic Sans MS"></Setter>
         <Setter Property="FontSize" Value="11"></Setter>

@@ -278,6 +278,9 @@ namespace MainSL {
 		void Client_GetJournalBPCompleted(object sender, GetJournalBPCompletedEventArgs e) {
 			GlobalContext.Single.IsBusy = false;
 			TBPJournalWindow win = new TBPJournalWindow();
+			foreach (JournalRecord rec in e.Result.Data) {
+				rec.Closed = true;
+			}
 			win.cntrlJournal.grdBlanks.ItemsSource = e.Result.Data;
 			win.Show();
 		}

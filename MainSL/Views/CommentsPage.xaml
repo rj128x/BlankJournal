@@ -24,7 +24,7 @@
                 </StackPanel>
             </Grid>
 
-            <sdk:DataGrid Grid.Row="1" Name="grdBlanks" AutoGenerateColumns="False" ColumnHeaderStyle="{StaticResource CenterHeaderText}">
+            <sdk:DataGrid Grid.Row="1" Name="grdBlanks" AutoGenerateColumns="False" >
                 <sdk:DataGrid.Columns>
                     <sdk:DataGridTemplateColumn Header="Дата созд" SortMemberPath="DateCreate" Width="1*"  >
                         <sdk:DataGridTemplateColumn.CellTemplate >
