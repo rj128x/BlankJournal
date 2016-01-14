@@ -59,9 +59,9 @@
                 <sdk:DataGridTemplateColumn Header="Дата" SortMemberPath="DateStart" Width="1*" >
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
-                            <StackPanel Orientation="Vertical"  Visibility="{Binding Finished, Converter={StaticResource visibilityConverter}}">
-                                <TextBlock Text="{Binding DateStart , StringFormat='dd.MM.yyyy HH:mm'}"  HorizontalAlignment="Left"/>
-                                <TextBlock Text="{Binding DateEnd , StringFormat='dd.MM.yyyy HH:mm'}"  HorizontalAlignment="Right"/>
+                            <StackPanel Orientation="Vertical" >
+                                <TextBlock Text="{Binding DateStart , StringFormat='dd.MM.yyyy HH:mm'}"  HorizontalAlignment="Left" Visibility="{Binding Started, Converter={StaticResource visibilityConverter}}"/>
+                                <TextBlock Text="{Binding DateEnd , StringFormat='dd.MM.yyyy HH:mm'}"  HorizontalAlignment="Right" Visibility="{Binding Finished, Converter={StaticResource visibilityConverter}}"/>
                             </StackPanel>
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>

@@ -23,6 +23,7 @@ namespace BlankJournal.Models {
 		public string TBPNumber { get; set; }
 		public int TBPID { get; set; }
 		public bool Finished { get; set; }
+		public bool Started { get; set; }
 		public bool Closed { get; set; }
 		public int StartLSO { get; set; }
 		public int EndLSO { get; set; }
@@ -36,18 +37,17 @@ namespace BlankJournal.Models {
 			Comment = tbl.Comment;
 			Author = DBContext.Single.getUserByLogin(tbl.Author).Name;
 			DoubleNumber = tbl.Number;
-			DateStart = tbl.DateStart;
-			DateEnd = tbl.DateEnd;
+			DateStart = tbl.DateStart.HasValue?tbl.DateStart.Value:tbl.DateCreate;
+			DateEnd = tbl.DateEnd.HasValue?tbl.DateEnd.Value:tbl.DateCreate;
 			DateCreate = tbl.DateCreate;
-			Finished = !(DateStart == DateCreate || DateEnd == DateCreate);
-			Closed = Finished && DateCreate.AddHours(6) < DateTime.Now;
+			Finished = tbl.Finished;
+			Started = tbl.Started;
+			Closed = Started&&Finished && DateCreate.AddHours(6) < DateTime.Now;
 			isOBP = tbl.isOBP;
 			StartLSO = tbl.LSOStart;
 			EndLSO = tbl.LSOEnd;
 			TBPNumber = tbl.TBPNumber;		
 			TBPID = tbl.TBPID;
-			
-
 
 			IDWordData = tbl.WordData;
 		}
@@ -159,9 +159,20 @@ namespace BlankJournal.Models {
 				tbl.Comment = record.Comment;
 				tbl.Name = record.Task;
 				tbl.Number = record.DoubleNumber;
-				tbl.DateStart = record.DateStart;
+				if (record.Started)
+					tbl.DateStart = record.DateStart;
+				else
+					tbl.DateStart = null;
+
+				if (record.Finished)
+					tbl.DateEnd = record.DateEnd;
+				else
+					tbl.DateEnd = null;
 				tbl.DateCreate = record.DateCreate;
-				tbl.DateEnd = record.DateEnd;
+
+				tbl.Started = record.Started;
+				tbl.Finished = record.Finished;
+
 
 				if (record.WordData != null && record.isOBP) {
 					Logger.info("Загрузка прикрепленного файла ");

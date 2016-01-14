@@ -633,6 +633,8 @@ namespace MainSL.MainSVC {
         
         private int StartLSOField;
         
+        private bool StartedField;
+        
         private int TBPIDField;
         
         private string TBPNumberField;
@@ -823,6 +825,19 @@ namespace MainSL.MainSVC {
                 if ((this.StartLSOField.Equals(value) != true)) {
                     this.StartLSOField = value;
                     this.RaisePropertyChanged("StartLSO");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Started {
+            get {
+                return this.StartedField;
+            }
+            set {
+                if ((this.StartedField.Equals(value) != true)) {
+                    this.StartedField = value;
+                    this.RaisePropertyChanged("Started");
                 }
             }
         }

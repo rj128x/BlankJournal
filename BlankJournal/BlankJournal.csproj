@@ -239,6 +239,10 @@
     <Content Include="Data\EmptyOBP.docx" />
     <Content Include="Data\Копия ПЕРЕЧЕНЬ ТБП 23 09 15.xlsx" />
     <Content Include="Data\BodyOBP.docx" />
+    <Content Include="Data\COUR.TTF" />
+    <Content Include="Data\COURBD.TTF" />
+    <Content Include="Data\COURBI.TTF" />
+    <Content Include="Data\COURI.TTF" />
     <EntityDeploy Include="BlanksModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>BlanksModel.Designer.cs</LastGenOutput>
@@ -256,10 +260,6 @@
       <DependentUpon>BlanksModel.edmx</DependentUpon>
       <LastGenOutput>BlanksModel.cs</LastGenOutput>
     </Content>
-    <Content Include="Data\COUR.TTF" />
-    <Content Include="Data\COURBD.TTF" />
-    <Content Include="Data\COURBI.TTF" />
-    <Content Include="Data\COURI.TTF" />
     <None Include="Properties\PublishProfiles\Blanks.pubxml" />
   </ItemGroup>
   <ItemGroup>

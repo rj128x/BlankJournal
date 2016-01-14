@@ -96,7 +96,7 @@ namespace BlankJournal.Models {
 			string str = "Бланк переключений №" + (num > 0 ? num.ToString() : "____");
 			Run headerRun = new Run(new Text(str));
 			headerRun.RunProperties = new RunProperties() {
-				FontSize = new FontSize() { Val = new StringValue("48") },
+				FontSize = new FontSize() { Val = new StringValue("40") },
 				RunFonts = new RunFonts() { Ascii = "Courier New", HighAnsi="Courier New" },
 				Bold = new Bold() { Val = new OnOffValue(true) }
 			};
@@ -108,7 +108,7 @@ namespace BlankJournal.Models {
 			str = "Объект переключений: Воткинская ГЭС, " + obj;
 			headerRun = new Run(new Text(str));
 			headerRun.RunProperties = new RunProperties() {
-				FontSize = new FontSize() { Val = new StringValue("32") },
+				FontSize = new FontSize() { Val = new StringValue("30") },
 				RunFonts = new RunFonts() { Ascii = "Courier New", HighAnsi = "Courier New" },
 				Bold = new Bold() { Val = new OnOffValue(true) }
 			};

@@ -15,21 +15,23 @@ namespace BlankJournal
     public partial class BPJournalTable
     {
         public string Id { get; set; }
+        public string IDShort { get; set; }
         public double Number { get; set; }
         public string TBPNumber { get; set; }
         public int TBPID { get; set; }
         public string Name { get; set; }
         public System.DateTime DateCreate { get; set; }
         public string Author { get; set; }
-        public System.DateTime DateStart { get; set; }
-        public System.DateTime DateEnd { get; set; }
+        public Nullable<System.DateTime> DateStart { get; set; }
+        public Nullable<System.DateTime> DateEnd { get; set; }
+        public bool Started { get; set; }
+        public bool Finished { get; set; }
         public string Comment { get; set; }
         public string WordData { get; set; }
         public string PDFData { get; set; }
         public bool isOBP { get; set; }
         public int LSOStart { get; set; }
         public int LSOEnd { get; set; }
-        public string IDShort { get; set; }
     
         public virtual DataTable DataTable { get; set; }
         public virtual DataTable DataTable1 { get; set; }
