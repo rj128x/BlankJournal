@@ -149,6 +149,30 @@ namespace BlankJournal.Models {
 					return new ReturnMessage(false, "Ошибка при создании бланка переключений. Бланк с такими параметрами уже создан");
 			}
 			try {
+				if (record.Finished && !record.Started)
+					record.Finished = false;
+				if (record.Started && record.Finished) {
+					if (record.DateStart > record.DateEnd)
+						return new ReturnMessage(false, "Дата окончания переключений больше даты начала. Создание бланка невозможно");
+				}
+				if (record.Started || record.Finished) {
+					IQueryable<BPJournalTable> crossData = from b in eni.BPJournalTable
+																								 where
+																									 (record.Started&&b.Started && record.DateStart > b.DateStart && record.DateStart < b.DateEnd) ||
+																									 (record.Finished&& b.Finished && record.DateEnd < b.DateEnd && record.DateEnd > b.DateStart)||
+																									 (record.Started && record.Finished && record.DateStart<b.DateStart && record.DateEnd>b.DateEnd)||
+																									 (record.Started && record.Finished && record.DateStart > b.DateStart && record.DateEnd < b.DateEnd)
+																								 select b;
+					if (crossData.Count() > 0) {
+						List<string> numbers = new List<string>();
+						foreach (BPJournalTable cross in crossData) {
+							numbers.Add(String.Format("{0} ({1} - {2})", cross.IDShort,
+								(cross.Started ? cross.DateStart.Value.ToString("dd.MM.yyyy HH:mm") : "???"),
+								(cross.Finished ? cross.DateEnd.Value.ToString("dd.MM.yyyy HH:mm") : "???")));
+						}
+						return new ReturnMessage(false, "Данный бланк пересекается по времени с бланками: " + String.Join(", ", numbers));
+					}
+				}
 				BPJournalTable tbl = record.isInit ? new BPJournalTable() : blank;
 				tbl.Id = record.Number;
 				tbl.IDShort = record.ShortNumber;

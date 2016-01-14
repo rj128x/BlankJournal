@@ -130,6 +130,10 @@ namespace MainSL.Views {
 			}
 		}
 
+		private void chbStarted_Unchecked(object sender, RoutedEventArgs e) {
+			CurrentBlank.Finished = false;
+		}
+
 	}
 }
 

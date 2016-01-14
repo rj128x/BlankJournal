@@ -40,13 +40,13 @@
                 <StackPanel Orientation="Vertical" >
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text=" " Width="100"/>
-                        <CheckBox Content="Переключения начаты " IsChecked="{Binding Started,Mode=TwoWay}"/>
+                        <CheckBox Content="Переключения начаты " IsChecked="{Binding Started,Mode=TwoWay}" Name="chbStarted" Unchecked="chbStarted_Unchecked"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Visibility="{Binding Started, Converter={StaticResource visibilityConverter}}">
                         <TextBlock Text="Дата начала" Width="100"/>
                         <StackPanel Orientation="Horizontal">
-                            <controls:DatePicker SelectedDate="{Binding DateStart, Mode=TwoWay}"/>
-                            <toolkit:TimePicker Value="{Binding DateStart, Mode=TwoWay}"/>
+                            <controls:DatePicker SelectedDate="{Binding DateStart, Mode=TwoWay}" Width="130"/>
+                            <toolkit:TimePicker Value="{Binding DateStart, Mode=TwoWay}" Width="100"/>
                         </StackPanel>
                     </StackPanel>
                     
@@ -58,8 +58,8 @@
                         <StackPanel Orientation="Horizontal"  Visibility="{Binding Finished, Converter={StaticResource visibilityConverter}}">
                             <TextBlock Text="Дата окончания: " Width="100"/>
                             <StackPanel Orientation="Horizontal">
-                                <controls:DatePicker SelectedDate="{Binding DateEnd, Mode=TwoWay}"/>
-                                <toolkit:TimePicker Value="{Binding DateEnd, Mode=TwoWay}"/>
+                                <controls:DatePicker SelectedDate="{Binding DateEnd, Mode=TwoWay}" Width="130"/>
+                                <toolkit:TimePicker Value="{Binding DateEnd, Mode=TwoWay}" Width="100"/>
                             </StackPanel>
                         </StackPanel>
                     </StackPanel>

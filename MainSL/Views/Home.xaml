@@ -8,14 +8,17 @@
 
     <Grid x:Name="LayoutRoot">
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
             <RowDefinition MaxHeight="170" Height="Auto" MinHeight="20"/>
         </Grid.RowDefinitions>
-        <StackPanel Name="pnlFolders" Orientation="Horizontal" Grid.Row="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Name="pnlFolders" Orientation="Vertical" Grid.Column="0" Margin="0,30,0,0" Grid.RowSpan="2">
 
         </StackPanel>
-        <Grid Row="1">
+        <Grid Grid.Row="0" Grid.Column="1" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="*"/>
@@ -94,7 +97,7 @@
                 </sdk:DataGrid>
             </Grid>
         </Grid>
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="1" Grid.Column="1">
             <Border Visibility="{Binding CurrentTBP, Converter={StaticResource visibilityConverter}}">
                 <StackPanel Name="pnlInfo"  Orientation="Horizontal"  Margin="0,0,0,30"
                         DataContext="{Binding CurrentTBP}">
