@@ -27,7 +27,7 @@
                     <Button Name="btnPrint" Content="Печать" Click="btnPrint_Click"/>
                 </StackPanel>                
             </Grid>
-            <usr:JournalGridControl Name="cntrlJournal" Grid.Row="1"/>
+            <usr:JournalGridControl Name="cntrlJournal" Grid.Row="1" Margin="0,0,0,15"/>
         </Grid>
     </Grid>
 </navigation:Page>

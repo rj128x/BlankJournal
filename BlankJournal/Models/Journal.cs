@@ -158,10 +158,11 @@ namespace BlankJournal.Models {
 				if (record.Started || record.Finished) {
 					IQueryable<BPJournalTable> crossData = from b in eni.BPJournalTable
 																								 where
-																									 (record.Started&&b.Started && record.DateStart > b.DateStart && record.DateStart < b.DateEnd) ||
-																									 (record.Finished&& b.Finished && record.DateEnd < b.DateEnd && record.DateEnd > b.DateStart)||
-																									 (record.Started && record.Finished && record.DateStart<b.DateStart && record.DateEnd>b.DateEnd)||
-																									 (record.Started && record.Finished && record.DateStart > b.DateStart && record.DateEnd < b.DateEnd)
+																										(b.Id != record.Number) &&
+																									 ((record.Started && b.Started && record.DateStart > b.DateStart && record.DateStart < b.DateEnd) ||
+																									 (record.Finished && b.Finished && record.DateEnd < b.DateEnd && record.DateEnd > b.DateStart) ||
+																									 (record.Started && record.Finished && record.DateStart < b.DateStart && record.DateEnd > b.DateEnd) ||
+																									 (record.Started && record.Finished && record.DateStart > b.DateStart && record.DateEnd < b.DateEnd))
 																								 select b;
 					if (crossData.Count() > 0) {
 						List<string> numbers = new List<string>();
@@ -171,6 +172,23 @@ namespace BlankJournal.Models {
 								(cross.Finished ? cross.DateEnd.Value.ToString("dd.MM.yyyy HH:mm") : "???")));
 						}
 						return new ReturnMessage(false, "Данный бланк пересекается по времени с бланками: " + String.Join(", ", numbers));
+					}
+				}
+
+				if (record.isOBP) {
+					if (record.EndLSO < record.StartLSO)
+						return new ReturnMessage(false,"Номер последнего ЛСО меньше первого");
+					IQueryable<BPJournalTable> crossData = from b in eni.BPJournalTable
+																								 where
+																									(b.Id != record.Number) &&
+																									 (b.isOBP && b.DateCreate.Year == record.DateCreate.Year && b.LSOEnd >= record.StartLSO)
+																								 select b;
+					if (crossData.Count() > 0) {
+						List<string> numbers = new List<string>();
+						foreach (BPJournalTable cross in crossData) {
+							numbers.Add(String.Format("{0} ({1} - {2})", cross.IDShort, cross.LSOStart, cross.LSOEnd));
+						}
+						return new ReturnMessage(false, "Данный бланк пересекается по ЛСО: " + String.Join(", ", numbers));
 					}
 				}
 				BPJournalTable tbl = record.isInit ? new BPJournalTable() : blank;

@@ -13,7 +13,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Button Name="btnNewUser" Click="btnNewUser_Click" Content="Добавить" Width="70" HorizontalAlignment="Left"/>
-        <sdk:DataGrid Name="grdUsers" AutoGenerateColumns="False" Grid.Row="1" >
+        <sdk:DataGrid Name="grdUsers" AutoGenerateColumns="False" Grid.Row="1" Margin="0,0,0,15" >
             <sdk:DataGrid.Columns>
                 <sdk:DataGridTemplateColumn Header="Login" SortMemberPath="Login" Width="2*"  >
                     <sdk:DataGridTemplateColumn.CellTemplate >
