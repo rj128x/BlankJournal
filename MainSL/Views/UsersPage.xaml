@@ -64,6 +64,13 @@
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
                 </sdk:DataGridTemplateColumn>
+                <sdk:DataGridTemplateColumn Header="Редактирование пользовтелей" SortMemberPath="CanEditUsers" Width="1*"  >
+                    <sdk:DataGridTemplateColumn.CellTemplate >
+                        <DataTemplate>
+                            <TextBlock Text="Да" Visibility="{Binding CanEditUsers,Converter={StaticResource visibilityConverter}}"/>
+                        </DataTemplate>
+                    </sdk:DataGridTemplateColumn.CellTemplate>
+                </sdk:DataGridTemplateColumn>
                 <sdk:DataGridTemplateColumn Header="Команды" Width="2*"  >
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>

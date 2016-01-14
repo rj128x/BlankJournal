@@ -5,6 +5,7 @@
       <xs:element minOccurs="0" name="CanCommentTBP" type="xs:boolean" />
       <xs:element minOccurs="0" name="CanDoOper" type="xs:boolean" />
       <xs:element minOccurs="0" name="CanEditTBP" type="xs:boolean" />
+      <xs:element minOccurs="0" name="CanEditUsers" type="xs:boolean" />
       <xs:element minOccurs="0" name="IsEditing" type="xs:boolean" />
       <xs:element minOccurs="0" name="Login" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Mail" nillable="true" type="xs:string" />

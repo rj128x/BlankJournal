@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище BlanksModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище BlanksModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BPJournalTable">
           <Key>
             <PropertyRef Name="Id" />
@@ -99,6 +99,7 @@
           <Property Name="CanDoOper" Type="bit" Nullable="false" />
           <Property Name="CanCommentTBP" Type="bit" Nullable="false" />
           <Property Name="SendMailComments" Type="bit" Nullable="false" />
+          <Property Name="CanEditUsers" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_BPJournalTable_DataTablePDF">
           <End Role="DataTable" Type="Self.DataTable" Multiplicity="0..1" />
@@ -317,8 +318,7 @@
             <End Role="TBPInfoTable" EntitySet="TBPInfoTable" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BlanksModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -442,6 +442,7 @@
           <NavigationProperty Name="TBPCommentsTable" Relationship="Self.FK_TBPCommentsTable_UsersTableAuthor" FromRole="UsersTable" ToRole="TBPCommentsTable" />
           <NavigationProperty Name="TBPCommentsTable1" Relationship="Self.FK_TBPCommentsTable_UsersTablePerformer" FromRole="UsersTable" ToRole="TBPCommentsTable" />
           <NavigationProperty Name="TBPHistoryTable" Relationship="Self.FK_TBPHistoryTable_UsersTable" FromRole="UsersTable" ToRole="TBPHistoryTable" />
+          <Property Name="CanEditUsers" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="FK_BPJournalTable_DataTablePDF">
           <End Role="DataTable" Type="Self.DataTable" Multiplicity="0..1" />
@@ -758,6 +759,7 @@
           <EntitySetMapping Name="UsersTable">
             <EntityTypeMapping TypeName="BlanksModel.UsersTable">
               <MappingFragment StoreEntitySet="UsersTable">
+                <ScalarProperty Name="CanEditUsers" ColumnName="CanEditUsers" />
                 <ScalarProperty Name="Login" ColumnName="Login" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Mail" ColumnName="Mail" />
