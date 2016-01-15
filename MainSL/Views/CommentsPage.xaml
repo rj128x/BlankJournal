@@ -26,7 +26,7 @@
 
             <sdk:DataGrid Grid.Row="1" Name="grdBlanks" AutoGenerateColumns="False" >
                 <sdk:DataGrid.Columns>
-                    <sdk:DataGridTemplateColumn Header="Дата созд" SortMemberPath="DateCreate" Width="1*"  >
+                    <sdk:DataGridTemplateColumn Header="Дата создания" SortMemberPath="DateCreate" Width="1*"  >
                         <sdk:DataGridTemplateColumn.CellTemplate >
                             <DataTemplate>
                                 <ContentControl Content="{Binding DateCreate, StringFormat='dd.MM.yyyy HH:mm'}"  />
