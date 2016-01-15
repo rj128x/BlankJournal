@@ -97,7 +97,7 @@ namespace BlankJournal.Models {
 			Run headerRun = new Run(new Text(str));
 			headerRun.RunProperties = new RunProperties() {
 				FontSize = new FontSize() { Val = new StringValue("40") },
-				RunFonts = new RunFonts() { Ascii = "Courier New", HighAnsi="Courier New" },
+				RunFonts = new RunFonts() { Ascii = "Times New Roman", HighAnsi = "Times New Roman" },
 				Bold = new Bold() { Val = new OnOffValue(true) }
 			};
 			Paragraph par = new Paragraph(headerRun);
@@ -109,7 +109,7 @@ namespace BlankJournal.Models {
 			headerRun = new Run(new Text(str));
 			headerRun.RunProperties = new RunProperties() {
 				FontSize = new FontSize() { Val = new StringValue("30") },
-				RunFonts = new RunFonts() { Ascii = "Courier New", HighAnsi = "Courier New" },
+				RunFonts = new RunFonts() { Ascii = "Times New Roman", HighAnsi = "Times New Roman" },
 				Bold = new Bold() { Val = new OnOffValue(true) }
 			};
 			par = new Paragraph(headerRun);
@@ -122,15 +122,15 @@ namespace BlankJournal.Models {
 
 			Run footerRun = new Run(new Text("Бланк заполнил и переключение производит:"));
 			footerRun.RunProperties = new RunProperties() {
-				FontSize = new FontSize() { Val = new StringValue("20") },
-				RunFonts = new RunFonts() { Ascii = "Courier New", HighAnsi = "Courier New" }
+				FontSize = new FontSize() { Val = new StringValue("22") },
+				RunFonts = new RunFonts() { Ascii = "Times New Roman", HighAnsi = "Times New Roman" }
 			};
 			body.AppendChild(new Paragraph(footerRun));
 
 			footerRun = new Run(new Text(" ___________________________________________"));
 			footerRun.RunProperties = new RunProperties() {
-				FontSize = new FontSize() { Val = new StringValue("15") },
-				RunFonts = new RunFonts() { Ascii = "Courier New", HighAnsi = "Courier New" }
+				FontSize = new FontSize() { Val = new StringValue("20") },
+				RunFonts = new RunFonts() { Ascii = "Times New Roman", HighAnsi = "Times New Roman" }
 			};
 			par = new Paragraph(footerRun);
 			par.ParagraphProperties = new ParagraphProperties();
@@ -140,8 +140,8 @@ namespace BlankJournal.Models {
 
 			footerRun = new Run(new Text("(должность, ФИО, подпись)"));
 			footerRun.RunProperties = new RunProperties() {
-				FontSize = new FontSize() { Val = new StringValue("15") },
-				RunFonts = new RunFonts() { Ascii = "Courier New", HighAnsi = "Courier New" }
+				FontSize = new FontSize() { Val = new StringValue("20") },
+				RunFonts = new RunFonts() { Ascii = "Times New Roman", HighAnsi = "Times New Roman" }
 			};
 			par = new Paragraph(footerRun);
 			par.ParagraphProperties = new ParagraphProperties();
@@ -150,15 +150,15 @@ namespace BlankJournal.Models {
 
 			footerRun = new Run(new Text("Бланк проверил и переключение контролирует:"));
 			footerRun.RunProperties = new RunProperties() {
-				FontSize = new FontSize() { Val = new StringValue("20") },
-				RunFonts = new RunFonts() { Ascii = "Courier New", HighAnsi = "Courier New" }
+				FontSize = new FontSize() { Val = new StringValue("22") },
+				RunFonts = new RunFonts() { Ascii = "Times New Roman", HighAnsi = "Times New Roman" }
 			};
 			body.AppendChild(new Paragraph(footerRun));
 
 			footerRun = new Run(new Text(" ___________________________________________"));
 			footerRun.RunProperties = new RunProperties() {
-				FontSize = new FontSize() { Val = new StringValue("15") },
-				RunFonts = new RunFonts() { Ascii = "Courier New", HighAnsi = "Courier New" }
+				FontSize = new FontSize() { Val = new StringValue("20") },
+				RunFonts = new RunFonts() { Ascii = "Times New Roman", HighAnsi = "Times New Roman" }
 			};
 			par = new Paragraph(footerRun);
 			par.ParagraphProperties = new ParagraphProperties();
@@ -167,8 +167,8 @@ namespace BlankJournal.Models {
 
 			footerRun = new Run(new Text("(должность, ФИО, подпись)"));
 			footerRun.RunProperties = new RunProperties() {
-				FontSize = new FontSize() { Val = new StringValue("15") },
-				RunFonts = new RunFonts() { Ascii = "Courier New", HighAnsi = "Courier New" }
+				FontSize = new FontSize() { Val = new StringValue("20") },
+				RunFonts = new RunFonts() { Ascii = "Times New Roman", HighAnsi = "Times New Roman" }
 			};
 			par = new Paragraph(footerRun);
 			par.ParagraphProperties = new ParagraphProperties();
@@ -177,15 +177,15 @@ namespace BlankJournal.Models {
 
 			footerRun = new Run(new Text("Бланк проверил, переключения разрешаю:"));
 			footerRun.RunProperties = new RunProperties() {
-				FontSize = new FontSize() { Val = new StringValue("20") },
-				RunFonts = new RunFonts() { Ascii = "Courier New", HighAnsi = "Courier New" }
+				FontSize = new FontSize() { Val = new StringValue("22") },
+				RunFonts = new RunFonts() { Ascii = "Times New Roman", HighAnsi = "Times New Roman" }
 			};
 			body.AppendChild(new Paragraph(footerRun));
 
 			footerRun = new Run(new Text(" ___________________________________________"));
 			footerRun.RunProperties = new RunProperties() {
-				FontSize = new FontSize() { Val = new StringValue("15") },
-				RunFonts = new RunFonts() { Ascii = "Courier New", HighAnsi = "Courier New" }
+				FontSize = new FontSize() { Val = new StringValue("20") },
+				RunFonts = new RunFonts() { Ascii = "Times New Roman", HighAnsi = "Times New Roman" }
 			};
 			par = new Paragraph(footerRun);
 			par.ParagraphProperties = new ParagraphProperties();
@@ -194,8 +194,8 @@ namespace BlankJournal.Models {
 
 			footerRun = new Run(new Text("(должность, ФИО, подпись)"));
 			footerRun.RunProperties = new RunProperties() {
-				FontSize = new FontSize() { Val = new StringValue("15") },
-				RunFonts = new RunFonts() { Ascii = "Courier New", HighAnsi = "Courier New" }
+				FontSize = new FontSize() { Val = new StringValue("20") },
+				RunFonts = new RunFonts() { Ascii = "Times New Roman", HighAnsi = "Times New Roman" }
 			};
 			par = new Paragraph(footerRun);
 			par.ParagraphProperties = new ParagraphProperties();
