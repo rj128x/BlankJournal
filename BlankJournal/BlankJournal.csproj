@@ -199,6 +199,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="bat\bkp.sql" />
+    <Content Include="bat\CmdHttpRequest.exe" />
+    <Content Include="bat\CommandLine.dll" />
     <Content Include="ClientBin\MainSL.xap" />
     <Content Include="Data\ClearDB.sql" />
     <Content Include="Global.asax" />
@@ -260,6 +263,8 @@
       <DependentUpon>BlanksModel.edmx</DependentUpon>
       <LastGenOutput>BlanksModel.cs</LastGenOutput>
     </Content>
+    <Content Include="bat\bkp.bat" />
+    <Content Include="bat\expired.bat" />
     <None Include="Properties\PublishProfiles\Blanks.pubxml" />
   </ItemGroup>
   <ItemGroup>
