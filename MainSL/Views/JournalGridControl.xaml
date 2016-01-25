@@ -45,7 +45,18 @@
                 <sdk:DataGridTemplateColumn Header="Комментарий" SortMemberPath="Task" Width="2*" >
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
-                            <TextBlock Text="{Binding Comment}" TextWrapping="Wrap" />
+                            <StackPanel>
+                                <TextBlock Text="{Binding Comment}" TextWrapping="Wrap" />
+
+                                <StackPanel Orientation="Vertical" Visibility="{Binding HasCrossDate, Converter={StaticResource visibilityConverter}}">
+                                    <TextBlock  Foreground="Red" Text="Пересечение по датам: " FontWeight="Bold"/>
+                                    <TextBlock  Foreground="Red" Text="{Binding CrossDate}" TextWrapping="Wrap"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical" Visibility="{Binding HasCrossLSO, Converter={StaticResource visibilityConverter}}" >
+                                    <TextBlock  Foreground="Red" Text="Пересечение по ЛСО: " FontWeight="Bold"/>
+                                    <TextBlock  Foreground="Red" Text="{Binding CrossLSO}" TextWrapping="Wrap"/>
+                                </StackPanel>
+                            </StackPanel>
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
                 </sdk:DataGridTemplateColumn>

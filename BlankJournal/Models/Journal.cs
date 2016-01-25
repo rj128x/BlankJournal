@@ -27,6 +27,13 @@ namespace BlankJournal.Models {
 		public bool Closed { get; set; }
 		public int StartLSO { get; set; }
 		public int EndLSO { get; set; }
+
+		public bool HasCrossDate { get; set; }
+		public bool HasCrossLSO { get; set; }
+
+		public string CrossDate { get; set; }
+		public string CrossLSO { get; set; }
+
 		public JournalRecord() {
 		}
 
@@ -37,16 +44,16 @@ namespace BlankJournal.Models {
 			Comment = tbl.Comment;
 			Author = DBContext.Single.getUserByLogin(tbl.Author).Name;
 			DoubleNumber = tbl.Number;
-			DateStart = tbl.DateStart.HasValue?tbl.DateStart.Value:tbl.DateCreate;
-			DateEnd = tbl.DateEnd.HasValue?tbl.DateEnd.Value:tbl.DateCreate;
+			DateStart = tbl.DateStart.HasValue ? tbl.DateStart.Value : tbl.DateCreate;
+			DateEnd = tbl.DateEnd.HasValue ? tbl.DateEnd.Value : tbl.DateCreate;
 			DateCreate = tbl.DateCreate;
 			Finished = tbl.Finished;
 			Started = tbl.Started;
-			Closed = Started&&Finished && DateCreate.AddHours(12) < DateTime.Now;
+			Closed = Started && Finished && tbl.LastUpdateFinish.HasValue && tbl.LastUpdateFinish.Value.AddHours(6) < DateTime.Now;
 			isOBP = tbl.isOBP;
 			StartLSO = tbl.LSOStart;
 			EndLSO = tbl.LSOEnd;
-			TBPNumber = tbl.TBPNumber;		
+			TBPNumber = tbl.TBPNumber;
 			TBPID = tbl.TBPID;
 
 			IDWordData = tbl.WordData;
@@ -60,10 +67,12 @@ namespace BlankJournal.Models {
 			BPJournalTable last = null;
 			try {
 				last = eni.BPJournalTable.Where(bp => bp.isOBP == false && Math.Truncate(bp.Number) == date.Year).OrderByDescending(bp => bp.Number).First(bp => bp.TBPNumber == tbp.Number);
-			} catch { };
+			}
+			catch { };
 			if (last != null) {
 				rec.DoubleNumber = last.Number + 0.001;
-			} else {
+			}
+			else {
 				rec.DoubleNumber = date.Year + 0.001;
 			}
 			rec.Number = String.Format("ТБП № {0}/{2}/{1}", tbp.Number, Math.Truncate(rec.DoubleNumber), Math.Round((rec.DoubleNumber - date.Year) * 1000));
@@ -91,10 +100,12 @@ namespace BlankJournal.Models {
 			BPJournalTable last = null;
 			try {
 				last = eni.BPJournalTable.Where(bp => bp.isOBP == true && Math.Truncate(bp.Number) == date.Year).OrderByDescending(bp => bp.Number).First();
-			} catch { }
+			}
+			catch { }
 			if (last != null) {
 				rec.DoubleNumber = last.Number + 0.001;
-			} else {
+			}
+			else {
 				rec.DoubleNumber = date.Year + 0.001;
 			}
 			int FullNum = (int)Math.Round((rec.DoubleNumber - date.Year) * 1000);
@@ -112,17 +123,20 @@ namespace BlankJournal.Models {
 						string obpFile = BlankJournal.Models.WordData.createOBP(DBContext.TempFolder, tbp, FullNum);
 						rec.WordData = File.ReadAllBytes(DBContext.TempFolder + "/" + obpFile);
 						rec.FileInfoWord = obpFile;
-					} catch (Exception e) {
+					}
+					catch (Exception e) {
 						Logger.info("Ошибка при создании ОБП из ТБП" + e.ToString());
 					}
 				}
-			} else {
+			}
+			else {
 				try {
 					Logger.info("Создание пустого файла ОБП с номером из ТБП");
 					string obpFile = BlankJournal.Models.WordData.createEmptyOBP(DBContext.TempFolder, FullNum);
 					rec.WordData = File.ReadAllBytes(DBContext.TempFolder + "/" + obpFile);
 					rec.FileInfoWord = obpFile;
-				} catch (Exception e) {
+				}
+				catch (Exception e) {
 					Logger.info("Ошибка при создании ОБП пустого" + e.ToString());
 				}
 			}
@@ -140,11 +154,13 @@ namespace BlankJournal.Models {
 
 		public static ReturnMessage CreateBP(JournalRecord record) {
 			Logger.info("Создание/изменение зписи о переключении в журнале");
+			string addMessage = "";
 			BlankJournal.BlanksEntities eni = new BlanksEntities();
-			BPJournalTable blank = (from b in eni.BPJournalTable where 
-												b.Number == record.DoubleNumber && b.TBPNumber == record.TBPNumber && b.isOBP == record.isOBP
-											select b).FirstOrDefault();
-			if (blank!=null) {
+			BPJournalTable blank = (from b in eni.BPJournalTable
+															where
+																b.Number == record.DoubleNumber && b.TBPNumber == record.TBPNumber && b.isOBP == record.isOBP
+															select b).FirstOrDefault();
+			if (blank != null) {
 				if (record.isInit)
 					return new ReturnMessage(false, "Ошибка при создании бланка переключений. Бланк с такими параметрами уже создан");
 			}
@@ -155,42 +171,7 @@ namespace BlankJournal.Models {
 					if (record.DateStart > record.DateEnd)
 						return new ReturnMessage(false, "Дата окончания переключений больше даты начала. Создание бланка невозможно");
 				}
-				if (record.Started || record.Finished) {
-					IQueryable<BPJournalTable> crossData = from b in eni.BPJournalTable
-																								 where
-																										(b.Id != record.Number) &&
-																									 ((record.Started && b.Started && record.DateStart > b.DateStart && record.DateStart < b.DateEnd) ||
-																									 (record.Finished && b.Finished && record.DateEnd < b.DateEnd && record.DateEnd > b.DateStart) ||
-																									 (record.Started && record.Finished && record.DateStart < b.DateStart && record.DateEnd > b.DateEnd) ||
-																									 (record.Started && record.Finished && record.DateStart > b.DateStart && record.DateEnd < b.DateEnd))
-																								 select b;
-					if (crossData.Count() > 0) {
-						List<string> numbers = new List<string>();
-						foreach (BPJournalTable cross in crossData) {
-							numbers.Add(String.Format("{0} ({1} - {2})", cross.IDShort,
-								(cross.Started ? cross.DateStart.Value.ToString("dd.MM.yyyy HH:mm") : "???"),
-								(cross.Finished ? cross.DateEnd.Value.ToString("dd.MM.yyyy HH:mm") : "???")));
-						}
-						return new ReturnMessage(false, "Данный бланк пересекается по времени с бланками: " + String.Join(", ", numbers));
-					}
-				}
 
-				if (record.isOBP) {
-					if (record.EndLSO < record.StartLSO)
-						return new ReturnMessage(false,"Номер последнего ЛСО меньше первого");
-					IQueryable<BPJournalTable> crossData = from b in eni.BPJournalTable
-																								 where
-																									(b.Id != record.Number) &&
-																									 (b.isOBP && b.DateCreate.Year == record.DateCreate.Year && b.LSOEnd >= record.StartLSO)
-																								 select b;
-					if (crossData.Count() > 0) {
-						List<string> numbers = new List<string>();
-						foreach (BPJournalTable cross in crossData) {
-							numbers.Add(String.Format("{0} ({1} - {2})", cross.IDShort, cross.LSOStart, cross.LSOEnd));
-						}
-						return new ReturnMessage(false, "Данный бланк пересекается по ЛСО: " + String.Join(", ", numbers));
-					}
-				}
 				BPJournalTable tbl = record.isInit ? new BPJournalTable() : blank;
 				tbl.Id = record.Number;
 				tbl.IDShort = record.ShortNumber;
@@ -206,29 +187,34 @@ namespace BlankJournal.Models {
 				else
 					tbl.DateStart = null;
 
-				if (record.Finished)
+				if (record.Finished) {
 					tbl.DateEnd = record.DateEnd;
-				else
+					tbl.LastUpdateFinish = DateTime.Now;
+				}
+				else {
 					tbl.DateEnd = null;
+					tbl.LastUpdateFinish = null;
+				}
 				tbl.DateCreate = record.DateCreate;
 
 				tbl.Started = record.Started;
 				tbl.Finished = record.Finished;
 
+				addMessage = checkCrossData(record);
 
 				if (record.WordData != null && record.isOBP) {
 					Logger.info("Загрузка прикрепленного файла ");
 					DataTable data = (from d in eni.DataTable where d.ID == record.IDWordData select d).FirstOrDefault();
-					if (data == null){
-						data=new DataTable();
+					if (data == null) {
+						data = new DataTable();
 						data.ID = Guid.NewGuid().ToString();
-						eni.DataTable.Add(data);						
+						eni.DataTable.Add(data);
 					}
 					data.DateCreate = DateTime.Now;
 					data.Author = DBContext.Single.GetCurrentUser().Login;
 					data.FileInfo = record.FileInfoWord;
 					data.md5 = MD5Class.getString(record.WordData);
-					
+
 					data.Data = record.WordData;
 					tbl.WordData = data.ID;
 				}
@@ -237,15 +223,18 @@ namespace BlankJournal.Models {
 					Logger.info("Поиск связанного ТБП (для сохранения сылки на файл");
 					try {
 						TBPInfoTable tbp = (from t in eni.TBPInfoTable where t.Number == tbl.TBPNumber select t).FirstOrDefault();
-						if (tbp!=null) {
+						if (tbp != null) {
 							tbl.PDFData = tbp.DataPDF;
-						} else {
+						}
+						else {
 							throw new Exception("Бланк не найден" + tbl.TBPNumber);
 						}
-					} catch (Exception e) {
+					}
+					catch (Exception e) {
 						Logger.info("ошибка при формировании записи в журнале переключений. ТБП не найден");
 					}
-				} else {
+				}
+				else {
 					tbl.LSOStart = record.StartLSO;
 					tbl.LSOEnd = record.EndLSO;
 				}
@@ -257,12 +246,68 @@ namespace BlankJournal.Models {
 					DBContext.Single.MaxLSO = record.EndLSO > DBContext.Single.MaxLSO ? record.EndLSO : DBContext.Single.MaxLSO;
 					DBContext.Single.LastOBP = tbl.Id;
 				}
-				return new ReturnMessage(true, record.isInit?"Бланк успешно создан":"Бланк успешно изменен");
-			} catch (Exception e) {
+				return new ReturnMessage(true, record.isInit ? "Бланк успешно создан\n" + addMessage : "Бланк успешно изменен\n" + addMessage);
+			}
+			catch (Exception e) {
 				Logger.info("Ошибка при создаии бланка " + e.ToString());
-				return new ReturnMessage(false, record.isInit?"Ошибка при создании бланка":"Ошибка при изменении бланка");
+				return new ReturnMessage(false, record.isInit ? "Ошибка при создании бланка" : "Ошибка при изменении бланка");
 			}
 
 		}
+
+		public static string checkCrossData(JournalRecord record) {
+			string addMessage = "";
+			BlankJournal.BlanksEntities eni = new BlanksEntities();
+			if (record.Started || record.Finished) {
+				IQueryable<BPJournalTable> crossData = from b in eni.BPJournalTable
+																							 where
+																									(b.Id != record.Number) &&
+																								 ((record.Started && b.Started && record.DateStart >= b.DateStart && record.DateStart <= b.DateEnd) ||
+																								 (record.Finished && b.Finished && record.DateEnd <= b.DateEnd && record.DateEnd >= b.DateStart) ||
+																								 (record.Started && record.Finished && record.DateStart <= b.DateStart && record.DateEnd >= b.DateEnd) ||
+																								 (record.Started && record.Finished && record.DateStart >= b.DateStart && record.DateEnd <= b.DateEnd))
+																							 select b;
+				if (crossData.Count() > 0) {
+					List<string> numbers = new List<string>();
+					List<string> numbersShort = new List<string>();
+					foreach (BPJournalTable cross in crossData) {
+						numbers.Add(String.Format("{0} ({1} - {2})", cross.IDShort,
+							(cross.Started ? cross.DateStart.Value.ToString("dd.MM.yyyy HH:mm") : "???"),
+							(cross.Finished ? cross.DateEnd.Value.ToString("dd.MM.yyyy HH:mm") : "???")));
+						numbersShort.Add(cross.IDShort);
+					}
+					addMessage = "\n Внимание: Данный бланк пересекается по времени с бланками: " + String.Join(", ", numbers);
+					record.HasCrossDate = true;
+					record.CrossDate = String.Join(", ", numbersShort);
+				}
+			}
+
+			if (record.isOBP) {
+				IQueryable<BPJournalTable> crossData = from b in eni.BPJournalTable
+																							 where
+																								(b.Id != record.Number && b.isOBP && b.DateCreate.Year == record.DateCreate.Year) &&
+																								 (
+																								 (record.StartLSO >= b.LSOStart && record.StartLSO <= b.LSOEnd) ||
+																								 (record.EndLSO >= b.LSOStart && record.EndLSO <= b.LSOEnd) ||
+																								 (record.StartLSO <= b.LSOStart && record.EndLSO >= b.LSOEnd)
+																								 )
+																							 select b;
+				if (crossData.Count() > 0) {
+					List<string> numbers = new List<string>();
+					List<string> numbersShort = new List<string>();
+					foreach (BPJournalTable cross in crossData) {
+						numbers.Add(String.Format("{0} ({1} - {2})", cross.IDShort, cross.LSOStart, cross.LSOEnd));
+						numbersShort.Add(cross.IDShort);
+					}
+					addMessage += "\n Внимание: Данный бланк пересекается по ЛСО: " + String.Join(", ", numbers);
+					record.HasCrossLSO = true;
+					record.CrossLSO = String.Join(", ", numbersShort);
+				}
+			}
+			return addMessage;
+		}
+
+
+
 	}
 }

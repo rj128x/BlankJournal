@@ -36,7 +36,8 @@ namespace BlankJournal.Models {
 				BPJournalTable last = (from j in eni.BPJournalTable where j.isOBP && j.DateCreate.Year == DateTime.Now.Year orderby j.LSOEnd descending select j).FirstOrDefault();
 				try {
 					MaxLSO = last.LSOEnd;
-				} catch (Exception e) {
+				}
+				catch (Exception e) {
 					Logger.info("Ошибка при получении максимального номера ЛСО из БД" + e.ToString());
 					MaxLSO = 0;
 				}
@@ -45,12 +46,14 @@ namespace BlankJournal.Models {
 				BPJournalTable lastOBP = (from j in eni.BPJournalTable where j.isOBP && j.DateCreate.Year == DateTime.Now.Year orderby j.Number descending select j).FirstOrDefault();
 				try {
 					LastOBP = lastOBP.IDShort;
-				} catch (Exception e) {
+				}
+				catch (Exception e) {
 					Logger.info("Ошибка при получении максимального номера ЛСО из БД" + e.ToString());
 					LastOBP = "";
 				}
 
-			} catch (Exception e) {
+			}
+			catch (Exception e) {
 				Logger.info("ошибка при инициализации " + e.ToString());
 			}
 		}
@@ -64,7 +67,8 @@ namespace BlankJournal.Models {
 				foreach (UsersTable user in users) {
 					AllUsers.Add(user.Login.ToLower(), new User(user));
 				}
-			} catch (Exception e) {
+			}
+			catch (Exception e) {
 				Logger.info("Ошибка при чтении списка пользователей");
 			}
 		}
@@ -82,7 +86,8 @@ namespace BlankJournal.Models {
 			string login = HttpContext.Current.User.Identity.Name.ToLower();
 			if (AllUsers.ContainsKey(login)) {
 				return AllUsers[login];
-			} else {
+			}
+			else {
 				User user = new User();
 				user.Login = login;
 				user.Name = "Вход не выполнен: " + login;
@@ -96,13 +101,17 @@ namespace BlankJournal.Models {
 				List<TBPInfo> result = new List<TBPInfo>();
 				BlankJournal.BlanksEntities eni = new BlanksEntities();
 				var blanks = from b in eni.TBPInfoTable
-								 from dat in eni.DataTable.Where(dat => dat.ID == b.DataPDF).DefaultIfEmpty()
-								 from dat2 in eni.DataTable.Where(dat2 => dat2.ID == b.DataWord).DefaultIfEmpty()
-								 where b.Folder == folderID && b.isActive orderby b.Number
-								 select new {
-									 blank = b, FileInfoPDF = dat.FileInfo, FileInfoWord = dat2.FileInfo,
-									 md5PDF = dat.md5, md5Word = dat2.md5
-								 };
+										 from dat in eni.DataTable.Where(dat => dat.ID == b.DataPDF).DefaultIfEmpty()
+										 from dat2 in eni.DataTable.Where(dat2 => dat2.ID == b.DataWord).DefaultIfEmpty()
+										 where b.Folder == folderID && b.isActive
+										 orderby b.Number
+										 select new {
+											 blank = b,
+											 FileInfoPDF = dat.FileInfo,
+											 FileInfoWord = dat2.FileInfo,
+											 md5PDF = dat.md5,
+											 md5Word = dat2.md5
+										 };
 				Dictionary<string, TBPInfo> res = new Dictionary<string, TBPInfo>();
 				Dictionary<int, TBPInfo> resID = new Dictionary<int, TBPInfo>();
 				foreach (var tbl in blanks) {
@@ -115,33 +124,37 @@ namespace BlankJournal.Models {
 					resID.Add(tbl.blank.ID, tbp);
 				}
 
-				IQueryable<BPJournalTable> latest = from j in eni.BPJournalTable orderby j.Number ascending
-																where res.Keys.Contains(j.TBPNumber) && j.DateCreate.Year == DateTime.Now.Year && j.isOBP == false
-																select j;
+				IQueryable<BPJournalTable> latest = from j in eni.BPJournalTable
+																						orderby j.Number ascending
+																						where res.Keys.Contains(j.TBPNumber) && j.DateCreate.Year == DateTime.Now.Year && j.isOBP == false
+																						select j;
 				foreach (BPJournalTable bp in latest) {
 					try {
 						res[bp.TBPNumber].LastOper = bp.DateCreate;
 						res[bp.TBPNumber].LastNumber = bp.IDShort;
 						res[bp.TBPNumber].HasLastOper = true;
-					} catch (Exception e) {
+					}
+					catch (Exception e) {
 						Logger.info(e.ToString());
 					}
 				}
 
 				IQueryable<TBPCommentsTable> comments = from c in eni.TBPCommentsTable
-																	 where resID.Keys.Contains(c.TBPID) && c.Finished == false
-																	 select c;
+																								where resID.Keys.Contains(c.TBPID) && c.Finished == false
+																								select c;
 				foreach (TBPCommentsTable com in comments) {
 					try {
 						resID[com.TBPID].CountActiveComments++;
-					} catch (Exception e) {
+					}
+					catch (Exception e) {
 						Logger.info(e.ToString());
 					}
 				}
 
 
 				return res.Values.ToList();
-			} catch (Exception e) {
+			}
+			catch (Exception e) {
 				Logger.info("Ошибка при получении списка бланков " + e.ToString());
 				return new List<TBPInfo>();
 			}
@@ -163,7 +176,12 @@ namespace BlankJournal.Models {
 				var blanks =
 								 from b in eni.BPJournalTable
 								 from dat in eni.DataTable.Where(dat => b.WordData == dat.ID && b.isOBP == true).DefaultIfEmpty()
-								 where b.DateCreate > Filter.dateStart && b.DateCreate < Filter.dateEnd && (string.IsNullOrEmpty(Filter.tbpNumber) || b.TBPNumber == Filter.tbpNumber)
+								 where
+								 ((b.DateCreate > Filter.dateStart && b.DateCreate < Filter.dateEnd) ||
+									(b.Started && b.DateStart > Filter.dateStart && b.DateStart < Filter.dateEnd) ||
+									(b.Finished && b.DateEnd > Filter.dateStart && b.DateEnd < Filter.dateEnd))
+									&&
+								 (string.IsNullOrEmpty(Filter.tbpNumber) || b.TBPNumber == Filter.tbpNumber)
 								 orderby b.DateCreate descending
 								 select new { blank = b, FileInfo = dat.FileInfo };
 
@@ -171,11 +189,15 @@ namespace BlankJournal.Models {
 				foreach (var tbl in blanks) {
 					JournalRecord blank = new JournalRecord(tbl.blank);
 					blank.FileInfoWord = tbl.FileInfo;
+					if (Filter.checkCrossData) {
+						JournalRecord.checkCrossData(blank);
+					}
 					result.Add(blank);
 				}
 				Filter.Data = result;
 				return Filter;
-			} catch (Exception e) {
+			}
+			catch (Exception e) {
 				Logger.info("Ошибка при получении журнала переключений " + e.ToString());
 				return Filter;
 			}
@@ -191,16 +213,16 @@ namespace BlankJournal.Models {
 				Filter.dateStart = DateTime.Now.Date.AddDays(-30);
 			if (!Filter.dateEnd.HasValue)
 				Filter.dateEnd = DateTime.Now.Date.AddDays(1);
-			
+
 			try {
 				List<TBPComment> result = new List<TBPComment>();
 				BlankJournal.BlanksEntities eni = new BlanksEntities();
 				var comments = from c in eni.TBPCommentsTable
-									from dat in eni.DataTable.Where(dat => dat.ID == c.WordData).DefaultIfEmpty()
-									where c.DateCreate>Filter.dateStart && c.DateCreate<Filter.dateEnd && 
-									((Filter.onlyActive==true && c.Finished==false)||(Filter.onlyActive==false))
-									orderby c.DateCreate descending
-									select new { comment = c, Fileinfo = dat.FileInfo };
+											 from dat in eni.DataTable.Where(dat => dat.ID == c.WordData).DefaultIfEmpty()
+											 where c.DateCreate > Filter.dateStart && c.DateCreate < Filter.dateEnd &&
+											 ((Filter.onlyActive == true && c.Finished == false) || (Filter.onlyActive == false))
+											 orderby c.DateCreate descending
+											 select new { comment = c, Fileinfo = dat.FileInfo };
 				foreach (var tbl in comments) {
 					TBPComment com = new TBPComment(tbl.comment);
 					com.FileInfoData = tbl.Fileinfo;
@@ -208,7 +230,8 @@ namespace BlankJournal.Models {
 				}
 				Filter.Data = result;
 				return Filter;
-			} catch (Exception e) {
+			}
+			catch (Exception e) {
 				Logger.info("Ошибка при получении списка замечаний " + e.ToString());
 				return new CommentAnswer();
 			}
@@ -247,10 +270,12 @@ namespace BlankJournal.Models {
 				string md5PDF = ""; string md5Word = "";
 				try {
 					md5PDF = MD5Class.getString(newBlank.PDFData);
-				} catch { }
+				}
+				catch { }
 				try {
 					md5Word = MD5Class.getString(newBlank.WordData);
-				} catch { };
+				}
+				catch { };
 
 				newBlank.UpdatedPDF = newBlank.UpdatedPDF && newBlank.md5PDF != md5PDF;
 				newBlank.UpdatedWord = newBlank.UpdatedWord && newBlank.md5Word != md5Word;
@@ -260,7 +285,8 @@ namespace BlankJournal.Models {
 				if (newBlank.UpdatedPDF || newBlank.UpdatedWord)
 					SaveTBPDataToDB(newBlank, tbl, eni);
 				eni.SaveChanges();
-			} catch (Exception e) {
+			}
+			catch (Exception e) {
 				Logger.info("Ошибка при создании бланка " + e.ToString());
 				return new ReturnMessage(false, "Ошибка при создании бланка ");
 			}
@@ -268,7 +294,7 @@ namespace BlankJournal.Models {
 		}
 
 		public List<TBPHistoryRecord> getTBPHistory(TBPInfo tbp) {
-			Logger.info("Получение истории изменения ТБП "+tbp.Number);
+			Logger.info("Получение истории изменения ТБП " + tbp.Number);
 			BlankJournal.BlanksEntities eni = new BlanksEntities();
 			try {
 				List<TBPHistoryRecord> result = new List<TBPHistoryRecord>();
@@ -278,7 +304,8 @@ namespace BlankJournal.Models {
 					result.Add(rec);
 				}
 				return result;
-			} catch (Exception e) {
+			}
+			catch (Exception e) {
 				Logger.info("Ошибка при получении истории изменения ТБП" + e.ToString());
 				return new List<TBPHistoryRecord>();
 			}
@@ -325,7 +352,8 @@ namespace BlankJournal.Models {
 
 				eni.TBPHistoryTable.Add(hist);
 				Logger.info("Данные успешно сохранены");
-			} catch (Exception e) {
+			}
+			catch (Exception e) {
 				Logger.info("Ошиба при записи файлов в БД " + e.ToString());
 				return false;
 			}
@@ -341,10 +369,12 @@ namespace BlankJournal.Models {
 					tbl.isActive = false;
 					eni.SaveChanges();
 					return new ReturnMessage(true, "Бланк удален");
-				} else {
+				}
+				else {
 					return new ReturnMessage(true, "Бланк не найден");
 				}
-			} catch (Exception e) {
+			}
+			catch (Exception e) {
 				Logger.info("ошибка при удалении бланка " + e.ToString());
 				return new ReturnMessage(false, "Ошибка при удалении бланка");
 			}

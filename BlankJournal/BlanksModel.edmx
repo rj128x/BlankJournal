@@ -27,6 +27,7 @@
           <Property Name="isOBP" Type="bit" Nullable="false" />
           <Property Name="LSOStart" Type="int" Nullable="false" />
           <Property Name="LSOEnd" Type="int" Nullable="false" />
+          <Property Name="LastUpdateFinish" Type="datetime" />
         </EntityType>
         <EntityType Name="DataTable">
           <Key>
@@ -347,6 +348,7 @@
           <NavigationProperty Name="DataTable" Relationship="Self.FK_BPJournalTable_DataTablePDF" FromRole="BPJournalTable" ToRole="DataTable" />
           <NavigationProperty Name="DataTable1" Relationship="Self.FK_BPJournalTable_DataTableWord" FromRole="BPJournalTable" ToRole="DataTable" />
           <NavigationProperty Name="UsersTable" Relationship="Self.FK_BPJournalTable_UsersTable" FromRole="BPJournalTable" ToRole="UsersTable" />
+          <Property Name="LastUpdateFinish" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="DataTable">
           <Key>
@@ -670,6 +672,7 @@
           <EntitySetMapping Name="BPJournalTable">
             <EntityTypeMapping TypeName="BlanksModel.BPJournalTable">
               <MappingFragment StoreEntitySet="BPJournalTable">
+                <ScalarProperty Name="LastUpdateFinish" ColumnName="LastUpdateFinish" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="IDShort" ColumnName="IDShort" />
                 <ScalarProperty Name="Number" ColumnName="Number" />

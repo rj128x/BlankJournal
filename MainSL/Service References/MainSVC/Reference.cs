@@ -547,6 +547,8 @@ namespace MainSL.MainSVC {
         
         private System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.JournalRecord> DataField;
         
+        private bool checkCrossDataField;
+        
         private System.Nullable<System.DateTime> dateEndField;
         
         private System.Nullable<System.DateTime> dateStartField;
@@ -562,6 +564,19 @@ namespace MainSL.MainSVC {
                 if ((object.ReferenceEquals(this.DataField, value) != true)) {
                     this.DataField = value;
                     this.RaisePropertyChanged("Data");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool checkCrossData {
+            get {
+                return this.checkCrossDataField;
+            }
+            set {
+                if ((this.checkCrossDataField.Equals(value) != true)) {
+                    this.checkCrossDataField = value;
+                    this.RaisePropertyChanged("checkCrossData");
                 }
             }
         }
@@ -626,6 +641,10 @@ namespace MainSL.MainSVC {
         
         private string CommentField;
         
+        private string CrossDateField;
+        
+        private string CrossLSOField;
+        
         private System.DateTime DateCreateField;
         
         private System.DateTime DateEndField;
@@ -639,6 +658,10 @@ namespace MainSL.MainSVC {
         private string FileInfoWordField;
         
         private bool FinishedField;
+        
+        private bool HasCrossDateField;
+        
+        private bool HasCrossLSOField;
         
         private string IDWordDataField;
         
@@ -697,6 +720,32 @@ namespace MainSL.MainSVC {
                 if ((object.ReferenceEquals(this.CommentField, value) != true)) {
                     this.CommentField = value;
                     this.RaisePropertyChanged("Comment");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CrossDate {
+            get {
+                return this.CrossDateField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CrossDateField, value) != true)) {
+                    this.CrossDateField = value;
+                    this.RaisePropertyChanged("CrossDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CrossLSO {
+            get {
+                return this.CrossLSOField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CrossLSOField, value) != true)) {
+                    this.CrossLSOField = value;
+                    this.RaisePropertyChanged("CrossLSO");
                 }
             }
         }
@@ -788,6 +837,32 @@ namespace MainSL.MainSVC {
                 if ((this.FinishedField.Equals(value) != true)) {
                     this.FinishedField = value;
                     this.RaisePropertyChanged("Finished");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool HasCrossDate {
+            get {
+                return this.HasCrossDateField;
+            }
+            set {
+                if ((this.HasCrossDateField.Equals(value) != true)) {
+                    this.HasCrossDateField = value;
+                    this.RaisePropertyChanged("HasCrossDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool HasCrossLSO {
+            get {
+                return this.HasCrossLSOField;
+            }
+            set {
+                if ((this.HasCrossLSOField.Equals(value) != true)) {
+                    this.HasCrossLSOField = value;
+                    this.RaisePropertyChanged("HasCrossLSO");
                 }
             }
         }

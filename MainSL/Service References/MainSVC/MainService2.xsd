@@ -70,6 +70,8 @@
       <xs:element minOccurs="0" name="Author" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Closed" type="xs:boolean" />
       <xs:element minOccurs="0" name="Comment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CrossDate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CrossLSO" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="DateCreate" type="xs:dateTime" />
       <xs:element minOccurs="0" name="DateEnd" type="xs:dateTime" />
       <xs:element minOccurs="0" name="DateStart" type="xs:dateTime" />
@@ -77,6 +79,8 @@
       <xs:element minOccurs="0" name="EndLSO" type="xs:int" />
       <xs:element minOccurs="0" name="FileInfoWord" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Finished" type="xs:boolean" />
+      <xs:element minOccurs="0" name="HasCrossDate" type="xs:boolean" />
+      <xs:element minOccurs="0" name="HasCrossLSO" type="xs:boolean" />
       <xs:element minOccurs="0" name="IDWordData" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Number" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ShortNumber" nillable="true" type="xs:string" />
