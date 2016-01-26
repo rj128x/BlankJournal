@@ -14,6 +14,8 @@ namespace BlankJournal {
 		public bool Result { get; set; }
 		public int MaxLSO { get; set; }
 		public string LastOBP { get; set; }
+		public int RezervLSO { get; set; }
+		public string RezervOBP { get; set; }
 		public ReturnMessage() { }
 		public ReturnMessage(bool result, string message) {
 			Message = message;
@@ -21,10 +23,12 @@ namespace BlankJournal {
 			Logger.info(String.Format("Возврат: {0} (1)", result, message));
 		}
 
-		public ReturnMessage(int maxLSO, string lastOBP) {
+		public ReturnMessage(int maxLSO, string lastOBP,int rezervLSO, string rezervOBP) {
 			MaxLSO = maxLSO;
 			LastOBP = lastOBP;
-			Logger.info(String.Format("Возврат: LSO:{0} OBP(1)", maxLSO, lastOBP));
+			RezervLSO = rezervLSO;
+			RezervOBP = rezervOBP;
+			Logger.info(String.Format("Возврат: LSO:{0} OBP: {1} rezLSO: {2} rezOBP: {3}", maxLSO, lastOBP,rezervLSO, rezervOBP));
 		}
 	
 	}
@@ -126,7 +130,7 @@ namespace BlankJournal {
 
 		[OperationContract]
 		public ReturnMessage getOperationsInfo() {
-			return new ReturnMessage(DBContext.Single.MaxLSO, DBContext.Single.LastOBP);
+			return new ReturnMessage(DBContext.Single.MaxLSO, DBContext.Single.LastOBP,DBContext.Single.RezLSO,DBContext.Single.RezOBP);
 		}
 
 		[OperationContract]

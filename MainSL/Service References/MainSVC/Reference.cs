@@ -1033,6 +1033,10 @@ namespace MainSL.MainSVC {
         
         private bool ResultField;
         
+        private int RezervLSOField;
+        
+        private string RezervOBPField;
+        
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string LastOBP {
             get {
@@ -1081,6 +1085,32 @@ namespace MainSL.MainSVC {
                 if ((this.ResultField.Equals(value) != true)) {
                     this.ResultField = value;
                     this.RaisePropertyChanged("Result");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RezervLSO {
+            get {
+                return this.RezervLSOField;
+            }
+            set {
+                if ((this.RezervLSOField.Equals(value) != true)) {
+                    this.RezervLSOField = value;
+                    this.RaisePropertyChanged("RezervLSO");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string RezervOBP {
+            get {
+                return this.RezervOBPField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RezervOBPField, value) != true)) {
+                    this.RezervOBPField = value;
+                    this.RaisePropertyChanged("RezervOBP");
                 }
             }
         }

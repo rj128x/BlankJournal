@@ -34,6 +34,8 @@ namespace BlankJournal.Models {
 		public string CrossDate { get; set; }
 		public string CrossLSO { get; set; }
 
+		public static double MAX_BP_YEAR = 1000.0;
+
 		public JournalRecord() {
 		}
 
@@ -76,8 +78,8 @@ namespace BlankJournal.Models {
 			else {
 				rec.DoubleNumber = date.Year + 0.001;
 			}
-			rec.Number = String.Format("ТБП № {0}/{2}/{1}", tbp.Number, Math.Truncate(rec.DoubleNumber), Math.Round((rec.DoubleNumber - date.Year) * 1000));
-			rec.ShortNumber = String.Format("ТБП № {0}/{1}", tbp.Number, Math.Round((rec.DoubleNumber - date.Year) * 1000));
+			rec.Number = String.Format("ТБП № {0}/{2}/{1}", tbp.Number, Math.Truncate(rec.DoubleNumber), Math.Ceiling((rec.DoubleNumber - date.Year) * MAX_BP_YEAR));
+			rec.ShortNumber = String.Format("ТБП № {0}/{1}", tbp.Number, Math.Ceiling((rec.DoubleNumber - date.Year) * MAX_BP_YEAR));
 			rec.Author = DBContext.Single.GetCurrentUser().Login;
 			rec.Task = tbp.Name;
 			rec.isOBP = false;
@@ -104,12 +106,12 @@ namespace BlankJournal.Models {
 			}
 			catch { }
 			if (last != null) {
-				rec.DoubleNumber = last.Number + 0.001;
+				rec.DoubleNumber = last.Number + 1 / MAX_BP_YEAR;
 			}
 			else {
-				rec.DoubleNumber = date.Year + 0.001;
+				rec.DoubleNumber = date.Year + 1 / MAX_BP_YEAR;
 			}
-			int FullNum = (int)Math.Round((rec.DoubleNumber - date.Year) * 1000);
+			int FullNum = (int)Math.Ceiling((rec.DoubleNumber - date.Year) * MAX_BP_YEAR);
 			rec.Number = String.Format("ОБП № {1}/{0}", Math.Truncate(rec.DoubleNumber), FullNum);
 			rec.ShortNumber = String.Format("ОБП № {0}", FullNum);
 			rec.Author = DBContext.Single.GetCurrentUser().Login;
@@ -245,7 +247,10 @@ namespace BlankJournal.Models {
 				eni.SaveChanges();
 				if (record.isOBP) {
 					DBContext.Single.MaxLSO = record.EndLSO > DBContext.Single.MaxLSO ? record.EndLSO : DBContext.Single.MaxLSO;
-					DBContext.Single.LastOBP = tbl.Id;
+					DBContext.Single.RezLSO = DBContext.Single.MaxLSO + 1;
+					DBContext.Single.LastOBP = tbl.IDShort;
+					double num = (tbl.Number + 1 / MAX_BP_YEAR - tbl.DateCreate.Year) * MAX_BP_YEAR;
+					DBContext.Single.RezOBP = string.Format("ОБП № {0}", (int)Math.Ceiling(num));
 				}
 				return new ReturnMessage(true, record.isInit ? "Бланк успешно создан\n" + addMessage : "Бланк успешно изменен\n" + addMessage);
 			}

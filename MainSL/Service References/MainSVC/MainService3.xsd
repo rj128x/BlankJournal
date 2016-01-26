@@ -17,6 +17,8 @@
       <xs:element minOccurs="0" name="MaxLSO" type="xs:int" />
       <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Result" type="xs:boolean" />
+      <xs:element minOccurs="0" name="RezervLSO" type="xs:int" />
+      <xs:element minOccurs="0" name="RezervOBP" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ReturnMessage" nillable="true" type="tns:ReturnMessage" />
