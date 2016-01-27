@@ -85,7 +85,8 @@ namespace BlankJournal.Models {
 			rec.isOBP = false;
 			rec.TBPNumber = tbp.Number;
 			rec.TBPID = tbp.ID;
-			rec.DateCreate = DateTime.Now;
+			DateTime dt = DateTime.Now;
+			rec.DateCreate = new DateTime(dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, 0,DateTimeKind.Unspecified);
 			rec.DateEnd = rec.DateCreate;
 			rec.DateStart = rec.DateCreate;
 			rec.StartLSO = 0;
@@ -143,7 +144,8 @@ namespace BlankJournal.Models {
 					Logger.info("Ошибка при создании ОБП пустого" + e.ToString());
 				}
 			}
-			rec.DateCreate = DateTime.Now;
+			DateTime dt=DateTime.Now;
+			rec.DateCreate = new DateTime(dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, 0,DateTimeKind.Unspecified);
 			rec.DateEnd = rec.DateCreate;
 			rec.DateStart = rec.DateCreate;
 			rec.Comment = " ";
