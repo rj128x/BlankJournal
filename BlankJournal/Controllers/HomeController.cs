@@ -83,7 +83,7 @@ namespace BlankJournal.Controllers {
 										  select new { blank = d, data = dat }).FirstOrDefault();
 			if (data!=null) {
 				string fn = Server.MapPath("/TempData/"+data.data.FileInfo);
-				int num = (int)Math.Round((data.blank.Number - data.blank.DateCreate.Year) * 1000);
+				int num = (int)(Math.Ceiling(data.blank.Number - data.blank.DateCreate.Year) * JournalRecord.MAX_BP_YEAR);
 				PDFClass.addTBPNumber(data.data.Data, fn,data.blank.IDShort);
 				return data.data.FileInfo;
 			}

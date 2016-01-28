@@ -14,7 +14,9 @@ namespace BlankJournal.Models {
 			try {
 				WordprocessingDocument doc = WordprocessingDocument.Open(name, true);
 				int pageCount = Int32.Parse(doc.ExtendedFilePropertiesPart.Properties.Pages.Text);
+				doc.Close();
 				Logger.info(pageCount.ToString());
+
 				return pageCount;
 			}
 			catch {

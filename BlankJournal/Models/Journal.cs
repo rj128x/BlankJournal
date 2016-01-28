@@ -35,7 +35,7 @@ namespace BlankJournal.Models {
 		public string CrossDate { get; set; }
 		public string CrossLSO { get; set; }
 
-		public static double MAX_BP_YEAR = 1000.0;
+		public static double MAX_BP_YEAR = 10000.0;
 
 		public JournalRecord() {
 		}
@@ -75,10 +75,10 @@ namespace BlankJournal.Models {
 			}
 			catch { };
 			if (last != null) {
-				rec.DoubleNumber = last.Number + 0.001;
+				rec.DoubleNumber = last.Number + 1/MAX_BP_YEAR;
 			}
 			else {
-				rec.DoubleNumber = date.Year + 0.001;
+				rec.DoubleNumber = date.Year + 1 / MAX_BP_YEAR;
 			}
 			rec.Number = String.Format("ТБП № {0}/{2}/{1}", tbp.Number, Math.Truncate(rec.DoubleNumber), Math.Ceiling((rec.DoubleNumber - date.Year) * MAX_BP_YEAR));
 			rec.ShortNumber = String.Format("ТБП № {0}/{1}", tbp.Number, Math.Ceiling((rec.DoubleNumber - date.Year) * MAX_BP_YEAR));
