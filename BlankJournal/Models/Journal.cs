@@ -27,6 +27,7 @@ namespace BlankJournal.Models {
 		public bool Closed { get; set; }
 		public int StartLSO { get; set; }
 		public int EndLSO { get; set; }
+		public int CountLSO { get; set; }
 
 		public bool HasCrossDate { get; set; }
 		public bool HasCrossLSO { get; set; }
@@ -56,6 +57,7 @@ namespace BlankJournal.Models {
 			isOBP = tbl.isOBP;
 			StartLSO = tbl.LSOStart;
 			EndLSO = tbl.LSOEnd;
+			CountLSO = EndLSO - StartLSO + 1;
 			TBPNumber = tbl.TBPNumber;
 			TBPID = tbl.TBPID;
 
@@ -120,12 +122,17 @@ namespace BlankJournal.Models {
 			rec.isOBP = true;
 			rec.TBPNumber = tbp.Number;
 			rec.TBPID = tbp.ID;
+			rec.StartLSO = DBContext.Single.MaxLSO + 1;
+			rec.EndLSO = DBContext.Single.MaxLSO + 2;
+
 			if (tbp.Number != "-") {
 				if (!String.IsNullOrEmpty(tbp.IDWordData)) {
 					try {
 						Logger.info("Создание файла ОБП с номером из ТБП");
 						string obpFile = BlankJournal.Models.WordData.createOBP(DBContext.TempFolder, tbp, FullNum);
 						rec.WordData = File.ReadAllBytes(DBContext.TempFolder + "/" + obpFile);
+						int pg = BlankJournal.Models.WordData.getCountPages(DBContext.TempFolder + "/" + obpFile);
+						rec.EndLSO = rec.StartLSO + pg - 1;
 						rec.FileInfoWord = obpFile;
 					}
 					catch (Exception e) {
@@ -149,9 +156,9 @@ namespace BlankJournal.Models {
 			rec.DateEnd = rec.DateCreate;
 			rec.DateStart = rec.DateCreate;
 			rec.Comment = " ";
-
-			rec.StartLSO = DBContext.Single.MaxLSO + 1;
-			rec.EndLSO = DBContext.Single.MaxLSO + 2;
+			rec.CountLSO = rec.EndLSO - rec.StartLSO + 1;
+			
+			
 
 			Logger.info("шаблон ОБП создан");
 			return rec;
@@ -161,6 +168,9 @@ namespace BlankJournal.Models {
 			Logger.info("Создание/изменение зписи о переключении в журнале");
 			string addMessage = "";
 			BlankJournal.BlanksEntities eni = new BlanksEntities();
+
+			
+
 			BPJournalTable blank = (from b in eni.BPJournalTable
 															where
 																b.Number == record.DoubleNumber && b.TBPNumber == record.TBPNumber && b.isOBP == record.isOBP
@@ -174,7 +184,7 @@ namespace BlankJournal.Models {
 					record.Finished = false;
 				if (record.Started && record.Finished) {
 					if (record.DateStart > record.DateEnd)
-						return new ReturnMessage(false, "Дата окончания переключений больше даты начала. Создание бланка невозможно");
+						return new ReturnMessage(false, "Дата окончания переключений больше даты начала. Создание бланка невозможно");				
 				}
 
 				BPJournalTable tbl = record.isInit ? new BPJournalTable() : blank;
@@ -242,6 +252,8 @@ namespace BlankJournal.Models {
 				else {
 					tbl.LSOStart = record.StartLSO;
 					tbl.LSOEnd = record.EndLSO;
+					if (record.StartLSO > record.EndLSO)
+						return new ReturnMessage(false, "Ошибка при создании бланка переключений. Номер последнего ЛСО больше номера первого.");
 				}
 
 				if (record.isInit)

@@ -641,6 +641,8 @@ namespace MainSL.MainSVC {
         
         private string CommentField;
         
+        private int CountLSOField;
+        
         private string CrossDateField;
         
         private string CrossLSOField;
@@ -720,6 +722,19 @@ namespace MainSL.MainSVC {
                 if ((object.ReferenceEquals(this.CommentField, value) != true)) {
                     this.CommentField = value;
                     this.RaisePropertyChanged("Comment");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int CountLSO {
+            get {
+                return this.CountLSOField;
+            }
+            set {
+                if ((this.CountLSOField.Equals(value) != true)) {
+                    this.CountLSOField = value;
+                    this.RaisePropertyChanged("CountLSO");
                 }
             }
         }

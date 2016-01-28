@@ -70,6 +70,7 @@
       <xs:element minOccurs="0" name="Author" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Closed" type="xs:boolean" />
       <xs:element minOccurs="0" name="Comment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CountLSO" type="xs:int" />
       <xs:element minOccurs="0" name="CrossDate" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="CrossLSO" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="DateCreate" type="xs:dateTime" />

@@ -32,9 +32,12 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Visibility="{Binding isOBP, Converter={StaticResource visibilityConverter}}">
                     <TextBlock Text="ЛСО: " Width="100" />
-                    <TextBox Text="{Binding StartLSO, Mode=TwoWay}" Width="50"/>
+                    <TextBox Text="{Binding StartLSO, Mode=TwoWay}" Width="50" Name="txtStartLSO" TextChanged="txtStartLSO_TextChanged"/>
                     <TextBlock Text=" - " />
-                    <TextBox Text="{Binding EndLSO, Mode=TwoWay}" Width="50"/>
+                    <TextBox Text="{Binding EndLSO, Mode=OneWay}" Width="50" Name="txtEndLSO"  TextChanged="txtEndLSO_TextChanged"/>
+                    <TextBlock Text="  ["  VerticalAlignment="Center"/>
+                    <TextBox Text="{Binding CountLSO, Mode=OneWay}" Width="50" TextAlignment="Right" Name="txtCountLSO"  TextChanged="txtCountLSO_TextChanged"/>
+                    <TextBlock Text="  стр.]"  VerticalAlignment="Center" />
                 </StackPanel>
                 
                 <StackPanel Orientation="Vertical" >

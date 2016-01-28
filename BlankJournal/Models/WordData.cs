@@ -9,6 +9,19 @@ using System.IO;
 
 namespace BlankJournal.Models {
 	public class WordData {
+		public static int getCountPages(string name) {
+			Logger.info("Получение количества страниц документа " + name);
+			try {
+				WordprocessingDocument doc = WordprocessingDocument.Open(name, true);
+				int pageCount = Int32.Parse(doc.ExtendedFilePropertiesPart.Properties.Pages.Text);
+				Logger.info(pageCount.ToString());
+				return pageCount;
+			}
+			catch {
+				return 1;
+			}
+		}
+
 		public static string createOBP(string folder, TBPInfo tbp, int num = -1) {
 			Logger.info("Формирование ОБП из ТБП " + tbp.Number);
 			BlanksEntities eni = new BlanksEntities();

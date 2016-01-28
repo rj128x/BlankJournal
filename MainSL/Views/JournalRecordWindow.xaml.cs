@@ -46,8 +46,6 @@ namespace MainSL.Views {
 			GlobalContext.Single.Client.getDataRecordCompleted += Client_getDataRecordCompleted;
 		}
 
-
-
 		void Client_FinishBPCompleted(object sender, FinishBPCompletedEventArgs e) {
 			GlobalContext.Single.IsBusy = false;
 			ReturnMessage msg = e.Result as ReturnMessage;
@@ -133,6 +131,33 @@ namespace MainSL.Views {
 		private void chbStarted_Unchecked(object sender, RoutedEventArgs e) {
 			CurrentBlank.Finished = false;
 		}
+
+		private void txtEndLSO_TextChanged(object sender, TextChangedEventArgs e) {
+			try {
+				CurrentBlank.EndLSO = Int32.Parse(txtEndLSO.Text);
+				CurrentBlank.CountLSO = CurrentBlank.EndLSO - CurrentBlank.StartLSO + 1;
+			}
+			catch { }
+		}
+
+		private void txtCountLSO_TextChanged(object sender, TextChangedEventArgs e) {
+			try {
+				CurrentBlank.CountLSO = Int32.Parse(txtCountLSO.Text);
+				CurrentBlank.EndLSO = CurrentBlank.StartLSO + CurrentBlank.CountLSO - 1;
+			}
+			catch { }
+		}
+
+		private void txtStartLSO_TextChanged(object sender, TextChangedEventArgs e) {
+			try {
+				CurrentBlank.StartLSO = Int32.Parse(txtStartLSO.Text);
+				CurrentBlank.CountLSO = CurrentBlank.EndLSO - CurrentBlank.StartLSO + 1;
+			}
+			catch { }
+		}
+
+
+
 
 	}
 }
