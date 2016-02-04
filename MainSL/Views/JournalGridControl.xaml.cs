@@ -15,6 +15,7 @@ namespace MainSL.Views {
 	public delegate void EditBlankPressed(JournalRecord blank);
 	public partial class JournalGridControl : UserControl {
 		public event EditBlankPressed OnEditButtonPressed;
+		public event EditBlankPressed OnDelButtonPressed;
 
 		public JournalGridControl() {
 			InitializeComponent();
@@ -35,6 +36,12 @@ namespace MainSL.Views {
 
 		private void grdBlanks_LoadingRow(object sender, DataGridRowEventArgs e) {
 			e.Row.Header = e.Row.GetIndex() + 1;
+		}
+
+		private void btnDelete_Click(object sender, RoutedEventArgs e) {
+			JournalRecord newBlank = grdBlanks.SelectedItem as JournalRecord;
+			if (OnDelButtonPressed != null)
+				OnDelButtonPressed(newBlank);
 		}
 
 	}

@@ -38,7 +38,10 @@ namespace MainSL.Views {
 			GlobalContext.Single.IsBusy = true;
 			GlobalContext.Single.Client.GetJournalBPAsync(CurrentFilter);
 			cntrlJournal.OnEditButtonPressed += cntrlJournal_OnEditButtonPressed;
+			cntrlJournal.OnDelButtonPressed += cntrlJournal_OnDelButtonPressed;
 		}
+
+		
 
 		void cntrlJournal_OnEditButtonPressed(JournalRecord blank) {
 			GlobalContext.Single.IsBusy = false;
@@ -51,10 +54,14 @@ namespace MainSL.Views {
 
 		public void init() {
 			GlobalContext.Single.Client.GetJournalBPCompleted += Client_GetJournalBPCompleted;
+			GlobalContext.Single.Client.removeBPCompleted += Client_removeBPCompleted;
 		}
+
+		
 
 		public void deInit() {
 			GlobalContext.Single.Client.GetJournalBPCompleted -= Client_GetJournalBPCompleted;
+			GlobalContext.Single.Client.removeBPCompleted -= Client_removeBPCompleted;
 		}
 
 		void Client_GetJournalBPCompleted(object sender, MainSVC.GetJournalBPCompletedEventArgs e) {
@@ -90,6 +97,20 @@ namespace MainSL.Views {
 			FloatWindow.OpenWindow(String.Format("/Print/PrintJournalBP?year1={0}&month1={1}&day1={2}&year2={3}&month2={4}&day2={5}",
 				CurrentFilter.dateStart.Value.Year,CurrentFilter.dateStart.Value.Month,CurrentFilter.dateStart.Value.Day,
 				CurrentFilter.dateEnd.Value.Year,CurrentFilter.dateEnd.Value.Month,CurrentFilter.dateEnd.Value.Day));
+		}
+
+		void Client_removeBPCompleted(object sender, removeBPCompletedEventArgs e) {
+			GlobalContext.Single.IsBusy = false;
+			MessageBox.Show(e.Result.Message);
+			GlobalContext.Single.IsBusy = true;
+			GlobalContext.Single.Client.GetJournalBPAsync(CurrentFilter);
+		}
+
+		void cntrlJournal_OnDelButtonPressed(JournalRecord blank) {
+			if (MessageBox.Show("Вы уверены что хотите удалить запись в журнале " + blank.ShortNumber + "?", "Удаление!", MessageBoxButton.OKCancel) == MessageBoxResult.OK) {
+				GlobalContext.Single.IsBusy = true;
+				GlobalContext.Single.Client.removeBPAsync(blank);
+			}
 		}
 
 	}

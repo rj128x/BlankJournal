@@ -1804,6 +1804,11 @@ namespace MainSL.MainSVC {
         
         MainSL.MainSVC.ReturnMessage EndremoveTBP(System.IAsyncResult result);
         
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:MainService/removeBP", ReplyAction="urn:MainService/removeBPResponse")]
+        System.IAsyncResult BeginremoveBP(MainSL.MainSVC.JournalRecord bp, System.AsyncCallback callback, object asyncState);
+        
+        MainSL.MainSVC.ReturnMessage EndremoveBP(System.IAsyncResult result);
+        
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:MainService/getDataRecord", ReplyAction="urn:MainService/getDataRecordResponse")]
         System.IAsyncResult BegingetDataRecord(string id, System.AsyncCallback callback, object asyncState);
         
@@ -2206,6 +2211,25 @@ namespace MainSL.MainSVC {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class removeBPCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public removeBPCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public MainSL.MainSVC.ReturnMessage Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((MainSL.MainSVC.ReturnMessage)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class getDataRecordCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
@@ -2372,6 +2396,12 @@ namespace MainSL.MainSVC {
         
         private System.Threading.SendOrPostCallback onremoveTBPCompletedDelegate;
         
+        private BeginOperationDelegate onBeginremoveBPDelegate;
+        
+        private EndOperationDelegate onEndremoveBPDelegate;
+        
+        private System.Threading.SendOrPostCallback onremoveBPCompletedDelegate;
+        
         private BeginOperationDelegate onBegingetDataRecordDelegate;
         
         private EndOperationDelegate onEndgetDataRecordDelegate;
@@ -2484,6 +2514,8 @@ namespace MainSL.MainSVC {
         public event System.EventHandler<addFileCompletedEventArgs> addFileCompleted;
         
         public event System.EventHandler<removeTBPCompletedEventArgs> removeTBPCompleted;
+        
+        public event System.EventHandler<removeBPCompletedEventArgs> removeBPCompleted;
         
         public event System.EventHandler<getDataRecordCompletedEventArgs> getDataRecordCompleted;
         
@@ -3455,6 +3487,52 @@ namespace MainSL.MainSVC {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult MainSL.MainSVC.MainService.BeginremoveBP(MainSL.MainSVC.JournalRecord bp, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginremoveBP(bp, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        MainSL.MainSVC.ReturnMessage MainSL.MainSVC.MainService.EndremoveBP(System.IAsyncResult result) {
+            return base.Channel.EndremoveBP(result);
+        }
+        
+        private System.IAsyncResult OnBeginremoveBP(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            MainSL.MainSVC.JournalRecord bp = ((MainSL.MainSVC.JournalRecord)(inValues[0]));
+            return ((MainSL.MainSVC.MainService)(this)).BeginremoveBP(bp, callback, asyncState);
+        }
+        
+        private object[] OnEndremoveBP(System.IAsyncResult result) {
+            MainSL.MainSVC.ReturnMessage retVal = ((MainSL.MainSVC.MainService)(this)).EndremoveBP(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnremoveBPCompleted(object state) {
+            if ((this.removeBPCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.removeBPCompleted(this, new removeBPCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void removeBPAsync(MainSL.MainSVC.JournalRecord bp) {
+            this.removeBPAsync(bp, null);
+        }
+        
+        public void removeBPAsync(MainSL.MainSVC.JournalRecord bp, object userState) {
+            if ((this.onBeginremoveBPDelegate == null)) {
+                this.onBeginremoveBPDelegate = new BeginOperationDelegate(this.OnBeginremoveBP);
+            }
+            if ((this.onEndremoveBPDelegate == null)) {
+                this.onEndremoveBPDelegate = new EndOperationDelegate(this.OnEndremoveBP);
+            }
+            if ((this.onremoveBPCompletedDelegate == null)) {
+                this.onremoveBPCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnremoveBPCompleted);
+            }
+            base.InvokeAsync(this.onBeginremoveBPDelegate, new object[] {
+                        bp}, this.onEndremoveBPDelegate, this.onremoveBPCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.IAsyncResult MainSL.MainSVC.MainService.BegingetDataRecord(string id, System.AsyncCallback callback, object asyncState) {
             return base.Channel.BegingetDataRecord(id, callback, asyncState);
         }
@@ -3935,6 +4013,19 @@ namespace MainSL.MainSVC {
             public MainSL.MainSVC.ReturnMessage EndremoveTBP(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 MainSL.MainSVC.ReturnMessage _result = ((MainSL.MainSVC.ReturnMessage)(base.EndInvoke("removeTBP", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginremoveBP(MainSL.MainSVC.JournalRecord bp, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = bp;
+                System.IAsyncResult _result = base.BeginInvoke("removeBP", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public MainSL.MainSVC.ReturnMessage EndremoveBP(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                MainSL.MainSVC.ReturnMessage _result = ((MainSL.MainSVC.ReturnMessage)(base.EndInvoke("removeBP", _args, result)));
                 return _result;
             }
             

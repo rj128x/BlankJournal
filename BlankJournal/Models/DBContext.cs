@@ -34,34 +34,39 @@ namespace BlankJournal.Models {
 					AllFolders.Add(fld.Id, new Folder(fld));
 				}
 
-				Logger.info("Чтение ЛСО");
-				BPJournalTable last = (from j in eni.BPJournalTable where j.isOBP && j.DateCreate.Year == DateTime.Now.Year orderby j.LSOEnd descending select j).FirstOrDefault();
-				try {
-					MaxLSO = last.LSOEnd;
-					RezLSO = MaxLSO + 1;
-				}
-				catch (Exception e) {
-					Logger.info("Ошибка при получении максимального номера ЛСО из БД" + e.ToString());
-					MaxLSO = 0;
-					RezLSO = MaxLSO + 1;
-				}
-
-				Logger.info("Чтение ОБП");
-				BPJournalTable lastOBP = (from j in eni.BPJournalTable where j.isOBP && j.DateCreate.Year == DateTime.Now.Year orderby j.Number descending select j).FirstOrDefault();
-				try {
-					LastOBP = lastOBP.IDShort;
-					double num = (lastOBP.Number + 1 / JournalRecord.MAX_BP_YEAR - lastOBP.DateCreate.Year) * JournalRecord.MAX_BP_YEAR;
-					RezOBP = string.Format("ОБП № {0}", (int)Math.Ceiling(num));
-				}
-				catch (Exception e) {
-					Logger.info("Ошибка при получении максимального номера ЛСО из БД" + e.ToString());
-					LastOBP = "";
-					RezOBP = "ОБП № 1";
-				}
+				INIT_LSO_OBP();
 
 			}
 			catch (Exception e) {
 				Logger.info("ошибка при инициализации " + e.ToString());
+			}
+		}
+
+		public void INIT_LSO_OBP() {
+			Logger.info("Чтение ЛСО");
+			BlankJournal.BlanksEntities eni = new BlanksEntities();
+			BPJournalTable last = (from j in eni.BPJournalTable where j.isOBP && j.DateCreate.Year == DateTime.Now.Year orderby j.LSOEnd descending select j).FirstOrDefault();
+			try {
+				MaxLSO = last.LSOEnd;
+				RezLSO = MaxLSO + 1;
+			}
+			catch (Exception e) {
+				Logger.info("Ошибка при получении максимального номера ЛСО из БД" + e.ToString());
+				MaxLSO = 0;
+				RezLSO = MaxLSO + 1;
+			}
+
+			Logger.info("Чтение ОБП");
+			BPJournalTable lastOBP = (from j in eni.BPJournalTable where j.isOBP && j.DateCreate.Year == DateTime.Now.Year orderby j.Number descending select j).FirstOrDefault();
+			try {
+				LastOBP = lastOBP.IDShort;
+				double num = (lastOBP.Number + 1 / JournalRecord.MAX_BP_YEAR - lastOBP.DateCreate.Year) * JournalRecord.MAX_BP_YEAR;
+				RezOBP = string.Format("ОБП № {0}", (int)Math.Ceiling(num));
+			}
+			catch (Exception e) {
+				Logger.info("Ошибка при получении максимального номера ОБП из БД" + e.ToString());
+				LastOBP = "";
+				RezOBP = "ОБП № 1";
 			}
 		}
 
@@ -191,8 +196,7 @@ namespace BlankJournal.Models {
 								 (string.IsNullOrEmpty(Filter.tbpNumber) || b.TBPNumber == Filter.tbpNumber)
 								 orderby b.DateCreate descending
 								 select new { blank = b, FileInfo = dat.FileInfo };
-
-
+				
 				foreach (var tbl in blanks) {
 					JournalRecord blank = new JournalRecord(tbl.blank);
 					blank.FileInfoWord = tbl.FileInfo;

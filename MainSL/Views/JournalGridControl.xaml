@@ -9,7 +9,7 @@
     <Grid x:Name="LayoutRoot" Background="White">
 
         <sdk:DataGrid  Name="grdBlanks" AutoGenerateColumns="False" HeadersVisibility="All" LoadingRow="grdBlanks_LoadingRow" >
-            
+
             <sdk:DataGrid.Columns>
                 <sdk:DataGridTemplateColumn Header="Дата создания" SortMemberPath="DateCreate" Width="1*"  >
                     <sdk:DataGridTemplateColumn.CellTemplate >
@@ -71,10 +71,10 @@
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
                             <Grid>
-                            <StackPanel Orientation="Vertical" >
-                                <TextBlock Text="{Binding DateStart , StringFormat='dd.MM.yyyy HH:mm'}"  HorizontalAlignment="Left" Visibility="{Binding Started, Converter={StaticResource visibilityConverter}}"/>
-                                <TextBlock Text="{Binding DateEnd , StringFormat='dd.MM.yyyy HH:mm'}"  HorizontalAlignment="Right" Visibility="{Binding Finished, Converter={StaticResource visibilityConverter}}"/>
-                            </StackPanel>
+                                <StackPanel Orientation="Vertical" >
+                                    <TextBlock Text="{Binding DateStart , StringFormat='dd.MM.yyyy HH:mm'}"  HorizontalAlignment="Left" Visibility="{Binding Started, Converter={StaticResource visibilityConverter}}"/>
+                                    <TextBlock Text="{Binding DateEnd , StringFormat='dd.MM.yyyy HH:mm'}"  HorizontalAlignment="Right" Visibility="{Binding Finished, Converter={StaticResource visibilityConverter}}"/>
+                                </StackPanel>
                                 <StackPanel Background="Yellow" Visibility="{Binding Finished, Converter={StaticResource visibilityNotConverter}}" Opacity="0.8" />
                             </Grid>
                         </DataTemplate>
@@ -82,14 +82,23 @@
                 </sdk:DataGridTemplateColumn>
 
 
-                <sdk:DataGridTemplateColumn Header="Команды"  Width="1*" >
+                <sdk:DataGridTemplateColumn Header="Команды"  Width="*" >
                     <sdk:DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <Button Content="Бланк" Name="btnShow" Click="btnShow_Click" Height="30"/>                                
-                                <Button Content="Изменить" Name="btnEdit" Click="btnEdit_Click" Height="30" 
+                            <Grid >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="20"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Column="0">
+                                    <Button Content="Бланк" Name="btnShow" Click="btnShow_Click" Height="30"/>
+                                    <Button Content="Изменить" Name="btnEdit" Click="btnEdit_Click" Height="30" 
                                         Visibility="{Binding Closed, Converter={StaticResource visibilityNotConverter}}"/>
-                            </StackPanel>
+                                </StackPanel>
+
+                                <Button Grid.Column="1" Content="X" Name="btnDelete" Click="btnDelete_Click" Height="30" Foreground="Red" FontSize="18" FontWeight="Bold" FontFamily="Courier New"
+                                        Visibility="{Binding Closed, Converter={StaticResource visibilityNotConverter}}" HorizontalAlignment="Right"/>
+                            </Grid>
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
                 </sdk:DataGridTemplateColumn>

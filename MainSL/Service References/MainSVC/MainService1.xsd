@@ -286,6 +286,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="removeBP">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/BlankJournal.Models" minOccurs="0" name="bp" nillable="true" type="q35:JournalRecord" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="removeBPResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/BlankJournal" minOccurs="0" name="removeBPResult" nillable="true" type="q36:ReturnMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="getDataRecord">
     <xs:complexType>
       <xs:sequence>
@@ -296,21 +310,21 @@
   <xs:element name="getDataRecordResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/BlankJournal.Models" minOccurs="0" name="getDataRecordResult" nillable="true" type="q35:DataRecord" />
+        <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/BlankJournal.Models" minOccurs="0" name="getDataRecordResult" nillable="true" type="q37:DataRecord" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="updateDataRecord">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/BlankJournal.Models" minOccurs="0" name="rec" nillable="true" type="q36:DataRecord" />
+        <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/BlankJournal.Models" minOccurs="0" name="rec" nillable="true" type="q38:DataRecord" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="updateDataRecordResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/BlankJournal" minOccurs="0" name="updateDataRecordResult" nillable="true" type="q37:ReturnMessage" />
+        <xs:element xmlns:q39="http://schemas.datacontract.org/2004/07/BlankJournal" minOccurs="0" name="updateDataRecordResult" nillable="true" type="q39:ReturnMessage" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

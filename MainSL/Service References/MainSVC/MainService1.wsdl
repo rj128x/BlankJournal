@@ -134,6 +134,12 @@
   <wsdl:message name="MainService_removeTBP_OutputMessage">
     <wsdl:part name="parameters" element="removeTBPResponse" />
   </wsdl:message>
+  <wsdl:message name="MainService_removeBP_InputMessage">
+    <wsdl:part name="parameters" element="removeBP" />
+  </wsdl:message>
+  <wsdl:message name="MainService_removeBP_OutputMessage">
+    <wsdl:part name="parameters" element="removeBPResponse" />
+  </wsdl:message>
   <wsdl:message name="MainService_getDataRecord_InputMessage">
     <wsdl:part name="parameters" element="getDataRecord" />
   </wsdl:message>
@@ -236,6 +242,10 @@
     <wsdl:operation name="removeTBP">
       <wsdl:input wsaw:Action="urn:MainService/removeTBP" message="MainService_removeTBP_InputMessage" />
       <wsdl:output wsaw:Action="urn:MainService/removeTBPResponse" message="MainService_removeTBP_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="removeBP">
+      <wsdl:input wsaw:Action="urn:MainService/removeBP" message="MainService_removeBP_InputMessage" />
+      <wsdl:output wsaw:Action="urn:MainService/removeBPResponse" message="MainService_removeBP_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="getDataRecord">
       <wsdl:input wsaw:Action="urn:MainService/getDataRecord" message="MainService_getDataRecord_InputMessage" />

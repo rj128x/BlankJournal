@@ -260,11 +260,12 @@ namespace BlankJournal.Models {
 					eni.BPJournalTable.Add(tbl);
 				eni.SaveChanges();
 				if (record.isOBP) {
-					DBContext.Single.MaxLSO = record.EndLSO > DBContext.Single.MaxLSO ? record.EndLSO : DBContext.Single.MaxLSO;
+					/*DBContext.Single.MaxLSO = record.EndLSO > DBContext.Single.MaxLSO ? record.EndLSO : DBContext.Single.MaxLSO;
 					DBContext.Single.RezLSO = DBContext.Single.MaxLSO + 1;
 					DBContext.Single.LastOBP = tbl.IDShort;
 					double num = (tbl.Number + 1 / MAX_BP_YEAR - tbl.DateCreate.Year) * MAX_BP_YEAR;
-					DBContext.Single.RezOBP = string.Format("ОБП № {0}", (int)Math.Ceiling(num));
+					DBContext.Single.RezOBP = string.Format("ОБП № {0}", (int)Math.Ceiling(num));*/
+					DBContext.Single.INIT_LSO_OBP();
 				}
 				return new ReturnMessage(true, record.isInit ? "Бланк успешно создан\n" + addMessage : "Бланк успешно изменен\n" + addMessage);
 			}
@@ -273,6 +274,39 @@ namespace BlankJournal.Models {
 				return new ReturnMessage(false, record.isInit ? "Ошибка при создании бланка" : "Ошибка при изменении бланка");
 			}
 
+		}
+
+		public static ReturnMessage DeleteBP(JournalRecord record) {
+			Logger.info("удаление зписи о переключении в журнале");
+			try {
+				BlanksEntities eni = new BlanksEntities();
+				if (record.isOBP) {
+					BPJournalTable last=(from b in eni.BPJournalTable where b.isOBP && b.Number>record.DoubleNumber select b).FirstOrDefault();
+					if (last != null){
+						return new ReturnMessage(false,"Ошибка при удалении бланка. Сначала необходимо удалить "+last.IDShort);
+					}
+				}
+				else {
+					BPJournalTable last = (from b in eni.BPJournalTable where !b.isOBP && b.TBPNumber==record.TBPNumber &&  b.Number > record.DoubleNumber select b).FirstOrDefault();
+					if (last != null) {
+						return new ReturnMessage(false, "Ошибка при удалении бланка. Сначала необходимо удалить " + last.IDShort);
+					}
+				}
+
+				BPJournalTable forDel = (from b in eni.BPJournalTable where b.Id==record.Number select b).FirstOrDefault();
+				if (forDel != null) {
+					eni.BPJournalTable.Remove(forDel);
+					eni.SaveChanges();
+					DBContext.Single.INIT_LSO_OBP();
+					return new ReturnMessage(false, "Запись о бланке удалена: " + forDel.Id);
+				}
+				else {
+					return new ReturnMessage(false, "Бланк не найден");
+				}
+			}
+			catch {
+				return new ReturnMessage(false,"Ошибка при удалении бланка " + record.Number);
+			}
 		}
 
 		public static string checkCrossData(JournalRecord record) {

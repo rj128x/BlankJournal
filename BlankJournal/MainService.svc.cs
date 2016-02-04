@@ -159,6 +159,11 @@ namespace BlankJournal {
 		}
 
 		[OperationContract]
+		public ReturnMessage removeBP(JournalRecord bp) {
+			return JournalRecord.DeleteBP(bp);
+		}
+
+		[OperationContract]
 		public DataRecord getDataRecord(string id) {
 			return DataRecord.getDataRecord(id);
 		}
