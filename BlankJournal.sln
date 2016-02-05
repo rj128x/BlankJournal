@@ -10,11 +10,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MainSL", "MainSL\MainSL.csp
 		{C5E97830-B005-47A1-AFE7-DCC0EE0C3E9E} = {C5E97830-B005-47A1-AFE7-DCC0EE0C3E9E}
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{FBDD1C17-40D4-4230-AF63-7F7475B47D1E}"
-	ProjectSection(SolutionItems) = preProject
-		docs\Instruction0402.docx = docs\Instruction0402.docx
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
