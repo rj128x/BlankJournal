@@ -266,6 +266,7 @@
     <Content Include="bat\bkp.bat" />
     <Content Include="bat\expired.bat" />
     <Content Include="docs\Instruction0402.docx" />
+    <Content Include="docs\InstructionAdmin.docx" />
     <None Include="Properties\PublishProfiles\Blanks.pubxml" />
   </ItemGroup>
   <ItemGroup>
