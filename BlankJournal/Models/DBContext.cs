@@ -121,6 +121,10 @@ namespace BlankJournal.Models {
 											 blank = b,
 											 FileInfoPDF = dat.FileInfo,
 											 FileInfoWord = dat2.FileInfo,
+											 AuthorPDF=dat.Author,
+											 AuthorWord=dat2.Author,
+											 DatePDF=dat.DateCreate,
+											 DateWord=dat2.DateCreate,
 											 md5PDF = dat.md5,
 											 md5Word = dat2.md5
 										 };
@@ -130,6 +134,15 @@ namespace BlankJournal.Models {
 					TBPInfo tbp = new TBPInfo(tbl.blank);
 					tbp.FileInfoPDF = tbl.FileInfoPDF;
 					tbp.FileInfoWord = tbl.FileInfoWord;
+					if (!String.IsNullOrEmpty(tbp.FileInfoPDF)) {
+						tbp.AuthorPDF = DBContext.Single.getUserByLogin(tbl.AuthorPDF).Name;
+						tbp.DatePDF = tbl.DatePDF;
+					}
+					if (!string.IsNullOrEmpty(tbp.FileInfoWord)) {
+						tbp.AuthorWord = DBContext.Single.getUserByLogin(tbl.AuthorWord).Name;
+						tbp.DateWord = tbl.DateWord;
+					}
+
 					tbp.md5PDF = tbl.md5PDF;
 					tbp.md5Word = tbl.md5Word;
 					res.Add(tbl.blank.Number, tbp);

@@ -217,7 +217,15 @@ namespace MainSL.MainSVC {
         
         private bool ActiveField;
         
+        private string AuthorPDFField;
+        
+        private string AuthorWordField;
+        
         private int CountActiveCommentsField;
+        
+        private System.DateTime DatePDFField;
+        
+        private System.DateTime DateWordField;
         
         private bool EditingTBPField;
         
@@ -271,6 +279,32 @@ namespace MainSL.MainSVC {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string AuthorPDF {
+            get {
+                return this.AuthorPDFField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AuthorPDFField, value) != true)) {
+                    this.AuthorPDFField = value;
+                    this.RaisePropertyChanged("AuthorPDF");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string AuthorWord {
+            get {
+                return this.AuthorWordField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AuthorWordField, value) != true)) {
+                    this.AuthorWordField = value;
+                    this.RaisePropertyChanged("AuthorWord");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public int CountActiveComments {
             get {
                 return this.CountActiveCommentsField;
@@ -279,6 +313,32 @@ namespace MainSL.MainSVC {
                 if ((this.CountActiveCommentsField.Equals(value) != true)) {
                     this.CountActiveCommentsField = value;
                     this.RaisePropertyChanged("CountActiveComments");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime DatePDF {
+            get {
+                return this.DatePDFField;
+            }
+            set {
+                if ((this.DatePDFField.Equals(value) != true)) {
+                    this.DatePDFField = value;
+                    this.RaisePropertyChanged("DatePDF");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime DateWord {
+            get {
+                return this.DateWordField;
+            }
+            set {
+                if ((this.DateWordField.Equals(value) != true)) {
+                    this.DateWordField = value;
+                    this.RaisePropertyChanged("DateWord");
                 }
             }
         }

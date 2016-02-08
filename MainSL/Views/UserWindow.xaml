@@ -40,10 +40,6 @@
                     <CheckBox IsChecked="{Binding CanCommentTBP,Mode=TwoWay}" Content="Доступно"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Width="200" Text="Редактирование пользователй"/>
-                    <CheckBox IsChecked="{Binding CanEditUsers,Mode=TwoWay}" Content="Доступно"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
                     <TextBlock Width="200" Text="Оповещать о замечаниях"/>
                     <CheckBox IsChecked="{Binding SendMailComment,Mode=TwoWay}" Content="Оповещать"/>
                 </StackPanel>

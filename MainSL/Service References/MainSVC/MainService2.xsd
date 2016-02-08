@@ -36,7 +36,11 @@
   <xs:complexType name="TBPInfo">
     <xs:sequence>
       <xs:element minOccurs="0" name="Active" type="xs:boolean" />
+      <xs:element minOccurs="0" name="AuthorPDF" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AuthorWord" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="CountActiveComments" type="xs:int" />
+      <xs:element minOccurs="0" name="DatePDF" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DateWord" type="xs:dateTime" />
       <xs:element minOccurs="0" name="EditingTBP" type="xs:boolean" />
       <xs:element minOccurs="0" name="FileInfoPDF" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="FileInfoWord" nillable="true" type="xs:string" />
