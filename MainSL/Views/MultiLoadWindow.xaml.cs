@@ -71,13 +71,15 @@ namespace MainSL.Views {
 			dlg.Multiselect = true;
 			if (dlg.ShowDialog() == true) {
 				foreach (FileInfo file in dlg.Files) {
-					FileStream str = file.OpenRead();
-					byte[] buffer = new byte[str.Length];
-					str.Read(buffer, 0, (int)str.Length);
-					str.Close();
-					string fileInfo = file.Name;
-					SelectedFiles.Add(fileInfo, buffer);
-					fileNames.Add(fileInfo);
+					if (!fileNames.Contains(file.Name)) {
+						FileStream str = file.OpenRead();
+						byte[] buffer = new byte[str.Length];
+						str.Read(buffer, 0, (int)str.Length);
+						str.Close();
+						string fileInfo = file.Name;
+						SelectedFiles.Add(fileInfo, buffer);
+						fileNames.Add(fileInfo);
+					}
 				}
 			}
 		}
