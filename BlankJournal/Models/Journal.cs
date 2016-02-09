@@ -67,28 +67,14 @@ namespace BlankJournal.Models {
 		public static JournalRecord initTBPRecord(TBPInfo tbp) {
 			Logger.info("Инициализация нового ТБП (в журнале)");
 			JournalRecord rec = new JournalRecord();
-			BlankJournal.BlanksEntities eni = new BlanksEntities();
-			DateTime date = DateTime.Now;
-			BPJournalTable last = null;
-			try {
-				last = eni.BPJournalTable.Where(bp => bp.isOBP == false && Math.Truncate(bp.Number) == date.Year).OrderByDescending(bp => bp.Number).First(bp => bp.TBPNumber == tbp.Number);
-			}
-			catch { };
-			if (last != null) {
-				rec.DoubleNumber = last.Number + 1/MAX_BP_YEAR;
-			}
-			else {
-				rec.DoubleNumber = date.Year + 1 / MAX_BP_YEAR;
-			}
-			rec.Number = String.Format("ТБП № {0}/{2}/{1}", tbp.Number, Math.Truncate(rec.DoubleNumber), Math.Ceiling((rec.DoubleNumber - date.Year) * MAX_BP_YEAR));
-			rec.ShortNumber = String.Format("ТБП № {0}/{1}", tbp.Number, Math.Ceiling((rec.DoubleNumber - date.Year) * MAX_BP_YEAR));
+			FillTBPNumber(rec, tbp.Number);
 			rec.Author = DBContext.Single.GetCurrentUser().Login;
 			rec.Task = tbp.Name;
 			rec.isOBP = false;
 			rec.TBPNumber = tbp.Number;
 			rec.TBPID = tbp.ID;
 			DateTime dt = DateTime.Now;
-			rec.DateCreate = new DateTime(dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, 0,DateTimeKind.Unspecified);
+			rec.DateCreate = new DateTime(dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second, DateTimeKind.Unspecified);
 			rec.DateEnd = rec.DateCreate;
 			rec.DateStart = rec.DateCreate;
 			rec.StartLSO = 0;
@@ -98,12 +84,28 @@ namespace BlankJournal.Models {
 			return rec;
 		}
 
-		public static JournalRecord initOBPRecord(TBPInfo tbp) {
-			Logger.info("Инициализация нового ОБП (в журнале)");
-			JournalRecord rec = new JournalRecord();
+		public static void FillTBPNumber(JournalRecord rec, string tbpNumber) {
 			BlankJournal.BlanksEntities eni = new BlanksEntities();
 			DateTime date = DateTime.Now;
 			BPJournalTable last = null;
+			try {
+				last = eni.BPJournalTable.Where(bp => bp.isOBP == false && Math.Truncate(bp.Number) == date.Year).OrderByDescending(bp => bp.Number).First(bp => bp.TBPNumber == tbpNumber);
+			}
+			catch { };
+			if (last != null) {
+				rec.DoubleNumber = last.Number + 1 / MAX_BP_YEAR;
+			}
+			else {
+				rec.DoubleNumber = date.Year + 1 / MAX_BP_YEAR;
+			}
+			rec.Number = String.Format("ТБП № {0}/{2}/{1}", tbpNumber, Math.Truncate(rec.DoubleNumber), Math.Ceiling((rec.DoubleNumber - date.Year) * MAX_BP_YEAR));
+			rec.ShortNumber = String.Format("ТБП № {0}/{1}", tbpNumber, Math.Ceiling((rec.DoubleNumber - date.Year) * MAX_BP_YEAR));
+		}
+
+		public static int FillOBPNumber(JournalRecord rec) {
+			BlankJournal.BlanksEntities eni = new BlanksEntities();
+			BPJournalTable last = null;
+			DateTime date = DateTime.Now;
 			try {
 				last = eni.BPJournalTable.Where(bp => bp.isOBP == true && Math.Truncate(bp.Number) == date.Year).OrderByDescending(bp => bp.Number).First();
 			}
@@ -117,6 +119,14 @@ namespace BlankJournal.Models {
 			int FullNum = (int)Math.Ceiling((rec.DoubleNumber - date.Year) * MAX_BP_YEAR);
 			rec.Number = String.Format("ОБП № {1}/{0}", Math.Truncate(rec.DoubleNumber), FullNum);
 			rec.ShortNumber = String.Format("ОБП № {0}", FullNum);
+			return FullNum;
+		}
+
+		public static JournalRecord initOBPRecord(TBPInfo tbp) {
+			Logger.info("Инициализация нового ОБП (в журнале)");
+			JournalRecord rec = new JournalRecord();
+			BlankJournal.BlanksEntities eni = new BlanksEntities();
+			int FullNum = FillOBPNumber(rec);
 			rec.Author = DBContext.Single.GetCurrentUser().Login;
 			rec.Task = tbp.Name;
 			rec.isOBP = true;
@@ -151,14 +161,14 @@ namespace BlankJournal.Models {
 					Logger.info("Ошибка при создании ОБП пустого" + e.ToString());
 				}
 			}
-			DateTime dt=DateTime.Now;
-			rec.DateCreate = new DateTime(dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, 0,DateTimeKind.Unspecified);
+			DateTime dt = DateTime.Now;
+			rec.DateCreate = new DateTime(dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second, DateTimeKind.Unspecified);
 			rec.DateEnd = rec.DateCreate;
 			rec.DateStart = rec.DateCreate;
 			rec.Comment = " ";
 			rec.CountLSO = rec.EndLSO - rec.StartLSO + 1;
-			
-			
+
+
 
 			Logger.info("шаблон ОБП создан");
 			return rec;
@@ -169,22 +179,37 @@ namespace BlankJournal.Models {
 			string addMessage = "";
 			BlankJournal.BlanksEntities eni = new BlanksEntities();
 
-			
+			if (record.isInit) {
+				DateTime dt = DateTime.Now;
+				record.DateCreate = new DateTime(dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second, DateTimeKind.Unspecified);
+			}
 
 			BPJournalTable blank = (from b in eni.BPJournalTable
 															where
-																b.Number == record.DoubleNumber && b.TBPNumber == record.TBPNumber && b.isOBP == record.isOBP
+																b.Id == record.Number
 															select b).FirstOrDefault();
 			if (blank != null) {
-				if (record.isInit)
-					return new ReturnMessage(false, "Ошибка при создании бланка переключений. Бланк с такими параметрами уже создан");
+				if (record.isInit) {
+					try {
+						Logger.info("поиск другого номера бланка ");
+						if (record.isOBP)
+							FillOBPNumber(record);
+						else
+							FillTBPNumber(record, record.TBPNumber);
+						addMessage += String.Format("Внимание! Бланку присвоен другой номер: {0}. Проверьте печатную версию бланка!", record.ShortNumber);
+					}
+					catch (Exception e) {
+						Logger.info(e.ToString());
+						return new ReturnMessage(false, "Ошибка при создании бланка переключений. Бланк с такими параметрами уже создан");
+					}
+				}
 			}
 			try {
 				if (record.Finished && !record.Started)
 					record.Finished = false;
 				if (record.Started && record.Finished) {
 					if (record.DateStart > record.DateEnd)
-						return new ReturnMessage(false, "Дата окончания переключений больше даты начала. Создание бланка невозможно");				
+						return new ReturnMessage(false, "Дата окончания переключений больше даты начала. Создание бланка невозможно");
 				}
 
 				BPJournalTable tbl = record.isInit ? new BPJournalTable() : blank;
@@ -215,7 +240,7 @@ namespace BlankJournal.Models {
 				tbl.Started = record.Started;
 				tbl.Finished = record.Finished;
 
-				addMessage = checkCrossData(record);
+				addMessage += checkCrossData(record);
 
 				if (record.WordData != null && record.isOBP) {
 					Logger.info("Загрузка прикрепленного файла ");
@@ -260,11 +285,6 @@ namespace BlankJournal.Models {
 					eni.BPJournalTable.Add(tbl);
 				eni.SaveChanges();
 				if (record.isOBP) {
-					/*DBContext.Single.MaxLSO = record.EndLSO > DBContext.Single.MaxLSO ? record.EndLSO : DBContext.Single.MaxLSO;
-					DBContext.Single.RezLSO = DBContext.Single.MaxLSO + 1;
-					DBContext.Single.LastOBP = tbl.IDShort;
-					double num = (tbl.Number + 1 / MAX_BP_YEAR - tbl.DateCreate.Year) * MAX_BP_YEAR;
-					DBContext.Single.RezOBP = string.Format("ОБП № {0}", (int)Math.Ceiling(num));*/
 					DBContext.Single.INIT_LSO_OBP();
 				}
 				return new ReturnMessage(true, record.isInit ? "Бланк успешно создан\n" + addMessage : "Бланк успешно изменен\n" + addMessage);
@@ -281,19 +301,19 @@ namespace BlankJournal.Models {
 			try {
 				BlanksEntities eni = new BlanksEntities();
 				if (record.isOBP) {
-					BPJournalTable last=(from b in eni.BPJournalTable where b.isOBP && b.Number>record.DoubleNumber select b).FirstOrDefault();
-					if (last != null){
-						return new ReturnMessage(false,"Ошибка при удалении бланка. Сначала необходимо удалить "+last.IDShort);
+					BPJournalTable last = (from b in eni.BPJournalTable where b.isOBP && b.Number > record.DoubleNumber select b).FirstOrDefault();
+					if (last != null) {
+						return new ReturnMessage(false, "Ошибка при удалении бланка. Сначала необходимо удалить " + last.IDShort);
 					}
 				}
 				else {
-					BPJournalTable last = (from b in eni.BPJournalTable where !b.isOBP && b.TBPNumber==record.TBPNumber &&  b.Number > record.DoubleNumber select b).FirstOrDefault();
+					BPJournalTable last = (from b in eni.BPJournalTable where !b.isOBP && b.TBPNumber == record.TBPNumber && b.Number > record.DoubleNumber select b).FirstOrDefault();
 					if (last != null) {
 						return new ReturnMessage(false, "Ошибка при удалении бланка. Сначала необходимо удалить " + last.IDShort);
 					}
 				}
 
-				BPJournalTable forDel = (from b in eni.BPJournalTable where b.Id==record.Number select b).FirstOrDefault();
+				BPJournalTable forDel = (from b in eni.BPJournalTable where b.Id == record.Number select b).FirstOrDefault();
 				if (forDel != null) {
 					eni.BPJournalTable.Remove(forDel);
 					eni.SaveChanges();
@@ -305,7 +325,7 @@ namespace BlankJournal.Models {
 				}
 			}
 			catch {
-				return new ReturnMessage(false,"Ошибка при удалении бланка " + record.Number);
+				return new ReturnMessage(false, "Ошибка при удалении бланка " + record.Number);
 			}
 		}
 
