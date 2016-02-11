@@ -168,6 +168,7 @@
     <Compile Include="MainService.svc.cs">
       <DependentUpon>MainService.svc</DependentUpon>
     </Compile>
+    <Compile Include="Models\FileSync.cs" />
     <Compile Include="Models\Folder.cs" />
     <Compile Include="Models\InitDB.cs" />
     <Compile Include="Models\Journal.cs" />
@@ -177,6 +178,7 @@
     <Compile Include="Models\TBPComment.cs" />
     <Compile Include="Models\TBPHistoryRecord.cs" />
     <Compile Include="Models\TBPInfo.cs" />
+    <Compile Include="Models\UNCAccessWithCredentials.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\WordData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -218,7 +218,9 @@ namespace BlankJournal.Models {
 				tbl.isOBP = record.isOBP;
 				tbl.TBPNumber = record.TBPNumber;
 				tbl.TBPID = record.TBPID;
-				tbl.Author = DBContext.Single.GetCurrentUser().Login;
+				if (record.isInit) {
+					tbl.Author = DBContext.Single.GetCurrentUser().Login;
+				}
 				tbl.Comment = record.Comment;
 				tbl.Name = record.Task;
 				tbl.Number = record.DoubleNumber;
@@ -315,6 +317,15 @@ namespace BlankJournal.Models {
 
 				BPJournalTable forDel = (from b in eni.BPJournalTable where b.Id == record.Number select b).FirstOrDefault();
 				if (forDel != null) {
+					if (forDel.isOBP) {
+						try {
+							DataTable dat=(from t in eni.DataTable where t.ID==forDel.WordData select t).FirstOrDefault();
+							if (dat!=null)
+								eni.DataTable.Remove(dat);
+						}catch (Exception e){
+							Logger.info("Ошибка при удалении прикрепленного файла");
+						}
+					}
 					eni.BPJournalTable.Remove(forDel);
 					eni.SaveChanges();
 					DBContext.Single.INIT_LSO_OBP();
