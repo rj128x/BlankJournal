@@ -52,7 +52,7 @@ namespace BlankJournal.Models {
 			DateCreate = tbl.DateCreate;
 			Finished = tbl.Finished;
 			Started = tbl.Started;
-			Closed = Started && Finished && tbl.LastUpdateFinish.HasValue && (tbl.LastUpdateFinish.Value.AddHours(6) < DateTime.Now);
+			Closed = Started && Finished && tbl.LastUpdateFinish.HasValue && (tbl.LastUpdateFinish.Value.AddHours(6) < DateTime.Now) || !DBContext.Single.GetCurrentUser().CanDoOper;
 			//Logger.info(tbl.LastUpdateFinish.ToString() + " " + Closed.ToString());
 			isOBP = tbl.isOBP;
 			StartLSO = tbl.LSOStart;
