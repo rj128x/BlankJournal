@@ -329,7 +329,7 @@ namespace BlankJournal.Models {
 					eni.BPJournalTable.Remove(forDel);
 					eni.SaveChanges();
 					DBContext.Single.INIT_LSO_OBP();
-					return new ReturnMessage(false, "Запись о бланке удалена: " + forDel.Id);
+					return new ReturnMessage(true, "Запись о бланке удалена: " + forDel.Id);
 				}
 				else {
 					return new ReturnMessage(false, "Бланк не найден");

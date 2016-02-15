@@ -20,7 +20,7 @@ namespace BlankJournal {
 		public ReturnMessage(bool result, string message) {
 			Message = message;
 			Result = result;
-			Logger.info(String.Format("Возврат: {0} (1)", result, message));
+			Logger.info(String.Format("Возврат: {0} {1}", result, message));
 		}
 
 		public ReturnMessage(int maxLSO, string lastOBP,int rezervLSO, string rezervOBP) {
