@@ -216,6 +216,7 @@
     </Content>
     <Content Include="Silverlight.js" />
     <Content Include="Views\Home\MainPage.aspx" />
+    <Content Include="Views\Home\SyncDB.aspx" />
     <Content Include="Views\Home\View1.aspx" />
     <Content Include="Views\Print\PrintJournalBP.aspx" />
     <Content Include="Web.config">

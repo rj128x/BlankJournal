@@ -268,7 +268,7 @@ namespace BlankJournal.Models {
 			Logger.info(String.Format("ID={0} Number={1}", newBlank.ID, newBlank.Number));
 			BlankJournal.BlanksEntities eni = new BlanksEntities();
 			TBPInfoTable blank = null;
-
+			bool saveDB = false;
 			try {
 				blank = (from b in eni.TBPInfoTable where b.Number == newBlank.Number && b.isActive select b).FirstOrDefault();
 				if (!edit && blank != null) {
@@ -310,12 +310,14 @@ namespace BlankJournal.Models {
 				if (newBlank.UpdatedPDF || newBlank.UpdatedWord)
 					SaveTBPDataToDB(newBlank, tbl, eni);
 				eni.SaveChanges();
+				saveDB=FileSync.SyncTBP(tbl);
 			}
 			catch (Exception e) {
 				Logger.info("Ошибка при создании бланка " + e.ToString());
 				return new ReturnMessage(false, "Ошибка при создании бланка ");
 			}
-			return new ReturnMessage(true, "Бланк успешно создан");
+
+			return new ReturnMessage(true, String.Format("Бланк успешно создан.\n Синхронизация в папку: {0}", saveDB ? "Успешно" : "Ошибка"));
 		}
 
 		public List<TBPHistoryRecord> getTBPHistory(TBPInfo tbp) {

@@ -90,6 +90,19 @@ namespace BlankJournal.Controllers {
 			return null;
 		}
 
+		public ActionResult SyncDB() {
+			Logger.info("Синхронизация БД");
+			List<string> result = new List<string>();
+			BlanksEntities eni = new BlanksEntities();
+			IQueryable<TBPInfoTable> blanks = from t in eni.TBPInfoTable where t.isActive select t;
+			foreach (TBPInfoTable tbp in blanks) {
+				bool res = FileSync.SyncTBP(tbp);
+				string resStr = String.Format("Синхронизация бланка {0} ({1}): {2}", tbp.Number, tbp.Name, res);
+				result.Add(resStr);
+			}
+			return View("SyncDB", result);
+		}
+
 		public ActionResult InitDB() {
 			DirectoryInfo dir = new DirectoryInfo("d:/tbp/");
 			BlankJournal.Models.InitDB.doInit(dir,DateTime.Now);

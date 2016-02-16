@@ -8,4 +8,5 @@
   <smtpDomain></smtpDomain>
   <smtpPort>25</smtpPort>
   <smtpFrom>TBP@votges.rushydro.ru</smtpFrom>
+  <archiveFolder>C:\AutoArchive</archiveFolder>
 </Settings>

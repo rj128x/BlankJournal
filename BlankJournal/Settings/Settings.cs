@@ -11,6 +11,7 @@ namespace BlankJournal {
 		public string smtpDomain { get; set; }
 		public string smtpFrom { get; set; }
 		public int smtpPort { get; set; }
+		public string archiveFolder { get; set; }
 
 		public static Settings Single { get; protected set; }
 		public static void init(string filename) {
