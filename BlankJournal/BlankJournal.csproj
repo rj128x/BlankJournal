@@ -159,6 +159,7 @@
     <Compile Include="FoldersTable.cs">
       <DependentUpon>BlanksModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Impersonator.cs" />
     <Compile Include="Models\DataRecord.cs" />
     <Compile Include="Models\DBContext.cs" />
     <Compile Include="Global.asax.cs">
@@ -267,7 +268,7 @@
       <LastGenOutput>BlanksModel.cs</LastGenOutput>
     </Content>
     <Content Include="bat\bkp.bat" />
-    <Content Include="bat\expired.bat" />
+    <Content Include="bat\sync.bat" />
     <Content Include="docs\Instruction0402.docx" />
     <Content Include="docs\InstructionAdmin.docx" />
     <Content Include="docs\TPB.vsd" />

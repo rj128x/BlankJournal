@@ -293,5 +293,11 @@ namespace MainSL {
 			Filter.tbpNumber = CurrentTBP.Number;
 			GlobalContext.Single.Client.GetJournalBPAsync(Filter);
 		}
+
+		private void btnSync_Click(object sender, RoutedEventArgs e) {
+			if (MessageBox.Show("Будет выполнено принудительное копирование всех бланков из БД в файлы базы ОС (AutoArchive). Вы уверены?","Синхронизация", MessageBoxButton.OK) == MessageBoxResult.OK) {
+				FloatWindow.OpenWindow("Home/SyncDB");
+			}
+		}
 	}
 }
