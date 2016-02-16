@@ -27,6 +27,21 @@ namespace BlankJournal.Models {
 				if (!string.IsNullOrEmpty(tbl.DataWord)) {
 					string name = tbl.Number + " " + shortname + ".docx";
 					ok = ok && SyncFile(tbl.DataWord, path, name, tbl.Number + " ");
+					
+					try {
+						Logger.info("генерация ОБП");
+						TBPInfo tbp=new TBPInfo(tbl);
+						using (Impersonator imp = new Impersonator(Settings.Single.syncUser, Settings.Single.syncDomain, Settings.Single.syncPassword)) {
+							string obpPath=path + @"\ОБП\";
+							if (!Directory.Exists(obpPath))
+								Directory.CreateDirectory(obpPath);
+							string file = WordData.createOBP(obpPath, tbp);
+						}
+					}
+					catch (Exception e) {
+						Logger.info("Ошибка при создании ОБП");
+					}
+
 				}
 				return ok;
 			}
