@@ -71,8 +71,8 @@
                             <sdk:DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Vertical" Visibility="{Binding HasLastOper, Converter={StaticResource visibilityConverter}}">
-                                        <TextBlock Text="{Binding LastOper, StringFormat='dd.MM.yyyy HH:mm:ss'}"/>
-                                        <TextBlock Text="{Binding LastNumber}"/>
+                                        <TextBlock Text="{Binding LastOper, StringFormat='dd.MM.yyyy'}"/>
+                                        <TextBlock Text="{Binding LastNumber}" HorizontalAlignment="Right"/>
                                     </StackPanel>
 
                                 </DataTemplate>
