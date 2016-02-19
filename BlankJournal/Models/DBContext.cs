@@ -207,7 +207,8 @@ namespace BlankJournal.Models {
 									(b.Started && b.DateStart > Filter.dateStart && b.DateStart < Filter.dateEnd) ||
 									(b.Finished && b.DateEnd > Filter.dateStart && b.DateEnd < Filter.dateEnd))
 									&&
-								 (string.IsNullOrEmpty(Filter.tbpNumber) || b.TBPNumber == Filter.tbpNumber)
+								 (string.IsNullOrEmpty(Filter.tbpNumber) || b.TBPNumber == Filter.tbpNumber ||
+											b.Comment.ToLower().Contains(Filter.tbpNumber.ToLower()) || b.Name.ToLower().Contains(Filter.tbpNumber.ToLower()))
 								 orderby b.DateCreate descending
 								 select new { blank = b, FileInfo = dat.FileInfo };
 				
