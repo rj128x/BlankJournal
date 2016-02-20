@@ -697,6 +697,8 @@ namespace MainSL.MainSVC {
         
         private string AuthorField;
         
+        private bool CanUnblockField;
+        
         private bool ClosedField;
         
         private string CommentField;
@@ -756,6 +758,19 @@ namespace MainSL.MainSVC {
                 if ((object.ReferenceEquals(this.AuthorField, value) != true)) {
                     this.AuthorField = value;
                     this.RaisePropertyChanged("Author");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool CanUnblock {
+            get {
+                return this.CanUnblockField;
+            }
+            set {
+                if ((this.CanUnblockField.Equals(value) != true)) {
+                    this.CanUnblockField = value;
+                    this.RaisePropertyChanged("CanUnblock");
                 }
             }
         }
@@ -1819,6 +1834,11 @@ namespace MainSL.MainSVC {
         
         MainSL.MainSVC.ReturnMessage EndFinishBP(System.IAsyncResult result);
         
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:MainService/UnblockBP", ReplyAction="urn:MainService/UnblockBPResponse")]
+        System.IAsyncResult BeginUnblockBP(MainSL.MainSVC.JournalRecord journal, System.AsyncCallback callback, object asyncState);
+        
+        MainSL.MainSVC.ReturnMessage EndUnblockBP(System.IAsyncResult result);
+        
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:MainService/CreateCommentTBP", ReplyAction="urn:MainService/CreateCommentTBPResponse")]
         System.IAsyncResult BeginCreateCommentTBP(MainSL.MainSVC.TBPComment comment, System.AsyncCallback callback, object asyncState);
         
@@ -2086,6 +2106,25 @@ namespace MainSL.MainSVC {
         private object[] results;
         
         public FinishBPCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public MainSL.MainSVC.ReturnMessage Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((MainSL.MainSVC.ReturnMessage)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class UnblockBPCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public UnblockBPCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -2402,6 +2441,12 @@ namespace MainSL.MainSVC {
         
         private System.Threading.SendOrPostCallback onFinishBPCompletedDelegate;
         
+        private BeginOperationDelegate onBeginUnblockBPDelegate;
+        
+        private EndOperationDelegate onEndUnblockBPDelegate;
+        
+        private System.Threading.SendOrPostCallback onUnblockBPCompletedDelegate;
+        
         private BeginOperationDelegate onBeginCreateCommentTBPDelegate;
         
         private EndOperationDelegate onEndCreateCommentTBPDelegate;
@@ -2556,6 +2601,8 @@ namespace MainSL.MainSVC {
         public event System.EventHandler<CreateBPCompletedEventArgs> CreateBPCompleted;
         
         public event System.EventHandler<FinishBPCompletedEventArgs> FinishBPCompleted;
+        
+        public event System.EventHandler<UnblockBPCompletedEventArgs> UnblockBPCompleted;
         
         public event System.EventHandler<CreateCommentTBPCompletedEventArgs> CreateCommentTBPCompleted;
         
@@ -3130,6 +3177,52 @@ namespace MainSL.MainSVC {
             }
             base.InvokeAsync(this.onBeginFinishBPDelegate, new object[] {
                         journal}, this.onEndFinishBPDelegate, this.onFinishBPCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult MainSL.MainSVC.MainService.BeginUnblockBP(MainSL.MainSVC.JournalRecord journal, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginUnblockBP(journal, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        MainSL.MainSVC.ReturnMessage MainSL.MainSVC.MainService.EndUnblockBP(System.IAsyncResult result) {
+            return base.Channel.EndUnblockBP(result);
+        }
+        
+        private System.IAsyncResult OnBeginUnblockBP(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            MainSL.MainSVC.JournalRecord journal = ((MainSL.MainSVC.JournalRecord)(inValues[0]));
+            return ((MainSL.MainSVC.MainService)(this)).BeginUnblockBP(journal, callback, asyncState);
+        }
+        
+        private object[] OnEndUnblockBP(System.IAsyncResult result) {
+            MainSL.MainSVC.ReturnMessage retVal = ((MainSL.MainSVC.MainService)(this)).EndUnblockBP(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnUnblockBPCompleted(object state) {
+            if ((this.UnblockBPCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.UnblockBPCompleted(this, new UnblockBPCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void UnblockBPAsync(MainSL.MainSVC.JournalRecord journal) {
+            this.UnblockBPAsync(journal, null);
+        }
+        
+        public void UnblockBPAsync(MainSL.MainSVC.JournalRecord journal, object userState) {
+            if ((this.onBeginUnblockBPDelegate == null)) {
+                this.onBeginUnblockBPDelegate = new BeginOperationDelegate(this.OnBeginUnblockBP);
+            }
+            if ((this.onEndUnblockBPDelegate == null)) {
+                this.onEndUnblockBPDelegate = new EndOperationDelegate(this.OnEndUnblockBP);
+            }
+            if ((this.onUnblockBPCompletedDelegate == null)) {
+                this.onUnblockBPCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnUnblockBPCompleted);
+            }
+            base.InvokeAsync(this.onBeginUnblockBPDelegate, new object[] {
+                        journal}, this.onEndUnblockBPDelegate, this.onUnblockBPCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -3956,6 +4049,19 @@ namespace MainSL.MainSVC {
             public MainSL.MainSVC.ReturnMessage EndFinishBP(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 MainSL.MainSVC.ReturnMessage _result = ((MainSL.MainSVC.ReturnMessage)(base.EndInvoke("FinishBP", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginUnblockBP(MainSL.MainSVC.JournalRecord journal, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = journal;
+                System.IAsyncResult _result = base.BeginInvoke("UnblockBP", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public MainSL.MainSVC.ReturnMessage EndUnblockBP(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                MainSL.MainSVC.ReturnMessage _result = ((MainSL.MainSVC.ReturnMessage)(base.EndInvoke("UnblockBP", _args, result)));
                 return _result;
             }
             

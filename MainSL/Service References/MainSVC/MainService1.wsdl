@@ -80,6 +80,12 @@
   <wsdl:message name="MainService_FinishBP_OutputMessage">
     <wsdl:part name="parameters" element="FinishBPResponse" />
   </wsdl:message>
+  <wsdl:message name="MainService_UnblockBP_InputMessage">
+    <wsdl:part name="parameters" element="UnblockBP" />
+  </wsdl:message>
+  <wsdl:message name="MainService_UnblockBP_OutputMessage">
+    <wsdl:part name="parameters" element="UnblockBPResponse" />
+  </wsdl:message>
   <wsdl:message name="MainService_CreateCommentTBP_InputMessage">
     <wsdl:part name="parameters" element="CreateCommentTBP" />
   </wsdl:message>
@@ -206,6 +212,10 @@
     <wsdl:operation name="FinishBP">
       <wsdl:input wsaw:Action="urn:MainService/FinishBP" message="MainService_FinishBP_InputMessage" />
       <wsdl:output wsaw:Action="urn:MainService/FinishBPResponse" message="MainService_FinishBP_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UnblockBP">
+      <wsdl:input wsaw:Action="urn:MainService/UnblockBP" message="MainService_UnblockBP_InputMessage" />
+      <wsdl:output wsaw:Action="urn:MainService/UnblockBPResponse" message="MainService_UnblockBP_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="CreateCommentTBP">
       <wsdl:input wsaw:Action="urn:MainService/CreateCommentTBP" message="MainService_CreateCommentTBP_InputMessage" />

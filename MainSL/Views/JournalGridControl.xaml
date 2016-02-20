@@ -8,7 +8,7 @@
     d:DesignHeight="300" d:DesignWidth="800">
     <Grid x:Name="LayoutRoot" Background="White">
 
-        <sdk:DataGrid  Name="grdBlanks" AutoGenerateColumns="False" HeadersVisibility="All" LoadingRow="grdBlanks_LoadingRow" >
+        <sdk:DataGrid  Name="grdBlanks" AutoGenerateColumns="False" HeadersVisibility="All" LoadingRow="grdBlanks_LoadingRow" SelectionChanged="grdBlanks_SelectionChanged" >
 
             <sdk:DataGrid.Columns>
                 <sdk:DataGridTemplateColumn Header="Дата создания" SortMemberPath="DateCreate" Width="1*"  >
@@ -98,6 +98,8 @@
 
                                 <Button Grid.Column="1" Content="X" Name="btnDelete" Click="btnDelete_Click" Height="30" Foreground="Red" FontSize="18" FontWeight="Bold" FontFamily="Courier New"
                                         Visibility="{Binding Closed, Converter={StaticResource visibilityNotConverter}}" HorizontalAlignment="Right"/>
+                                <Button Grid.Column="1" Content="*" Name="btnUnblock" Click="btnUnblock_Click" Height="30" Foreground="Green" FontSize="18" FontWeight="Bold" FontFamily="Courier New"
+                                        Visibility="{Binding CanUnblock, Converter={StaticResource visibilityConverter}}" HorizontalAlignment="Right" />
                             </Grid>
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>

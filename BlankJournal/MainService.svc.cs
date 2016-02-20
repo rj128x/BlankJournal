@@ -114,6 +114,11 @@ namespace BlankJournal {
 		}
 
 		[OperationContract]
+		public ReturnMessage UnblockBP(JournalRecord journal) {
+			return JournalRecord.UnblockRecord(journal);
+		}
+
+		[OperationContract]
 		public ReturnMessage CreateCommentTBP(TBPComment comment) {
 			return TBPComment.createComment(comment);
 		}

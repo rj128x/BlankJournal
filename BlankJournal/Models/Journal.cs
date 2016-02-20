@@ -25,6 +25,7 @@ namespace BlankJournal.Models {
 		public bool Finished { get; set; }
 		public bool Started { get; set; }
 		public bool Closed { get; set; }
+		public bool CanUnblock { get; set; }
 		public int StartLSO { get; set; }
 		public int EndLSO { get; set; }
 		public int CountLSO { get; set; }
@@ -53,6 +54,7 @@ namespace BlankJournal.Models {
 			Finished = tbl.Finished;
 			Started = tbl.Started;
 			Closed = Started && Finished && tbl.LastUpdateFinish.HasValue && (tbl.LastUpdateFinish.Value.AddHours(6) < DateTime.Now) || !DBContext.Single.GetCurrentUser().CanDoOper;
+			CanUnblock = false; //&& DBContext.Single.GetCurrentUser().CanDoOper && DBContext.Single.GetCurrentUser().CanEditTBP;
 			//Logger.info(tbl.LastUpdateFinish.ToString() + " " + Closed.ToString());
 			isOBP = tbl.isOBP;
 			StartLSO = tbl.LSOStart;
@@ -319,10 +321,11 @@ namespace BlankJournal.Models {
 				if (forDel != null) {
 					if (forDel.isOBP) {
 						try {
-							DataTable dat=(from t in eni.DataTable where t.ID==forDel.WordData select t).FirstOrDefault();
-							if (dat!=null)
+							DataTable dat = (from t in eni.DataTable where t.ID == forDel.WordData select t).FirstOrDefault();
+							if (dat != null)
 								eni.DataTable.Remove(dat);
-						}catch (Exception e){
+						}
+						catch (Exception e) {
 							Logger.info("Ошибка при удалении прикрепленного файла");
 						}
 					}
@@ -390,6 +393,27 @@ namespace BlankJournal.Models {
 				}
 			}
 			return addMessage;
+		}
+
+		public static ReturnMessage UnblockRecord(JournalRecord record) {
+			try {
+				BlanksEntities eni = new BlanksEntities();
+
+				BPJournalTable blank = (from b in eni.BPJournalTable where b.Id == record.Number select b).FirstOrDefault();
+				if (blank != null) {
+					if (blank.Finished) {
+						blank.LastUpdateFinish = DateTime.Now;
+					}
+					eni.SaveChanges();
+					return new ReturnMessage(true, "Запись о бланке разблокирована " + blank.Id);
+				}
+				else {
+					return new ReturnMessage(false, "Бланк не найден");
+				}
+			}
+			catch (Exception e) {
+				return new ReturnMessage(false, "Ошибка при разблокировке записи");
+			}
 		}
 
 

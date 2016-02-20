@@ -39,6 +39,7 @@ namespace MainSL.Views {
 			GlobalContext.Single.Client.GetJournalBPAsync(CurrentFilter);
 			cntrlJournal.OnEditButtonPressed += cntrlJournal_OnEditButtonPressed;
 			cntrlJournal.OnDelButtonPressed += cntrlJournal_OnDelButtonPressed;
+			cntrlJournal.OnUnblockButtonPressed += cntrlJournal_OnUnblockButtonPressed;
 		}
 
 		
@@ -55,13 +56,17 @@ namespace MainSL.Views {
 		public void init() {
 			GlobalContext.Single.Client.GetJournalBPCompleted += Client_GetJournalBPCompleted;
 			GlobalContext.Single.Client.removeBPCompleted += Client_removeBPCompleted;
+			GlobalContext.Single.Client.UnblockBPCompleted += Client_UnblockBPCompleted;
 		}
+
+		
 
 		
 
 		public void deInit() {
 			GlobalContext.Single.Client.GetJournalBPCompleted -= Client_GetJournalBPCompleted;
 			GlobalContext.Single.Client.removeBPCompleted -= Client_removeBPCompleted;
+			GlobalContext.Single.Client.UnblockBPCompleted -= Client_UnblockBPCompleted;
 		}
 
 		void Client_GetJournalBPCompleted(object sender, MainSVC.GetJournalBPCompletedEventArgs e) {
@@ -111,6 +116,20 @@ namespace MainSL.Views {
 				GlobalContext.Single.IsBusy = true;
 				GlobalContext.Single.Client.removeBPAsync(blank);
 			}
+		}
+
+		void cntrlJournal_OnUnblockButtonPressed(JournalRecord blank) {
+			if (MessageBox.Show("Вы уверены что хотите разблокировать запись в журнале " + blank.ShortNumber + "?", "Блокировка!", MessageBoxButton.OKCancel) == MessageBoxResult.OK) {
+				GlobalContext.Single.IsBusy = true;
+				GlobalContext.Single.Client.UnblockBPAsync(blank);
+			}
+		}
+
+		void Client_UnblockBPCompleted(object sender, UnblockBPCompletedEventArgs e) {
+			GlobalContext.Single.IsBusy = false;
+			MessageBox.Show(e.Result.Message);
+			GlobalContext.Single.IsBusy = true;
+			GlobalContext.Single.Client.GetJournalBPAsync(CurrentFilter);
 		}
 
 	}

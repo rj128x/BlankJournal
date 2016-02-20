@@ -16,6 +16,7 @@ namespace MainSL.Views {
 	public partial class JournalGridControl : UserControl {
 		public event EditBlankPressed OnEditButtonPressed;
 		public event EditBlankPressed OnDelButtonPressed;
+		public event EditBlankPressed OnUnblockButtonPressed;
 
 		public JournalGridControl() {
 			InitializeComponent();
@@ -42,6 +43,24 @@ namespace MainSL.Views {
 			JournalRecord newBlank = grdBlanks.SelectedItem as JournalRecord;
 			if (OnDelButtonPressed != null)
 				OnDelButtonPressed(newBlank);
+		}
+
+		private void btnUnblock_Click(object sender, RoutedEventArgs e) {
+			JournalRecord newBlank = grdBlanks.SelectedItem as JournalRecord;
+			if (OnUnblockButtonPressed != null)
+				OnUnblockButtonPressed(newBlank);
+		}
+
+		private void grdBlanks_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+			try {
+				JournalRecord current = grdBlanks.SelectedItem as JournalRecord;
+				current.CanUnblock = current.Closed && GlobalContext.Single.CurrentUser.CanDoOper && GlobalContext.Single.CurrentUser.CanEditUsers;
+				foreach (JournalRecord rec in grdBlanks.ItemsSource) {
+					if (rec != current)
+						rec.CanUnblock = false;
+				}
+			}
+			catch { }
 		}
 
 	}
