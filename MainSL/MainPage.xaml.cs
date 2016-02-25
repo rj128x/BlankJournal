@@ -1,6 +1,7 @@
 ﻿using MainSL.Views;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Windows;
@@ -24,6 +25,7 @@ namespace MainSL {
 				// Проверка наличия новых версий
 				GlobalContext.Single.IsLocked = true;
 				GlobalContext.Single.LockedText = "Проверка новых версий";
+				clearTempFiles();
 				Application.Current.CheckAndDownloadUpdateCompleted += Current_CheckAndDownloadUpdateCompleted;
 				Application.Current.CheckAndDownloadUpdateAsync();
 			}
@@ -65,6 +67,24 @@ namespace MainSL {
 			GlobalContext.Log("Загрузка пользоветелей и папок");
 			GlobalContext.Single.onFinishLoad += Single_onFinishLoad;
 			GlobalContext.Single.Connect();
+		}
+
+		public void clearTempFiles() {
+			try {
+				DirectoryInfo dir = new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\TempTBP");
+				IEnumerable<FileInfo> files = dir.EnumerateFiles();
+				foreach (FileInfo file in files) {
+					if (file.CreationTime.AddDays(5) < DateTime.Now) {
+						try {
+							file.Delete();
+						}
+						catch { }
+					}
+				}
+			}
+			catch (Exception e) {
+
+			}
 		}
 
 		// После перехода в фрейме убедиться, что выбрана кнопка HyperlinkButton, представляющая текущую страницу
