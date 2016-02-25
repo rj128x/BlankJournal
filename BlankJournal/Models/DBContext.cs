@@ -209,7 +209,7 @@ namespace BlankJournal.Models {
 									&&
 								 (string.IsNullOrEmpty(Filter.tbpNumber) || b.TBPNumber == Filter.tbpNumber ||
 											b.Comment.ToLower().Contains(Filter.tbpNumber.ToLower()) || b.Name.ToLower().Contains(Filter.tbpNumber.ToLower()))
-								 orderby b.DateCreate descending
+								 orderby b.Started, b.DateStart descending
 								 select new { blank = b, FileInfo = dat.FileInfo };
 				
 				foreach (var tbl in blanks) {

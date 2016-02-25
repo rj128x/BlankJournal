@@ -74,7 +74,7 @@ namespace MainSL {
 				DirectoryInfo dir = new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\TempTBP");
 				IEnumerable<FileInfo> files = dir.EnumerateFiles();
 				foreach (FileInfo file in files) {
-					if (file.CreationTime.AddDays(5) < DateTime.Now) {
+					if (file.Extension.ToLower().Contains("docx") && file.CreationTime.AddDays(10) < DateTime.Now) {
 						try {
 							file.Delete();
 						}

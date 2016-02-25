@@ -52,15 +52,17 @@ namespace MainSL.Views {
 		}
 
 		private void grdBlanks_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-			try {
-				JournalRecord current = grdBlanks.SelectedItem as JournalRecord;
-				current.CanUnblock = current.Closed && GlobalContext.Single.CurrentUser.CanDoOper && GlobalContext.Single.CurrentUser.CanEditUsers;
-				foreach (JournalRecord rec in grdBlanks.ItemsSource) {
-					if (rec != current)
-						rec.CanUnblock = false;
+			if (OnUnblockButtonPressed != null) {
+				try {
+					JournalRecord current = grdBlanks.SelectedItem as JournalRecord;
+					current.CanUnblock = current.Closed && GlobalContext.Single.CurrentUser.CanDoOper && GlobalContext.Single.CurrentUser.CanEditUsers;
+					foreach (JournalRecord rec in grdBlanks.ItemsSource) {
+						if (rec != current)
+							rec.CanUnblock = false;
+					}
 				}
+				catch { }
 			}
-			catch { }
 		}
 
 	}
