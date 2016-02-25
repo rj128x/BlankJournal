@@ -269,7 +269,7 @@
     </Content>
     <Content Include="bat\bkp.bat" />
     <Content Include="bat\sync.bat" />
-    <Content Include="docs\Instruction1602.docx" />
+    <Content Include="docs\Instruction2402.docx" />
     <Content Include="docs\InstructionAdmin.docx" />
     <Content Include="docs\TPB.vsd" />
     <None Include="Properties\PublishProfiles\Blanks.pubxml" />
