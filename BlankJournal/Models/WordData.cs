@@ -12,14 +12,19 @@ namespace BlankJournal.Models {
 		public static int getCountPages(string name) {
 			Logger.info("Получение количества страниц документа " + name);
 			try {
-				WordprocessingDocument doc = WordprocessingDocument.Open(name, true);
-				int pageCount = Int32.Parse(doc.ExtendedFilePropertiesPart.Properties.Pages.Text);
+				WordprocessingDocument doc = WordprocessingDocument.Open(name, false);
+				//int pageCount = Int32.Parse(doc.ExtendedFilePropertiesPart.Properties.Pages.Text);
+				string str = doc.MainDocumentPart.Document.InnerXml;
+				string s0="lastRenderedPageBreak";
+				int count = (str.Length - str.Replace(s0, "").Length) / s0.Length + 1;
+				Logger.info(count.ToString());
 				doc.Close();
-				Logger.info(pageCount.ToString());
+				//Logger.info(pageCount.ToString());
 
-				return pageCount;
+				return count;
 			}
-			catch {
+			catch (Exception e) {
+				Logger.info("Ошибка при получении количества страниц документа " + e.ToString());
 				return 1;
 			}
 		}
@@ -53,17 +58,21 @@ namespace BlankJournal.Models {
 				bool foundCel = false;
 				bool foundEnd = false;
 				foreach (OpenXmlElement elem in paragraphs) {
-					if (!foundCel && !elem.InnerText.ToLower().Contains("цель переключений")) {
-						forDel.Add(elem);
-					} else {
-						foundCel = true;
-					}
-
-					if (elem.InnerText.ToLower().Contains("окончание:")) {
-						foundEnd = true;
-					} else {
-						if (foundEnd) {
+					if (!(elem is SectionProperties)) {
+						if (!foundCel && !elem.InnerText.ToLower().Contains("цель переключений")) {
 							forDel.Add(elem);
+						}
+						else {
+							foundCel = true;
+						}
+
+						if (elem.InnerText.ToLower().Contains("окончание:")) {
+							foundEnd = true;
+						}
+						else {
+							if (foundEnd) {
+								forDel.Add(elem);
+							}
 						}
 					}
 				}
