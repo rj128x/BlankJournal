@@ -55,6 +55,7 @@ namespace BlankJournal.Models {
 				IEnumerable<OpenXmlElement> paragraphs = body.Elements<OpenXmlElement>();
 				Logger.info("Абзацев:  "+paragraphs.Count().ToString());
 				List<OpenXmlElement> forDel = new List<OpenXmlElement>();
+				List<OpenXmlElement> forDelEnd = new List<OpenXmlElement>();				
 				bool foundCel = false;
 				bool foundEnd = false;
 				foreach (OpenXmlElement elem in paragraphs) {
@@ -66,19 +67,30 @@ namespace BlankJournal.Models {
 							foundCel = true;
 						}
 
+						if (elem.InnerXml.Contains("Условия применения ТБП")) {
+							elem.InnerXml = elem.InnerXml.Replace("Условия применения ТБП", "Условия применения ОБП");
+						}
+
 						if (elem.InnerText.ToLower().Contains("окончание:")) {
+							if (foundEnd) {
+								forDelEnd = new List<OpenXmlElement>();
+							}
 							foundEnd = true;
 						}
 						else {
 							if (foundEnd) {
-								forDel.Add(elem);
+								forDelEnd.Add(elem);
 							}
 						}
 					}
 				}
+							
 
 				Logger.info("Удаление шапки и окончания бланка");
 				foreach (OpenXmlElement p in forDel) {
+					body.RemoveChild<OpenXmlElement>(p);
+				}
+				foreach (OpenXmlElement p in forDelEnd) {
 					body.RemoveChild<OpenXmlElement>(p);
 				}
 
