@@ -69,24 +69,22 @@
         <h1>Журнал переключений с <%=answer.dateStart.Value.ToString("dd.MM.yyyy")%> по <%=answer.dateStart.Value.ToString("dd.MM.yyyy")%></h1>
         <table>
             <tr>
-                <th>Номер</th>
-                <th>ЛСО</th>
-                <th>Дата создания</th>
-                <th>Автор</th>
+                <th style=" width: 100px; ">Номер</th>
+                <th style=" width: 70px; ">ЛСО</th>
+                <th style=" width: 120px; ">Автор</th>
                 <th>Задание</th>
-                <th>Дата начала</th>
-                <th>Дата окончания</th>
+                <th style=" width: 80px; ">Дата начала</th>
+                <th style=" width: 80px; ">Дата окончания</th>
                 <th>Комментарий</th>
             </tr>
             <%foreach (JournalRecord rec in answer.Data){ %>
             <tr>
-                <td><%=rec.ShortNumber %></td>
+                <td "><%=rec.ShortNumber %></td>
                 <td><%=(rec.isOBP)?(rec.StartLSO+"-"+rec.EndLSO):"-" %></td>
-                <td><%=rec.DateCreate.ToString("dd.MM.yyyy HH:mm") %></td>
                 <td><%=rec.Author %></td>
                 <td><%=rec.Task %></td>
-                <td><%=rec.DateStart.ToString("dd.MM.yyyy HH:mm") %></td>
-                <td><%=rec.DateEnd.ToString("dd.MM.yyyy HH:mm") %></td>
+                <td><%=rec.DateStart.ToString("dd.MM.yyyy") %> <br /><%=rec.DateStart.ToString("HH:mm") %></td>
+                <td><%=rec.DateEnd.ToString("dd.MM.yyyy") %><br /><%=rec.DateEnd.ToString("HH:mm") %></td>
                 <td><%=rec.Comment %></td>
             </tr>
             <%} %>
