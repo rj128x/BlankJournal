@@ -103,6 +103,13 @@ namespace BlankJournal.Controllers {
 			return View("SyncDB", result);
 		}
 
+		public ActionResult ClearHistory() {
+			Logger.info("Очистка истории редактирования в БД");
+			List<string> result = TBPHistoryRecord.ClearHystory();
+
+			return View("SyncDB", result);
+		}
+
 		public ActionResult InitDB() {
 			DirectoryInfo dir = new DirectoryInfo("d:/tbp/");
 			BlankJournal.Models.InitDB.doInit(dir,DateTime.Now);
