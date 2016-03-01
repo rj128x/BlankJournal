@@ -170,7 +170,7 @@ namespace MainSL {
 		private void btnNewOBP_Click(object sender, RoutedEventArgs e) {
 			TBPInfo tbp = new TBPInfo();
 			tbp.Number = "-";
-			tbp.Name = "ОБП";
+			tbp.Name = " ";
 			tbp.FolderID = "-";
 			GlobalContext.Single.IsBusy = true;
 			GlobalContext.Single.Client.InitOBPAsync(tbp);

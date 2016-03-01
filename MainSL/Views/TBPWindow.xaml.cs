@@ -66,6 +66,10 @@ namespace MainSL {
 			OpenFileDialog dlg = new OpenFileDialog();
 			dlg.Filter = "Файлы pdf |*.pdf";
 			if (dlg.ShowDialog() == true) {
+				if (!dlg.File.Extension.ToLower().Contains(".pdf")) {
+					MessageBox.Show("Выбран файл неверного формата. Необходим формат pdf");
+					return;
+				}
 				FileStream str = dlg.File.OpenRead();
 				byte[]buffer=new byte[str.Length];
 				str.Read(buffer, 0, (int)str.Length);
@@ -79,7 +83,11 @@ namespace MainSL {
 		private void btnChooseWord_Click(object sender, RoutedEventArgs e) {
 			OpenFileDialog dlg = new OpenFileDialog();
 			dlg.Filter = "Файлы docx |*.docx";
-			if (dlg.ShowDialog() == true) {
+			if (dlg.ShowDialog() == true ) {
+				if (!dlg.File.Extension.ToLower().Contains(".docx")) {
+					MessageBox.Show("Выбран файл неверного формата. Необходим формат docx");
+					return;
+				}
 				FileStream str = dlg.File.OpenRead();
 				byte[] buffer = new byte[str.Length];
 				str.Read(buffer, 0, (int)str.Length);

@@ -35,6 +35,16 @@ namespace BlankJournal.Models {
 							string obpPath=path + @"\ОБП\";
 							if (!Directory.Exists(obpPath))
 								Directory.CreateDirectory(obpPath);
+
+							DirectoryInfo di = new DirectoryInfo(obpPath);
+							FileInfo[] files = di.GetFiles();
+							string number = "ОБП " + tbl.Number + " ";
+							foreach (FileInfo fi in files) {
+								if (fi.Name.IndexOf(number) == 0) {
+									fi.Delete();
+								}
+							}
+
 							string file = WordData.createOBP(obpPath, tbp);
 						}
 					}

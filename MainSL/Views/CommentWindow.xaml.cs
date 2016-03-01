@@ -41,6 +41,10 @@ namespace MainSL.Views {
 			OpenFileDialog dlg = new OpenFileDialog();
 			dlg.Filter = "Файлы docx |*.docx";
 			if (dlg.ShowDialog() == true) {
+				if (!dlg.File.Extension.ToLower().Contains(".docx")) {
+					MessageBox.Show("Выбран файл неверного формата. Необходим формат docx");
+					return;
+				}
 				FileStream str = dlg.File.OpenRead();
 				byte[] buffer = new byte[str.Length];
 				str.Read(buffer, 0, (int)str.Length);

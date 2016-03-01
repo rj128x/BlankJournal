@@ -66,7 +66,7 @@
 <body>
     <%BlankJournal.JournalAnswer answer = Model as BlankJournal.JournalAnswer;  %>
     <div>
-        <h1>Журнал переключений с <%=answer.dateStart.Value.ToString("dd.MM.yyyy")%> по <%=answer.dateStart.Value.ToString("dd.MM.yyyy")%></h1>
+        <h1>Журнал переключений с <%=answer.dateStart.Value.ToString("dd.MM.yyyy")%> по <%=answer.dateEnd.Value.ToString("dd.MM.yyyy")%></h1>
         <table>
             <tr>
                 <th style=" width: 100px; ">Номер</th>
