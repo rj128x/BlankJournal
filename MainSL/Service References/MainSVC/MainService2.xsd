@@ -131,6 +131,7 @@
       <xs:element minOccurs="0" name="DateCreate" type="xs:dateTime" />
       <xs:element minOccurs="0" name="HasNewPDFData" type="xs:boolean" />
       <xs:element minOccurs="0" name="HasNewWordData" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="NewPDFID" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="NewWordID" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="PrevPDFID" nillable="true" type="xs:string" />

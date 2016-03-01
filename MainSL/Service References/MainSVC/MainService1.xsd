@@ -342,6 +342,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="removeHistoryRecord">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q42="http://schemas.datacontract.org/2004/07/BlankJournal.Models" minOccurs="0" name="rec" nillable="true" type="q42:TBPHistoryRecord" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="removeHistoryRecordResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q43="http://schemas.datacontract.org/2004/07/BlankJournal" minOccurs="0" name="removeHistoryRecordResult" nillable="true" type="q43:ReturnMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="LogInfo">
     <xs:complexType>
       <xs:sequence>

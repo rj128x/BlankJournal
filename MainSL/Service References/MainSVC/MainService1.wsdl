@@ -158,6 +158,12 @@
   <wsdl:message name="MainService_updateDataRecord_OutputMessage">
     <wsdl:part name="parameters" element="updateDataRecordResponse" />
   </wsdl:message>
+  <wsdl:message name="MainService_removeHistoryRecord_InputMessage">
+    <wsdl:part name="parameters" element="removeHistoryRecord" />
+  </wsdl:message>
+  <wsdl:message name="MainService_removeHistoryRecord_OutputMessage">
+    <wsdl:part name="parameters" element="removeHistoryRecordResponse" />
+  </wsdl:message>
   <wsdl:message name="MainService_LogInfo_InputMessage">
     <wsdl:part name="parameters" element="LogInfo" />
   </wsdl:message>
@@ -264,6 +270,10 @@
     <wsdl:operation name="updateDataRecord">
       <wsdl:input wsaw:Action="urn:MainService/updateDataRecord" message="MainService_updateDataRecord_InputMessage" />
       <wsdl:output wsaw:Action="urn:MainService/updateDataRecordResponse" message="MainService_updateDataRecord_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="removeHistoryRecord">
+      <wsdl:input wsaw:Action="urn:MainService/removeHistoryRecord" message="MainService_removeHistoryRecord_InputMessage" />
+      <wsdl:output wsaw:Action="urn:MainService/removeHistoryRecordResponse" message="MainService_removeHistoryRecord_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="LogInfo">
       <wsdl:input wsaw:Action="urn:MainService/LogInfo" message="MainService_LogInfo_InputMessage" />

@@ -1438,6 +1438,8 @@ namespace MainSL.MainSVC {
         
         private bool HasNewWordDataField;
         
+        private string IDField;
+        
         private string NewPDFIDField;
         
         private string NewWordIDField;
@@ -1498,6 +1500,19 @@ namespace MainSL.MainSVC {
                 if ((this.HasNewWordDataField.Equals(value) != true)) {
                     this.HasNewWordDataField = value;
                     this.RaisePropertyChanged("HasNewWordData");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IDField, value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
                 }
             }
         }
@@ -1898,6 +1913,11 @@ namespace MainSL.MainSVC {
         System.IAsyncResult BeginupdateDataRecord(MainSL.MainSVC.DataRecord rec, System.AsyncCallback callback, object asyncState);
         
         MainSL.MainSVC.ReturnMessage EndupdateDataRecord(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:MainService/removeHistoryRecord", ReplyAction="urn:MainService/removeHistoryRecordResponse")]
+        System.IAsyncResult BeginremoveHistoryRecord(MainSL.MainSVC.TBPHistoryRecord rec, System.AsyncCallback callback, object asyncState);
+        
+        MainSL.MainSVC.ReturnMessage EndremoveHistoryRecord(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:MainService/LogInfo", ReplyAction="urn:MainService/LogInfoResponse")]
         System.IAsyncResult BeginLogInfo(string message, System.DateTime date, System.AsyncCallback callback, object asyncState);
@@ -2367,6 +2387,25 @@ namespace MainSL.MainSVC {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class removeHistoryRecordCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public removeHistoryRecordCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public MainSL.MainSVC.ReturnMessage Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((MainSL.MainSVC.ReturnMessage)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class MainServiceClient : System.ServiceModel.ClientBase<MainSL.MainSVC.MainService>, MainSL.MainSVC.MainService {
         
         private BeginOperationDelegate onBeginDoWorkDelegate;
@@ -2519,6 +2558,12 @@ namespace MainSL.MainSVC {
         
         private System.Threading.SendOrPostCallback onupdateDataRecordCompletedDelegate;
         
+        private BeginOperationDelegate onBeginremoveHistoryRecordDelegate;
+        
+        private EndOperationDelegate onEndremoveHistoryRecordDelegate;
+        
+        private System.Threading.SendOrPostCallback onremoveHistoryRecordCompletedDelegate;
+        
         private BeginOperationDelegate onBeginLogInfoDelegate;
         
         private EndOperationDelegate onEndLogInfoDelegate;
@@ -2627,6 +2672,8 @@ namespace MainSL.MainSVC {
         public event System.EventHandler<getDataRecordCompletedEventArgs> getDataRecordCompleted;
         
         public event System.EventHandler<updateDataRecordCompletedEventArgs> updateDataRecordCompleted;
+        
+        public event System.EventHandler<removeHistoryRecordCompletedEventArgs> removeHistoryRecordCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> LogInfoCompleted;
         
@@ -3778,6 +3825,52 @@ namespace MainSL.MainSVC {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult MainSL.MainSVC.MainService.BeginremoveHistoryRecord(MainSL.MainSVC.TBPHistoryRecord rec, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginremoveHistoryRecord(rec, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        MainSL.MainSVC.ReturnMessage MainSL.MainSVC.MainService.EndremoveHistoryRecord(System.IAsyncResult result) {
+            return base.Channel.EndremoveHistoryRecord(result);
+        }
+        
+        private System.IAsyncResult OnBeginremoveHistoryRecord(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            MainSL.MainSVC.TBPHistoryRecord rec = ((MainSL.MainSVC.TBPHistoryRecord)(inValues[0]));
+            return ((MainSL.MainSVC.MainService)(this)).BeginremoveHistoryRecord(rec, callback, asyncState);
+        }
+        
+        private object[] OnEndremoveHistoryRecord(System.IAsyncResult result) {
+            MainSL.MainSVC.ReturnMessage retVal = ((MainSL.MainSVC.MainService)(this)).EndremoveHistoryRecord(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnremoveHistoryRecordCompleted(object state) {
+            if ((this.removeHistoryRecordCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.removeHistoryRecordCompleted(this, new removeHistoryRecordCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void removeHistoryRecordAsync(MainSL.MainSVC.TBPHistoryRecord rec) {
+            this.removeHistoryRecordAsync(rec, null);
+        }
+        
+        public void removeHistoryRecordAsync(MainSL.MainSVC.TBPHistoryRecord rec, object userState) {
+            if ((this.onBeginremoveHistoryRecordDelegate == null)) {
+                this.onBeginremoveHistoryRecordDelegate = new BeginOperationDelegate(this.OnBeginremoveHistoryRecord);
+            }
+            if ((this.onEndremoveHistoryRecordDelegate == null)) {
+                this.onEndremoveHistoryRecordDelegate = new EndOperationDelegate(this.OnEndremoveHistoryRecord);
+            }
+            if ((this.onremoveHistoryRecordCompletedDelegate == null)) {
+                this.onremoveHistoryRecordCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnremoveHistoryRecordCompleted);
+            }
+            base.InvokeAsync(this.onBeginremoveHistoryRecordDelegate, new object[] {
+                        rec}, this.onEndremoveHistoryRecordDelegate, this.onremoveHistoryRecordCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.IAsyncResult MainSL.MainSVC.MainService.BeginLogInfo(string message, System.DateTime date, System.AsyncCallback callback, object asyncState) {
             return base.Channel.BeginLogInfo(message, date, callback, asyncState);
         }
@@ -4218,6 +4311,19 @@ namespace MainSL.MainSVC {
             public MainSL.MainSVC.ReturnMessage EndupdateDataRecord(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 MainSL.MainSVC.ReturnMessage _result = ((MainSL.MainSVC.ReturnMessage)(base.EndInvoke("updateDataRecord", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginremoveHistoryRecord(MainSL.MainSVC.TBPHistoryRecord rec, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = rec;
+                System.IAsyncResult _result = base.BeginInvoke("removeHistoryRecord", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public MainSL.MainSVC.ReturnMessage EndremoveHistoryRecord(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                MainSL.MainSVC.ReturnMessage _result = ((MainSL.MainSVC.ReturnMessage)(base.EndInvoke("removeHistoryRecord", _args, result)));
                 return _result;
             }
             
