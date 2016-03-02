@@ -112,5 +112,9 @@ namespace MainSL {
 		private void UserControl_Loaded(object sender, RoutedEventArgs e) {
 			init();
 		}
+
+		private void HelpButton_Click(object sender, RoutedEventArgs e) {
+			FloatWindow.OpenWindow("/docs/Instruction.docx?"+Guid.NewGuid().ToString());
+		}
 	}
 }

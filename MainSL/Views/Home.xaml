@@ -32,6 +32,8 @@
                         Visibility="{Binding Single.CurrentUser.CanEditTBP, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
                     <Button Name="btnSync" Content="Синхронизация БД" Click="btnSync_Click" 
                         Visibility="{Binding Single.CurrentUser.CanEditTBP, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
+                    <!--<Button Name="btnClearHistory" Content="Очистка истории ТБП" Click="btnClearHistory_Click" 
+                        Visibility="{Binding Single.CurrentUser.CanEditTBP, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>-->
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft" HorizontalAlignment="Right">
                     <Button Name="btnNewOBP" Content="Создать ОБП" Click="btnNewOBP_Click"

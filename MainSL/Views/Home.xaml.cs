@@ -299,5 +299,11 @@ namespace MainSL {
 				FloatWindow.OpenWindow("/Home/SyncDB");
 			}
 		}
+
+		private void btnClearHistory_Click(object sender, RoutedEventArgs e) {
+			if (MessageBox.Show("Будет выполнено удаление всех старых записей из истории редактирования ТБП (на которые нет ссылок в журнале и ТБП). Вы уверены?", "Очистка истории", MessageBoxButton.OKCancel) == MessageBoxResult.OK) {
+				FloatWindow.OpenWindow("/Home/ClearHistory");
+			}
+		}
 	}
 }

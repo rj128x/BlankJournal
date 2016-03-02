@@ -35,6 +35,11 @@ namespace BlankJournal.Models {
 
 		public static List<string> ClearHystory() {
 			List<string> result = new List<string>();
+			if (!DBContext.Single.GetCurrentUser().CanEditTBP) {
+				result.Add("У вас нет прав для очистки истории редактирования");
+				return result;
+			}
+			
 			try {
 				
 				Logger.info(String.Format("Удаление записи из истории редактирования бланков"));
