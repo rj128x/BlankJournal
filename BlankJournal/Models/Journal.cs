@@ -29,6 +29,8 @@ namespace BlankJournal.Models {
 		public int StartLSO { get; set; }
 		public int EndLSO { get; set; }
 		public int CountLSO { get; set; }
+		public string OBPComment { get; set; }
+		public string Zayav { get; set; }
 
 		public bool HasCrossDate { get; set; }
 		public bool HasCrossLSO { get; set; }
@@ -62,6 +64,8 @@ namespace BlankJournal.Models {
 			CountLSO = EndLSO - StartLSO + 1;
 			TBPNumber = tbl.TBPNumber;
 			TBPID = tbl.TBPID;
+			Zayav = tbl.Zayav;
+			OBPComment = tbl.OBPComment;
 
 			IDWordData = tbl.WordData;
 		}
@@ -81,7 +85,8 @@ namespace BlankJournal.Models {
 			rec.DateStart = rec.DateCreate;
 			rec.StartLSO = 0;
 			rec.EndLSO = 0;
-			rec.Comment = " ";
+			rec.Zayav = "Д/з №";
+			rec.Comment = "";
 			Logger.info("Номер ТБП присвоен");
 			return rec;
 		}
@@ -167,7 +172,9 @@ namespace BlankJournal.Models {
 			rec.DateCreate = new DateTime(dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second, DateTimeKind.Unspecified);
 			rec.DateEnd = rec.DateCreate;
 			rec.DateStart = rec.DateCreate;
-			rec.Comment = " ";
+			rec.Zayav = "Д/з №";
+			rec.OBPComment = String.Format("{0}",tbp.Number=="-"?"Нет в перечне ТБП":tbp.CountActiveComments>0?"Замечания к ТБП":"");
+			rec.Comment = "";
 			rec.CountLSO = rec.EndLSO - rec.StartLSO + 1;
 
 
@@ -224,6 +231,8 @@ namespace BlankJournal.Models {
 					tbl.Author = DBContext.Single.GetCurrentUser().Login;
 				}
 				tbl.Comment = record.Comment;
+				tbl.OBPComment = record.OBPComment;
+				tbl.Zayav = record.Zayav;
 				tbl.Name = record.Task;
 				tbl.Number = record.DoubleNumber;
 				if (record.Started)

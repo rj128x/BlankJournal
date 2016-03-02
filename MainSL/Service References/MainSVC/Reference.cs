@@ -731,6 +731,8 @@ namespace MainSL.MainSVC {
         
         private string NumberField;
         
+        private string OBPCommentField;
+        
         private string ShortNumberField;
         
         private int StartLSOField;
@@ -744,6 +746,8 @@ namespace MainSL.MainSVC {
         private string TaskField;
         
         private byte[] WordDataField;
+        
+        private string ZayavField;
         
         private bool isInitField;
         
@@ -984,6 +988,19 @@ namespace MainSL.MainSVC {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string OBPComment {
+            get {
+                return this.OBPCommentField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.OBPCommentField, value) != true)) {
+                    this.OBPCommentField = value;
+                    this.RaisePropertyChanged("OBPComment");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string ShortNumber {
             get {
                 return this.ShortNumberField;
@@ -1070,6 +1087,19 @@ namespace MainSL.MainSVC {
                 if ((object.ReferenceEquals(this.WordDataField, value) != true)) {
                     this.WordDataField = value;
                     this.RaisePropertyChanged("WordData");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Zayav {
+            get {
+                return this.ZayavField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ZayavField, value) != true)) {
+                    this.ZayavField = value;
+                    this.RaisePropertyChanged("Zayav");
                 }
             }
         }

@@ -28,6 +28,8 @@
           <Property Name="LSOStart" Type="int" Nullable="false" />
           <Property Name="LSOEnd" Type="int" Nullable="false" />
           <Property Name="LastUpdateFinish" Type="datetime" />
+          <Property Name="Zayav" Type="varchar" MaxLength="50" />
+          <Property Name="OBPComment" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="DataTable">
           <Key>
@@ -349,6 +351,8 @@
           <NavigationProperty Name="DataTable1" Relationship="Self.FK_BPJournalTable_DataTableWord" FromRole="BPJournalTable" ToRole="DataTable" />
           <NavigationProperty Name="UsersTable" Relationship="Self.FK_BPJournalTable_UsersTable" FromRole="BPJournalTable" ToRole="UsersTable" />
           <Property Name="LastUpdateFinish" Type="DateTime" Precision="3" />
+          <Property Name="Zayav" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OBPComment" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="DataTable">
           <Key>
@@ -672,6 +676,8 @@
           <EntitySetMapping Name="BPJournalTable">
             <EntityTypeMapping TypeName="BlanksModel.BPJournalTable">
               <MappingFragment StoreEntitySet="BPJournalTable">
+                <ScalarProperty Name="OBPComment" ColumnName="OBPComment" />
+                <ScalarProperty Name="Zayav" ColumnName="Zayav" />
                 <ScalarProperty Name="LastUpdateFinish" ColumnName="LastUpdateFinish" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="IDShort" ColumnName="IDShort" />

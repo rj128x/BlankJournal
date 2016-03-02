@@ -236,7 +236,7 @@ namespace BlankJournal.Models {
 				Filter.onlyActive = true;
 			}
 			if (!Filter.dateStart.HasValue)
-				Filter.dateStart = DateTime.Now.Date.AddDays(-30);
+				Filter.dateStart = DateTime.Now.Date.AddDays(-60);
 			if (!Filter.dateEnd.HasValue)
 				Filter.dateEnd = DateTime.Now.Date.AddDays(1);
 

@@ -33,6 +33,8 @@ namespace BlankJournal
         public int LSOStart { get; set; }
         public int LSOEnd { get; set; }
         public Nullable<System.DateTime> LastUpdateFinish { get; set; }
+        public string Zayav { get; set; }
+        public string OBPComment { get; set; }
     
         public virtual DataTable DataTable { get; set; }
         public virtual DataTable DataTable1 { get; set; }

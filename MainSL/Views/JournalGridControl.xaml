@@ -11,14 +11,14 @@
         <sdk:DataGrid  Name="grdBlanks" AutoGenerateColumns="False" HeadersVisibility="All" LoadingRow="grdBlanks_LoadingRow" SelectionChanged="grdBlanks_SelectionChanged" >
 
             <sdk:DataGrid.Columns>
-                <sdk:DataGridTemplateColumn Header="Дата создания" SortMemberPath="DateCreate" Width="1*"  >
+                <sdk:DataGridTemplateColumn Header="Дата создания" SortMemberPath="DateCreate" Width="110"  >
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
                             <ContentControl Content="{Binding DateCreate, StringFormat='dd.MM.yyyy HH:mm'}" />
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
                 </sdk:DataGridTemplateColumn>
-                <sdk:DataGridTemplateColumn Header="№ бланка" SortMemberPath="ShortNumber" Width="1*" >
+                <sdk:DataGridTemplateColumn Header="№ бланка" SortMemberPath="ShortNumber" Width="110" >
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
                             <StackPanel Orientation="Vertical">
@@ -35,10 +35,21 @@
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
                 </sdk:DataGridTemplateColumn>
+                <sdk:DataGridTemplateColumn Header="Основание" SortMemberPath="Task" Width="90" >
+                    <sdk:DataGridTemplateColumn.CellTemplate >
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="{Binding Zayav}" TextWrapping="Wrap" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </sdk:DataGridTemplateColumn.CellTemplate>
+                </sdk:DataGridTemplateColumn>
                 <sdk:DataGridTemplateColumn Header="Задание" SortMemberPath="Task" Width="2*" >
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
-                            <TextBlock Text="{Binding Task}" TextWrapping="Wrap" />
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="{Binding Task}" TextWrapping="Wrap"  />
+                            </StackPanel>
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
                 </sdk:DataGridTemplateColumn>
@@ -46,7 +57,12 @@
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
                             <StackPanel>
-                                <TextBlock Text="{Binding Comment}" TextWrapping="Wrap" />
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="{Binding Comment}" TextWrapping="Wrap" />
+                                    <TextBlock Text="{Binding OBPComment}" TextWrapping="Wrap" Visibility="{Binding isOBP, Converter={StaticResource visibilityConverter}}" 
+                                               HorizontalAlignment="Right" Margin="0,0,10,0" FontStyle="Italic"/>
+                                    
+                                </StackPanel>
 
                                 <StackPanel Orientation="Vertical" Visibility="{Binding HasCrossDate, Converter={StaticResource visibilityConverter}}">
                                     <TextBlock  Foreground="Red" Text="Пересечение по датам: " FontWeight="Bold"/>
@@ -60,14 +76,14 @@
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
                 </sdk:DataGridTemplateColumn>
-                <sdk:DataGridTemplateColumn Header="Автор" SortMemberPath="Author" Width="1*" >
+                <sdk:DataGridTemplateColumn Header="Автор" SortMemberPath="Author" Width="120" >
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
                             <ContentControl Content="{Binding Author}" />
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
                 </sdk:DataGridTemplateColumn>
-                <sdk:DataGridTemplateColumn Header="Дата" SortMemberPath="DateStart" Width="1*" >
+                <sdk:DataGridTemplateColumn Header="Дата" SortMemberPath="DateStart" Width="150" >
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
                             <Grid>
@@ -82,7 +98,7 @@
                 </sdk:DataGridTemplateColumn>
 
 
-                <sdk:DataGridTemplateColumn Header="Команды"  Width="*" >
+                <sdk:DataGridTemplateColumn Header="Команды"  Width="150" >
                     <sdk:DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Grid >
