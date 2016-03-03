@@ -58,7 +58,7 @@
                         <DataTemplate>
                             <StackPanel>
                                 <StackPanel Orientation="Vertical">
-                                    <TextBlock Text="{Binding Comment}" TextWrapping="Wrap" />
+                                    <TextBlock Text="{Binding Comment}" TextWrapping="Wrap" Visibility="{Binding Comment, Converter={StaticResource visibilityConverter}}"/>
                                     <TextBlock Text="{Binding OBPComment}" TextWrapping="Wrap" Visibility="{Binding isOBP, Converter={StaticResource visibilityConverter}}" 
                                                HorizontalAlignment="Right" Margin="0,0,10,0" FontStyle="Italic"/>
                                     

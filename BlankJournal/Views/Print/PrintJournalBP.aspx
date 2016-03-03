@@ -72,6 +72,7 @@
                 <th style=" width: 100px; ">Номер</th>
                 <th style=" width: 70px; ">ЛСО</th>
                 <th style=" width: 120px; ">Автор</th>
+                <th style=" width: 100px; ">Основание</th>
                 <th>Задание</th>
                 <th style=" width: 80px; ">Дата начала</th>
                 <th style=" width: 80px; ">Дата окончания</th>
@@ -82,7 +83,8 @@
                 <td "><%=rec.ShortNumber %></td>
                 <td><%=(rec.isOBP)?(rec.StartLSO+"-"+rec.EndLSO):"-" %></td>
                 <td><%=rec.Author %></td>
-                <td><%=rec.Task %></td>
+                <td><%=rec.Zayav %></td>
+                <td><%=rec.Task %><%=rec.isOBP?"<br/>Причина ОБП: "+rec.OBPComment:"" %></td>
                 <td><%=rec.DateStart.ToString("dd.MM.yyyy") %> <br /><%=rec.DateStart.ToString("HH:mm") %></td>
                 <td><%=rec.DateEnd.ToString("dd.MM.yyyy") %><br /><%=rec.DateEnd.ToString("HH:mm") %></td>
                 <td><%=rec.Comment %></td>

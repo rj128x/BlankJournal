@@ -351,8 +351,8 @@
           <NavigationProperty Name="DataTable1" Relationship="Self.FK_BPJournalTable_DataTableWord" FromRole="BPJournalTable" ToRole="DataTable" />
           <NavigationProperty Name="UsersTable" Relationship="Self.FK_BPJournalTable_UsersTable" FromRole="BPJournalTable" ToRole="UsersTable" />
           <Property Name="LastUpdateFinish" Type="DateTime" Precision="3" />
-          <Property Name="Zayav" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="OBPComment" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Zayav" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="OBPComment" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="DataTable">
           <Key>
