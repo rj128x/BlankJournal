@@ -245,7 +245,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <None Include="App.config" />
     <None Include="MainSL_TemporaryKey.pfx" />
+    <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Service References\MainSVC\MainService.wsdl" />
     <None Include="Service References\MainSVC\MainService.xsd" />
