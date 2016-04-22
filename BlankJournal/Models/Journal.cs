@@ -71,7 +71,7 @@ namespace BlankJournal.Models {
 		}
 
 		public static JournalRecord initTBPRecord(TBPInfo tbp) {
-			Logger.info("Инициализация нового ТБП (в журнале)");
+			Logger.info("Инициализация нового ТБП (в журнале) "+tbp.Number);
 			JournalRecord rec = new JournalRecord();
 			FillTBPNumber(rec, tbp.Number);
 			rec.Author = DBContext.Single.GetCurrentUser().Login;
@@ -130,7 +130,7 @@ namespace BlankJournal.Models {
 		}
 
 		public static JournalRecord initOBPRecord(TBPInfo tbp) {
-			Logger.info("Инициализация нового ОБП (в журнале)");
+			Logger.info("Инициализация нового ОБП (в журнале) "+tbp.Number);
 			JournalRecord rec = new JournalRecord();
 			BlankJournal.BlanksEntities eni = new BlanksEntities();
 			int FullNum = FillOBPNumber(rec);
@@ -184,7 +184,7 @@ namespace BlankJournal.Models {
 		}
 
 		public static ReturnMessage CreateBP(JournalRecord record) {
-			Logger.info("Создание/изменение зписи о переключении в журнале");
+			Logger.info("Создание/изменение зписи о переключении в журнале "+record.ShortNumber);
 			string addMessage = "";
 			BlankJournal.BlanksEntities eni = new BlanksEntities();
 
@@ -310,7 +310,7 @@ namespace BlankJournal.Models {
 		}
 
 		public static ReturnMessage DeleteBP(JournalRecord record) {
-			Logger.info("удаление зписи о переключении в журнале");
+			Logger.info("удаление зписи о переключении в журнале "+record.ShortNumber);
 			try {
 				BlanksEntities eni = new BlanksEntities();
 				if (record.isOBP) {
@@ -359,8 +359,8 @@ namespace BlankJournal.Models {
 				IQueryable<BPJournalTable> crossData = from b in eni.BPJournalTable
 																							 where
 																									(b.Id != record.Number) &&
-																								 ((record.Started && b.Started && record.DateStart >= b.DateStart && record.DateStart <= b.DateEnd) ||
-																								 (record.Finished && b.Finished && record.DateEnd <= b.DateEnd && record.DateEnd >= b.DateStart) ||
+																								 ((record.Started && b.Started && b.Finished && record.DateStart >= b.DateStart && record.DateStart < b.DateEnd) ||
+																								 (record.Finished && b.Finished && record.DateEnd <= b.DateEnd && record.DateEnd > b.DateStart) ||
 																								 (record.Started && record.Finished && record.DateStart <= b.DateStart && record.DateEnd >= b.DateEnd) ||
 																								 (record.Started && record.Finished && record.DateStart >= b.DateStart && record.DateEnd <= b.DateEnd))
 																							 select b;
