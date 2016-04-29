@@ -182,7 +182,9 @@ namespace BlankJournal.Models {
 			Logger.info("шаблон ОБП создан");
 			return rec;
 		}
-
+		public static DateTime getDateWithoutSecond(DateTime date) {
+			return date.AddSeconds(-date.Second).AddMilliseconds(-date.Millisecond);
+		}
 		public static ReturnMessage CreateBP(JournalRecord record) {
 			Logger.info("Создание/изменение зписи о переключении в журнале "+record.ShortNumber);
 			string addMessage = "";
@@ -236,12 +238,12 @@ namespace BlankJournal.Models {
 				tbl.Name = record.Task;
 				tbl.Number = record.DoubleNumber;
 				if (record.Started)
-					tbl.DateStart = record.DateStart;
+					tbl.DateStart = getDateWithoutSecond(record.DateStart);
 				else
 					tbl.DateStart = null;
 
 				if (record.Finished) {
-					tbl.DateEnd = record.DateEnd;
+					tbl.DateEnd = getDateWithoutSecond(record.DateEnd);
 					tbl.LastUpdateFinish = DateTime.Now;
 				}
 				else {
