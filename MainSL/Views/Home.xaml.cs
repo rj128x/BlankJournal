@@ -49,10 +49,10 @@ namespace MainSL {
 			GlobalContext.Single.Client.removeTBPCompleted += Client_removeTBPCompleted;
 			GlobalContext.Single.Client.InitCommentCompleted += Client_InitCommentCompleted;
 			GlobalContext.Single.Client.GetJournalBPCompleted += Client_GetJournalBPCompleted;
+			
 
 		}
 
-		
 
 		public void deInit() {
 			GlobalContext.Single.Client.GetTBPBlanksByFolderCompleted -= Client_GetTBPBlanksByFolderCompleted;
@@ -61,6 +61,7 @@ namespace MainSL {
 			GlobalContext.Single.Client.removeTBPCompleted -= Client_removeTBPCompleted;
 			GlobalContext.Single.Client.InitCommentCompleted -= Client_InitCommentCompleted;
 			GlobalContext.Single.Client.GetJournalBPCompleted -= Client_GetJournalBPCompleted;
+			
 		}
 
 		void Client_GetTBPBlanksByFolderCompleted(object sender, GetTBPBlanksByFolderCompletedEventArgs e) {
@@ -305,5 +306,20 @@ namespace MainSL {
 				FloatWindow.OpenWindow("/Home/ClearHistory");
 			}
 		}
+
+		private void btnComments_Click(object sender, RoutedEventArgs e) {
+			if (CurrentTBP == null)
+				return;
+			CommentAnswer commentFilter = new CommentAnswer();
+			commentFilter.onlyActive = true;
+			commentFilter.TBPNumber = CurrentTBP.Number;
+			CommentsWindow win = new CommentsWindow();
+			win.CurrentFilter = commentFilter;
+			win.Show();
+			win.load();			
+		}
+
+		
+
 	}
 }

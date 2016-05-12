@@ -245,7 +245,9 @@ namespace BlankJournal.Models {
 				BlankJournal.BlanksEntities eni = new BlanksEntities();
 				var comments = from c in eni.TBPCommentsTable
 											 from dat in eni.DataTable.Where(dat => dat.ID == c.WordData).DefaultIfEmpty()
-											 where (Filter.onlyActive && c.Finished == false ) ||
+											 where (Filter.onlyActive && c.Finished == false && 
+														 (string.IsNullOrEmpty(Filter.TBPNumber) || (!string.IsNullOrEmpty(Filter.TBPNumber) && c.TBPNumber==Filter.TBPNumber)  )) 
+												||
 											 (c.DateCreate > Filter.dateStart && c.DateCreate < Filter.dateEnd && Filter.onlyActive==false)
 											 orderby c.DateCreate descending
 											 select new { comment = c, Fileinfo = dat.FileInfo };

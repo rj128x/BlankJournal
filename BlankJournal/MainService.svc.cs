@@ -46,6 +46,7 @@ namespace BlankJournal {
 		public DateTime? dateEnd { get; set; }
 		public bool onlyActive { get; set; }
 		public List<TBPComment> Data { get; set; }
+		public string TBPNumber { get; set; }
 	}
 
 	[ServiceContract(Namespace = "")]

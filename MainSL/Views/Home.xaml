@@ -85,8 +85,9 @@
                                 <DataTemplate>
                                     <StackPanel Orientation="Vertical">
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Visibility="{Binding CountActiveComments, Converter={StaticResource visibilityConverter}}">
-                                            <TextBlock Foreground="Red" FontWeight="Bold" Text="Замечаний: "/>
-                                            <TextBlock Foreground="Red" FontWeight="Bold" Text="{Binding CountActiveComments}"/>
+                                            <TextBlock Foreground="Red" FontWeight="Bold" Text="Замечаний: " VerticalAlignment="Center"/>
+                                            <TextBlock Foreground="Red" FontWeight="Bold" Text="{Binding CountActiveComments}" VerticalAlignment="Center"/>
+                                            <Button Content="..." Foreground="Red" FontWeight="Bold" FontFamily="Courier New" Name="btnComments" Click="btnComments_Click" />
                                         </StackPanel>
                                         <StackPanel Orientation="Vertical" HorizontalAlignment="Right"
                                                 Visibility="{Binding Single.CurrentUser.CanEditTBP, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}">

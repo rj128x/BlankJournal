@@ -71,6 +71,7 @@ namespace MainSL.Views {
 		protected override void OnNavigatedFrom(NavigationEventArgs e) {
 			deInit();
 		}
+
 		private void btnShow_Click(object sender, RoutedEventArgs e) {
 			TBPComment comment = grdBlanks.SelectedItem as TBPComment;
 			FloatWindow.OpenWindow("Home/getFile?id=" + comment.DataID);
