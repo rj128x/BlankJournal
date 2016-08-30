@@ -159,7 +159,7 @@ namespace BlankJournal.Models
 					resID.Add(tbl.blank.ID, tbp);
 				}
 
-				IQueryable<BPJournalTable> latest = from j in eni.BPJournalTable
+				/*IQueryable<BPJournalTable> latest = from j in eni.BPJournalTable
 																						orderby j.Number ascending
 																						where res.Keys.Contains(j.TBPNumber) && j.DateCreate.Year == DateTime.Now.Year && j.isOBP == false
 																						select j;
@@ -168,6 +168,22 @@ namespace BlankJournal.Models
 						res[bp.TBPNumber].LastOper = bp.DateCreate;
 						res[bp.TBPNumber].LastNumber = bp.IDShort;
 						res[bp.TBPNumber].HasLastOper = true;
+					} catch (Exception e) {
+						Logger.info(e.ToString());
+					}
+				}*/
+
+				IQueryable<BPJournalTable> countOper = from j in eni.BPJournalTable
+																						orderby j.Number ascending
+																						where res.Keys.Contains(j.TBPNumber) && j.DateCreate.Year == DateTime.Now.Year
+																						select j;
+				foreach (BPJournalTable bp in countOper) {
+					try {
+						if (bp.isOBP) {
+							res[bp.TBPNumber].CountOBP++;
+						} else {
+							res[bp.TBPNumber].CountTBP++;
+						}
 					} catch (Exception e) {
 						Logger.info(e.ToString());
 					}

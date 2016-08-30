@@ -223,6 +223,10 @@ namespace MainSL.MainSVC {
         
         private int CountActiveCommentsField;
         
+        private int CountOBPField;
+        
+        private int CountTBPField;
+        
         private System.DateTime DatePDFField;
         
         private System.DateTime DateWordField;
@@ -235,17 +239,11 @@ namespace MainSL.MainSVC {
         
         private string FolderIDField;
         
-        private bool HasLastOperField;
-        
         private int IDField;
         
         private string IDPDFDataField;
         
         private string IDWordDataField;
-        
-        private string LastNumberField;
-        
-        private System.DateTime LastOperField;
         
         private string NameField;
         
@@ -313,6 +311,32 @@ namespace MainSL.MainSVC {
                 if ((this.CountActiveCommentsField.Equals(value) != true)) {
                     this.CountActiveCommentsField = value;
                     this.RaisePropertyChanged("CountActiveComments");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int CountOBP {
+            get {
+                return this.CountOBPField;
+            }
+            set {
+                if ((this.CountOBPField.Equals(value) != true)) {
+                    this.CountOBPField = value;
+                    this.RaisePropertyChanged("CountOBP");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int CountTBP {
+            get {
+                return this.CountTBPField;
+            }
+            set {
+                if ((this.CountTBPField.Equals(value) != true)) {
+                    this.CountTBPField = value;
+                    this.RaisePropertyChanged("CountTBP");
                 }
             }
         }
@@ -396,19 +420,6 @@ namespace MainSL.MainSVC {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool HasLastOper {
-            get {
-                return this.HasLastOperField;
-            }
-            set {
-                if ((this.HasLastOperField.Equals(value) != true)) {
-                    this.HasLastOperField = value;
-                    this.RaisePropertyChanged("HasLastOper");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
         public int ID {
             get {
                 return this.IDField;
@@ -443,32 +454,6 @@ namespace MainSL.MainSVC {
                 if ((object.ReferenceEquals(this.IDWordDataField, value) != true)) {
                     this.IDWordDataField = value;
                     this.RaisePropertyChanged("IDWordData");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string LastNumber {
-            get {
-                return this.LastNumberField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.LastNumberField, value) != true)) {
-                    this.LastNumberField = value;
-                    this.RaisePropertyChanged("LastNumber");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime LastOper {
-            get {
-                return this.LastOperField;
-            }
-            set {
-                if ((this.LastOperField.Equals(value) != true)) {
-                    this.LastOperField = value;
-                    this.RaisePropertyChanged("LastOper");
                 }
             }
         }
