@@ -283,6 +283,8 @@ namespace MainSL {
 				rec.Closed = true;
 			}
 			win.cntrlJournal.grdBlanks.ItemsSource = e.Result.Data;
+			win.Width = this.ActualWidth * 0.99;
+			win.Height = this.ActualHeight * 0.85;
 			win.Show();
 		}
 
