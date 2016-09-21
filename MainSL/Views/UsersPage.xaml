@@ -36,6 +36,20 @@
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
                 </sdk:DataGridTemplateColumn>
+                <sdk:DataGridTemplateColumn Header="Папки" SortMemberPath="AvailEditFolders" Width="1*"  >
+                    <sdk:DataGridTemplateColumn.CellTemplate >
+                        <DataTemplate>
+                            <ContentControl Content="{Binding AvailEditFolders}"/>
+                        </DataTemplate>
+                    </sdk:DataGridTemplateColumn.CellTemplate>
+                </sdk:DataGridTemplateColumn>
+                <sdk:DataGridTemplateColumn Header="Админ" SortMemberPath="IsAdmin" Width="1*"  >
+                    <sdk:DataGridTemplateColumn.CellTemplate >
+                        <DataTemplate>
+                            <TextBlock Text="Да" Visibility="{Binding IsAdmin,Converter={StaticResource visibilityConverter}}"/>
+                        </DataTemplate>
+                    </sdk:DataGridTemplateColumn.CellTemplate>
+                </sdk:DataGridTemplateColumn>
                 <sdk:DataGridTemplateColumn Header="Редактирование ТБП" SortMemberPath="CanEditTBP" Width="1*"  >
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>

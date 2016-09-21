@@ -2,7 +2,7 @@
            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
            xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
-           Width="387" Height="269" 
+           Width="387" Height="320" 
            Title="Редактирование пользователя">
     <Grid x:Name="LayoutRoot" Margin="2">
         <Grid>
@@ -12,16 +12,24 @@
             </Grid.RowDefinitions>
             <StackPanel Name="pnlData">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Width="150" Text="Логин"/>
+                    <TextBlock Width="160" Text="Логин"/>
                     <TextBox Text="{Binding Login,Mode=TwoWay}" Width="200" IsEnabled="{Binding IsEditing,Converter={StaticResource logicNotConverter}}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Width="150" Text="Имя"/>
+                    <TextBlock Width="160" Text="Имя"/>
                     <TextBox Text="{Binding Name, Mode=TwoWay}" Width="200"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Width="150" Text="Почта"/>
+                    <TextBlock Width="160" Text="Почта"/>
                     <TextBox Text="{Binding Mail, Mode=TwoWay}" Width="200" Height="45" TextWrapping="Wrap"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Width="160" TextWrapping="Wrap" Text="Папки для редактирования &#13;        Разделитель - ; &#13;        0 - Все папки"/>
+                    <TextBox Text="{Binding AvailEditFolders, Mode=TwoWay}" Width="200" Height="22" IsEnabled="{Binding CanEditTBP}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Width="200" Text="Администрирование"/>
+                    <CheckBox  IsChecked="{Binding IsAdmin,Mode=TwoWay}" Content="Доступно"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Width="200" Text="Редактирование ТБП"/>

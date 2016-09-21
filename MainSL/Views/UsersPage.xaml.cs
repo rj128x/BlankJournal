@@ -65,6 +65,7 @@ namespace MainSL.Views {
 			UserWindow newWindow = new UserWindow();
 			User user=new User();
 			user.IsEditing=false;
+			user.AvailEditFolders = "";
 			newWindow.init(user);
 			newWindow.Closed += newWindow_Closed;
 			newWindow.Show();

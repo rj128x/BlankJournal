@@ -20,13 +20,21 @@ namespace MainSL.MainSVC {
     [System.Runtime.Serialization.DataContractAttribute(Name="User", Namespace="http://schemas.datacontract.org/2004/07/BlankJournal.Models")]
     public partial class User : object, System.ComponentModel.INotifyPropertyChanged {
         
+        private string AvailEditFoldersField;
+        
+        private System.Collections.ObjectModel.ObservableCollection<string> AvailFoldersListField;
+        
         private bool CanCommentTBPField;
         
         private bool CanDoOperField;
         
         private bool CanEditTBPField;
         
+        private bool CanEditTBPCurrentFolderField;
+        
         private bool CanEditUsersField;
+        
+        private bool IsAdminField;
         
         private bool IsEditingField;
         
@@ -37,6 +45,32 @@ namespace MainSL.MainSVC {
         private string NameField;
         
         private bool SendMailCommentField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string AvailEditFolders {
+            get {
+                return this.AvailEditFoldersField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AvailEditFoldersField, value) != true)) {
+                    this.AvailEditFoldersField = value;
+                    this.RaisePropertyChanged("AvailEditFolders");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.ObjectModel.ObservableCollection<string> AvailFoldersList {
+            get {
+                return this.AvailFoldersListField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AvailFoldersListField, value) != true)) {
+                    this.AvailFoldersListField = value;
+                    this.RaisePropertyChanged("AvailFoldersList");
+                }
+            }
+        }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public bool CanCommentTBP {
@@ -78,6 +112,19 @@ namespace MainSL.MainSVC {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool CanEditTBPCurrentFolder {
+            get {
+                return this.CanEditTBPCurrentFolderField;
+            }
+            set {
+                if ((this.CanEditTBPCurrentFolderField.Equals(value) != true)) {
+                    this.CanEditTBPCurrentFolderField = value;
+                    this.RaisePropertyChanged("CanEditTBPCurrentFolder");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public bool CanEditUsers {
             get {
                 return this.CanEditUsersField;
@@ -86,6 +133,19 @@ namespace MainSL.MainSVC {
                 if ((this.CanEditUsersField.Equals(value) != true)) {
                     this.CanEditUsersField = value;
                     this.RaisePropertyChanged("CanEditUsers");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsAdmin {
+            get {
+                return this.IsAdminField;
+            }
+            set {
+                if ((this.IsAdminField.Equals(value) != true)) {
+                    this.IsAdminField = value;
+                    this.RaisePropertyChanged("IsAdmin");
                 }
             }
         }
@@ -221,6 +281,8 @@ namespace MainSL.MainSVC {
         
         private string AuthorWordField;
         
+        private bool CanUseTBPField;
+        
         private int CountActiveCommentsField;
         
         private int CountOBPField;
@@ -256,6 +318,8 @@ namespace MainSL.MainSVC {
         private bool UpdatedPDFField;
         
         private bool UpdatedWordField;
+        
+        private bool WordAfterPDFField;
         
         private byte[] WordDataField;
         
@@ -298,6 +362,19 @@ namespace MainSL.MainSVC {
                 if ((object.ReferenceEquals(this.AuthorWordField, value) != true)) {
                     this.AuthorWordField = value;
                     this.RaisePropertyChanged("AuthorWord");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool CanUseTBP {
+            get {
+                return this.CanUseTBPField;
+            }
+            set {
+                if ((this.CanUseTBPField.Equals(value) != true)) {
+                    this.CanUseTBPField = value;
+                    this.RaisePropertyChanged("CanUseTBP");
                 }
             }
         }
@@ -532,6 +609,19 @@ namespace MainSL.MainSVC {
                 if ((this.UpdatedWordField.Equals(value) != true)) {
                     this.UpdatedWordField = value;
                     this.RaisePropertyChanged("UpdatedWord");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool WordAfterPDF {
+            get {
+                return this.WordAfterPDFField;
+            }
+            set {
+                if ((this.WordAfterPDFField.Equals(value) != true)) {
+                    this.WordAfterPDFField = value;
+                    this.RaisePropertyChanged("WordAfterPDF");
                 }
             }
         }

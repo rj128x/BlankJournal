@@ -302,6 +302,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\MainSVC\MainService3.xsd" />
+    <None Include="Service References\MainSVC\MainService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\MainSVC\MainSL.MainSVC.CommentAnswer.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

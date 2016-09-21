@@ -27,11 +27,11 @@
             <Grid>
                 <StackPanel Orientation="Horizontal" FlowDirection="LeftToRight" HorizontalAlignment="Left">
                     <Button Name="btnNewTBP" Content="Создать ТБП" Click="Button_Click" 
-                        Visibility="{Binding Single.CurrentUser.CanEditTBP, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
+                        Visibility="{Binding Single.CurrentUser.IsAdmin, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
                     <Button Name="btnPacketLoad" Content="Пакетная загрузка ТБП" Click="btnPacketLoad_Click" 
-                        Visibility="{Binding Single.CurrentUser.CanEditTBP, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
+                        Visibility="{Binding Single.CurrentUser.IsAdmin, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
                     <Button Name="btnSync" Content="Синхронизация БД" Click="btnSync_Click" 
-                        Visibility="{Binding Single.CurrentUser.CanEditTBP, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
+                        Visibility="{Binding Single.CurrentUser.IsAdmin, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
                     <!--<Button Name="btnClearHistory" Content="Очистка истории ТБП" Click="btnClearHistory_Click" 
                         Visibility="{Binding Single.CurrentUser.CanEditTBP, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>-->
                 </StackPanel>
@@ -96,8 +96,12 @@
                                             <TextBlock Foreground="Red" FontWeight="Bold" Text="{Binding CountActiveComments}" VerticalAlignment="Center"/>
                                             <Button Content="..." Foreground="Red" FontWeight="Bold" FontFamily="Courier New" Name="btnComments" Click="btnComments_Click" />
                                         </StackPanel>
+                                        <TextBlock Foreground="Blue" FontWeight="Bold" Text="ТБП недоступен" HorizontalAlignment="Right" Visibility="{Binding CanUseTBP, Converter={StaticResource visibilityNotConverter}}"/>
+                                        <StackPanel Visibility="{Binding CanUseTBP, Converter={StaticResource visibilityConverter}}">
+                                            <TextBlock Foreground="Green" FontWeight="Bold" Text="Возможно несоответствие ТБП" HorizontalAlignment="Right" Visibility="{Binding WordAfterPDF, Converter={StaticResource visibilityConverter}}"/>
+                                        </StackPanel>
                                         <StackPanel Orientation="Vertical" HorizontalAlignment="Right"
-                                                Visibility="{Binding Single.CurrentUser.CanEditTBP, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}">
+                                                Visibility="{Binding Single.CurrentUser.CanEditTBPCurrentFolder, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}">
                                             <StackPanel Visibility="{Binding IDPDFData, Converter={StaticResource visibilityConverter} }" Orientation="Horizontal">
                                                 <TextBlock Text="PDF: "/>
                                                 <TextBlock Text="{Binding DatePDF, StringFormat='dd.MM.yy HH:mm'}"  />
@@ -157,15 +161,15 @@
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Vertical" Visibility="{Binding Single.CurrentUser.CanDoOper, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}">
                                 <TextBlock Text="Журнал переключений" Width="150" Style="{StaticResource Label}"/>
-                                <Button Content="Создать запись в журнал (ТБП)" Name="btnUseNextTBP" Click="btnUseNextTBP_Click"/>
+                                <Button Content="Создать запись в журнал (ТБП)" Name="btnUseNextTBP" Click="btnUseNextTBP_Click" IsEnabled="{Binding CanUseTBP}"/>
                                 <Button Content="Создать запись в журнал (ОБП)" Name="btnUseOBP" Click="btnUseOBP_Click"/>
                             </StackPanel>
 
                             <Border>
-                                <StackPanel Orientation="Vertical" Visibility="{Binding Single.CurrentUser.CanEditTBP, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}">
+                                <StackPanel Orientation="Vertical" Visibility="{Binding Single.CurrentUser.CanEditTBPCurrentFolder, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}">
                                     <TextBlock Text="Редактирование" Width="150" Margin="0,20,0,0" Style="{StaticResource Label}"/>
                                     <Button Content="Редактировать" Name="btnEditTBP" Click="btnEditTBP_Click"/>
-                                    <Button Content="Удалить" Name="btnDeleteTBP" Click="btnDeleteTBP_Click"/>
+                                    <Button Content="Удалить" Name="btnDeleteTBP" Click="btnDeleteTBP_Click" IsEnabled="{Binding Single.CurrentUser.IsAdmin}"/>
                                 </StackPanel>
                             </Border>
                         </StackPanel>

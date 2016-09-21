@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:8095/MainService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/BlankJournal.Models" />
-  <xs:import schemaLocation="http://localhost:8095/MainService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/BlankJournal" />
+  <xs:import schemaLocation="http://localhost:8095/MainService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/BlankJournal" />
   <xs:element name="DoWork">
     <xs:complexType>
       <xs:sequence />

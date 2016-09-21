@@ -15,6 +15,8 @@
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Номер бланка" Width="100"/>
                     <TextBox Text="{Binding Number, Mode=TwoWay}" Width="50" IsEnabled="{Binding EditingTBP, Converter={StaticResource logicNotConverter}}"/>
+                    <TextBlock Text="Переключение по ТБП" Margin="20,0,10,0"/>
+                    <CheckBox  IsChecked="{Binding CanUseTBP,Mode=TwoWay}" Content="Доступно"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Наименование" Width="100"/>
@@ -36,8 +38,9 @@
                     <TextBox Name="txtWord" Width="200" Text="{Binding FileInfoWord}" IsEnabled="False"/>
                     <Button Content="  ...  " Name="btnChooseWord" Click="btnChooseWord_Click"/>
                     <Button Content="Редактор" Name="btnEdit" Click="btnEdit_Click"/>
-                </StackPanel>
+                </StackPanel>                
             </StackPanel>
+            
 
             <Button x:Name="CancelButton" Content="Отмена" Click="CancelButton_Click" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,12,0,0" Grid.Row="1" />
             <Button x:Name="OKButton" Content="ОК" Click="OKButton_Click" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,12,79,0" Grid.Row="1" />

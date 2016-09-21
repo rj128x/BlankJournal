@@ -31,6 +31,8 @@ namespace BlankJournal
         public bool CanCommentTBP { get; set; }
         public bool SendMailComments { get; set; }
         public bool CanEditUsers { get; set; }
+        public string AvailEditFolders { get; set; }
+        public bool Admin { get; set; }
     
         public virtual ICollection<BPJournalTable> BPJournalTable { get; set; }
         public virtual ICollection<DataTable> DataTable { get; set; }

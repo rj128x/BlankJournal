@@ -67,6 +67,11 @@ namespace MainSL {
 		void Client_GetTBPBlanksByFolderCompleted(object sender, GetTBPBlanksByFolderCompletedEventArgs e) {
 			GlobalContext.Single.IsBusy = false;
 			grdTBPBlanks.ItemsSource = e.Result;
+			User current = GlobalContext.Single.CurrentUser;
+			current.CanEditTBPCurrentFolder = current.CanEditTBP && (current.AvailFoldersList.Contains(CurrentFolder.ID));
+			/*if (!GlobalContext.Single.CurrentUser.AvailFoldersList.Contains(CurrentFolder.ID)) {
+
+			}*/
 		}
 
 
@@ -101,6 +106,7 @@ namespace MainSL {
 
 		private void Button_Click(object sender, RoutedEventArgs e) {
 			if (CurrentFolder != null) {
+
 				TBPInfo newBlank = new TBPInfo();
 				newBlank.Number = CurrentFolder.ID + "-";
 				newBlank.Name = "";
@@ -168,7 +174,7 @@ namespace MainSL {
 			//}
 		}
 
-		private void btnNewOBP_Click(object sender, RoutedEventArgs e) {
+		private void btnNewOBP_Click(object sender, RoutedEventArgs e) {			
 			TBPInfo tbp = new TBPInfo();
 			tbp.Number = "-";
 			tbp.Name = " ";

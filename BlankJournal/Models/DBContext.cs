@@ -27,7 +27,7 @@ namespace BlankJournal.Models
 		protected void createInitData() {
 			Logger.info("Инициализация контекста БД");
 			try {
-				InitUsers();
+				
 				BlankJournal.BlanksEntities eni = new BlanksEntities();
 
 				Logger.info("Чтение папок");
@@ -48,6 +48,7 @@ namespace BlankJournal.Models
 				foreach (FoldersTable fld in sorted.Values) {
 					AllFolders.Add(fld.Id, new Folder(fld));
 				}
+				InitUsers();
 
 				INIT_LSO_OBP();
 
@@ -153,10 +154,15 @@ namespace BlankJournal.Models
 						tbp.DateWord = DateTime.Parse(tbl.DateWord);
 					}
 
+					try {
+						tbp.WordAfterPDF = tbp.DatePDF.AddDays(1) < tbp.DateWord;
+					} catch { }
+
 					tbp.md5PDF = tbl.md5PDF;
 					tbp.md5Word = tbl.md5Word;
 					res.Add(tbl.blank.Number, tbp);
 					resID.Add(tbl.blank.ID, tbp);
+					
 				}
 
 				/*IQueryable<BPJournalTable> latest = from j in eni.BPJournalTable
@@ -313,6 +319,7 @@ namespace BlankJournal.Models
 				tbl.Name = newBlank.Name;
 				tbl.ObjectInfo = newBlank.ObjectInfo;
 				tbl.Folder = newBlank.FolderID;
+				tbl.canUseTBP = newBlank.CanUseTBP;
 				tbl.isActive = true;
 
 				string md5PDF = ""; string md5Word = "";

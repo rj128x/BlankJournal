@@ -55,7 +55,7 @@ namespace MainSL.Views {
 			if (OnUnblockButtonPressed != null) {
 				try {
 					JournalRecord current = grdBlanks.SelectedItem as JournalRecord;
-					current.CanUnblock = current.Closed && GlobalContext.Single.CurrentUser.CanDoOper && GlobalContext.Single.CurrentUser.CanEditUsers;
+					current.CanUnblock = current.Closed && GlobalContext.Single.CurrentUser.IsAdmin;
 					foreach (JournalRecord rec in grdBlanks.ItemsSource) {
 						if (rec != current)
 							rec.CanUnblock = false;

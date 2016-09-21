@@ -22,6 +22,7 @@ namespace BlankJournal
         public string DataPDF { get; set; }
         public string DataWord { get; set; }
         public bool isActive { get; set; }
+        public bool canUseTBP { get; set; }
     
         public virtual DataTable DataTable { get; set; }
         public virtual DataTable DataTable1 { get; set; }

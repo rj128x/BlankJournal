@@ -32,6 +32,8 @@ namespace BlankJournal.Models {
 		public string md5Word { get; set; }
 		public string md5PDF { get; set; }
 		public int CountActiveComments { get; set; }
+		public bool CanUseTBP { get; set; }
+		public bool WordAfterPDF { get; set; }
 
 
 		public TBPInfo() {
@@ -46,8 +48,10 @@ namespace BlankJournal.Models {
 			IDPDFData = tbl.DataPDF;
 			IDWordData = tbl.DataWord;
 			ObjectInfo = tbl.ObjectInfo;
+			CanUseTBP = tbl.canUseTBP;
 			Active = tbl.isActive;
 			CountActiveComments = 0;
+			WordAfterPDF = false;			
 		}
 
 	}

@@ -15,6 +15,10 @@ namespace BlankJournal.Models {
 		public bool CanEditUsers { get; set; }
 		public bool IsEditing { get; set; }
 		public string Mail { get; set; }
+		public string AvailEditFolders { get; set; }
+		public List<string> AvailFoldersList { get; set; }
+		public bool CanEditTBPCurrentFolder { get; set; }
+		public bool IsAdmin { get; set; }
 		
 
 		public User() {
@@ -33,6 +37,28 @@ namespace BlankJournal.Models {
 			CanCommentTBP = tbl.CanCommentTBP;
 			SendMailComment = tbl.SendMailComments;
 			CanEditUsers = tbl.CanEditUsers;
+			AvailEditFolders = tbl.AvailEditFolders;
+			AvailFoldersList = new List<string>();
+			IsAdmin = tbl.Admin;
+
+			if (AvailEditFolders == "0") {
+				try {
+					foreach (Folder folder in DBContext.Single.AllFolders.Values) {
+						AvailFoldersList.Add(folder.ID);
+					}
+				}catch (Exception e) {
+					Logger.info("Ошибка при формировании списка доступных папок "+e.ToString());
+				}
+			} else {
+				try {
+					string[] folders = AvailEditFolders.Split(';');
+					foreach (string folder in folders) {
+						AvailFoldersList.Add(folder);
+					}
+				} catch (Exception e) {
+					Logger.info("Ошибка при формировании списка доступных папок "+e.ToString());
+				}
+			}
 			Mail = tbl.Mail;
 		}
 
@@ -53,6 +79,9 @@ namespace BlankJournal.Models {
 				last.Mail = user.Mail;
 				last.SendMailComments = user.SendMailComment;
 				last.CanEditUsers = user.CanEditUsers;
+				last.AvailEditFolders = user.AvailEditFolders;
+				last.Admin = user.IsAdmin;
+				
 				eni.SaveChanges();
 				DBContext.Single.InitUsers();
 				return new ReturnMessage(true, "Информация о пользоватле сохранена");

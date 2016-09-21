@@ -28,8 +28,8 @@
           <Property Name="LSOStart" Type="int" Nullable="false" />
           <Property Name="LSOEnd" Type="int" Nullable="false" />
           <Property Name="LastUpdateFinish" Type="datetime" />
-          <Property Name="Zayav" Type="varchar" MaxLength="50" />
-          <Property Name="OBPComment" Type="varchar" MaxLength="50" />
+          <Property Name="Zayav" Type="varchar" MaxLength="100" />
+          <Property Name="OBPComment" Type="varchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="DataTable">
           <Key>
@@ -90,6 +90,7 @@
           <Property Name="DataPDF" Type="varchar" MaxLength="50" />
           <Property Name="DataWord" Type="varchar" MaxLength="50" />
           <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="canUseTBP" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="UsersTable">
           <Key>
@@ -103,6 +104,8 @@
           <Property Name="CanCommentTBP" Type="bit" Nullable="false" />
           <Property Name="SendMailComments" Type="bit" Nullable="false" />
           <Property Name="CanEditUsers" Type="bit" Nullable="false" />
+          <Property Name="AvailEditFolders" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Admin" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_BPJournalTable_DataTablePDF">
           <End Role="DataTable" Type="Self.DataTable" Multiplicity="0..1" />
@@ -431,6 +434,7 @@
           <NavigationProperty Name="DataTable" Relationship="Self.FK_TBPInfoTable_DataTablePDF" FromRole="TBPInfoTable" ToRole="DataTable" />
           <NavigationProperty Name="DataTable1" Relationship="Self.FK_TBPInfoTable_DataTableWord" FromRole="TBPInfoTable" ToRole="DataTable" />
           <NavigationProperty Name="FoldersTable" Relationship="Self.FK_TBPInfoTable_FoldersTable" FromRole="TBPInfoTable" ToRole="FoldersTable" />
+          <Property Name="canUseTBP" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="UsersTable">
           <Key>
@@ -449,6 +453,8 @@
           <NavigationProperty Name="TBPCommentsTable1" Relationship="Self.FK_TBPCommentsTable_UsersTablePerformer" FromRole="UsersTable" ToRole="TBPCommentsTable" />
           <NavigationProperty Name="TBPHistoryTable" Relationship="Self.FK_TBPHistoryTable_UsersTable" FromRole="UsersTable" ToRole="TBPHistoryTable" />
           <Property Name="CanEditUsers" Type="Boolean" Nullable="false" />
+          <Property Name="AvailEditFolders" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Admin" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="FK_BPJournalTable_DataTablePDF">
           <End Role="DataTable" Type="Self.DataTable" Multiplicity="0..1" />
@@ -754,6 +760,7 @@
           <EntitySetMapping Name="TBPInfoTable">
             <EntityTypeMapping TypeName="BlanksModel.TBPInfoTable">
               <MappingFragment StoreEntitySet="TBPInfoTable">
+                <ScalarProperty Name="canUseTBP" ColumnName="canUseTBP" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Number" ColumnName="Number" />
                 <ScalarProperty Name="Folder" ColumnName="Folder" />
@@ -768,6 +775,8 @@
           <EntitySetMapping Name="UsersTable">
             <EntityTypeMapping TypeName="BlanksModel.UsersTable">
               <MappingFragment StoreEntitySet="UsersTable">
+                <ScalarProperty Name="Admin" ColumnName="Admin" />
+                <ScalarProperty Name="AvailEditFolders" ColumnName="AvailEditFolders" />
                 <ScalarProperty Name="CanEditUsers" ColumnName="CanEditUsers" />
                 <ScalarProperty Name="Login" ColumnName="Login" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
