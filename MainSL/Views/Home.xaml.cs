@@ -299,7 +299,7 @@ namespace MainSL {
 			JournalAnswer Filter = new JournalAnswer();
 			Filter.dateStart = new DateTime(DateTime.Now.Year, 1, 1);
 			Filter.dateEnd = DateTime.Now.Date.AddDays(1);
-			Filter.tbpNumber = CurrentTBP.Number;
+			Filter.tbpID = CurrentTBP.ID;
 			GlobalContext.Single.Client.GetJournalBPAsync(Filter);
 		}
 

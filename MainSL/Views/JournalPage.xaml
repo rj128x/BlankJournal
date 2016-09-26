@@ -24,7 +24,7 @@
                     <CheckBox IsChecked="{Binding checkCrossData,Mode=TwoWay}" VerticalAlignment="Center" Margin="20,0,0,0"/>
                     <TextBlock Text="Проверка пересечений" Width="80" TextWrapping="Wrap" Style="{StaticResource Label}" Margin="0,0,20,0"/>
                     <TextBlock Text="Бланк " Style="{StaticResource Label}"/>
-                    <TextBox Text="{Binding tbpNumber, Mode=TwoWay}" Width="120"/>
+                    <TextBox Text="{Binding tbpInfo, Mode=TwoWay}" Width="120"/>
                     <Button Name="btnRefresh" Content="Обновить" Click="btnRefresh_Click" Margin="20,0,0,0"/>
                     <Button Name="btnPrint" Content="Печать" Click="btnPrint_Click"/>
                         

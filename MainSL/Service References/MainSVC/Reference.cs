@@ -688,7 +688,9 @@ namespace MainSL.MainSVC {
         
         private System.Nullable<System.DateTime> dateStartField;
         
-        private string tbpNumberField;
+        private int tbpIDField;
+        
+        private string tbpInfoField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.JournalRecord> Data {
@@ -743,14 +745,27 @@ namespace MainSL.MainSVC {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string tbpNumber {
+        public int tbpID {
             get {
-                return this.tbpNumberField;
+                return this.tbpIDField;
             }
             set {
-                if ((object.ReferenceEquals(this.tbpNumberField, value) != true)) {
-                    this.tbpNumberField = value;
-                    this.RaisePropertyChanged("tbpNumber");
+                if ((this.tbpIDField.Equals(value) != true)) {
+                    this.tbpIDField = value;
+                    this.RaisePropertyChanged("tbpID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string tbpInfo {
+            get {
+                return this.tbpInfoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.tbpInfoField, value) != true)) {
+                    this.tbpInfoField = value;
+                    this.RaisePropertyChanged("tbpInfo");
                 }
             }
         }

@@ -27,7 +27,7 @@ namespace BlankJournal.Models
 		protected void createInitData() {
 			Logger.info("Инициализация контекста БД");
 			try {
-				
+
 				BlankJournal.BlanksEntities eni = new BlanksEntities();
 
 				Logger.info("Чтение папок");
@@ -139,7 +139,7 @@ namespace BlankJournal.Models
 											 md5PDF = dat.md5,
 											 md5Word = dat2.md5
 										 };
-				Dictionary<string, TBPInfo> res = new Dictionary<string, TBPInfo>();
+				Dictionary<int, TBPInfo> res = new Dictionary<int, TBPInfo>();
 				Dictionary<int, TBPInfo> resID = new Dictionary<int, TBPInfo>();
 				foreach (var tbl in blanks) {
 					TBPInfo tbp = new TBPInfo(tbl.blank);
@@ -160,9 +160,9 @@ namespace BlankJournal.Models
 
 					tbp.md5PDF = tbl.md5PDF;
 					tbp.md5Word = tbl.md5Word;
-					res.Add(tbl.blank.Number, tbp);
+					res.Add(tbl.blank.ID, tbp);
 					resID.Add(tbl.blank.ID, tbp);
-					
+
 				}
 
 				/*IQueryable<BPJournalTable> latest = from j in eni.BPJournalTable
@@ -180,15 +180,15 @@ namespace BlankJournal.Models
 				}*/
 
 				IQueryable<BPJournalTable> countOper = from j in eni.BPJournalTable
-																						orderby j.Number ascending
-																						where res.Keys.Contains(j.TBPNumber) && j.DateCreate.Year == DateTime.Now.Year
-																						select j;
+																							 orderby j.Number ascending
+																							 where res.Keys.Contains(j.TBPID) && j.DateCreate.Year == DateTime.Now.Year
+																							 select j;
 				foreach (BPJournalTable bp in countOper) {
 					try {
 						if (bp.isOBP) {
-							res[bp.TBPNumber].CountOBP++;
+							res[bp.TBPID].CountOBP++;
 						} else {
-							res[bp.TBPNumber].CountTBP++;
+							res[bp.TBPID].CountTBP++;
 						}
 					} catch (Exception e) {
 						Logger.info(e.ToString());
@@ -218,11 +218,16 @@ namespace BlankJournal.Models
 			Logger.info("Получение журнала переключений ");
 			if (Filter == null) {
 				Filter = new JournalAnswer();
+				Filter.tbpID = -1;
 			}
 			if (!Filter.dateStart.HasValue)
 				Filter.dateStart = DateTime.Now.Date.AddDays(-20);
 			if (!Filter.dateEnd.HasValue)
 				Filter.dateEnd = DateTime.Now.Date.AddDays(1);
+			if (!string.IsNullOrEmpty(Filter.tbpInfo))
+				Filter.tbpID = -1;
+			if (Filter.tbpID != -1)
+				Filter.tbpInfo = "";
 			try {
 				List<JournalRecord> result = new List<JournalRecord>();
 				BlankJournal.BlanksEntities eni = new BlanksEntities();
@@ -235,8 +240,16 @@ namespace BlankJournal.Models
 									(b.Started && b.DateStart > Filter.dateStart && b.DateStart < Filter.dateEnd) ||
 									(b.Finished && b.DateEnd > Filter.dateStart && b.DateEnd < Filter.dateEnd))
 									&&
-								 (string.IsNullOrEmpty(Filter.tbpNumber) || b.TBPNumber == Filter.tbpNumber ||
-											/*b.Comment.ToLower().Contains(Filter.tbpNumber.ToLower()) ||*/ b.Name.ToLower().Contains(Filter.tbpNumber.ToLower()))
+									(
+									  (Filter.tbpID == -1 && string.IsNullOrEmpty(Filter.tbpInfo))
+									   ||
+									  (!string.IsNullOrEmpty(Filter.tbpInfo) &&
+										(b.TBPNumber.ToLower().Contains(Filter.tbpInfo.ToLower())||
+											b.Comment.ToLower().Contains(Filter.tbpInfo.ToLower()) || b.Name.ToLower().Contains(Filter.tbpInfo.ToLower())||
+											b.Zayav.ToLower().Contains(Filter.tbpInfo.ToLower())|| b.Id.ToLower().Contains(Filter.tbpInfo.ToLower())))
+									   ||
+								    (Filter.tbpID != -1 && b.TBPID == Filter.tbpID)
+								  )
 								 orderby b.Started, b.DateStart descending
 								 select new { blank = b, FileInfo = dat.FileInfo };
 
@@ -303,7 +316,7 @@ namespace BlankJournal.Models
 				if (!edit && blank != null) {
 					return new ReturnMessage(false, String.Format("Бланк с номером {0} уже существует", newBlank.Number));
 				}
-				TBPInfoTable tbl = edit ? blank : new TBPInfoTable();
+				TBPInfoTable tbl = edit ? (from b in eni.TBPInfoTable where b.ID == newBlank.ID select b).FirstOrDefault() : new TBPInfoTable();
 				if (!edit) {
 					Logger.info("Поиск номера нового бланка");
 					int newID = 0;

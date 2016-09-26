@@ -7,7 +7,8 @@
       <xs:element minOccurs="0" name="checkCrossData" type="xs:boolean" />
       <xs:element minOccurs="0" name="dateEnd" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="dateStart" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="tbpNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="tbpID" type="xs:int" />
+      <xs:element minOccurs="0" name="tbpInfo" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="JournalAnswer" nillable="true" type="tns:JournalAnswer" />

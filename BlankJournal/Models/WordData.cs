@@ -7,23 +7,24 @@ using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using System.IO;
 
-namespace BlankJournal.Models {
-	public class WordData {
+namespace BlankJournal.Models
+{
+	public class WordData
+	{
 		public static int getCountPages(string name) {
 			Logger.info("Получение количества страниц документа " + name);
 			try {
 				WordprocessingDocument doc = WordprocessingDocument.Open(name, false);
 				//int pageCount = Int32.Parse(doc.ExtendedFilePropertiesPart.Properties.Pages.Text);
 				string str = doc.MainDocumentPart.Document.InnerXml;
-				string s0="lastRenderedPageBreak";
+				string s0 = "lastRenderedPageBreak";
 				int count = (str.Length - str.Replace(s0, "").Length) / s0.Length + 1;
 				Logger.info(count.ToString());
 				doc.Close();
 				//Logger.info(pageCount.ToString());
 
 				return count;
-			}
-			catch (Exception e) {
+			} catch (Exception e) {
 				Logger.info("Ошибка при получении количества страниц документа " + e.ToString());
 				return 1;
 			}
@@ -53,22 +54,30 @@ namespace BlankJournal.Models {
 				WordprocessingDocument doc = WordprocessingDocument.Open(fullpath, true);
 				Body body = doc.MainDocumentPart.Document.Body;
 				IEnumerable<OpenXmlElement> paragraphs = body.Elements<OpenXmlElement>();
-				Logger.info("Абзацев:  "+paragraphs.Count().ToString());
+				Logger.info("Абзацев:  " + paragraphs.Count().ToString());
 				List<OpenXmlElement> forDel = new List<OpenXmlElement>();
-				List<OpenXmlElement> forDelEnd = new List<OpenXmlElement>();				
+				List<OpenXmlElement> forDelEnd = new List<OpenXmlElement>();
 				bool foundCel = false;
 				bool foundEnd = false;
 				foreach (OpenXmlElement elem in paragraphs) {
 					if (!(elem is SectionProperties)) {
 						if (!foundCel && !elem.InnerText.ToLower().Contains("цель переключений")) {
 							forDel.Add(elem);
-						}
-						else {
+						} else {
 							foundCel = true;
 						}
 
-						if (elem.InnerXml.Contains("Условия применения ТБП")) {
-							elem.InnerXml = elem.InnerXml.Replace("Условия применения ТБП", "Условия применения ОБП");
+						string low = elem.InnerText.ToLower();
+						if (low.Contains("условия") && low.Contains("применения") && low.Contains("тбп")) {
+							try {
+								string str = elem.InnerXml;
+								int i = str.IndexOf("Т");
+								char[] chars = str.ToArray();
+								chars[i]= 'О';
+								elem.InnerXml = new string(chars);
+							} catch (Exception e) {
+
+							}
 						}
 
 						if (elem.InnerText.ToLower().Contains("окончание:")) {
@@ -76,15 +85,14 @@ namespace BlankJournal.Models {
 								forDelEnd = new List<OpenXmlElement>();
 							}
 							foundEnd = true;
-						}
-						else {
+						} else {
 							if (foundEnd) {
 								forDelEnd.Add(elem);
 							}
 						}
 					}
 				}
-							
+
 
 				Logger.info("Удаление шапки и окончания бланка");
 				foreach (OpenXmlElement p in forDel) {
@@ -122,7 +130,7 @@ namespace BlankJournal.Models {
 				doc.Close();
 				return fn;
 			} catch (Exception e) {
-				Logger.info("ошибка при формировании пустого ОБП "+e.ToString());
+				Logger.info("ошибка при формировании пустого ОБП " + e.ToString());
 				return null;
 			}
 		}
@@ -140,7 +148,7 @@ namespace BlankJournal.Models {
 			par.ParagraphProperties = new ParagraphProperties();
 			par.ParagraphProperties.AppendChild(new Justification() { Val = JustificationValues.Center });
 			body.InsertBefore(par, body.FirstChild);
-			
+
 			str = "Объект переключений: Воткинская ГЭС, " + obj;
 			headerRun = new Run(new Text(str));
 			headerRun.RunProperties = new RunProperties() {
@@ -149,11 +157,11 @@ namespace BlankJournal.Models {
 				Bold = new Bold() { Val = new OnOffValue(true) }
 			};
 			par = new Paragraph(headerRun);
-			par.ParagraphProperties = new ParagraphProperties();			
+			par.ParagraphProperties = new ParagraphProperties();
 			par.ParagraphProperties.AppendChild(new Justification() { Val = JustificationValues.Center });
 			body.InsertAfter(par, body.FirstChild);
 
-			
+
 
 
 			Run footerRun = new Run(new Text("Бланк заполнил и переключение производит:"));
