@@ -14,7 +14,7 @@
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Номер бланка" Width="100"/>
-                    <TextBox Text="{Binding Number, Mode=TwoWay}" Width="50" IsEnabled="{Binding Single.CurrentUser.IsAdmin}"/>
+                    <TextBox Text="{Binding Number, Mode=TwoWay}" Width="50" IsEnabled="{Binding Single.CurrentUser.IsAdmin, Source={StaticResource globalContext}}"/>
                     <TextBlock Text="Переключение по ТБП" Margin="20,0,10,0"/>
                     <CheckBox  IsChecked="{Binding CanUseTBP,Mode=TwoWay}" Content="Доступно"/>
                 </StackPanel>

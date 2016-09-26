@@ -39,7 +39,7 @@
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
                             <StackPanel Orientation="Vertical">
-                                <TextBlock Text="{Binding Zayav}" TextWrapping="Wrap" />
+                                <TextBlock Text="{Binding Zayav}" TextWrapping="Wrap" />                                
                             </StackPanel>
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
@@ -49,6 +49,12 @@
                         <DataTemplate>
                             <StackPanel Orientation="Vertical">
                                 <TextBlock Text="{Binding Task}" TextWrapping="Wrap"  />
+                                <StackPanel Orientation="Horizontal" Visibility="{Binding isOBP, Converter={StaticResource visibilityConverter}}" HorizontalAlignment="Right">
+                                    <StackPanel Orientation="Horizontal" Visibility="{Binding TBPID, Converter={StaticResource visibilityConverter}}" HorizontalAlignment="Right">
+                                        <TextBlock Text="по ТБП №" FontStyle="Italic" FontSize="10" Foreground="Gray"/>
+                                        <TextBlock Text="{Binding TBPNumber}" FontStyle="Italic" FontSize="10" Foreground="Gray"/>
+                                    </StackPanel>
+                                </StackPanel>
                             </StackPanel>
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>

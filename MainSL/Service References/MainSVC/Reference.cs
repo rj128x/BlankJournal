@@ -46,6 +46,8 @@ namespace MainSL.MainSVC {
         
         private bool SendMailCommentField;
         
+        private bool ShowRemovedTBPField;
+        
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string AvailEditFolders {
             get {
@@ -211,6 +213,19 @@ namespace MainSL.MainSVC {
                 if ((this.SendMailCommentField.Equals(value) != true)) {
                     this.SendMailCommentField = value;
                     this.RaisePropertyChanged("SendMailComment");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool ShowRemovedTBP {
+            get {
+                return this.ShowRemovedTBPField;
+            }
+            set {
+                if ((this.ShowRemovedTBPField.Equals(value) != true)) {
+                    this.ShowRemovedTBPField = value;
+                    this.RaisePropertyChanged("ShowRemovedTBP");
                 }
             }
         }
@@ -1940,7 +1955,7 @@ namespace MainSL.MainSVC {
         System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.Folder> EndGetAllFolders(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:MainService/GetTBPBlanksByFolder", ReplyAction="urn:MainService/GetTBPBlanksByFolderResponse")]
-        System.IAsyncResult BeginGetTBPBlanksByFolder(string folderID, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginGetTBPBlanksByFolder(string folderID, bool removed, System.AsyncCallback callback, object asyncState);
         
         System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.TBPInfo> EndGetTBPBlanksByFolder(System.IAsyncResult result);
         
@@ -2948,8 +2963,8 @@ namespace MainSL.MainSVC {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult MainSL.MainSVC.MainService.BeginGetTBPBlanksByFolder(string folderID, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginGetTBPBlanksByFolder(folderID, callback, asyncState);
+        System.IAsyncResult MainSL.MainSVC.MainService.BeginGetTBPBlanksByFolder(string folderID, bool removed, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetTBPBlanksByFolder(folderID, removed, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -2959,7 +2974,8 @@ namespace MainSL.MainSVC {
         
         private System.IAsyncResult OnBeginGetTBPBlanksByFolder(object[] inValues, System.AsyncCallback callback, object asyncState) {
             string folderID = ((string)(inValues[0]));
-            return ((MainSL.MainSVC.MainService)(this)).BeginGetTBPBlanksByFolder(folderID, callback, asyncState);
+            bool removed = ((bool)(inValues[1]));
+            return ((MainSL.MainSVC.MainService)(this)).BeginGetTBPBlanksByFolder(folderID, removed, callback, asyncState);
         }
         
         private object[] OnEndGetTBPBlanksByFolder(System.IAsyncResult result) {
@@ -2975,11 +2991,11 @@ namespace MainSL.MainSVC {
             }
         }
         
-        public void GetTBPBlanksByFolderAsync(string folderID) {
-            this.GetTBPBlanksByFolderAsync(folderID, null);
+        public void GetTBPBlanksByFolderAsync(string folderID, bool removed) {
+            this.GetTBPBlanksByFolderAsync(folderID, removed, null);
         }
         
-        public void GetTBPBlanksByFolderAsync(string folderID, object userState) {
+        public void GetTBPBlanksByFolderAsync(string folderID, bool removed, object userState) {
             if ((this.onBeginGetTBPBlanksByFolderDelegate == null)) {
                 this.onBeginGetTBPBlanksByFolderDelegate = new BeginOperationDelegate(this.OnBeginGetTBPBlanksByFolder);
             }
@@ -2990,7 +3006,8 @@ namespace MainSL.MainSVC {
                 this.onGetTBPBlanksByFolderCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetTBPBlanksByFolderCompleted);
             }
             base.InvokeAsync(this.onBeginGetTBPBlanksByFolderDelegate, new object[] {
-                        folderID}, this.onEndGetTBPBlanksByFolderDelegate, this.onGetTBPBlanksByFolderCompletedDelegate, userState);
+                        folderID,
+                        removed}, this.onEndGetTBPBlanksByFolderDelegate, this.onGetTBPBlanksByFolderCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -4163,9 +4180,10 @@ namespace MainSL.MainSVC {
                 return _result;
             }
             
-            public System.IAsyncResult BeginGetTBPBlanksByFolder(string folderID, System.AsyncCallback callback, object asyncState) {
-                object[] _args = new object[1];
+            public System.IAsyncResult BeginGetTBPBlanksByFolder(string folderID, bool removed, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[2];
                 _args[0] = folderID;
+                _args[1] = removed;
                 System.IAsyncResult _result = base.BeginInvoke("GetTBPBlanksByFolder", _args, callback, asyncState);
                 return _result;
             }

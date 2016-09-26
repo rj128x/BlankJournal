@@ -70,8 +70,8 @@ namespace BlankJournal {
 		}
 
 		[OperationContract]
-		public IQueryable<TBPInfo> GetTBPBlanksByFolder(string folderID) {
-			return DBContext.Single.GetTBPListByFolder(folderID).AsQueryable();
+		public IQueryable<TBPInfo> GetTBPBlanksByFolder(string folderID,bool removed) {
+			return DBContext.Single.GetTBPListByFolder(folderID,removed).AsQueryable();
 		}
 
 		[OperationContract]
@@ -164,7 +164,6 @@ namespace BlankJournal {
 		public ReturnMessage removeTBP(TBPInfo tbp) {
 			return DBContext.Single.removeTBP(tbp);
 		}
-
 		[OperationContract]
 		public ReturnMessage removeBP(JournalRecord bp) {
 			return JournalRecord.DeleteBP(bp);

@@ -15,9 +15,10 @@ using System.Windows.Media.Animation;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MainSL {
+namespace MainSL
+{
 	public partial class Home : Page, INotifyPropertyChanged
-	{		
+	{
 		public event PropertyChangedEventHandler PropertyChanged;
 
 		public void NotifyChanged(string propName) {
@@ -49,7 +50,7 @@ namespace MainSL {
 			GlobalContext.Single.Client.removeTBPCompleted += Client_removeTBPCompleted;
 			GlobalContext.Single.Client.InitCommentCompleted += Client_InitCommentCompleted;
 			GlobalContext.Single.Client.GetJournalBPCompleted += Client_GetJournalBPCompleted;
-			
+
 
 		}
 
@@ -61,7 +62,7 @@ namespace MainSL {
 			GlobalContext.Single.Client.removeTBPCompleted -= Client_removeTBPCompleted;
 			GlobalContext.Single.Client.InitCommentCompleted -= Client_InitCommentCompleted;
 			GlobalContext.Single.Client.GetJournalBPCompleted -= Client_GetJournalBPCompleted;
-			
+
 		}
 
 		void Client_GetTBPBlanksByFolderCompleted(object sender, GetTBPBlanksByFolderCompletedEventArgs e) {
@@ -82,7 +83,7 @@ namespace MainSL {
 			string id = btn.Name.Replace("btnFolder_", "");
 			CurrentFolder = GlobalContext.Single.AllFolders[id];
 			GlobalContext.Single.IsBusy = true;
-			GlobalContext.Single.Client.GetTBPBlanksByFolderAsync(CurrentFolder.ID);
+			GlobalContext.Single.Client.GetTBPBlanksByFolderAsync(CurrentFolder.ID, GlobalContext.Single.CurrentUser.ShowRemovedTBP);
 		}
 
 
@@ -91,7 +92,7 @@ namespace MainSL {
 		protected override void OnNavigatedTo(NavigationEventArgs e) {
 			foreach (Folder folder in GlobalContext.Single.AllFolders.Values) {
 				Button btn = new Button();
-				btn.Content = folder.ID+" "+folder.Name;
+				btn.Content = folder.ID + " " + folder.Name;
 				btn.Height = 30;
 				btn.Name = "btnFolder_" + folder.ID;
 				btn.Click += btn_Click;
@@ -125,7 +126,7 @@ namespace MainSL {
 			GlobalContext.Single.IsBusy = true;
 			if (CurrentFolder != null) {
 				GlobalContext.Single.IsBusy = true;
-				GlobalContext.Single.Client.GetTBPBlanksByFolderAsync(CurrentFolder.ID);
+				GlobalContext.Single.Client.GetTBPBlanksByFolderAsync(CurrentFolder.ID, GlobalContext.Single.CurrentUser.ShowRemovedTBP);
 			}
 			//} 
 		}
@@ -169,12 +170,12 @@ namespace MainSL {
 			//if (win.DialogResult == true) {
 			if (CurrentFolder != null) {
 				GlobalContext.Single.IsBusy = true;
-				GlobalContext.Single.Client.GetTBPBlanksByFolderAsync(CurrentFolder.ID);
+				GlobalContext.Single.Client.GetTBPBlanksByFolderAsync(CurrentFolder.ID, GlobalContext.Single.CurrentUser.ShowRemovedTBP);
 			}
 			//}
 		}
 
-		private void btnNewOBP_Click(object sender, RoutedEventArgs e) {			
+		private void btnNewOBP_Click(object sender, RoutedEventArgs e) {
 			TBPInfo tbp = new TBPInfo();
 			tbp.Number = "-";
 			tbp.Name = " ";
@@ -229,7 +230,7 @@ namespace MainSL {
 			//if (win.DialogResult == true) {
 			if (CurrentFolder != null) {
 				GlobalContext.Single.IsBusy = true;
-				GlobalContext.Single.Client.GetTBPBlanksByFolderAsync(CurrentFolder.ID);
+				GlobalContext.Single.Client.GetTBPBlanksByFolderAsync(CurrentFolder.ID, GlobalContext.Single.CurrentUser.ShowRemovedTBP);
 			}
 			//}
 		}
@@ -278,7 +279,7 @@ namespace MainSL {
 			MessageBox.Show(msg.Message);
 			if (CurrentFolder != null) {
 				GlobalContext.Single.IsBusy = true;
-				GlobalContext.Single.Client.GetTBPBlanksByFolderAsync(CurrentFolder.ID);
+				GlobalContext.Single.Client.GetTBPBlanksByFolderAsync(CurrentFolder.ID, GlobalContext.Single.CurrentUser.ShowRemovedTBP);
 			}
 		}
 
@@ -304,7 +305,7 @@ namespace MainSL {
 		}
 
 		private void btnSync_Click(object sender, RoutedEventArgs e) {
-			if (MessageBox.Show("Будет выполнено принудительное копирование всех бланков из БД в файлы базы ОС (AutoArchive). Вы уверены?","Синхронизация", MessageBoxButton.OKCancel) == MessageBoxResult.OK) {
+			if (MessageBox.Show("Будет выполнено принудительное копирование всех бланков из БД в файлы базы ОС (AutoArchive). Вы уверены?", "Синхронизация", MessageBoxButton.OKCancel) == MessageBoxResult.OK) {
 				FloatWindow.OpenWindow("/Home/SyncDB");
 			}
 		}
@@ -324,10 +325,27 @@ namespace MainSL {
 			CommentsWindow win = new CommentsWindow();
 			win.CurrentFilter = commentFilter;
 			win.Show();
-			win.load();			
+			win.load();
+		}
+		private void CheckBox_Click(object sender, RoutedEventArgs e) {
+			if (CurrentFolder != null) {
+				GlobalContext.Single.IsBusy = true;
+				GlobalContext.Single.Client.GetTBPBlanksByFolderAsync(CurrentFolder.ID, GlobalContext.Single.CurrentUser.ShowRemovedTBP);
+			}
 		}
 
-		
-
+		private void btnUnDeleteTBP_Click(object sender, RoutedEventArgs e) {
+			if (CurrentTBP != null) {
+				if (MessageBox.Show(String.Format("Вы уверены что хотите восстановить бланк {0}? \r\n Номер должен быть уникальным!", CurrentTBP.Number), "Восстановление бланка",
+					MessageBoxButton.OKCancel) == MessageBoxResult.OK) {
+					TBPWindow newWindow = new TBPWindow();
+					CurrentTBP.Active = true;
+					CurrentTBP.EditingTBP = true;
+					newWindow.Init(CurrentTBP);
+					newWindow.Closed += newWindow_Closed;
+					newWindow.Show();
+				}
+			}
+		}
 	}
 }

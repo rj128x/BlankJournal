@@ -118,7 +118,7 @@ namespace BlankJournal.Models
 			}
 		}
 
-		public List<TBPInfo> GetTBPListByFolder(string folderID) {
+		public List<TBPInfo> GetTBPListByFolder(string folderID,bool removed=false) {
 			Logger.info("Получение бланков папки " + folderID);
 			try {
 				List<TBPInfo> result = new List<TBPInfo>();
@@ -126,7 +126,7 @@ namespace BlankJournal.Models
 				var blanks = from b in eni.TBPInfoTable
 										 from dat in eni.DataTable.Where(dat => dat.ID == b.DataPDF).DefaultIfEmpty()
 										 from dat2 in eni.DataTable.Where(dat2 => dat2.ID == b.DataWord).DefaultIfEmpty()
-										 where b.Folder == folderID && b.isActive
+										 where b.Folder == folderID && (b.isActive&&!removed||removed)
 										 orderby b.Number
 										 select new {
 											 blank = b,
@@ -442,6 +442,5 @@ namespace BlankJournal.Models
 				return new ReturnMessage(false, "Ошибка при удалении бланка");
 			}
 		}
-
 	}
 }

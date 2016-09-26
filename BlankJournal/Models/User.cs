@@ -19,6 +19,7 @@ namespace BlankJournal.Models {
 		public List<string> AvailFoldersList { get; set; }
 		public bool CanEditTBPCurrentFolder { get; set; }
 		public bool IsAdmin { get; set; }
+		public bool ShowRemovedTBP { get; set; }
 		
 
 		public User() {

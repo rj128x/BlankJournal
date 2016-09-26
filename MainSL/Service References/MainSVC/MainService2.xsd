@@ -16,6 +16,7 @@
       <xs:element minOccurs="0" name="Mail" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="SendMailComment" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ShowRemovedTBP" type="xs:boolean" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="User" nillable="true" type="tns:User" />
