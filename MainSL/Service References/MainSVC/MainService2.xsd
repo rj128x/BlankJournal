@@ -113,6 +113,7 @@
   <xs:complexType name="TBPComment">
     <xs:sequence>
       <xs:element minOccurs="0" name="Author" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CanFinish" type="xs:boolean" />
       <xs:element minOccurs="0" name="CommentPerform" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="CommentText" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Data" nillable="true" type="xs:base64Binary" />
@@ -121,6 +122,7 @@
       <xs:element minOccurs="0" name="DatePerform" type="xs:dateTime" />
       <xs:element minOccurs="0" name="FileInfoData" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Finished" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Folder" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Performer" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="TBPID" type="xs:int" />

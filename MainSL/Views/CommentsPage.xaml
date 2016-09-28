@@ -80,9 +80,8 @@
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
                                     <Button Content="Файл" Name="btnShow" Click="btnShow_Click" Height="30"/>
-                                    <StackPanel Orientation="Horizontal" Visibility="{Binding Finished, Converter={StaticResource visibilityNotConverter}}">
-                                        <Button Content="Закрыть" Name="btnFinish" Click="btnFinish_Click" Height="30" 
-                                            Visibility="{Binding Single.CurrentUser.IsAdmin, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
+                                    <StackPanel Orientation="Horizontal" Visibility="{Binding CanFinish, Converter={StaticResource visibilityConverter}}">
+                                        <Button Content="Закрыть" Name="btnFinish" Click="btnFinish_Click" Height="30"/>
                                     </StackPanel>
                                 </StackPanel>
                             </DataTemplate>

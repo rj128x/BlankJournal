@@ -18,6 +18,8 @@ namespace BlankJournal.Models {
 		public string FileInfoData { get; set; }
 		public byte[] Data { get; set; }
 		public string CommentPerform { get; set; }
+		public string Folder { get; set; }
+		public bool CanFinish { get; set; }
 
 		public TBPComment() { }
 

@@ -16,6 +16,7 @@ namespace BlankJournal.Controllers
 				JournalAnswer filter=new JournalAnswer();
 				filter.dateStart=new DateTime(year1,month1,day1);
 				filter.dateEnd = new DateTime(year2, month2, day2);
+				filter.tbpID = -1;
 				JournalAnswer result = DBContext.Single.GetJournalBP(filter);
 				ViewResult view = View("PrintJournalBP", result);
 				return view;

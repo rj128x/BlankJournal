@@ -15,6 +15,15 @@ namespace BlankJournal.Models {
 				foreach (User user in DBContext.Single.AllUsers.Values) {
 					if (!user.SendMailComment)
 						continue;
+					bool AvailFolder = false;
+					try {
+						BlanksEntities eni = new BlanksEntities();
+						TBPInfoTable bl = (from t in eni.TBPInfoTable where t.ID == comment.TBPID select t).FirstOrDefault();
+						if (user.AvailFoldersList.Contains(bl.Folder))
+							AvailFolder = true;
+					} catch (Exception e) {}
+					if (!AvailFolder)
+						continue;
 					string[] mails = user.Mail.Split(new char[] { ';' });
 					foreach (string mail in mails) {
 						if (!string.IsNullOrEmpty(mail)) {

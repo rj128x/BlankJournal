@@ -279,21 +279,25 @@ namespace BlankJournal.Models
 				Filter.dateStart = DateTime.Now.Date.AddDays(-60);
 			if (!Filter.dateEnd.HasValue)
 				Filter.dateEnd = DateTime.Now.Date.AddDays(1);
-
+			
 			try {
+				User currentUser = DBContext.Single.GetCurrentUser();
 				List<TBPComment> result = new List<TBPComment>();
 				BlankJournal.BlanksEntities eni = new BlanksEntities();
 				var comments = from c in eni.TBPCommentsTable
 											 from dat in eni.DataTable.Where(dat => dat.ID == c.WordData).DefaultIfEmpty()
+											 from bl in eni.TBPInfoTable.Where(bl=>bl.ID==c.TBPID).DefaultIfEmpty()
 											 where (Filter.onlyActive && c.Finished == false &&
 														 (string.IsNullOrEmpty(Filter.TBPNumber) || (!string.IsNullOrEmpty(Filter.TBPNumber) && c.TBPNumber == Filter.TBPNumber)))
 												||
 											 (c.DateCreate > Filter.dateStart && c.DateCreate < Filter.dateEnd && Filter.onlyActive == false)
 											 orderby c.DateCreate descending
-											 select new { comment = c, Fileinfo = dat.FileInfo };
+											 select new { comment = c, Fileinfo = dat.FileInfo, fld=bl.Folder };
 				foreach (var tbl in comments) {
 					TBPComment com = new TBPComment(tbl.comment);
 					com.FileInfoData = tbl.Fileinfo;
+					com.Folder = tbl.fld;
+					com.CanFinish = !com.Finished && currentUser.AvailFoldersList.Contains(com.Folder)&& currentUser.CanEditTBP;
 					result.Add(com);
 				}
 				Filter.Data = result;

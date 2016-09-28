@@ -1357,6 +1357,8 @@ namespace MainSL.MainSVC {
         
         private string AuthorField;
         
+        private bool CanFinishField;
+        
         private string CommentPerformField;
         
         private string CommentTextField;
@@ -1372,6 +1374,8 @@ namespace MainSL.MainSVC {
         private string FileInfoDataField;
         
         private bool FinishedField;
+        
+        private string FolderField;
         
         private string IDField;
         
@@ -1390,6 +1394,19 @@ namespace MainSL.MainSVC {
                 if ((object.ReferenceEquals(this.AuthorField, value) != true)) {
                     this.AuthorField = value;
                     this.RaisePropertyChanged("Author");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool CanFinish {
+            get {
+                return this.CanFinishField;
+            }
+            set {
+                if ((this.CanFinishField.Equals(value) != true)) {
+                    this.CanFinishField = value;
+                    this.RaisePropertyChanged("CanFinish");
                 }
             }
         }
@@ -1494,6 +1511,19 @@ namespace MainSL.MainSVC {
                 if ((this.FinishedField.Equals(value) != true)) {
                     this.FinishedField = value;
                     this.RaisePropertyChanged("Finished");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Folder {
+            get {
+                return this.FolderField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FolderField, value) != true)) {
+                    this.FolderField = value;
+                    this.RaisePropertyChanged("Folder");
                 }
             }
         }
