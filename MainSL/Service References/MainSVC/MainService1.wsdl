@@ -171,6 +171,24 @@
   <wsdl:message name="MainService_LogInfo_OutputMessage">
     <wsdl:part name="parameters" element="LogInfoResponse" />
   </wsdl:message>
+  <wsdl:message name="MainService_getFoldersList_InputMessage">
+    <wsdl:part name="parameters" element="getFoldersList" />
+  </wsdl:message>
+  <wsdl:message name="MainService_getFoldersList_OutputMessage">
+    <wsdl:part name="parameters" element="getFoldersListResponse" />
+  </wsdl:message>
+  <wsdl:message name="MainService_editFolder_InputMessage">
+    <wsdl:part name="parameters" element="editFolder" />
+  </wsdl:message>
+  <wsdl:message name="MainService_editFolder_OutputMessage">
+    <wsdl:part name="parameters" element="editFolderResponse" />
+  </wsdl:message>
+  <wsdl:message name="MainService_removeFolder_InputMessage">
+    <wsdl:part name="parameters" element="removeFolder" />
+  </wsdl:message>
+  <wsdl:message name="MainService_removeFolder_OutputMessage">
+    <wsdl:part name="parameters" element="removeFolderResponse" />
+  </wsdl:message>
   <wsdl:portType name="MainService">
     <wsdl:operation name="DoWork">
       <wsdl:input wsaw:Action="urn:MainService/DoWork" message="MainService_DoWork_InputMessage" />
@@ -279,6 +297,18 @@
     <wsdl:operation name="LogInfo">
       <wsdl:input wsaw:Action="urn:MainService/LogInfo" message="MainService_LogInfo_InputMessage" />
       <wsdl:output wsaw:Action="urn:MainService/LogInfoResponse" message="MainService_LogInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getFoldersList">
+      <wsdl:input wsaw:Action="urn:MainService/getFoldersList" message="MainService_getFoldersList_InputMessage" />
+      <wsdl:output wsaw:Action="urn:MainService/getFoldersListResponse" message="MainService_getFoldersList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="editFolder">
+      <wsdl:input wsaw:Action="urn:MainService/editFolder" message="MainService_editFolder_InputMessage" />
+      <wsdl:output wsaw:Action="urn:MainService/editFolderResponse" message="MainService_editFolder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="removeFolder">
+      <wsdl:input wsaw:Action="urn:MainService/removeFolder" message="MainService_removeFolder_InputMessage" />
+      <wsdl:output wsaw:Action="urn:MainService/removeFolderResponse" message="MainService_removeFolder_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
 </wsdl:definitions>

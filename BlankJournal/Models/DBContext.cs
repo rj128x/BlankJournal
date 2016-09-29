@@ -36,12 +36,13 @@ namespace BlankJournal.Models
 				foreach (FoldersTable fld in folders) {
 					double id = 0;
 					try {
-						id = Double.Parse(fld.Id);
-					} catch {
-						id = Double.Parse(fld.Id.Replace(".", ","));
-					}
-					sorted.Add(id, fld);
-
+						try {
+							id = Double.Parse(fld.Id);
+						} catch {
+							id = Double.Parse(fld.Id.Replace(".", ","));
+						}
+					} catch { }
+						sorted.Add(id, fld);
 				}
 
 				AllFolders = new Dictionary<string, Folder>();
@@ -118,7 +119,7 @@ namespace BlankJournal.Models
 			}
 		}
 
-		public List<TBPInfo> GetTBPListByFolder(string folderID,bool removed=false) {
+		public List<TBPInfo> GetTBPListByFolder(string folderID, bool removed = false) {
 			Logger.info("Получение бланков папки " + folderID);
 			try {
 				List<TBPInfo> result = new List<TBPInfo>();
@@ -126,7 +127,7 @@ namespace BlankJournal.Models
 				var blanks = from b in eni.TBPInfoTable
 										 from dat in eni.DataTable.Where(dat => dat.ID == b.DataPDF).DefaultIfEmpty()
 										 from dat2 in eni.DataTable.Where(dat2 => dat2.ID == b.DataWord).DefaultIfEmpty()
-										 where b.Folder == folderID && (b.isActive&&!removed||removed)
+										 where b.Folder == folderID && (b.isActive && !removed || removed)
 										 orderby b.Number
 										 select new {
 											 blank = b,
@@ -241,15 +242,15 @@ namespace BlankJournal.Models
 									(b.Finished && b.DateEnd > Filter.dateStart && b.DateEnd < Filter.dateEnd))
 									&&
 									(
-									  (Filter.tbpID == -1 && string.IsNullOrEmpty(Filter.tbpInfo))
-									   ||
-									  (!string.IsNullOrEmpty(Filter.tbpInfo) &&
-										(b.TBPNumber.ToLower().Contains(Filter.tbpInfo.ToLower())||
-											b.Comment.ToLower().Contains(Filter.tbpInfo.ToLower()) || b.Name.ToLower().Contains(Filter.tbpInfo.ToLower())||
-											b.Zayav.ToLower().Contains(Filter.tbpInfo.ToLower())|| b.Id.ToLower().Contains(Filter.tbpInfo.ToLower())))
-									   ||
-								    (Filter.tbpID != -1 && b.TBPID == Filter.tbpID)
-								  )
+										(Filter.tbpID == -1 && string.IsNullOrEmpty(Filter.tbpInfo))
+										 ||
+										(!string.IsNullOrEmpty(Filter.tbpInfo) &&
+										(b.TBPNumber.ToLower().Contains(Filter.tbpInfo.ToLower()) ||
+											b.Comment.ToLower().Contains(Filter.tbpInfo.ToLower()) || b.Name.ToLower().Contains(Filter.tbpInfo.ToLower()) ||
+											b.Zayav.ToLower().Contains(Filter.tbpInfo.ToLower()) || b.Id.ToLower().Contains(Filter.tbpInfo.ToLower())))
+										 ||
+										(Filter.tbpID != -1 && b.TBPID == Filter.tbpID)
+									)
 								 orderby b.Started, b.DateStart descending
 								 select new { blank = b, FileInfo = dat.FileInfo };
 
@@ -279,25 +280,25 @@ namespace BlankJournal.Models
 				Filter.dateStart = DateTime.Now.Date.AddDays(-60);
 			if (!Filter.dateEnd.HasValue)
 				Filter.dateEnd = DateTime.Now.Date.AddDays(1);
-			
+
 			try {
 				User currentUser = DBContext.Single.GetCurrentUser();
 				List<TBPComment> result = new List<TBPComment>();
 				BlankJournal.BlanksEntities eni = new BlanksEntities();
 				var comments = from c in eni.TBPCommentsTable
 											 from dat in eni.DataTable.Where(dat => dat.ID == c.WordData).DefaultIfEmpty()
-											 from bl in eni.TBPInfoTable.Where(bl=>bl.ID==c.TBPID).DefaultIfEmpty()
+											 from bl in eni.TBPInfoTable.Where(bl => bl.ID == c.TBPID).DefaultIfEmpty()
 											 where (Filter.onlyActive && c.Finished == false &&
 														 (string.IsNullOrEmpty(Filter.TBPNumber) || (!string.IsNullOrEmpty(Filter.TBPNumber) && c.TBPNumber == Filter.TBPNumber)))
 												||
 											 (c.DateCreate > Filter.dateStart && c.DateCreate < Filter.dateEnd && Filter.onlyActive == false)
 											 orderby c.DateCreate descending
-											 select new { comment = c, Fileinfo = dat.FileInfo, fld=bl.Folder };
+											 select new { comment = c, Fileinfo = dat.FileInfo, fld = bl.Folder };
 				foreach (var tbl in comments) {
 					TBPComment com = new TBPComment(tbl.comment);
 					com.FileInfoData = tbl.Fileinfo;
 					com.Folder = tbl.fld;
-					com.CanFinish = !com.Finished && currentUser.AvailFoldersList.Contains(com.Folder)&& currentUser.CanEditTBP;
+					com.CanFinish = !com.Finished && currentUser.AvailFoldersList.Contains(com.Folder) && currentUser.CanEditTBP;
 					result.Add(com);
 				}
 				Filter.Data = result;
@@ -444,6 +445,23 @@ namespace BlankJournal.Models
 			} catch (Exception e) {
 				Logger.info("ошибка при удалении бланка " + e.ToString());
 				return new ReturnMessage(false, "Ошибка при удалении бланка");
+			}
+		}
+
+		public IQueryable<Folder> getFoldersList() {
+			Logger.info("Получение списка папок для редактирования");
+			try {
+				BlanksEntities eni = new BlanksEntities();
+				IQueryable<FoldersTable> fldList = from f in eni.FoldersTable select f;
+				List<Folder> result = new List<Folder>();
+				foreach (FoldersTable fld in fldList) {
+					Folder f = new Folder(fld);
+					result.Add(f);
+				}
+				return result.AsQueryable();
+			} catch (Exception e) {
+				Logger.info("Ошибка при получении списка папок " + e.ToString());
+				return new List<Folder>().AsQueryable();
 			}
 		}
 	}

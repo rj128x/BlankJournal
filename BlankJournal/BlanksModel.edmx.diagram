@@ -25,6 +25,7 @@
         <AssociationConnector Association="BlanksModel.FK_TBPCommentsTable_UsersTableAuthor" ManuallyRouted="false" />
         <AssociationConnector Association="BlanksModel.FK_TBPCommentsTable_UsersTablePerformer" ManuallyRouted="false" />
         <AssociationConnector Association="BlanksModel.FK_TBPHistoryTable_UsersTable" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="BlanksModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

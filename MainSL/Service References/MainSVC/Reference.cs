@@ -245,9 +245,26 @@ namespace MainSL.MainSVC {
     [System.Runtime.Serialization.DataContractAttribute(Name="Folder", Namespace="http://schemas.datacontract.org/2004/07/BlankJournal.Models")]
     public partial class Folder : object, System.ComponentModel.INotifyPropertyChanged {
         
+        private bool CanEditField;
+        
         private string IDField;
         
+        private int IdentField;
+        
         private string NameField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool CanEdit {
+            get {
+                return this.CanEditField;
+            }
+            set {
+                if ((this.CanEditField.Equals(value) != true)) {
+                    this.CanEditField = value;
+                    this.RaisePropertyChanged("CanEdit");
+                }
+            }
+        }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string ID {
@@ -258,6 +275,19 @@ namespace MainSL.MainSVC {
                 if ((object.ReferenceEquals(this.IDField, value) != true)) {
                     this.IDField = value;
                     this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Ident {
+            get {
+                return this.IdentField;
+            }
+            set {
+                if ((this.IdentField.Equals(value) != true)) {
+                    this.IdentField = value;
+                    this.RaisePropertyChanged("Ident");
                 }
             }
         }
@@ -2103,6 +2133,21 @@ namespace MainSL.MainSVC {
         System.IAsyncResult BeginLogInfo(string message, System.DateTime date, System.AsyncCallback callback, object asyncState);
         
         void EndLogInfo(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:MainService/getFoldersList", ReplyAction="urn:MainService/getFoldersListResponse")]
+        System.IAsyncResult BegingetFoldersList(System.AsyncCallback callback, object asyncState);
+        
+        System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.Folder> EndgetFoldersList(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:MainService/editFolder", ReplyAction="urn:MainService/editFolderResponse")]
+        System.IAsyncResult BegineditFolder(MainSL.MainSVC.Folder folder, bool edit, System.AsyncCallback callback, object asyncState);
+        
+        MainSL.MainSVC.ReturnMessage EndeditFolder(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:MainService/removeFolder", ReplyAction="urn:MainService/removeFolderResponse")]
+        System.IAsyncResult BeginremoveFolder(MainSL.MainSVC.Folder folder, System.AsyncCallback callback, object asyncState);
+        
+        MainSL.MainSVC.ReturnMessage EndremoveFolder(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2586,6 +2631,63 @@ namespace MainSL.MainSVC {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class getFoldersListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public getFoldersListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.Folder> Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.Folder>)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class editFolderCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public editFolderCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public MainSL.MainSVC.ReturnMessage Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((MainSL.MainSVC.ReturnMessage)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class removeFolderCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public removeFolderCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public MainSL.MainSVC.ReturnMessage Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((MainSL.MainSVC.ReturnMessage)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class MainServiceClient : System.ServiceModel.ClientBase<MainSL.MainSVC.MainService>, MainSL.MainSVC.MainService {
         
         private BeginOperationDelegate onBeginDoWorkDelegate;
@@ -2750,6 +2852,24 @@ namespace MainSL.MainSVC {
         
         private System.Threading.SendOrPostCallback onLogInfoCompletedDelegate;
         
+        private BeginOperationDelegate onBegingetFoldersListDelegate;
+        
+        private EndOperationDelegate onEndgetFoldersListDelegate;
+        
+        private System.Threading.SendOrPostCallback ongetFoldersListCompletedDelegate;
+        
+        private BeginOperationDelegate onBegineditFolderDelegate;
+        
+        private EndOperationDelegate onEndeditFolderDelegate;
+        
+        private System.Threading.SendOrPostCallback oneditFolderCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginremoveFolderDelegate;
+        
+        private EndOperationDelegate onEndremoveFolderDelegate;
+        
+        private System.Threading.SendOrPostCallback onremoveFolderCompletedDelegate;
+        
         private BeginOperationDelegate onBeginOpenDelegate;
         
         private EndOperationDelegate onEndOpenDelegate;
@@ -2856,6 +2976,12 @@ namespace MainSL.MainSVC {
         public event System.EventHandler<removeHistoryRecordCompletedEventArgs> removeHistoryRecordCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> LogInfoCompleted;
+        
+        public event System.EventHandler<getFoldersListCompletedEventArgs> getFoldersListCompleted;
+        
+        public event System.EventHandler<editFolderCompletedEventArgs> editFolderCompleted;
+        
+        public event System.EventHandler<removeFolderCompletedEventArgs> removeFolderCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
         
@@ -4099,6 +4225,144 @@ namespace MainSL.MainSVC {
                         date}, this.onEndLogInfoDelegate, this.onLogInfoCompletedDelegate, userState);
         }
         
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult MainSL.MainSVC.MainService.BegingetFoldersList(System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BegingetFoldersList(callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.Folder> MainSL.MainSVC.MainService.EndgetFoldersList(System.IAsyncResult result) {
+            return base.Channel.EndgetFoldersList(result);
+        }
+        
+        private System.IAsyncResult OnBegingetFoldersList(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            return ((MainSL.MainSVC.MainService)(this)).BegingetFoldersList(callback, asyncState);
+        }
+        
+        private object[] OnEndgetFoldersList(System.IAsyncResult result) {
+            System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.Folder> retVal = ((MainSL.MainSVC.MainService)(this)).EndgetFoldersList(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OngetFoldersListCompleted(object state) {
+            if ((this.getFoldersListCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.getFoldersListCompleted(this, new getFoldersListCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void getFoldersListAsync() {
+            this.getFoldersListAsync(null);
+        }
+        
+        public void getFoldersListAsync(object userState) {
+            if ((this.onBegingetFoldersListDelegate == null)) {
+                this.onBegingetFoldersListDelegate = new BeginOperationDelegate(this.OnBegingetFoldersList);
+            }
+            if ((this.onEndgetFoldersListDelegate == null)) {
+                this.onEndgetFoldersListDelegate = new EndOperationDelegate(this.OnEndgetFoldersList);
+            }
+            if ((this.ongetFoldersListCompletedDelegate == null)) {
+                this.ongetFoldersListCompletedDelegate = new System.Threading.SendOrPostCallback(this.OngetFoldersListCompleted);
+            }
+            base.InvokeAsync(this.onBegingetFoldersListDelegate, null, this.onEndgetFoldersListDelegate, this.ongetFoldersListCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult MainSL.MainSVC.MainService.BegineditFolder(MainSL.MainSVC.Folder folder, bool edit, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BegineditFolder(folder, edit, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        MainSL.MainSVC.ReturnMessage MainSL.MainSVC.MainService.EndeditFolder(System.IAsyncResult result) {
+            return base.Channel.EndeditFolder(result);
+        }
+        
+        private System.IAsyncResult OnBegineditFolder(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            MainSL.MainSVC.Folder folder = ((MainSL.MainSVC.Folder)(inValues[0]));
+            bool edit = ((bool)(inValues[1]));
+            return ((MainSL.MainSVC.MainService)(this)).BegineditFolder(folder, edit, callback, asyncState);
+        }
+        
+        private object[] OnEndeditFolder(System.IAsyncResult result) {
+            MainSL.MainSVC.ReturnMessage retVal = ((MainSL.MainSVC.MainService)(this)).EndeditFolder(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OneditFolderCompleted(object state) {
+            if ((this.editFolderCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.editFolderCompleted(this, new editFolderCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void editFolderAsync(MainSL.MainSVC.Folder folder, bool edit) {
+            this.editFolderAsync(folder, edit, null);
+        }
+        
+        public void editFolderAsync(MainSL.MainSVC.Folder folder, bool edit, object userState) {
+            if ((this.onBegineditFolderDelegate == null)) {
+                this.onBegineditFolderDelegate = new BeginOperationDelegate(this.OnBegineditFolder);
+            }
+            if ((this.onEndeditFolderDelegate == null)) {
+                this.onEndeditFolderDelegate = new EndOperationDelegate(this.OnEndeditFolder);
+            }
+            if ((this.oneditFolderCompletedDelegate == null)) {
+                this.oneditFolderCompletedDelegate = new System.Threading.SendOrPostCallback(this.OneditFolderCompleted);
+            }
+            base.InvokeAsync(this.onBegineditFolderDelegate, new object[] {
+                        folder,
+                        edit}, this.onEndeditFolderDelegate, this.oneditFolderCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult MainSL.MainSVC.MainService.BeginremoveFolder(MainSL.MainSVC.Folder folder, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginremoveFolder(folder, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        MainSL.MainSVC.ReturnMessage MainSL.MainSVC.MainService.EndremoveFolder(System.IAsyncResult result) {
+            return base.Channel.EndremoveFolder(result);
+        }
+        
+        private System.IAsyncResult OnBeginremoveFolder(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            MainSL.MainSVC.Folder folder = ((MainSL.MainSVC.Folder)(inValues[0]));
+            return ((MainSL.MainSVC.MainService)(this)).BeginremoveFolder(folder, callback, asyncState);
+        }
+        
+        private object[] OnEndremoveFolder(System.IAsyncResult result) {
+            MainSL.MainSVC.ReturnMessage retVal = ((MainSL.MainSVC.MainService)(this)).EndremoveFolder(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnremoveFolderCompleted(object state) {
+            if ((this.removeFolderCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.removeFolderCompleted(this, new removeFolderCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void removeFolderAsync(MainSL.MainSVC.Folder folder) {
+            this.removeFolderAsync(folder, null);
+        }
+        
+        public void removeFolderAsync(MainSL.MainSVC.Folder folder, object userState) {
+            if ((this.onBeginremoveFolderDelegate == null)) {
+                this.onBeginremoveFolderDelegate = new BeginOperationDelegate(this.OnBeginremoveFolder);
+            }
+            if ((this.onEndremoveFolderDelegate == null)) {
+                this.onEndremoveFolderDelegate = new EndOperationDelegate(this.OnEndremoveFolder);
+            }
+            if ((this.onremoveFolderCompletedDelegate == null)) {
+                this.onremoveFolderCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnremoveFolderCompleted);
+            }
+            base.InvokeAsync(this.onBeginremoveFolderDelegate, new object[] {
+                        folder}, this.onEndremoveFolderDelegate, this.onremoveFolderCompletedDelegate, userState);
+        }
+        
         private System.IAsyncResult OnBeginOpen(object[] inValues, System.AsyncCallback callback, object asyncState) {
             return ((System.ServiceModel.ICommunicationObject)(this)).BeginOpen(callback, asyncState);
         }
@@ -4521,6 +4785,45 @@ namespace MainSL.MainSVC {
             public void EndLogInfo(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 base.EndInvoke("LogInfo", _args, result);
+            }
+            
+            public System.IAsyncResult BegingetFoldersList(System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[0];
+                System.IAsyncResult _result = base.BeginInvoke("getFoldersList", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.Folder> EndgetFoldersList(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.Folder> _result = ((System.Collections.ObjectModel.ObservableCollection<MainSL.MainSVC.Folder>)(base.EndInvoke("getFoldersList", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BegineditFolder(MainSL.MainSVC.Folder folder, bool edit, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[2];
+                _args[0] = folder;
+                _args[1] = edit;
+                System.IAsyncResult _result = base.BeginInvoke("editFolder", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public MainSL.MainSVC.ReturnMessage EndeditFolder(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                MainSL.MainSVC.ReturnMessage _result = ((MainSL.MainSVC.ReturnMessage)(base.EndInvoke("editFolder", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginremoveFolder(MainSL.MainSVC.Folder folder, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = folder;
+                System.IAsyncResult _result = base.BeginInvoke("removeFolder", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public MainSL.MainSVC.ReturnMessage EndremoveFolder(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                MainSL.MainSVC.ReturnMessage _result = ((MainSL.MainSVC.ReturnMessage)(base.EndInvoke("removeFolder", _args, result)));
+                return _result;
             }
         }
     }

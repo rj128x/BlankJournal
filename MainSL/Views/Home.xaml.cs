@@ -37,6 +37,8 @@ namespace MainSL
 			}
 		}
 
+		public Button ButtonRemovedTBP;
+
 		public Home() {
 			InitializeComponent();
 			init();
@@ -97,6 +99,11 @@ namespace MainSL
 				btn.Name = "btnFolder_" + folder.ID;
 				btn.Click += btn_Click;
 				pnlFolders.Children.Add(btn);
+				if (folder.ID == "del") {
+					btn.Content = folder.Name;
+					btn.Visibility = GlobalContext.Single.CurrentUser.ShowRemovedTBP ? Visibility.Visible : Visibility.Collapsed;
+					ButtonRemovedTBP = btn;
+				}
 			}
 		}
 
@@ -327,7 +334,9 @@ namespace MainSL
 			win.Show();
 			win.load();
 		}
+
 		private void CheckBox_Click(object sender, RoutedEventArgs e) {
+			ButtonRemovedTBP.Visibility = GlobalContext.Single.CurrentUser.ShowRemovedTBP ? Visibility.Visible : Visibility.Collapsed;
 			if (CurrentFolder != null) {
 				GlobalContext.Single.IsBusy = true;
 				GlobalContext.Single.Client.GetTBPBlanksByFolderAsync(CurrentFolder.ID, GlobalContext.Single.CurrentUser.ShowRemovedTBP);

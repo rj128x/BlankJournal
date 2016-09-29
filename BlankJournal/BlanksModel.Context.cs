@@ -32,5 +32,6 @@ namespace BlankJournal
         public virtual DbSet<TBPHistoryTable> TBPHistoryTable { get; set; }
         public virtual DbSet<TBPInfoTable> TBPInfoTable { get; set; }
         public virtual DbSet<UsersTable> UsersTable { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     }
 }

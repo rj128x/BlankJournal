@@ -12,17 +12,12 @@ namespace BlankJournal
     using System;
     using System.Collections.Generic;
     
-    public partial class FoldersTable
+    public partial class sysdiagrams
     {
-        public FoldersTable()
-        {
-            this.TBPInfoTable = new HashSet<TBPInfoTable>();
-        }
-    
-        public string Id { get; set; }
-        public string Name { get; set; }
-        public int Ident { get; set; }
-    
-        public virtual ICollection<TBPInfoTable> TBPInfoTable { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

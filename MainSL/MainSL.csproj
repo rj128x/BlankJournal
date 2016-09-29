@@ -125,6 +125,9 @@
     <Compile Include="Views\CommentWindow.xaml.cs">
       <DependentUpon>CommentWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\FolderWindow.xaml.cs">
+      <DependentUpon>FolderWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\InstallWindow.xaml.cs">
       <DependentUpon>InstallWindow.xaml</DependentUpon>
     </Compile>
@@ -162,6 +165,9 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\FoldersPage.xaml.cs">
+      <DependentUpon>FoldersPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UsersPage.xaml.cs">
       <DependentUpon>UsersPage.xaml</DependentUpon>
     </Compile>
@@ -178,6 +184,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\FolderWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\InstallWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -185,6 +195,10 @@
     <Page Include="Views\MultiLoadWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FoldersPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\UsersPage.xaml">
       <SubType>Designer</SubType>

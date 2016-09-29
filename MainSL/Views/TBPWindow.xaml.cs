@@ -28,6 +28,11 @@ namespace MainSL {
 					CurrentBlank.WordData = File.ReadAllBytes(EditingFileName);
 				} catch { }
 			}
+			if (CurrentBlank.FolderID == "del") {
+				MessageBox.Show("Нельзя редактировать/перемещать бланки в папку 'Удаленные'");
+				return;
+			}
+
 			GlobalContext.Single.IsBusy = true;
 			GlobalContext.Single.Client.CreateTBPAsync(CurrentBlank);
 		}
@@ -43,6 +48,7 @@ namespace MainSL {
 
 		public void Init(TBPInfo blank) {
 			CurrentBlank = blank;
+			cmbFolder.ItemsSource = GlobalContext.Single.FoldersForEditTBP;
 			LayoutRoot.DataContext = blank;
 			GlobalContext.Single.Client.CreateTBPCompleted += Client_CreateTBPCompleted;
 			GlobalContext.Single.Client.getDataRecordCompleted += Client_getDataRecordCompleted;

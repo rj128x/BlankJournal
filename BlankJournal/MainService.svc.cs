@@ -189,6 +189,22 @@ namespace BlankJournal {
 			Logger.info(String.Format("Client: {0}: {1}", date.ToString("dd.MM.yyyy hh:mm:ss,fff"), message));
 		}
 
+		[OperationContract]
+		public IQueryable<Folder> getFoldersList() {
+			return DBContext.Single.getFoldersList();
+		}
+
+		[OperationContract]
+		public ReturnMessage editFolder(Folder folder, bool edit) {
+			return Folder.editFolder(folder, edit);
+		}
+
+		[OperationContract]
+		public ReturnMessage removeFolder(Folder folder) {
+			return Folder.removeFolder(folder);
+		}
+
+
 	
 		// Добавьте здесь дополнительные операции и отметьте их атрибутом [OperationContract]
 	}

@@ -19,6 +19,11 @@
                     <CheckBox  IsChecked="{Binding CanUseTBP,Mode=TwoWay}" Content="Доступно"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Папка" Width="100"/>
+                    <ComboBox Width="300" Name="cmbFolder" IsEnabled="{Binding Single.CurrentUser.IsAdmin, Source={StaticResource globalContext}}"
+                        DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding FolderID,Mode=TwoWay}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Наименование" Width="100"/>
                     <TextBox Text="{Binding Name, Mode=TwoWay}" Width="301" Height="35" TextWrapping="Wrap"/>
                 </StackPanel>

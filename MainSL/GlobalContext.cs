@@ -40,6 +40,7 @@ namespace MainSL {
 		public static readonly DependencyProperty LockedTextProperty = DependencyProperty.Register("LockedText", typeof(string), typeof(GlobalContext), META);
 
 		public Dictionary<string, Folder> AllFolders;
+		public Dictionary<string,string> FoldersForEditTBP;
 		public event FinishLoad onFinishLoad;
 
 		public  MainServiceClient Client;
@@ -73,12 +74,22 @@ namespace MainSL {
 			Client.GetUserAsync();
 		}
 
+		public void RefreshFolders(System.Collections.ObjectModel.ObservableCollection<Folder> Folders) {
+			AllFolders = new Dictionary<string, Folder>();
+			FoldersForEditTBP = new Dictionary<string, string>();
+			foreach (Folder fld in Folders) {
+				if (fld.ID != "-") {
+					AllFolders.Add(fld.ID, fld);
+					string name = fld.ID != "del" ? fld.ID + " " + fld.Name : fld.Name;
+					FoldersForEditTBP.Add(fld.ID,name);
+				}
+				
+				
+			}
+		}
 
 		void Client_GetAllFoldersCompleted(object sender, GetAllFoldersCompletedEventArgs e) {
-			AllFolders = new Dictionary<string, Folder>();
-			foreach (Folder fld in e.Result) {
-				AllFolders.Add(fld.ID, fld);
-			}
+			RefreshFolders(e.Result);
 			if (onFinishLoad != null)
 				onFinishLoad();
 		}

@@ -370,4 +370,45 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="getFoldersList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getFoldersListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q44="http://schemas.datacontract.org/2004/07/BlankJournal.Models" minOccurs="0" name="getFoldersListResult" nillable="true" type="q44:ArrayOfFolder" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="editFolder">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q45="http://schemas.datacontract.org/2004/07/BlankJournal.Models" minOccurs="0" name="folder" nillable="true" type="q45:Folder" />
+        <xs:element minOccurs="0" name="edit" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="editFolderResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q46="http://schemas.datacontract.org/2004/07/BlankJournal" minOccurs="0" name="editFolderResult" nillable="true" type="q46:ReturnMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="removeFolder">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q47="http://schemas.datacontract.org/2004/07/BlankJournal.Models" minOccurs="0" name="folder" nillable="true" type="q47:Folder" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="removeFolderResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q48="http://schemas.datacontract.org/2004/07/BlankJournal" minOccurs="0" name="removeFolderResult" nillable="true" type="q48:ReturnMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

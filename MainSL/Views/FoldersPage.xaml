@@ -1,0 +1,45 @@
+﻿<navigation:Page xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  x:Class="MainSL.Views.FoldersPage" 
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           mc:Ignorable="d"
+           xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+           d:DesignWidth="1000" d:DesignHeight="480"
+           Title="Foders Page">
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Button Name="btnNewFoder" Content="Добавить" Click="btnNewFoder_Click" Width="70" HorizontalAlignment="Left"/>
+        <sdk:DataGrid Name="grdFolders" AutoGenerateColumns="False" Grid.Row="1" Margin="0,0,0,15" >
+            <sdk:DataGrid.Columns>
+                <sdk:DataGridTemplateColumn Header="ID" SortMemberPath="ID" Width="100"  >
+                    <sdk:DataGridTemplateColumn.CellTemplate >
+                        <DataTemplate>
+                            <ContentControl Content="{Binding ID}"/>
+                        </DataTemplate>
+                    </sdk:DataGridTemplateColumn.CellTemplate>
+                </sdk:DataGridTemplateColumn>
+                <sdk:DataGridTemplateColumn Header="Имя" SortMemberPath="Name" Width="500"  >
+                    <sdk:DataGridTemplateColumn.CellTemplate >
+                        <DataTemplate>
+                            <ContentControl Content="{Binding Name}"/>
+                        </DataTemplate>
+                    </sdk:DataGridTemplateColumn.CellTemplate>
+                </sdk:DataGridTemplateColumn>
+                <sdk:DataGridTemplateColumn Header="Команды" Width="*"  >
+                    <sdk:DataGridTemplateColumn.CellTemplate >
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Visibility="{Binding CanEdit, Converter={StaticResource visibilityConverter}}">
+                                <Button Content="Редактировать" Name="btnEdit" Click="btnEdit_Click"/>
+                                <Button Content="Удалить" Name="btnDel" Click="btnDel_Click"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </sdk:DataGridTemplateColumn.CellTemplate>
+                </sdk:DataGridTemplateColumn>
+            </sdk:DataGrid.Columns>
+        </sdk:DataGrid>
+    </Grid>
+</navigation:Page>

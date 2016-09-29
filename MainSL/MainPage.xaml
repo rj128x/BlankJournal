@@ -56,6 +56,13 @@
                     <Rectangle x:Name="Divider4" Style="{StaticResource DividerStyle}" 
                                Visibility="{Binding Single.CurrentUser.CanEditUsers,Source={StaticResource globalContext},Converter={StaticResource visibilityConverter}}"/>
 
+                    <HyperlinkButton x:Name="Link6" Style="{StaticResource LinkStyle}" 
+                                     Visibility="{Binding Single.CurrentUser.IsAdmin,Source={StaticResource globalContext},Converter={StaticResource visibilityConverter}}"
+                                     NavigateUri="/FoldersPage" TargetName="ContentFrame" Content="Папки"/>
+
+                    <Rectangle x:Name="Divider6" Style="{StaticResource DividerStyle}" 
+                               Visibility="{Binding Single.CurrentUser.IsAdmin,Source={StaticResource globalContext},Converter={StaticResource visibilityConverter}}"/>
+
                     <HyperlinkButton x:Name="Link5" Style="{StaticResource LinkStyle}" 
                                      NavigateUri="/About" TargetName="ContentFrame" Content="О переключениях"/>
 
