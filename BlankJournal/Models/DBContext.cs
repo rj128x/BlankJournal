@@ -42,7 +42,10 @@ namespace BlankJournal.Models
 							id = Double.Parse(fld.Id.Replace(".", ","));
 						}
 					} catch { }
-						sorted.Add(id, fld);
+					while (sorted.Keys.Contains(id)) {
+						id += 0.01;
+					}
+					sorted.Add(id, fld);
 				}
 
 				AllFolders = new Dictionary<string, Folder>();
@@ -454,7 +457,23 @@ namespace BlankJournal.Models
 				BlanksEntities eni = new BlanksEntities();
 				IQueryable<FoldersTable> fldList = from f in eni.FoldersTable select f;
 				List<Folder> result = new List<Folder>();
+				SortedList<double, FoldersTable> sorted = new SortedList<double, FoldersTable>();
 				foreach (FoldersTable fld in fldList) {
+					double id = 0;
+					try {
+						try {
+							id = Double.Parse(fld.Id);
+						} catch {
+							id = Double.Parse(fld.Id.Replace(".", ","));
+						}
+					} catch { }
+					while (sorted.Keys.Contains(id)) {
+						id += 0.01;
+					}
+					sorted.Add(id, fld);
+				}
+
+				foreach (FoldersTable fld in sorted.Values) {
 					Folder f = new Folder(fld);
 					result.Add(f);
 				}
