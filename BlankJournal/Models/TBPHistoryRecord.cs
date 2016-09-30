@@ -73,14 +73,14 @@ namespace BlankJournal.Models {
 
 
 				if (!string.IsNullOrEmpty(tbl.NewPDFData)) {
-					IQueryable<TBPInfoTable> tbpRef = (from t in eni.TBPInfoTable where t.Number == record.TBPNumber && t.DataPDF == tbl.NewPDFData  select t);
+					IQueryable<TBPInfoTable> tbpRef = (from t in eni.TBPInfoTable where t.ID == record.TBPID && t.DataPDF == tbl.NewPDFData  select t);
 					if (tbpRef.Count() > 0) {
 						return new ReturnMessage(false, info+" Ошибка при удалении записи в истории. Активный бланк (PDF)");
 					}
 				}
 
 				if (!string.IsNullOrEmpty(tbl.NewWordData)) {
-					IQueryable<TBPInfoTable> tbpRef = (from t in eni.TBPInfoTable where t.Number == record.TBPNumber && t.DataWord == tbl.NewWordData select t);
+					IQueryable<TBPInfoTable> tbpRef = (from t in eni.TBPInfoTable where t.ID == record.TBPID && t.DataWord == tbl.NewWordData select t);
 					if (tbpRef.Count() > 0) {
 						return new ReturnMessage(false, info+" Ошибка при удалении записи в истории. Активный бланк (Word)");
 					}

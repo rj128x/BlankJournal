@@ -320,8 +320,8 @@ namespace BlankJournal.Models
 			TBPInfoTable blank = null;
 			bool saveDB = false;
 			try {
-				blank = (from b in eni.TBPInfoTable where b.Number == newBlank.Number && b.isActive select b).FirstOrDefault();
-				if (!edit && blank != null) {
+				blank = (from b in eni.TBPInfoTable where b.Number == newBlank.Number && b.isActive && (edit && b.ID != newBlank.ID || !edit) select b).FirstOrDefault();
+				if (blank != null) {
 					return new ReturnMessage(false, String.Format("Бланк с номером {0} уже существует", newBlank.Number));
 				}
 				TBPInfoTable tbl = edit ? (from b in eni.TBPInfoTable where b.ID == newBlank.ID select b).FirstOrDefault() : new TBPInfoTable();
