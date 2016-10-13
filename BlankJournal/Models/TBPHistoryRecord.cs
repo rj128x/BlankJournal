@@ -72,19 +72,7 @@ namespace BlankJournal.Models {
 				TBPHistoryTable tbl=(from h in eni.TBPHistoryTable where h.Id==record.ID select h).FirstOrDefault();
 
 
-				if (!string.IsNullOrEmpty(tbl.NewPDFData)) {
-					IQueryable<TBPInfoTable> tbpRef = (from t in eni.TBPInfoTable where t.ID == record.TBPID && t.DataPDF == tbl.NewPDFData  select t);
-					if (tbpRef.Count() > 0) {
-						return new ReturnMessage(false, info+" Ошибка при удалении записи в истории. Активный бланк (PDF)");
-					}
-				}
-
-				if (!string.IsNullOrEmpty(tbl.NewWordData)) {
-					IQueryable<TBPInfoTable> tbpRef = (from t in eni.TBPInfoTable where t.ID == record.TBPID && t.DataWord == tbl.NewWordData select t);
-					if (tbpRef.Count() > 0) {
-						return new ReturnMessage(false, info+" Ошибка при удалении записи в истории. Активный бланк (Word)");
-					}
-				}
+				
 
 
 				IQueryable<BPJournalTable> bpRef = (from b in eni.BPJournalTable where !b.isOBP && b.PDFData==tbl.NewPDFData select b);
@@ -92,6 +80,39 @@ namespace BlankJournal.Models {
 					return new ReturnMessage(false, info+" Ошибка при удалении записи в истории. Есть записи в журнале переключений");
 				}
 
+				if (!string.IsNullOrEmpty(tbl.NewPDFData)) {
+					TBPInfoTable tbpRef = (from t in eni.TBPInfoTable where t.ID == record.TBPID && t.DataPDF == tbl.NewPDFData select t).FirstOrDefault();
+					if (tbpRef != null) {
+						//return new ReturnMessage(false, info + " Ошибка при удалении записи в истории. Активный бланк (PDF)");
+						try {
+							TBPHistoryTable last = (from t in eni.TBPHistoryTable where t.Id != record.ID && t.TBPID==record.TBPID && t.NewPDFData!=null orderby t.DateCreate descending select t).FirstOrDefault();
+							if (last != null) {
+								tbpRef.DataPDF = last.NewPDFData;
+							} else {
+								tbpRef.DataPDF = null;
+							}
+						}catch (Exception e) {
+							return new ReturnMessage(false, "Ошибка при удалении записи в истории переключений");
+						}
+					}
+				}
+
+				if (!string.IsNullOrEmpty(tbl.NewWordData)) {
+					TBPInfoTable tbpRef = (from t in eni.TBPInfoTable where t.ID == record.TBPID && t.DataWord == tbl.NewWordData select t).FirstOrDefault();
+					if (tbpRef!=null) {
+						//return new ReturnMessage(false, info + " Ошибка при удалении записи в истории. Активный бланк (Word)");
+						try {
+							TBPHistoryTable last = (from t in eni.TBPHistoryTable where t.Id != record.ID && t.TBPID == record.TBPID && t.NewWordData != null orderby t.DateCreate descending select t).FirstOrDefault();
+							if (last != null) {
+								tbpRef.DataWord = last.NewWordData;
+							} else {
+								tbpRef.DataWord = null;
+							}
+						} catch (Exception e) {
+							return new ReturnMessage(false, "Ошибка при удалении записи в истории переключений");
+						}
+					}
+				}
 
 				eni.TBPHistoryTable.Remove(tbl);
 
