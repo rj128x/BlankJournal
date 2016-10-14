@@ -73,7 +73,7 @@ namespace BlankJournal.Models
 								string str = elem.InnerXml;
 								int i = str.IndexOf("Т");
 								char[] chars = str.ToArray();
-								chars[i]= 'О';
+								chars[i] = 'О';
 								elem.InnerXml = new string(chars);
 							} catch (Exception e) {
 
@@ -93,7 +93,6 @@ namespace BlankJournal.Models
 					}
 				}
 
-
 				Logger.info("Удаление шапки и окончания бланка");
 				foreach (OpenXmlElement p in forDel) {
 					body.RemoveChild<OpenXmlElement>(p);
@@ -101,6 +100,9 @@ namespace BlankJournal.Models
 				foreach (OpenXmlElement p in forDelEnd) {
 					body.RemoveChild<OpenXmlElement>(p);
 				}
+
+				WriteHeaderInfo(doc, num);
+
 
 				Logger.info("Добавление новой шапки и окончания");
 				WriteRegularData(body, tbp.ObjectInfo, num);
@@ -124,7 +126,11 @@ namespace BlankJournal.Models
 				WordprocessingDocument doc = WordprocessingDocument.Open(fullpath, true);
 				Body body = doc.MainDocumentPart.Document.Body;
 				IEnumerable<OpenXmlElement> paragraphs = body.Elements<OpenXmlElement>();
+
+				WriteHeaderInfo(doc, num);
+
 				Logger.info("Добавление новой шапки и окончания");
+
 				WriteRegularData(body, "", num);
 
 				doc.Close();
@@ -133,6 +139,38 @@ namespace BlankJournal.Models
 				Logger.info("ошибка при формировании пустого ОБП " + e.ToString());
 				return null;
 			}
+		}
+
+		protected static void WriteHeaderInfo(WordprocessingDocument doc, int num = -1) {
+			Run rn = new Run(new Text(String.Format("ОБП № {0}", num == -1 ? "____" : num.ToString())));
+			rn.RunProperties = new RunProperties() {
+				FontSize = new FontSize() { Val = new StringValue("20") },
+				RunFonts = new RunFonts() { Ascii = "Times New Roman", HighAnsi = "Times New Roman" }
+			};
+			Paragraph newPar = new Paragraph(rn);
+			newPar.ParagraphProperties = new ParagraphProperties();
+			newPar.ParagraphProperties.AppendChild(new Justification() { Val = JustificationValues.Right });
+
+			PageMargin pm = new PageMargin();
+			pm.Top = 700;
+			pm.Bottom = 700;
+			pm.Left = 1200;
+			pm.Right = 700;
+			pm.Header = 300;
+			pm.Footer = 300; 
+
+			SectionProperties sp1 = new SectionProperties(new HeaderReference() { Id = "obpID", Type = HeaderFooterValues.Default });
+			//sp1.Append(pm);
+			SectionProperties sp2 = doc.MainDocumentPart.Document.Body.GetFirstChild<SectionProperties>();
+			if (sp2 != null) {
+				sp2.AppendChild(new HeaderReference() { Id = "obpID", Type = HeaderFooterValues.Default });
+				sp2.AppendChild(pm);
+			}
+			Header header = new Header(newPar);
+			HeaderPart hp = doc.MainDocumentPart.AddNewPart<HeaderPart>("obpID");
+			header.Save(hp);
+
+
 		}
 
 		protected static void WriteRegularData(Body body, string obj, int num = -1) {
@@ -245,6 +283,9 @@ namespace BlankJournal.Models
 			par.ParagraphProperties = new ParagraphProperties();
 			par.ParagraphProperties.AppendChild(new Justification() { Val = JustificationValues.Right });
 			body.AppendChild(par);
+
+
+
 		}
 	}
 }
