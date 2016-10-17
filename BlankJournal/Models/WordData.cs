@@ -154,7 +154,7 @@ namespace BlankJournal.Models
 
 				PageMargin pm = new PageMargin();
 				pm.Top = 700;
-				pm.Bottom = 700;
+				pm.Bottom = 900;
 				pm.Left = 1200;
 				pm.Right = 700;
 				pm.Header = 300;
@@ -192,13 +192,14 @@ namespace BlankJournal.Models
 				rn = new Run(new Text(string.IsNullOrEmpty(name)?"__________________________________":name));
 				rn.RunProperties = new RunProperties() {
 					FontSize = new FontSize() { Val = new StringValue("20") },
-					RunFonts = new RunFonts() { Ascii = "Times New Roman", HighAnsi = "Times New Roman" }
+					RunFonts = new RunFonts() { Ascii = "Times New Roman", HighAnsi = "Times New Roman" }					
 				};
 			
 				Paragraph newPar2 = new Paragraph(rn);
 				newPar2.ParagraphProperties = new ParagraphProperties();
 				newPar2.ParagraphProperties.AppendChild(new Justification() { Val = JustificationValues.Left });
 				newPar2.ParagraphProperties.AppendChild(new Indentation() { Right=new StringValue("3000") });
+				newPar2.ParagraphProperties.AppendChild(new TopBorder() {Val=BorderValues.Single });
 
 
 				PageMargin pm = new PageMargin();

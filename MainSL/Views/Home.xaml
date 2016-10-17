@@ -133,7 +133,7 @@
                         <StackPanel Orientation="Vertical">
                             <TextBlock Text="Информация о бланке" Style="{StaticResource Label}"/>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Номер бланка" Width="100" Style="{StaticResource Label}"/>
+                                <TextBlock Text="Номер бланка" Width="150" Style="{StaticResource Label}"/>
                                 <TextBlock Text="{Binding Number}" Style="{StaticResource ValueText}" Width="350"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
