@@ -101,7 +101,7 @@ namespace BlankJournal.Models
 					body.RemoveChild<OpenXmlElement>(p);
 				}
 
-				WriteHeaderInfo(doc, num);
+				WriteHeaderInfo(doc, num,tbp.Name);
 
 
 				Logger.info("Добавление новой шапки и окончания");
@@ -127,7 +127,7 @@ namespace BlankJournal.Models
 				Body body = doc.MainDocumentPart.Document.Body;
 				IEnumerable<OpenXmlElement> paragraphs = body.Elements<OpenXmlElement>();
 
-				WriteHeaderInfo(doc, num);
+				WriteHeaderInfo(doc, num, "");
 
 				Logger.info("Добавление новой шапки и окончания");
 
@@ -141,36 +141,98 @@ namespace BlankJournal.Models
 			}
 		}
 
-		protected static void WriteHeaderInfo(WordprocessingDocument doc, int num = -1) {
-			Run rn = new Run(new Text(String.Format("ОБП № {0}", num == -1 ? "____" : num.ToString())));
-			rn.RunProperties = new RunProperties() {
-				FontSize = new FontSize() { Val = new StringValue("20") },
-				RunFonts = new RunFonts() { Ascii = "Times New Roman", HighAnsi = "Times New Roman" }
-			};
-			Paragraph newPar = new Paragraph(rn);
-			newPar.ParagraphProperties = new ParagraphProperties();
-			newPar.ParagraphProperties.AppendChild(new Justification() { Val = JustificationValues.Right });
+		protected static void WriteHeaderInfoTop(WordprocessingDocument doc, int num = -1) {
+			try {
+				Run rn = new Run(new Text(String.Format("ОБП № {0}", num == -1 ? "____" : num.ToString())));
+				rn.RunProperties = new RunProperties() {
+					FontSize = new FontSize() { Val = new StringValue("25") },
+					RunFonts = new RunFonts() { Ascii = "Times New Roman", HighAnsi = "Times New Roman" }
+				};
+				Paragraph newPar = new Paragraph(rn);
+				newPar.ParagraphProperties = new ParagraphProperties();
+				newPar.ParagraphProperties.AppendChild(new Justification() { Val = JustificationValues.Right });
 
-			PageMargin pm = new PageMargin();
-			pm.Top = 700;
-			pm.Bottom = 700;
-			pm.Left = 1200;
-			pm.Right = 700;
-			pm.Header = 300;
-			pm.Footer = 300; 
+				PageMargin pm = new PageMargin();
+				pm.Top = 700;
+				pm.Bottom = 700;
+				pm.Left = 1200;
+				pm.Right = 700;
+				pm.Header = 300;
+				pm.Footer = 300;
 
-			SectionProperties sp1 = new SectionProperties(new HeaderReference() { Id = "obpID", Type = HeaderFooterValues.Default });
-			//sp1.Append(pm);
-			SectionProperties sp2 = doc.MainDocumentPart.Document.Body.GetFirstChild<SectionProperties>();
-			if (sp2 != null) {
-				sp2.AppendChild(new HeaderReference() { Id = "obpID", Type = HeaderFooterValues.Default });
-				sp2.AppendChild(pm);
+				SectionProperties sp2 = doc.MainDocumentPart.Document.Body.GetFirstChild<SectionProperties>();
+				if (sp2 != null) {
+					sp2.AppendChild(new HeaderReference() { Id = "obpID", Type = HeaderFooterValues.Default });
+					sp2.AppendChild(pm);
+				}
+				Header header = new Header(newPar);
+				HeaderPart hp = doc.MainDocumentPart.AddNewPart<HeaderPart>("obpID");
+				header.Save(hp);
+			}catch (Exception e) {
+				Logger.info("Ошибка при формировании колонтитула "+e.ToString());
 			}
-			Header header = new Header(newPar);
-			HeaderPart hp = doc.MainDocumentPart.AddNewPart<HeaderPart>("obpID");
-			header.Save(hp);
+		}
+
+		protected static void WriteHeaderInfo(WordprocessingDocument doc, int num = -1, string name="") {
+			try {
+				string txt = String.Format("ОБП №{0}  -", num == -1 ? "____" : num.ToString());
+				Run rn = new Run(new Text(txt));
+				rn.RunProperties = new RunProperties() {
+					FontSize = new FontSize() { Val = new StringValue("25") },
+					RunFonts = new RunFonts() { Ascii = "Times New Roman", HighAnsi = "Times New Roman" },					
+				};
+
+				PageNumber pn = new PageNumber();
+				rn.Append(pn);
+				rn.Append(new Text("-"));
+				Paragraph newPar = new Paragraph(rn);
+				newPar.ParagraphProperties = new ParagraphProperties();
+				newPar.ParagraphProperties.AppendChild(new Justification() { Val = JustificationValues.Right });
+
+				rn = new Run(new Text(string.IsNullOrEmpty(name)?"__________________________________":name));
+				rn.RunProperties = new RunProperties() {
+					FontSize = new FontSize() { Val = new StringValue("20") },
+					RunFonts = new RunFonts() { Ascii = "Times New Roman", HighAnsi = "Times New Roman" }
+				};
+			
+				Paragraph newPar2 = new Paragraph(rn);
+				newPar2.ParagraphProperties = new ParagraphProperties();
+				newPar2.ParagraphProperties.AppendChild(new Justification() { Val = JustificationValues.Left });
+				newPar2.ParagraphProperties.AppendChild(new Indentation() { Right=new StringValue("3000") });
 
 
+				PageMargin pm = new PageMargin();
+				pm.Top = 700;
+				pm.Bottom = 800;
+				pm.Left = 1200;
+				pm.Right = 700;
+				pm.Header = 300;
+				pm.Footer = 500;
+
+
+
+				
+				//List<FooterPart> fordel = doc.MainDocumentPart.FooterParts.ToList();
+				doc.MainDocumentPart.DeleteParts<FooterPart>(doc.MainDocumentPart.FooterParts);
+
+				List<FooterReference>frList= doc.MainDocumentPart.Document.Descendants<FooterReference>().ToList();
+				foreach (FooterReference fr in frList) {
+					fr.Remove();
+				}
+
+				SectionProperties sp2 = doc.MainDocumentPart.Document.Body.GetFirstChild<SectionProperties>();
+				if (sp2 != null) {
+					sp2.AppendChild(new FooterReference() { Id = "obpID", Type = HeaderFooterValues.Default });
+					sp2.AppendChild(pm);
+				}
+
+				Footer footer = new Footer(newPar2);
+				footer.Append(newPar);
+				FooterPart fp = doc.MainDocumentPart.AddNewPart<FooterPart>("obpID");
+				footer.Save(fp);
+			} catch (Exception e) {
+				Logger.info("Ошибка при формировании колонтитула " + e.ToString());
+			}
 		}
 
 		protected static void WriteRegularData(Body body, string obj, int num = -1) {
