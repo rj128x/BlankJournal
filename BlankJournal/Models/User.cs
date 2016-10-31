@@ -28,6 +28,7 @@ namespace BlankJournal.Models {
 			CanEditTBP = false;
 			CanDoOper = false;
 			CanCommentTBP = false;
+			AvailFoldersList = new List<string>();
 		}
 
 		public User(UsersTable tbl) {
