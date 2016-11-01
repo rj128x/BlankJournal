@@ -46,9 +46,16 @@
         }
 
         td.center {
-            text-align =center;
+            text-align: center;
         }
 
+        table td.bb table th.bb{
+            border-bottom-width:medium;
+        }
+
+        table td.tb table th.tb{
+            border-bottom-width:medium;
+        }
 
 
         table td.right, table th.right {

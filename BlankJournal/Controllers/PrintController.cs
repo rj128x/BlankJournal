@@ -22,5 +22,13 @@ namespace BlankJournal.Controllers
 				return view;
 			}
 
-    }
+		public ActionResult Stat(int year) {
+			Logger.info("Получение сводной статистики за год " + year);
+			SvodReport Svod = new SvodReport();
+			Svod.ReadData(year);
+			ViewResult view = View("Svod", Svod);
+			return view;
+		}
+
+	}
 }

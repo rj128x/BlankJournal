@@ -21,6 +21,11 @@
                     <TextBlock Text="Номер следующего ОБП" Width="200"/>
                     <TextBlock Text="{Binding RezervOBP}"/>
                 </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,40,0,0">
+                    <TextBlock Text="Получить статистику" Width="200"/>
+                    <TextBox x:Name="txtYear" Width="70"/>
+                    <Button Name="btnGetStat" Click="btnGetStat_Click" Content="OK"/>
+                </StackPanel>
 
             </StackPanel>
 

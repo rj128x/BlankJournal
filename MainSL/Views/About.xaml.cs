@@ -22,6 +22,7 @@ namespace MainSL {
 
 		public void init() {
 			GlobalContext.Single.Client.getOperationsInfoCompleted += Client_getOperationsInfoCompleted;
+			txtYear.Text = DateTime.Now.Year.ToString();
 		}
 		public void deInit() {
 			GlobalContext.Single.Client.getOperationsInfoCompleted -= Client_getOperationsInfoCompleted;
@@ -39,6 +40,10 @@ namespace MainSL {
 
 		protected override void OnNavigatedFrom(NavigationEventArgs e) {
 			deInit();
+		}
+
+		private void btnGetStat_Click(object sender, RoutedEventArgs e) {
+			FloatWindow.OpenWindow(String.Format("/Print/Stat?year={0}",txtYear.Text));
 		}
 	}
 }

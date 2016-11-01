@@ -180,6 +180,7 @@
     <Compile Include="Models\MailContext.cs" />
     <Compile Include="Models\MD5Class.cs" />
     <Compile Include="Models\PDFClass.cs" />
+    <Compile Include="Models\SvodReport.cs" />
     <Compile Include="Models\TBPComment.cs" />
     <Compile Include="Models\TBPHistoryRecord.cs" />
     <Compile Include="Models\TBPInfo.cs" />
@@ -226,6 +227,7 @@
     <Content Include="Views\Home\MainPage.aspx" />
     <Content Include="Views\Home\SyncDB.aspx" />
     <Content Include="Views\Home\View1.aspx" />
+    <Content Include="Views\Print\Svod.aspx" />
     <Content Include="Views\Print\PrintJournalBP.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
