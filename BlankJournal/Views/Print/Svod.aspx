@@ -128,7 +128,10 @@
             <th style="border-top-width:3px; border-top-color:darkred;" class="cap fill">Декабрь</th>
         </tr>
         <tr>
-            <th style="border-bottom-width: 3px; border-bottom-color:darkred; border-top-width:3px; border-top-color:darkred;" colspan="15" class="fill">Переключения</th>
+            <th style="border-bottom-width: 3px; border-bottom-color:darkred; border-top-width:3px; border-top-color:darkred;" colspan="15" class="fill">
+                Переключения<br />
+                * - ОБП созданные из пустого шаблона (не на основе ТБП)
+            </th>
         </tr>
         <tr>
             <th rowspan="4" style="border-bottom-width: 3px; border-top-width:3px; border-bottom-color:darkred;border-top-color:darkred;">Все папки</th>
@@ -139,21 +142,21 @@
             <%} %>
         </tr>
         <tr>
-            <th class="tbp">По ТБП</th>
+            <th class="tbp">ТБП</th>
             <th class="tbp"><%=Svod.TBPInfo.Sum %></th>
             <%for (int month = 1; month <= 12; month++) { %>
             <td class="tbp"><%=Svod.TBPInfo.MonthInfo[month] %></td>
             <%} %>
         </tr>
         <tr>
-            <th class="obp">По ОБП</th>
+            <th class="obp">ОБП</th>
             <th class="obp"><%=Svod.OBPInfo.Sum %></th>
             <%for (int month = 1; month <= 12; month++) { %>
             <td class="obp"><%=Svod.OBPInfo.MonthInfo[month] %></td>
             <%} %>
         </tr>
         <tr>
-            <th  style="border-bottom-width: 3px; border-bottom-color:darkred;" class="obp">По ОБП (без папки)</th>
+            <th  style="border-bottom-width: 3px; border-bottom-color:darkred;" class="obp">ОБП * </th>
             <th  style="border-bottom-width: 3px; border-bottom-color:darkred;"  class="obp"><%=Svod.OBPEmptyInfo.Sum %></th>
             <%for (int month = 1; month <= 12; month++) { %>
             <td  style="border-bottom-width: 3px; border-bottom-color:darkred;"  class="obp"><%=Svod.OBPEmptyInfo.MonthInfo[month] %></td>
@@ -187,7 +190,10 @@
 
         <%} %>
         <tr>
-            <th style="border-bottom-width: 3px; border-top-width:3px; border-bottom-color:darkred;border-top-color:darkred;" colspan="15" class="fill tb bb">Замечания</th>
+            <th style="border-bottom-width: 3px; border-top-width:3px; border-bottom-color:darkred;border-top-color:darkred;" colspan="15" class="fill tb bb">
+                Замечания<br />
+                * - количество активных (не закрытых) замечаний на конец месяца
+            </th>
         </tr>
         <tr>
             <th colspan="2">Создано замечаний</th>
@@ -204,7 +210,7 @@
             <%} %>
         </tr>
         <tr>
-            <th  style="border-bottom-width: 3px; border-bottom-color:darkred;"  colspan="2">Активных замечаний</th>
+            <th  style="border-bottom-width: 3px; border-bottom-color:darkred;"  colspan="2">Активных замечаний *</th>
             <th  style="border-bottom-width: 3px; border-bottom-color:darkred;"  class="center"><%=Svod.CommentActiveInfo.Sum %></th>
             <%for (int month = 1; month <= 12; month++) { %>
             <td  style="border-bottom-width: 3px; border-bottom-color:darkred;"  class="center"><%=Svod.CommentActiveInfo.MonthInfo[month] %></td>
