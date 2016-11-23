@@ -87,9 +87,9 @@ namespace BlankJournal.Models
 
 			OBPEmptyInfo = new SvodRecordRow();
 			var blankEmpty = from b in eni.BPJournalTable
-							 where (b.DateCreate >= DateStart && b.DateCreate <= DateEnd && b.TBPID<=0 && b.isOBP)
-							 orderby b.DateCreate
-							 select b;
+											 where (b.DateCreate >= DateStart && b.DateCreate <= DateEnd && b.TBPID <= 0 && b.isOBP)
+											 orderby b.DateCreate
+											 select b;
 
 			foreach (var be in blankEmpty) {
 				int month = be.DateCreate.Month;
@@ -99,7 +99,7 @@ namespace BlankJournal.Models
 
 
 			TBPInfo = SvodRecordRow.getSumRecord(TBPFoldersInfo.Values.ToList());
-			List<SvodRecordRow> obps = OBPFoldersInfo.Values.ToList();obps.Add(OBPEmptyInfo);
+			List<SvodRecordRow> obps = OBPFoldersInfo.Values.ToList(); obps.Add(OBPEmptyInfo);
 			OBPInfo = SvodRecordRow.getSumRecord(obps);
 			List<SvodRecordRow> all = new List<SvodRecordRow>();
 			all.Add(TBPInfo); all.Add(OBPInfo);
@@ -153,6 +153,11 @@ namespace BlankJournal.Models
 			CommentActiveInfo.Sum = CommentActiveInfo.MonthInfo.Last().Value;
 		}
 
-
+		public static string getText(int val) {
+			//return val > 0 ? String.Format("<b><u>{0}</u></b>", val) : val.ToString();
+			return val > 0 ? val.ToString():"-";
+		}
 	}
+
+
 }

@@ -101,6 +101,7 @@
              border-bottom-width:7px;
         }
 
+       
         table td.tb table th.tb {
 
             border-bottom-width:7px;
@@ -112,7 +113,8 @@
     <h1>Таблица учета Бланков переключений за <%=Svod.Year%> год</h1>
     <table>
         <tr >
-            <th style="border-top-width:3px; border-top-color:darkred;" colspan="2" class="fill tb bb">&nbsp;</th>
+            <th style="border-top-width:3px; border-top-color:darkred;" colspan="3" class="fill tb bb">&nbsp;</th>            
+
             <th style="border-top-width:3px; border-top-color:darkred;" class="cap fill">Сумма</th>
             <th style="border-top-width:3px; border-top-color:darkred;" class="cap fill">Январь</th>
             <th style="border-top-width:3px; border-top-color:darkred;" class="cap fill">Февраль</th>
@@ -126,40 +128,43 @@
             <th style="border-top-width:3px; border-top-color:darkred;" class="cap fill">Октябрь</th>
             <th style="border-top-width:3px; border-top-color:darkred;" class="cap fill">Ноябрь</th>
             <th style="border-top-width:3px; border-top-color:darkred;" class="cap fill">Декабрь</th>
+            
         </tr>
         <tr>
-            <th style="border-bottom-width: 3px; border-bottom-color:darkred; border-top-width:3px; border-top-color:darkred;" colspan="15" class="fill">
+            <th style="border-bottom-width: 3px; border-bottom-color:darkred; border-top-width:3px; border-top-color:darkred;" colspan="16" class="fill">
                 Переключения<br />
                 * - ОБП созданные из пустого шаблона (не на основе ТБП)
             </th>
         </tr>
         <tr>
             <th rowspan="4" style="border-bottom-width: 3px; border-top-width:3px; border-bottom-color:darkred;border-top-color:darkred;">Все папки</th>
-            <th>Сумма</th>
+            <th>Замечания</th>     
+            <th>Сумма</th>                   
             <th><%=Svod.SumInfo.Sum %></th>
             <%for (int month = 1; month <= 12; month++) { %>
-            <td><%=Svod.SumInfo.MonthInfo[month] %></td>
-            <%} %>
+            <td><%=SvodReport.getText(Svod.SumInfo.MonthInfo[month])%></td>            
+            <%} %>            
         </tr>
         <tr>
+            <th rowspan="3" style="border-bottom-width: 3px; border-bottom-color:darkred; color:red"><%=Svod.CommentActiveInfo.Sum %></th>
             <th class="tbp">ТБП</th>
             <th class="tbp"><%=Svod.TBPInfo.Sum %></th>
             <%for (int month = 1; month <= 12; month++) { %>
-            <td class="tbp"><%=Svod.TBPInfo.MonthInfo[month] %></td>
-            <%} %>
+            <td class="tbp"><%=SvodReport.getText(Svod.TBPInfo.MonthInfo[month]) %></td>
+            <%} %>            
         </tr>
         <tr>
             <th class="obp">ОБП</th>
             <th class="obp"><%=Svod.OBPInfo.Sum %></th>
             <%for (int month = 1; month <= 12; month++) { %>
-            <td class="obp"><%=Svod.OBPInfo.MonthInfo[month] %></td>
+            <td class="obp"><%=SvodReport.getText(Svod.OBPInfo.MonthInfo[month]) %></td>
             <%} %>
         </tr>
         <tr>
             <th  style="border-bottom-width: 3px; border-bottom-color:darkred;" class="obp">ОБП * </th>
             <th  style="border-bottom-width: 3px; border-bottom-color:darkred;"  class="obp"><%=Svod.OBPEmptyInfo.Sum %></th>
             <%for (int month = 1; month <= 12; month++) { %>
-            <td  style="border-bottom-width: 3px; border-bottom-color:darkred;"  class="obp"><%=Svod.OBPEmptyInfo.MonthInfo[month] %></td>
+            <td  style="border-bottom-width: 3px; border-bottom-color:darkred;"  class="obp"><%=SvodReport.getText(Svod.OBPEmptyInfo.MonthInfo[month]) %></td>
             <%} %>
         </tr>
         <%foreach (string folder in DBContext.Single.AllFolders.Keys) {
@@ -167,53 +172,55 @@
         <tr>
             <th style="border-bottom-width: 3px; border-bottom-color:darkred;" rowspan="3" class="bb"><%=folder%><br />
                 <%=DBContext.Single.AllFolders[folder].Name %></th>
-            <th>Сумма</th>
+            <th>Замечания</th>
+            <th>Сумма</th>            
             <th class="center"><%=Svod.OBPFoldersInfo[folder].Sum+Svod.TBPFoldersInfo[folder].Sum %></th>
             <%for (int month = 1; month <= 12; month++) { %>
-            <td class="center"><%=Svod.OBPFoldersInfo[folder].MonthInfo[month]+Svod.TBPFoldersInfo[folder].MonthInfo[month] %></td>
-            <%} %>
+            <td class="center"><%=SvodReport.getText(Svod.OBPFoldersInfo[folder].MonthInfo[month]+Svod.TBPFoldersInfo[folder].MonthInfo[month]) %></td>
+            <%} %>            
         </tr>
         <tr>
+             <th style="border-bottom-width: 3px; border-bottom-color:darkred; color:red;" rowspan="2" class="bb" ><%=Svod.CommentActiveFoldersInfo[folder].MonthInfo.Last().Value %></th>
             <th class="tbp">ТБП</th>
             <th class="tbp"><%=Svod.TBPFoldersInfo[folder].Sum %></th>
             <%for (int month = 1; month <= 12; month++) { %>
-            <td class="tbp"><%=Svod.TBPFoldersInfo[folder].MonthInfo[month] %></td>
-            <%} %>
+            <td class="tbp"><%=SvodReport.getText(Svod.TBPFoldersInfo[folder].MonthInfo[month]) %></td>
+            <%} %>           
         </tr>
         <tr>
             <th  style="border-bottom-width: 3px; border-bottom-color:darkred;"  class="obp">ОБП</th>
             <th  style="border-bottom-width: 3px; border-bottom-color:darkred;"  class="obp"><%=Svod.OBPFoldersInfo[folder].Sum %></th>
             <%for (int month = 1; month <= 12; month++) { %>
-            <td  style="border-bottom-width: 3px; border-bottom-color:darkred;"  class="obp"><%=Svod.OBPFoldersInfo[folder].MonthInfo[month] %></td>
+            <td  style="border-bottom-width: 3px; border-bottom-color:darkred;"  class="obp"><%=SvodReport.getText(Svod.OBPFoldersInfo[folder].MonthInfo[month]) %></td>
             <%} %>
         </tr>
 
         <%} %>
         <tr>
-            <th style="border-bottom-width: 3px; border-top-width:3px; border-bottom-color:darkred;border-top-color:darkred;" colspan="15" class="fill tb bb">
+            <th style="border-bottom-width: 3px; border-top-width:3px; border-bottom-color:darkred;border-top-color:darkred;" colspan="16" class="fill tb bb">
                 Замечания<br />
                 * - количество активных (не закрытых) замечаний на конец месяца
             </th>
         </tr>
         <tr>
-            <th colspan="2">Создано замечаний</th>
+            <th colspan="3">Создано замечаний</th>
             <th class="left"><%=Svod.CommentInfo.Sum %></th>
             <%for (int month = 1; month <= 12; month++) { %>
-            <td class="left"><%=Svod.CommentInfo.MonthInfo[month] %></td>
+            <td class="left"><%=SvodReport.getText(Svod.CommentInfo.MonthInfo[month]) %></td>
             <%} %>
         </tr>
         <tr>
-            <th colspan="2">Устранено замечаний</th>
+            <th colspan="3">Устранено замечаний</th>
             <th class="right"><%=Svod.CommentUstrInfo.Sum %></th>
             <%for (int month = 1; month <= 12; month++) { %>
-            <td class="right"><%=Svod.CommentUstrInfo.MonthInfo[month] %></td>
+            <td class="right"><%=SvodReport.getText(Svod.CommentUstrInfo.MonthInfo[month]) %></td>
             <%} %>
         </tr>
         <tr>
-            <th  style="border-bottom-width: 3px; border-bottom-color:darkred;"  colspan="2">Активных замечаний *</th>
+            <th  style="border-bottom-width: 3px; border-bottom-color:darkred;"  colspan="3">Активных замечаний *</th>
             <th  style="border-bottom-width: 3px; border-bottom-color:darkred;"  class="center"><%=Svod.CommentActiveInfo.Sum %></th>
             <%for (int month = 1; month <= 12; month++) { %>
-            <td  style="border-bottom-width: 3px; border-bottom-color:darkred;"  class="center"><%=Svod.CommentActiveInfo.MonthInfo[month] %></td>
+            <td  style="border-bottom-width: 3px; border-bottom-color:darkred;"  class="center"><%=SvodReport.getText(Svod.CommentActiveInfo.MonthInfo[month]) %></td>
             <%} %>
         </tr>
 
