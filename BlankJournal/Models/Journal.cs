@@ -91,6 +91,53 @@ namespace BlankJournal.Models {
 			return rec;
 		}
 
+		public static JournalRecord initTBPRecordBase(JournalRecord baseBP) {
+			Logger.info("Инициализация нового ТБП (в журнале) на основе " + baseBP.Number);
+			JournalRecord rec = new JournalRecord();
+			FillTBPNumber(rec, baseBP.TBPNumber);
+			rec.Author = DBContext.Single.GetCurrentUser().Login;
+			rec.Task = baseBP.Task;
+			rec.isOBP = false;
+			rec.TBPNumber = baseBP.TBPNumber;
+			rec.TBPID = baseBP.TBPID;
+			try {
+				Logger.info(String.Format("Получение информации о свазянном ТБП (активен ли он"));
+				BlankJournal.BlanksEntities eni = new BlanksEntities();
+				TBPInfoTable tbp= (from t in eni.TBPInfoTable where t.ID == baseBP.TBPID select t).FirstOrDefault();
+				if (tbp!=null && tbp.isActive) {
+					Logger.info("Связанный ТБП активен");
+					rec.TBPID = tbp.ID;
+					rec.TBPNumber = tbp.Number;
+				} else {
+					Logger.info("Связанный ТБП не найден или не активен. Поиск ТБП по номеру");
+					tbp = (from t in eni.TBPInfoTable where t.Number == baseBP.TBPNumber && t.isActive select t ).FirstOrDefault();
+					if (tbp != null) {
+						Logger.info("Найден ТБП по номеру");
+						rec.TBPNumber = tbp.Number;
+						rec.TBPID = tbp.ID;
+					} else {
+						Logger.info("Не найден ТБП по номеру");
+						return null;
+					}
+				}
+			} catch (Exception e) {
+				Logger.info("Ошибка при получении актуальной информации из БД о ТБП");
+				return null;
+			}
+			
+			DateTime dt = DateTime.Now;
+			rec.DateCreate = new DateTime(dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second, DateTimeKind.Unspecified);
+			rec.DateEnd = rec.DateCreate;
+			rec.DateStart = rec.DateCreate;
+			rec.StartLSO = 0;
+			rec.EndLSO = 0;
+			rec.Zayav = baseBP.Zayav;
+			rec.Comment = baseBP.Comment;
+			rec.OBPComment = baseBP.Comment;
+			Logger.info("Номер ТБП присвоен");
+			return rec;
+		}
+
 		public static void FillTBPNumber(JournalRecord rec, string tbpNumber) {
 			BlankJournal.BlanksEntities eni = new BlanksEntities();
 			DateTime date = DateTime.Now;
@@ -182,9 +229,79 @@ namespace BlankJournal.Models {
 			Logger.info("шаблон ОБП создан");
 			return rec;
 		}
+
+		public static JournalRecord initOBPRecordBase(JournalRecord baseBP) {
+			Logger.info("Инициализация нового ОБП (в журнале) на основе" + baseBP.Number);
+			JournalRecord rec = new JournalRecord();
+			BlankJournal.BlanksEntities eni = new BlanksEntities();
+			
+			int FullNum = FillOBPNumber(rec);
+			rec.Author = DBContext.Single.GetCurrentUser().Login;
+			rec.Task = baseBP.Task;
+			rec.isOBP = true;
+			rec.TBPNumber = baseBP.TBPNumber;
+			rec.TBPID = baseBP.TBPID;
+			if (rec.TBPNumber != "-") {
+				try {
+					Logger.info(String.Format("Получение информации о свазянном ТБП (активен ли он"));
+					TBPInfoTable tbp = (from t in eni.TBPInfoTable where t.ID == baseBP.TBPID select t).FirstOrDefault();
+					if (tbp != null && tbp.isActive) {
+						Logger.info("Связанный ТБП активен");
+						rec.TBPID = tbp.ID;
+						rec.TBPNumber = tbp.Number;
+					} else {
+						Logger.info("Связанный ТБП не найден или не активен. Поиск ТБП по номеру");
+						tbp = (from t in eni.TBPInfoTable where t.Number == baseBP.TBPNumber && t.isActive select t).FirstOrDefault();
+						if (tbp != null) {
+							Logger.info("Найден ТБП по номеру");
+							rec.TBPNumber = tbp.Number;
+							rec.TBPID = tbp.ID;
+						} else {
+							Logger.info("Не найден ТБП по номеру");
+							rec.TBPNumber = "-";
+							rec.TBPID = 0;
+						}
+					}
+				} catch (Exception e) {
+					Logger.info("Ошибка при получении актуальной информации из БД о ТБП");
+					rec.TBPNumber = "-";
+					rec.TBPID = 0;
+				}
+			}
+
+			rec.StartLSO = DBContext.Single.MaxLSO + 1;
+			rec.EndLSO = DBContext.Single.MaxLSO + 2;
+
+
+			Logger.info("Копирование файла ОБП");
+			try {
+				string obpFile = BlankJournal.Models.WordData.cloneOBP(DBContext.TempFolder, baseBP, FullNum);
+				rec.WordData = File.ReadAllBytes(DBContext.TempFolder + "/" + obpFile);
+				int pg = BlankJournal.Models.WordData.getCountPages(DBContext.TempFolder + "/" + obpFile);
+				rec.EndLSO = rec.StartLSO + pg - 1;
+				rec.FileInfoWord = obpFile;
+			} catch (Exception e) {
+				Logger.info("Ошибка при копировании файла ОБП ");
+			}
+
+			DateTime dt = DateTime.Now;
+			rec.DateCreate = new DateTime(dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second, DateTimeKind.Unspecified);
+			rec.DateEnd = rec.DateCreate;
+			rec.DateStart = rec.DateCreate;
+			rec.Zayav = baseBP.Zayav;
+			rec.OBPComment = baseBP.OBPComment;
+			rec.Comment = baseBP.Comment;
+			rec.CountLSO = rec.EndLSO - rec.StartLSO + 1;
+
+			Logger.info("шаблон ОБП создан");
+			return rec;
+		}
+
+
 		public static DateTime getDateWithoutSecond(DateTime date) {
 			return date.AddSeconds(-date.Second).AddMilliseconds(-date.Millisecond);
 		}
+
 		public static ReturnMessage CreateBP(JournalRecord record) {
 			Logger.info("Создание/изменение зписи о переключении в журнале "+record.ShortNumber);
 			string addMessage = "";

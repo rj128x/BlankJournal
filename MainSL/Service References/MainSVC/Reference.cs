@@ -2039,6 +2039,11 @@ namespace MainSL.MainSVC {
         
         MainSL.MainSVC.JournalRecord EndInitOBP(System.IAsyncResult result);
         
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:MainService/InitBPBase", ReplyAction="urn:MainService/InitBPBaseResponse")]
+        System.IAsyncResult BeginInitBPBase(MainSL.MainSVC.JournalRecord baseBP, System.AsyncCallback callback, object asyncState);
+        
+        MainSL.MainSVC.JournalRecord EndInitBPBase(System.IAsyncResult result);
+        
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:MainService/InitComment", ReplyAction="urn:MainService/InitCommentResponse")]
         System.IAsyncResult BeginInitComment(MainSL.MainSVC.TBPInfo tbp, System.AsyncCallback callback, object asyncState);
         
@@ -2275,6 +2280,25 @@ namespace MainSL.MainSVC {
         private object[] results;
         
         public InitOBPCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public MainSL.MainSVC.JournalRecord Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((MainSL.MainSVC.JournalRecord)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class InitBPBaseCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public InitBPBaseCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -2738,6 +2762,12 @@ namespace MainSL.MainSVC {
         
         private System.Threading.SendOrPostCallback onInitOBPCompletedDelegate;
         
+        private BeginOperationDelegate onBeginInitBPBaseDelegate;
+        
+        private EndOperationDelegate onEndInitBPBaseDelegate;
+        
+        private System.Threading.SendOrPostCallback onInitBPBaseCompletedDelegate;
+        
         private BeginOperationDelegate onBeginInitCommentDelegate;
         
         private EndOperationDelegate onEndInitCommentDelegate;
@@ -2938,6 +2968,8 @@ namespace MainSL.MainSVC {
         public event System.EventHandler<InitTBPCompletedEventArgs> InitTBPCompleted;
         
         public event System.EventHandler<InitOBPCompletedEventArgs> InitOBPCompleted;
+        
+        public event System.EventHandler<InitBPBaseCompletedEventArgs> InitBPBaseCompleted;
         
         public event System.EventHandler<InitCommentCompletedEventArgs> InitCommentCompleted;
         
@@ -3348,6 +3380,52 @@ namespace MainSL.MainSVC {
             }
             base.InvokeAsync(this.onBeginInitOBPDelegate, new object[] {
                         tbp}, this.onEndInitOBPDelegate, this.onInitOBPCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult MainSL.MainSVC.MainService.BeginInitBPBase(MainSL.MainSVC.JournalRecord baseBP, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginInitBPBase(baseBP, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        MainSL.MainSVC.JournalRecord MainSL.MainSVC.MainService.EndInitBPBase(System.IAsyncResult result) {
+            return base.Channel.EndInitBPBase(result);
+        }
+        
+        private System.IAsyncResult OnBeginInitBPBase(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            MainSL.MainSVC.JournalRecord baseBP = ((MainSL.MainSVC.JournalRecord)(inValues[0]));
+            return ((MainSL.MainSVC.MainService)(this)).BeginInitBPBase(baseBP, callback, asyncState);
+        }
+        
+        private object[] OnEndInitBPBase(System.IAsyncResult result) {
+            MainSL.MainSVC.JournalRecord retVal = ((MainSL.MainSVC.MainService)(this)).EndInitBPBase(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnInitBPBaseCompleted(object state) {
+            if ((this.InitBPBaseCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.InitBPBaseCompleted(this, new InitBPBaseCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void InitBPBaseAsync(MainSL.MainSVC.JournalRecord baseBP) {
+            this.InitBPBaseAsync(baseBP, null);
+        }
+        
+        public void InitBPBaseAsync(MainSL.MainSVC.JournalRecord baseBP, object userState) {
+            if ((this.onBeginInitBPBaseDelegate == null)) {
+                this.onBeginInitBPBaseDelegate = new BeginOperationDelegate(this.OnBeginInitBPBase);
+            }
+            if ((this.onEndInitBPBaseDelegate == null)) {
+                this.onEndInitBPBaseDelegate = new EndOperationDelegate(this.OnEndInitBPBase);
+            }
+            if ((this.onInitBPBaseCompletedDelegate == null)) {
+                this.onInitBPBaseCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnInitBPBaseCompleted);
+            }
+            base.InvokeAsync(this.onBeginInitBPBaseDelegate, new object[] {
+                        baseBP}, this.onEndInitBPBaseDelegate, this.onInitBPBaseCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -4537,6 +4615,19 @@ namespace MainSL.MainSVC {
             public MainSL.MainSVC.JournalRecord EndInitOBP(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 MainSL.MainSVC.JournalRecord _result = ((MainSL.MainSVC.JournalRecord)(base.EndInvoke("InitOBP", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginInitBPBase(MainSL.MainSVC.JournalRecord baseBP, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = baseBP;
+                System.IAsyncResult _result = base.BeginInvoke("InitBPBase", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public MainSL.MainSVC.JournalRecord EndInitBPBase(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                MainSL.MainSVC.JournalRecord _result = ((MainSL.MainSVC.JournalRecord)(base.EndInvoke("InitBPBase", _args, result)));
                 return _result;
             }
             

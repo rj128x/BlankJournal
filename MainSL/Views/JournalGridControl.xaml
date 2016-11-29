@@ -39,7 +39,7 @@
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
                             <StackPanel Orientation="Vertical">
-                                <TextBlock Text="{Binding Zayav}" TextWrapping="Wrap" />                                
+                                <TextBlock Text="{Binding Zayav}" TextWrapping="Wrap" />
                             </StackPanel>
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
@@ -67,7 +67,7 @@
                                     <TextBlock Text="{Binding Comment}" TextWrapping="Wrap" Visibility="{Binding Comment, Converter={StaticResource visibilityConverter}}"/>
                                     <TextBlock Text="{Binding OBPComment}" TextWrapping="Wrap" Visibility="{Binding isOBP, Converter={StaticResource visibilityConverter}}" 
                                                HorizontalAlignment="Right" Margin="0,0,10,0" FontStyle="Italic"/>
-                                    
+
                                 </StackPanel>
 
                                 <StackPanel Orientation="Vertical" Visibility="{Binding HasCrossDate, Converter={StaticResource visibilityConverter}}">
@@ -113,15 +113,22 @@
                                     <ColumnDefinition Width="20"/>
                                 </Grid.ColumnDefinitions>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Column="0">
-                                    <Button Content="Бланк" Name="btnShow" Click="btnShow_Click" Height="30"/>
-                                    <Button Content="Изменить" Name="btnEdit" Click="btnEdit_Click" Height="30" 
-                                        Visibility="{Binding Closed, Converter={StaticResource visibilityNotConverter}}"/>
+                                    <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                                        <Button Content="Бланк" Name="btnShow" Click="btnShow_Click" Height="20" Width="50" ToolTipService.ToolTip="Файл бланка" Padding="0,0,0,0"/>
+                                        <Button Content="Копия" Name="btnCopy" Click="btnCopy_Click" Height="20"  Width="50"  Padding="0,0,0,0"
+                                              IsEnabled="{Binding Single.CurrentUser.CanDoOper, Source={StaticResource globalContext}}" 
+                                                ToolTipService.ToolTip="Создать новый бланк на основе" />
+                                    </StackPanel>
+
+                                    <Button Content="Изменить" Name="btnEdit" Click="btnEdit_Click" Height="30"  Width="60" VerticalAlignment="Center"
+                                        Visibility="{Binding Closed, Converter={StaticResource visibilityNotConverter}}" ToolTipService.ToolTip="Редактировать" />
+
                                 </StackPanel>
 
                                 <Button Grid.Column="1" Content="X" Name="btnDelete" Click="btnDelete_Click" Height="30" Foreground="Red" FontSize="18" FontWeight="Bold" FontFamily="Courier New"
-                                        Visibility="{Binding Closed, Converter={StaticResource visibilityNotConverter}}" HorizontalAlignment="Right"/>
+                                        Visibility="{Binding Closed, Converter={StaticResource visibilityNotConverter}}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                                 <Button Grid.Column="1" Content="*" Name="btnUnblock" Click="btnUnblock_Click" Height="30" Foreground="Green" FontSize="18" FontWeight="Bold" FontFamily="Courier New"
-                                        Visibility="{Binding CanUnblock, Converter={StaticResource visibilityConverter}}" HorizontalAlignment="Right" />
+                                        Visibility="{Binding CanUnblock, Converter={StaticResource visibilityConverter}}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                             </Grid>
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>

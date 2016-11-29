@@ -30,7 +30,7 @@
                         
                 </StackPanel>                
             </Grid>
-            <usr:JournalGridControl Name="cntrlJournal" Grid.Row="1" Margin="0,0,0,15"/>
+            <usr:JournalGridControl x:Name="cntrlJournal" Grid.Row="1" Margin="0,0,0,15"/>
         </Grid>
     </Grid>
 </navigation:Page>

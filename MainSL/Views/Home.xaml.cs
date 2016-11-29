@@ -20,6 +20,7 @@ namespace MainSL
 	public partial class Home : Page, INotifyPropertyChanged
 	{
 		public event PropertyChangedEventHandler PropertyChanged;
+		public TBPJournalWindow currentJournalWindow;
 
 		public void NotifyChanged(string propName) {
 			if (PropertyChanged != null)
@@ -52,8 +53,7 @@ namespace MainSL
 			GlobalContext.Single.Client.removeTBPCompleted += Client_removeTBPCompleted;
 			GlobalContext.Single.Client.InitCommentCompleted += Client_InitCommentCompleted;
 			GlobalContext.Single.Client.GetJournalBPCompleted += Client_GetJournalBPCompleted;
-
-
+			GlobalContext.Single.Client.InitBPBaseCompleted += Client_InitBPBaseCompleted;
 		}
 
 
@@ -64,6 +64,7 @@ namespace MainSL
 			GlobalContext.Single.Client.removeTBPCompleted -= Client_removeTBPCompleted;
 			GlobalContext.Single.Client.InitCommentCompleted -= Client_InitCommentCompleted;
 			GlobalContext.Single.Client.GetJournalBPCompleted -= Client_GetJournalBPCompleted;
+			GlobalContext.Single.Client.InitBPBaseCompleted -= Client_InitBPBaseCompleted;
 
 		}
 
@@ -179,6 +180,11 @@ namespace MainSL
 				GlobalContext.Single.IsBusy = true;
 				GlobalContext.Single.Client.GetTBPBlanksByFolderAsync(CurrentFolder.ID, GlobalContext.Single.CurrentUser.ShowRemovedTBP);
 			}
+			if (currentJournalWindow != null) {
+				currentJournalWindow.Close();
+				currentJournalWindow = null;
+			}
+
 			//}
 		}
 
@@ -297,10 +303,13 @@ namespace MainSL
 				rec.Closed = true;
 			}
 			win.cntrlJournal.grdBlanks.ItemsSource = e.Result.Data;
+			win.cntrlJournal.OnCopyBlankPressed += CntrlJournal_OnCopyBlankPressed;
 			win.Width = this.ActualWidth * 0.99;
 			win.Height = this.ActualHeight * 0.85;
+			currentJournalWindow = win;
 			win.Show();
 		}
+
 
 		private void btnJournalTBP_Click(object sender, RoutedEventArgs e) {
 			GlobalContext.Single.IsBusy = true;
@@ -355,6 +364,25 @@ namespace MainSL
 					newWindow.Show();
 				}
 			}
+		}
+
+		private void Client_InitBPBaseCompleted(object sender, InitBPBaseCompletedEventArgs e) {
+			GlobalContext.Single.IsBusy = false;
+			JournalRecord newBlank = e.Result as JournalRecord;
+			if (newBlank == null) {
+				MessageBox.Show("Не удалось создать копию бланка. Возможно исходный ТБП удален");
+				return;
+			}
+			newBlank.isInit = true;
+			JournalRecordWindow win = new JournalRecordWindow();
+			win.Init(newBlank);
+			win.Closed += win_Closed;
+			win.Show();
+		}
+		
+		private void CntrlJournal_OnCopyBlankPressed(JournalRecord blank) {
+			GlobalContext.Single.IsBusy = true;
+			GlobalContext.Single.Client.InitBPBaseAsync(blank);
 		}
 	}
 }

@@ -96,6 +96,15 @@ namespace BlankJournal {
 		}
 
 		[OperationContract]
+		public JournalRecord InitBPBase(JournalRecord baseBP) {
+			if (baseBP.isOBP)
+				return JournalRecord.initOBPRecordBase(baseBP);
+			else
+				return JournalRecord.initTBPRecordBase(baseBP);
+		}
+
+
+		[OperationContract]
 		public TBPComment InitComment(TBPInfo tbp) {
 			return TBPComment.initTBPComment(tbp);
 		}

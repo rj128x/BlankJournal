@@ -114,6 +114,83 @@ namespace BlankJournal.Models
 			}
 		}
 
+		public static string cloneOBP(string folder, JournalRecord baseBP, int num = -1) {
+			Logger.info("Формирование ОБП из Базового ОБП " + baseBP.Number);
+			BlanksEntities eni = new BlanksEntities();
+			DataTable dt = (from d in eni.DataTable where d.ID == baseBP.IDWordData select d).FirstOrDefault();
+			if (dt == null) {
+				Logger.info("Файл не найден");
+				return null;
+			}
+
+			string fn = dt.FileInfo;
+			string fullpath = folder + fn;
+			try {
+				Logger.info("Формирование временного файла " + fullpath);
+				System.IO.File.WriteAllBytes(fullpath, dt.Data);
+			} catch (Exception e) {
+				Logger.info("ошибка при формировании временног файла " + e.ToString());
+				return null;
+			}
+
+			try {
+				Logger.info("Открытие документа");
+				WordprocessingDocument doc = WordprocessingDocument.Open(fullpath, true);
+				Body body = doc.MainDocumentPart.Document.Body;
+				IEnumerable<OpenXmlElement> paragraphs = body.Elements<OpenXmlElement>();
+				Logger.info("Абзацев:  " + paragraphs.Count().ToString());
+				List<OpenXmlElement> forDel = new List<OpenXmlElement>();
+				List<OpenXmlElement> forDelEnd = new List<OpenXmlElement>();
+				bool foundCel = false;
+				bool foundEnd = false;
+				foreach (OpenXmlElement elem in paragraphs) {
+					if (!(elem is SectionProperties)) {
+						if (!foundCel && !elem.InnerText.ToLower().Contains("цель переключений")) {
+							forDel.Add(elem);
+						} else {
+							foundCel = true;
+						}
+
+						if (elem.InnerText.ToLower().Contains("окончание:")) {
+							if (foundEnd) {
+								forDelEnd = new List<OpenXmlElement>();
+							}
+							foundEnd = true;
+						} else {
+							if (foundEnd) {
+								forDelEnd.Add(elem);
+							}
+						}
+					}
+				}
+
+				Logger.info("Удаление шапки и окончания бланка");
+				foreach (OpenXmlElement p in forDel) {
+					body.RemoveChild<OpenXmlElement>(p);
+				}
+				foreach (OpenXmlElement p in forDelEnd) {
+					body.RemoveChild<OpenXmlElement>(p);
+				}
+
+				WriteHeaderInfo(doc, num, baseBP.Task);
+				
+				Logger.info("Добавление новой шапки и окончания");
+				string obj = "";
+				try {
+					obj = (from tbp in eni.TBPInfoTable where tbp.ID == baseBP.TBPID && tbp.isActive select tbp.ObjectInfo).FirstOrDefault();
+				}catch (Exception e) {
+					Logger.info("Ошибка при получении объекта переключений");
+					obj = "";
+				}
+				WriteRegularData(body, obj, num);
+				doc.Close();
+				return fn;
+			} catch (Exception e) {
+				Logger.info("Ошибка при формировании обп" + e.ToString());
+				return null;
+			}
+		}
+
 		public static string createEmptyOBP(string folder, int num = -1) {
 			Logger.info("Создание пустого ОБП");
 			try {

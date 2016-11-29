@@ -57,6 +57,12 @@
   <wsdl:message name="MainService_InitOBP_OutputMessage">
     <wsdl:part name="parameters" element="InitOBPResponse" />
   </wsdl:message>
+  <wsdl:message name="MainService_InitBPBase_InputMessage">
+    <wsdl:part name="parameters" element="InitBPBase" />
+  </wsdl:message>
+  <wsdl:message name="MainService_InitBPBase_OutputMessage">
+    <wsdl:part name="parameters" element="InitBPBaseResponse" />
+  </wsdl:message>
   <wsdl:message name="MainService_InitComment_InputMessage">
     <wsdl:part name="parameters" element="InitComment" />
   </wsdl:message>
@@ -221,6 +227,10 @@
     <wsdl:operation name="InitOBP">
       <wsdl:input wsaw:Action="urn:MainService/InitOBP" message="MainService_InitOBP_InputMessage" />
       <wsdl:output wsaw:Action="urn:MainService/InitOBPResponse" message="MainService_InitOBP_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InitBPBase">
+      <wsdl:input wsaw:Action="urn:MainService/InitBPBase" message="MainService_InitBPBase_InputMessage" />
+      <wsdl:output wsaw:Action="urn:MainService/InitBPBaseResponse" message="MainService_InitBPBase_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="InitComment">
       <wsdl:input wsaw:Action="urn:MainService/InitComment" message="MainService_InitComment_InputMessage" />

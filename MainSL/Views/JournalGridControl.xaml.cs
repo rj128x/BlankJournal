@@ -17,11 +17,15 @@ namespace MainSL.Views {
 		public event EditBlankPressed OnEditButtonPressed;
 		public event EditBlankPressed OnDelButtonPressed;
 		public event EditBlankPressed OnUnblockButtonPressed;
+		public event EditBlankPressed OnCopyBlankPressed;
 
 		public JournalGridControl() {
 			InitializeComponent();
 		}
 
+		private void Client_InitBPBaseCompleted(object sender, InitBPBaseCompletedEventArgs e) {
+			throw new NotImplementedException();
+		}
 
 		private void btnShow_Click(object sender, RoutedEventArgs e) {
 			JournalRecord blank = grdBlanks.SelectedItem as JournalRecord;
@@ -65,5 +69,10 @@ namespace MainSL.Views {
 			}
 		}
 
+		private void btnCopy_Click(object sender, RoutedEventArgs e) {
+			JournalRecord newBlank = grdBlanks.SelectedItem as JournalRecord;
+			if (OnCopyBlankPressed != null)
+				OnCopyBlankPressed(newBlank);
+		}
 	}
 }

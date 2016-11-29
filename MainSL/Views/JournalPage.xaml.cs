@@ -40,9 +40,10 @@ namespace MainSL.Views {
 			cntrlJournal.OnEditButtonPressed += cntrlJournal_OnEditButtonPressed;
 			cntrlJournal.OnDelButtonPressed += cntrlJournal_OnDelButtonPressed;
 			cntrlJournal.OnUnblockButtonPressed += cntrlJournal_OnUnblockButtonPressed;
+			cntrlJournal.OnCopyBlankPressed += CntrlJournal_OnCopyBlankPressed;
 		}
 
-		
+
 
 		void cntrlJournal_OnEditButtonPressed(JournalRecord blank) {
 			GlobalContext.Single.IsBusy = false;
@@ -57,16 +58,15 @@ namespace MainSL.Views {
 			GlobalContext.Single.Client.GetJournalBPCompleted += Client_GetJournalBPCompleted;
 			GlobalContext.Single.Client.removeBPCompleted += Client_removeBPCompleted;
 			GlobalContext.Single.Client.UnblockBPCompleted += Client_UnblockBPCompleted;
+			GlobalContext.Single.Client.InitBPBaseCompleted += Client_InitBPBaseCompleted;
 		}
 
-		
-
-		
 
 		public void deInit() {
 			GlobalContext.Single.Client.GetJournalBPCompleted -= Client_GetJournalBPCompleted;
 			GlobalContext.Single.Client.removeBPCompleted -= Client_removeBPCompleted;
 			GlobalContext.Single.Client.UnblockBPCompleted -= Client_UnblockBPCompleted;
+			GlobalContext.Single.Client.InitBPBaseCompleted -= Client_InitBPBaseCompleted;
 		}
 
 		void Client_GetJournalBPCompleted(object sender, MainSVC.GetJournalBPCompletedEventArgs e) {
@@ -131,6 +131,26 @@ namespace MainSL.Views {
 			GlobalContext.Single.IsBusy = true;
 			GlobalContext.Single.Client.GetJournalBPAsync(CurrentFilter);
 		}
+
+		private void CntrlJournal_OnCopyBlankPressed(JournalRecord blank) {
+			GlobalContext.Single.IsBusy = true;
+			GlobalContext.Single.Client.InitBPBaseAsync(blank);
+		}
+
+		private void Client_InitBPBaseCompleted(object sender, InitBPBaseCompletedEventArgs e) {
+			GlobalContext.Single.IsBusy = false;
+			JournalRecord newBlank = e.Result as JournalRecord;
+			if (newBlank == null) {
+				MessageBox.Show("Не удалось создать копию бланка. Возможно исходный ТБП удален");
+				return;
+			}
+			newBlank.isInit = true;
+			JournalRecordWindow win = new JournalRecordWindow();
+			win.Init(newBlank);
+			win.Closed += win_Closed;
+			win.Show();
+		}
+
 
 	}
 }
