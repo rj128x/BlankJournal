@@ -110,25 +110,39 @@
                             <Grid >
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="20"/>
+                                    <ColumnDefinition Width="47"/>
                                 </Grid.ColumnDefinitions>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Column="0">
-                                    <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-                                        <Button Content="Бланк" Name="btnShow" Click="btnShow_Click" Height="20" Width="50" ToolTipService.ToolTip="Файл бланка" Padding="0,0,0,0"/>
-                                        <Button Content="Копия" Name="btnCopy" Click="btnCopy_Click" Height="20"  Width="50"  Padding="0,0,0,0"
-                                              IsEnabled="{Binding Single.CurrentUser.CanDoOper, Source={StaticResource globalContext}}" 
-                                                ToolTipService.ToolTip="Создать новый бланк на основе" />
-                                    </StackPanel>
+                                    <Button Name="btnShow" Click="btnShow_Click" Height="30" Width="30" ToolTipService.ToolTip="Файл бланка" Padding="0,0,0,0" Margin="0,0,0,0" >
+                                        <StackPanel>
+                                            <Image Width="30" Height="30" Source="/MainSL;component/Images/disk-save-as-icon.png" Stretch="Fill"/>
+                                        </StackPanel>
+                                    </Button>
 
-                                    <Button Content="Изменить" Name="btnEdit" Click="btnEdit_Click" Height="30"  Width="60" VerticalAlignment="Center"
-                                        Visibility="{Binding Closed, Converter={StaticResource visibilityNotConverter}}" ToolTipService.ToolTip="Редактировать" />
+                                    <Button Name="btnEdit" Click="btnEdit_Click" Height="30"  Width="30" VerticalAlignment="Center" Padding="0,0,0,0" Margin="0,0,0,0" 
+                                        Visibility="{Binding Closed, Converter={StaticResource visibilityNotConverter}}" ToolTipService.ToolTip="Редактировать" >
+                                        <StackPanel>
+                                            <Image Width="30" Height="30" Source="/MainSL;component/Images/accessories-text-editor-icon.png" Stretch="Fill"/>
+                                        </StackPanel>
+                                    </Button>
 
                                 </StackPanel>
 
-                                <Button Grid.Column="1" Content="X" Name="btnDelete" Click="btnDelete_Click" Height="30" Foreground="Red" FontSize="18" FontWeight="Bold" FontFamily="Courier New"
+
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1" >
+                                    <Button Name="btnCopy" Click="btnCopy_Click" Height="30"  Width="30" Padding="0,0,0,0" Margin="0,0,0,0" 
+                                              IsEnabled="{Binding Single.CurrentUser.CanDoOper, Source={StaticResource globalContext}}" 
+                                                ToolTipService.ToolTip="Создать новый бланк на основе"  HorizontalAlignment="Right" VerticalAlignment="Center">
+                                        <StackPanel>
+                                            <Image Width="30" Height="30" Source="/MainSL;component/Images/libreoffice-main-icon.png" Stretch="Fill"/>
+                                        </StackPanel>
+                                    </Button>
+                                    <Button Content="X" Name="btnDelete" Click="btnDelete_Click" Height="30" Foreground="Red" FontSize="18" FontWeight="Bold" FontFamily="Courier New"
                                         Visibility="{Binding Closed, Converter={StaticResource visibilityNotConverter}}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                                <Button Grid.Column="1" Content="*" Name="btnUnblock" Click="btnUnblock_Click" Height="30" Foreground="Green" FontSize="18" FontWeight="Bold" FontFamily="Courier New"
+                                    <Button Content="*" Name="btnUnblock" Click="btnUnblock_Click" Height="30" Foreground="Green" FontSize="18" FontWeight="Bold" FontFamily="Courier New"
                                         Visibility="{Binding CanUnblock, Converter={StaticResource visibilityConverter}}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                </StackPanel>
+
                             </Grid>
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
@@ -136,5 +150,6 @@
             </sdk:DataGrid.Columns>
 
         </sdk:DataGrid>
+
     </Grid>
 </UserControl>
