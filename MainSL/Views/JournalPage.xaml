@@ -25,9 +25,19 @@
                     <TextBlock Text="Проверка пересечений" Width="80" TextWrapping="Wrap" Style="{StaticResource Label}" Margin="0,0,20,0"/>
                     <TextBlock Text="Бланк " Style="{StaticResource Label}"/>
                     <TextBox Text="{Binding tbpInfo, Mode=TwoWay}" Width="120"/>
-                    <Button Name="btnRefresh" Content="Обновить" Click="btnRefresh_Click" Margin="20,0,0,0"/>
-                    <Button Name="btnPrint" Content="Печать" Click="btnPrint_Click"/>
-                        
+                    <Button Name="btnRefresh"  Click="btnRefresh_Click" Margin="20,0,0,0">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Image Height="20" Source="/MainSL;component/Images/btns/recycle.png"></Image>
+                            <TextBlock Text="Обновить" Style="{StaticResource LabelBtn}"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Name="btnPrint" Click="btnPrint_Click">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Image Height="20" Source="/MainSL;component/Images/btns/printer.png"></Image>
+                            <TextBlock Text="Печать" Style="{StaticResource LabelBtn}"/>
+                        </StackPanel>
+                    </Button>
+
                 </StackPanel>                
             </Grid>
             <usr:JournalGridControl x:Name="cntrlJournal" Grid.Row="1" Margin="0,0,0,15"/>

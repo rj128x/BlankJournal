@@ -110,19 +110,19 @@
                             <Grid >
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="47"/>
+                                    <ColumnDefinition Width="60"/>
                                 </Grid.ColumnDefinitions>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Column="0">
                                     <Button Name="btnShow" Click="btnShow_Click" Height="30" Width="30" ToolTipService.ToolTip="Файл бланка" Padding="0,0,0,0" Margin="0,0,0,0" >
                                         <StackPanel>
-                                            <Image Width="30" Height="30" Source="/MainSL;component/Images/disk-save-as-icon.png" Stretch="Fill"/>
+                                            <Image Height="30" Source="/MainSL;component/Images/btns/page_save.png"></Image>
                                         </StackPanel>
                                     </Button>
 
                                     <Button Name="btnEdit" Click="btnEdit_Click" Height="30"  Width="30" VerticalAlignment="Center" Padding="0,0,0,0" Margin="0,0,0,0" 
                                         Visibility="{Binding Closed, Converter={StaticResource visibilityNotConverter}}" ToolTipService.ToolTip="Редактировать" >
                                         <StackPanel>
-                                            <Image Width="30" Height="30" Source="/MainSL;component/Images/accessories-text-editor-icon.png" Stretch="Fill"/>
+                                            <Image Height="30" Source="/MainSL;component/Images/btns/page_edit.png"></Image>
                                         </StackPanel>
                                     </Button>
 
@@ -134,13 +134,23 @@
                                               IsEnabled="{Binding Single.CurrentUser.CanDoOper, Source={StaticResource globalContext}}" 
                                                 ToolTipService.ToolTip="Создать новый бланк на основе"  HorizontalAlignment="Right" VerticalAlignment="Center">
                                         <StackPanel>
-                                            <Image Width="30" Height="30" Source="/MainSL;component/Images/libreoffice-main-icon.png" Stretch="Fill"/>
+                                            <Image Height="30" Source="/MainSL;component/Images/btns/document_move.png"></Image>
                                         </StackPanel>
                                     </Button>
-                                    <Button Content="X" Name="btnDelete" Click="btnDelete_Click" Height="30" Foreground="Red" FontSize="18" FontWeight="Bold" FontFamily="Courier New"
-                                        Visibility="{Binding Closed, Converter={StaticResource visibilityNotConverter}}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                                    <Button Content="*" Name="btnUnblock" Click="btnUnblock_Click" Height="30" Foreground="Green" FontSize="18" FontWeight="Bold" FontFamily="Courier New"
-                                        Visibility="{Binding CanUnblock, Converter={StaticResource visibilityConverter}}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                    <Button Name="btnDelete" Click="btnDelete_Click" Height="30" Width="30" Foreground="Red" FontSize="18" FontWeight="Bold" FontFamily="Courier New"
+                                        Visibility="{Binding Closed, Converter={StaticResource visibilityNotConverter}}" HorizontalAlignment="Right" VerticalAlignment="Center"
+                                            ToolTipService.ToolTip="Удалить" Padding="0,0,0,0" Margin="0,0,0,0">
+                                        <StackPanel>
+                                            <Image Height="30" Source="/MainSL;component/Images/btns/page_delete.png"></Image>
+                                        </StackPanel>
+                                    </Button>
+                                    <Button  Name="btnUnblock" Click="btnUnblock_Click" Height="30" Width="30" Foreground="Green" FontSize="18" FontWeight="Bold" FontFamily="Courier New"
+                                        Visibility="{Binding CanUnblock, Converter={StaticResource visibilityConverter}}" HorizontalAlignment="Right" VerticalAlignment="Center"
+                                             ToolTipService.ToolTip="Разблокировать" Padding="0,0,0,0" Margin="0,0,0,0">
+                                        <StackPanel>
+                                            <Image Height="30" Source="/MainSL;component/Images/btns/page_key.png"></Image>
+                                        </StackPanel>
+                                    </Button>
                                 </StackPanel>
 
                             </Grid>

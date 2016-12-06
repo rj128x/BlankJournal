@@ -42,13 +42,28 @@
                     <TextBlock Text="*" Visibility="{Binding UpdatedWord, Converter={StaticResource visibilityConverter}}"/>
                     <TextBox Name="txtWord" Width="200" Text="{Binding FileInfoWord}" IsEnabled="False"/>
                     <Button Content="  ...  " Name="btnChooseWord" Click="btnChooseWord_Click"/>
-                    <Button Content="Редактор" Name="btnEdit" Click="btnEdit_Click"/>
+                    <Button Name="btnEdit" Click="btnEdit_Click">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Image Height="20" Source="/MainSL;component/Images/btns/document_check_compatibility.png"></Image>
+                            <TextBlock Text="Редактор" Style="{StaticResource LabelBtn}"/>
+                        </StackPanel>
+                    </Button>
                 </StackPanel>                
             </StackPanel>
-            
 
-            <Button x:Name="CancelButton" Content="Отмена" Click="CancelButton_Click" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,12,0,0" Grid.Row="1" />
-            <Button x:Name="OKButton" Content="ОК" Click="OKButton_Click" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,12,79,0" Grid.Row="1" />
+
+            <Button x:Name="CancelButton" Click="CancelButton_Click" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,12,0,0" Grid.Row="1" >
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Image Height="18" Source="/MainSL;component/Images/btns/cancel.png"></Image>
+                    <TextBlock Text="Отмена" Style="{StaticResource LabelBtn}"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="OKButton" Click="OKButton_Click" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,12,79,0" Grid.Row="1" >
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Image Height="18" Source="/MainSL;component/Images/btns/accept.png"></Image>
+                    <TextBlock Text="ОК" Style="{StaticResource LabelBtn}"/>
+                </StackPanel>
+            </Button>
         </Grid>
         <Grid Name="grdLoading" Visibility="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"
               OpacityMask="Aqua" Background="LightBlue" Opacity="0.7">

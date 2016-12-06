@@ -295,6 +295,39 @@
     <Resource Include="Images\accessories-text-editor-icon.png" />
     <Resource Include="Images\disk-save-as-icon.png" />
     <Resource Include="Images\libreoffice-main-icon.png" />
+    <Resource Include="Images\btns\file_extension_doc.png" />
+    <Resource Include="Images\btns\file_extension_pdf.png" />
+    <Resource Include="Images\btns\comment_add.png" />
+    <Resource Include="Images\btns\comment_delete.png" />
+    <Resource Include="Images\btns\page_word.png" />
+    <Resource Include="Images\btns\page_white_acrobat.png" />
+    <Resource Include="Images\btns\report_edit.png" />
+    <Resource Include="Images\btns\report_delete.png" />
+    <Resource Include="Images\btns\report_add.png" />
+    <Resource Include="Images\btns\book_edit.png" />
+    <Resource Include="Images\btns\book_go.png" />
+    <Resource Include="Images\btns\book.png" />
+    <Resource Include="Images\btns\folder_go.png" />
+    <Resource Include="Images\btns\books_stack.png" />
+    <Resource Include="Images\btns\document_info.png" />
+    <Resource Include="Images\btns\document_move.png" />
+    <Resource Include="Images\btns\page_edit.png" />
+    <Resource Include="Images\btns\page_save.png" />
+    <Resource Include="Images\btns\calendar_link.png" />
+    <Resource Include="Images\btns\calendar_edit.png" />
+    <Resource Include="Images\btns\accept.png" />
+    <Resource Include="Images\btns\cancel.png" />
+    <Resource Include="Images\btns\folder_delete.png" />
+    <Resource Include="Images\btns\folder_add.png" />
+    <Resource Include="Images\btns\folder_edit.png" />
+    <Resource Include="Images\btns\document_check_compatibility.png" />
+    <Resource Include="Images\btns\recycle.png" />
+    <Resource Include="Images\btns\printer.png" />
+    <Resource Include="Images\btns\vcard_add.png" />
+    <Resource Include="Images\btns\vcard_delete.png" />
+    <Resource Include="Images\btns\vcard_edit.png" />
+    <Resource Include="Images\btns\page_key.png" />
+    <Resource Include="Images\btns\page_delete.png" />
     <Content Include="Images\text-editor_4559.ico" />
     <Content Include="Images\votges.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -358,6 +391,7 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

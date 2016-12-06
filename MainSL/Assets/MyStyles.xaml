@@ -34,6 +34,13 @@
         <Setter Property="Foreground" Value="Gray"/>
     </Style>
 
+    <Style x:Key="LabelBtn" TargetType="TextBlock">
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="FontStyle" Value="Normal"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="DarkBlue"/>
+    </Style>
+
     <Style x:Key="Value" TargetType="TextBlock">
         <Setter Property="FontWeight" Value="ExtraBold"/>
         <Setter Property="FontStyle" Value="Normal"/>

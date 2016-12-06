@@ -16,8 +16,13 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                    <Button Name="btnChoose" Content="Добавить" Click="btnChoose_Click"
-                        IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}"/>
+                    <Button Name="btnChoose" Click="btnChoose_Click"
+                        IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Image Height="20" Source="/MainSL;component/Images/btns/books_stack.png"></Image>
+                            <TextBlock Text="Добавить" Style="{StaticResource LabelBtn}"/>
+                        </StackPanel>
+                    </Button>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Row="1" Name="pnlData">
                     <ListBox Name="selFiles" Width="300" ItemsSource="{Binding fileNames,Mode=OneWay}"/>
@@ -26,10 +31,20 @@
             </Grid>
 
 
-            <Button x:Name="CancelButton" Content="Отмена" Click="CancelButton_Click" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,12,0,0" Grid.Row="1" 
-                IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}"/>
-            <Button x:Name="OKButton" Content="ОК" Click="OKButton_Click" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,12,79,0" Grid.Row="1" 
-                IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}"/>
+            <Button x:Name="CancelButton" Click="CancelButton_Click" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,12,0,0" Grid.Row="1" 
+                IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Image Height="18" Source="/MainSL;component/Images/btns/cancel.png"></Image>
+                    <TextBlock Text="Отмена" Style="{StaticResource LabelBtn}"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="OKButton"  Click="OKButton_Click" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,12,79,0" Grid.Row="1" 
+                IsEnabled="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource logicNotConverter}}">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Image Height="18" Source="/MainSL;component/Images/btns/accept.png"></Image>
+                    <TextBlock Text="ОК" Style="{StaticResource LabelBtn}"/>
+                </StackPanel>
+            </Button>
         </Grid>
         <Grid Name="grdLoading" Visibility="{Binding Single.IsBusy, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"
               OpacityMask="Aqua" Background="LightBlue" Opacity="0.7">

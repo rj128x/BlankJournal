@@ -29,20 +29,45 @@
             </Grid.RowDefinitions>
             <Grid>
                 <StackPanel Orientation="Horizontal" FlowDirection="LeftToRight" HorizontalAlignment="Left">
-                    <Button Name="btnNewTBP" Content="Создать ТБП" Click="Button_Click" 
-                        Visibility="{Binding Single.CurrentUser.IsAdmin, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
-                    <Button Name="btnPacketLoad" Content="Пакетная загрузка ТБП" Click="btnPacketLoad_Click" 
-                        Visibility="{Binding Single.CurrentUser.IsAdmin, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
-                    <Button Name="btnSync" Content="Синхронизация БД" Click="btnSync_Click" 
-                        Visibility="{Binding Single.CurrentUser.IsAdmin, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
+                    <Button Name="btnNewTBP" Click="Button_Click" 
+                        Visibility="{Binding Single.CurrentUser.IsAdmin, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Image Height="20" Source="/MainSL;component/Images/btns/report_add.png"></Image>
+                            <TextBlock Text="Создать ТБП" Style="{StaticResource LabelBtn}"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Name="btnPacketLoad" Click="btnPacketLoad_Click" 
+                        Visibility="{Binding Single.CurrentUser.IsAdmin, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Image Height="20" Source="/MainSL;component/Images/btns/books_stack.png"></Image>
+                            <TextBlock Text="Пакетная загрузка ТБП" Style="{StaticResource LabelBtn}"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Name="btnSync"  Click="btnSync_Click" 
+                        Visibility="{Binding Single.CurrentUser.IsAdmin, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Image Height="20" Source="/MainSL;component/Images/btns/folder_go.png"></Image>
+                            <TextBlock Text="Синхронизация БД" Style="{StaticResource LabelBtn}"/>
+                        </StackPanel>
+                    </Button>
                     <!--<Button Name="btnClearHistory" Content="Очистка истории ТБП" Click="btnClearHistory_Click" 
                         Visibility="{Binding Single.CurrentUser.CanEditTBP, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>-->
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft" HorizontalAlignment="Right">
-                    <Button Name="btnNewOBP" Content="Создать ОБП" Click="btnNewOBP_Click"
-                        Visibility="{Binding Single.CurrentUser.CanDoOper, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
-                    <Button Name="btnTemplateOBP" Content="Шаблон ОБП" Click="btnTemplateOBP_Click"
-                        Visibility="{Binding Single.CurrentUser.CanDoOper, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"/>
+                    <Button Name="btnNewOBP" Click="btnNewOBP_Click"
+                        Visibility="{Binding Single.CurrentUser.CanDoOper, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" FlowDirection="LeftToRight">
+                            <Image Height="20" Source="/MainSL;component/Images/btns/page_word.png"></Image>
+                            <TextBlock Text="Создать ОБП" Style="{StaticResource LabelBtn}"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Name="btnTemplateOBP" Click="btnTemplateOBP_Click"
+                        Visibility="{Binding Single.CurrentUser.CanDoOper, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" FlowDirection="LeftToRight">
+                            <Image Height="20" Source="/MainSL;component/Images/btns/document_info.png"></Image>
+                            <TextBlock Text="Шаблон ОБП" Style="{StaticResource LabelBtn}"/>
+                        </StackPanel>
+                    </Button>
                 </StackPanel>
             </Grid>
             <Grid Grid.Row="1" VerticalAlignment="Stretch">
@@ -146,18 +171,48 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="Связанные файлы" Width="150" Style="{StaticResource Label}"/>
-                                <Button Content="ТБП (PDF)" Name="btnShowPDF" Click="btnShowPDF_Click"  Width="110"/>
-                                <Button Content= "ТБП (Word)" Name="btnShowWord" Click="btnShowWord_Click" Width="110"/>
-                                <Button Content= "ОБП (Word)" Name="btnShowWordOBP" Click="btnShowWordOBP_Click" Width="110" />
+                                <Button Name="btnShowPDF" Click="btnShowPDF_Click"  Width="100"  >
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <Image Height="20" Source="/MainSL;component/Images/btns/file_extension_pdf.png"></Image>
+                                        <TextBlock Text="ТБП" Style="{StaticResource LabelBtn}"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button Name="btnShowWord" Click="btnShowWord_Click" Width="100">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <Image Height="20" Source="/MainSL;component/Images/btns/file_extension_doc.png"></Image>
+                                        <TextBlock Text="ТБП" Style="{StaticResource LabelBtn}"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button Name="btnShowWordOBP" Click="btnShowWordOBP_Click" Width="100" >
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <Image Height="20" Source="/MainSL;component/Images/btns/file_extension_doc.png"></Image>
+                                        <TextBlock Text="ОБП" Style="{StaticResource LabelBtn}"/>
+                                    </StackPanel>
+                                </Button>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
                                 <TextBlock Text="Дополнительно" Width="150" Style="{StaticResource Label}"/>
-                                <Button Content="История редактирования" Name="btnHistoryTBP" Click="btnHistoryTBP_Click" Width="150"/>
-                                <Button Content="История переключений" Name="btnJournalTBP" Click="btnJournalTBP_Click" Width="150"/>
-                            </StackPanel>
-                            <Button Content="Создать замечание" Name="btnCommentTBP" Click="btnCommentTBP_Click" HorizontalAlignment="Right"
+                                <Button  Name="btnHistoryTBP" Click="btnHistoryTBP_Click" Width="150">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <Image Height="20" Source="/MainSL;component/Images/btns/calendar_edit.png"></Image>
+                                        <TextBlock Text="Редактирование" Style="{StaticResource LabelBtn}"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button Name="btnJournalTBP" Click="btnJournalTBP_Click" Width="150">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <Image Height="20" Source="/MainSL;component/Images/btns/calendar_link.png"></Image>
+                                        <TextBlock Text="Переключения" Style="{StaticResource LabelBtn}"/>
+                                    </StackPanel>
+                                </Button>
+                        </StackPanel>
+                            <Button  Name="btnCommentTBP" Click="btnCommentTBP_Click" HorizontalAlignment="Right"
                             Visibility="{Binding Single.CurrentUser.CanCommentTBP, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}" 
-                                    IsEnabled="{Binding Active}"/>
+                                    IsEnabled="{Binding Active}">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Image Height="20" Source="/MainSL;component/Images/btns/comment_add.png"></Image>
+                                    <TextBlock Text="Замечание" Style="{StaticResource LabelBtn}"/>
+                                </StackPanel>
+                            </Button>
                         </StackPanel>
                     </Border>
 
@@ -167,21 +222,45 @@
                                         Visibility="{Binding Single.CurrentUser.CanDoOper, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}">
                                 <StackPanel Visibility="{Binding Active,Converter={StaticResource visibilityConverter}}">
                                     <TextBlock Text="Журнал переключений" Width="150" Style="{StaticResource Label}"/>
-
-                                    <Button Content="Создать запись в журнал (ТБП)" Name="btnUseNextTBP" Click="btnUseNextTBP_Click" IsEnabled="{Binding CanUseTBP}"/>
-                                    <Button Content="Создать запись в журнал (ОБП)" Name="btnUseOBP" Click="btnUseOBP_Click"/>
+                                    <Button Name="btnUseNextTBP" Click="btnUseNextTBP_Click" IsEnabled="{Binding CanUseTBP}">
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <Image Height="20" Source="/MainSL;component/Images/btns/page_white_acrobat.png"></Image>
+                                            <TextBlock Text="Запись в журнал (ТБП)" Style="{StaticResource LabelBtn}"/>
+                                        </StackPanel>
+                                    </Button>
+                                    <Button Name="btnUseOBP" Click="btnUseOBP_Click">
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <Image Height="20" Source="/MainSL;component/Images/btns/page_word.png"></Image>
+                                            <TextBlock Text="Запись в журнал (ОБП)" Style="{StaticResource LabelBtn}"/>
+                                        </StackPanel>
+                                    </Button>
                                 </StackPanel>
                             </StackPanel>
 
                             <Border>
                                 <StackPanel Orientation="Vertical" Visibility="{Binding Single.CurrentUser.CanEditTBPCurrentFolder, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}">
                                     <TextBlock Text="Редактирование" Width="150" Margin="0,20,0,0" Style="{StaticResource Label}" />
-                                    <Button Content="Редактировать" Name="btnEditTBP" Click="btnEditTBP_Click" IsEnabled="{Binding Active}"/>
+                                    <Button Name="btnEditTBP" Click="btnEditTBP_Click" IsEnabled="{Binding Active}">
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <Image Height="20" Source="/MainSL;component/Images/btns/report_edit.png"></Image>
+                                            <TextBlock Text="Редактировать" Style="{StaticResource LabelBtn}"/>
+                                        </StackPanel>
+                                    </Button>
                                     <StackPanel Visibility="{Binding Active,Converter={StaticResource visibilityConverter}}">
-                                        <Button Content="Удалить" Name="btnDeleteTBP" Click="btnDeleteTBP_Click" IsEnabled="{Binding Single.CurrentUser.IsAdmin,Source={StaticResource globalContext}}"/>
+                                        <Button Name="btnDeleteTBP" Click="btnDeleteTBP_Click" IsEnabled="{Binding Single.CurrentUser.IsAdmin,Source={StaticResource globalContext}}">
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <Image Height="20" Source="/MainSL;component/Images/btns/report_delete.png"></Image>
+                                                <TextBlock Text="Удалить" Style="{StaticResource LabelBtn}"/>
+                                            </StackPanel>
+                                        </Button>
                                     </StackPanel>
                                     <StackPanel Visibility="{Binding Active,Converter={StaticResource visibilityNotConverter}}">
-                                        <Button Content="Восстановить" Name="btnUnDeleteTBP" Click="btnUnDeleteTBP_Click" IsEnabled="{Binding Single.CurrentUser.IsAdmin,Source={StaticResource globalContext}}"/>
+                                        <Button  Name="btnUnDeleteTBP" Click="btnUnDeleteTBP_Click" IsEnabled="{Binding Single.CurrentUser.IsAdmin,Source={StaticResource globalContext}}">
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <Image Height="20" Source="/MainSL;component/Images/btns/book.png"></Image>
+                                                <TextBlock Text="Восстановить" Style="{StaticResource LabelBtn}"/>
+                                            </StackPanel>
+                                        </Button>
                                     </StackPanel>
                                 </StackPanel>
                             </Border>

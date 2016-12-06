@@ -12,7 +12,12 @@
             <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Button Name="btnNewUser" Click="btnNewUser_Click" Content="Добавить" Width="70" HorizontalAlignment="Left"/>
+        <Button Name="btnNewUser" Click="btnNewUser_Click" Width="90" HorizontalAlignment="Left">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Image Height="20" Source="/MainSL;component/Images/btns/vcard_add.png"></Image>
+                <TextBlock Text="Добавить" Style="{StaticResource LabelBtn}"/>
+            </StackPanel>
+        </Button>
         <sdk:DataGrid Name="grdUsers" AutoGenerateColumns="False" Grid.Row="1" Margin="0,0,0,15" >
             <sdk:DataGrid.Columns>
                 <sdk:DataGridTemplateColumn Header="Login" SortMemberPath="Login" Width="2*"  >
@@ -85,12 +90,20 @@
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
                 </sdk:DataGridTemplateColumn>
-                <sdk:DataGridTemplateColumn Header="Команды" Width="2*"  >
+                <sdk:DataGridTemplateColumn Header="Команды" Width="70"  >
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <Button Content="Редактировать" Name="btnEdit" Click="btnEdit_Click"/>
-                                <Button Content="Удалить" Name="btnDel" Click="btnDel_Click"/>
+                                <Button Name="btnEdit"  Height="30"  Click="btnEdit_Click" ToolTipService.ToolTip="Редактировать">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <Image Height="25" Source="/MainSL;component/Images/btns/vcard_edit.png"></Image>
+                                    </StackPanel>
+                                </Button>
+                                <Button Name="btnDel"  Height="30"  Click="btnDel_Click" ToolTipService.ToolTip="Удалить">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <Image Height="25" Source="/MainSL;component/Images/btns/vcard_delete.png"></Image>
+                                    </StackPanel>
+                                </Button>
                             </StackPanel>
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>

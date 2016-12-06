@@ -12,7 +12,12 @@
             <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Button Name="btnNewFoder" Content="Добавить" Click="btnNewFoder_Click" Width="70" HorizontalAlignment="Left"/>
+        <Button Name="btnNewFoder" Click="btnNewFoder_Click" Width="90" HorizontalAlignment="Left">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Image Height="20" Source="/MainSL;component/Images/btns/folder_add.png"></Image>
+                <TextBlock Text="Добавить" Style="{StaticResource LabelBtn}"/>
+            </StackPanel>
+        </Button>
         <sdk:DataGrid Name="grdFolders" AutoGenerateColumns="False" Grid.Row="1" Margin="0,0,0,15" >
             <sdk:DataGrid.Columns>
                 <sdk:DataGridTemplateColumn Header="ID" SortMemberPath="ID" Width="100"  >
@@ -33,8 +38,18 @@
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" Visibility="{Binding CanEdit, Converter={StaticResource visibilityConverter}}">
-                                <Button Content="Редактировать" Name="btnEdit" Click="btnEdit_Click"/>
-                                <Button Content="Удалить" Name="btnDel" Click="btnDel_Click"/>
+                                <Button Name="btnEdit" Click="btnEdit_Click">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <Image Height="20" Source="/MainSL;component/Images/btns/folder_edit.png"></Image>
+                                        <TextBlock Text="Редактировать" Style="{StaticResource LabelBtn}"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button Name="btnDel" Click="btnDel_Click">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <Image Height="20" Source="/MainSL;component/Images/btns/folder_delete.png"></Image>
+                                        <TextBlock Text="Удалить" Style="{StaticResource LabelBtn}"/>
+                                    </StackPanel>
+                                </Button>
                             </StackPanel>
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
