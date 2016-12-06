@@ -129,19 +129,19 @@
                                 </StackPanel>
 
 
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1" >
-                                    <Button Name="btnCopy" Click="btnCopy_Click" Height="30"  Width="30" Padding="0,0,0,0" Margin="0,0,0,0" 
-                                              IsEnabled="{Binding Single.CurrentUser.CanDoOper, Source={StaticResource globalContext}}" 
-                                                ToolTipService.ToolTip="Создать новый бланк на основе"  HorizontalAlignment="Right" VerticalAlignment="Center">
-                                        <StackPanel>
-                                            <Image Height="30" Source="/MainSL;component/Images/btns/document_move.png"></Image>
-                                        </StackPanel>
-                                    </Button>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1" >                                    
                                     <Button Name="btnDelete" Click="btnDelete_Click" Height="30" Width="30" Foreground="Red" FontSize="18" FontWeight="Bold" FontFamily="Courier New"
                                         Visibility="{Binding Closed, Converter={StaticResource visibilityNotConverter}}" HorizontalAlignment="Right" VerticalAlignment="Center"
                                             ToolTipService.ToolTip="Удалить" Padding="0,0,0,0" Margin="0,0,0,0">
                                         <StackPanel>
                                             <Image Height="30" Source="/MainSL;component/Images/btns/page_delete.png"></Image>
+                                        </StackPanel>
+                                    </Button>
+                                    <Button Name="btnCopy" Click="btnCopy_Click" Height="30"  Width="30" Padding="0,0,0,0" Margin="0,0,0,0" 
+                                              Visibility="{Binding CanCopy, Converter={StaticResource visibilityConverter}}" 
+                                                ToolTipService.ToolTip="Создать новый бланк на основе"  HorizontalAlignment="Right" VerticalAlignment="Center">
+                                        <StackPanel>
+                                            <Image Height="30" Source="/MainSL;component/Images/btns/document_move.png"></Image>
                                         </StackPanel>
                                     </Button>
                                     <Button  Name="btnUnblock" Click="btnUnblock_Click" Height="30" Width="30" Foreground="Green" FontSize="18" FontWeight="Bold" FontFamily="Courier New"

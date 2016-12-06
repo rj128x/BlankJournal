@@ -26,6 +26,7 @@ namespace BlankJournal.Models {
 		public bool Started { get; set; }
 		public bool Closed { get; set; }
 		public bool CanUnblock { get; set; }
+		public bool CanCopy { get; set; }
 		public int StartLSO { get; set; }
 		public int EndLSO { get; set; }
 		public int CountLSO { get; set; }
@@ -57,7 +58,8 @@ namespace BlankJournal.Models {
 			Started = tbl.Started;
 			Closed = Started && Finished && tbl.LastUpdateFinish.HasValue && (tbl.LastUpdateFinish.Value.AddHours(6) < DateTime.Now) || !DBContext.Single.GetCurrentUser().CanDoOper;
 			CanUnblock = false; //&& DBContext.Single.GetCurrentUser().CanDoOper && DBContext.Single.GetCurrentUser().CanEditTBP;
-			//Logger.info(tbl.LastUpdateFinish.ToString() + " " + Closed.ToString());
+													//Logger.info(tbl.LastUpdateFinish.ToString() + " " + Closed.ToString());
+			CanCopy = false;
 			isOBP = tbl.isOBP;
 			StartLSO = tbl.LSOStart;
 			EndLSO = tbl.LSOEnd;

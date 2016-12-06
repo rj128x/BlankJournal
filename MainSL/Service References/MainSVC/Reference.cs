@@ -832,6 +832,8 @@ namespace MainSL.MainSVC {
         
         private string AuthorField;
         
+        private bool CanCopyField;
+        
         private bool CanUnblockField;
         
         private bool ClosedField;
@@ -897,6 +899,19 @@ namespace MainSL.MainSVC {
                 if ((object.ReferenceEquals(this.AuthorField, value) != true)) {
                     this.AuthorField = value;
                     this.RaisePropertyChanged("Author");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool CanCopy {
+            get {
+                return this.CanCopyField;
+            }
+            set {
+                if ((this.CanCopyField.Equals(value) != true)) {
+                    this.CanCopyField = value;
+                    this.RaisePropertyChanged("CanCopy");
                 }
             }
         }

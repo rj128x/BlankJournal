@@ -60,9 +60,12 @@ namespace MainSL.Views {
 				try {
 					JournalRecord current = grdBlanks.SelectedItem as JournalRecord;
 					current.CanUnblock = current.Closed && GlobalContext.Single.CurrentUser.IsAdmin;
+					current.CanCopy = GlobalContext.Single.CurrentUser.CanDoOper;
 					foreach (JournalRecord rec in grdBlanks.ItemsSource) {
-						if (rec != current)
+						if (rec != current) {
 							rec.CanUnblock = false;
+							rec.CanCopy = false;
+						}						
 					}
 				}
 				catch { }

@@ -81,6 +81,7 @@
   <xs:complexType name="JournalRecord">
     <xs:sequence>
       <xs:element minOccurs="0" name="Author" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CanCopy" type="xs:boolean" />
       <xs:element minOccurs="0" name="CanUnblock" type="xs:boolean" />
       <xs:element minOccurs="0" name="Closed" type="xs:boolean" />
       <xs:element minOccurs="0" name="Comment" nillable="true" type="xs:string" />
