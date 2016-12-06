@@ -73,5 +73,11 @@
 
             </sdk:DataGrid.Columns>
         </sdk:DataGrid>
+        <Button Grid.Row="1" HorizontalAlignment="Right" Click="OKButton_Click" Margin="0,5,0,0">
+            <StackPanel Orientation="Horizontal">
+                <Image Height="20" Source="/MainSL;component/Images/btns/house_go.png"/>
+                <TextBlock Style="{StaticResource LabelBtn}" Text="Закрыть"/>
+            </StackPanel>
+        </Button>
     </Grid>
 </controls:ChildWindow>
