@@ -295,7 +295,6 @@
     <Resource Include="Images\accessories-text-editor-icon.png" />
     <Resource Include="Images\disk-save-as-icon.png" />
     <Resource Include="Images\libreoffice-main-icon.png" />
-    <Resource Include="Images\disk-save-as-icon.jpg" />
     <Content Include="Images\text-editor_4559.ico" />
     <Content Include="Images\votges.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
