@@ -43,6 +43,7 @@ namespace MainSL {
 			string host = Application.Current.Host.Source.Host;
 			int port = Application.Current.Host.Source.Port;
 			Uri uri = new Uri(String.Format("http://{0}:{1}/{2}", host, port, url));
+			GlobalContext.Log("переход по ссылке "+uri.ToString());
 			if (!GlobalContext.Single.IsOOB) {
 				System.Windows.Browser.HtmlPopupWindowOptions options = new System.Windows.Browser.HtmlPopupWindowOptions();
 				options.Resizeable = true;

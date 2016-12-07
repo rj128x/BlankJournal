@@ -259,7 +259,7 @@ namespace MainSL
 		}
 
 		private void btnTemplateOBP_Click(object sender, RoutedEventArgs e) {
-			FloatWindow.OpenWindow("/Data/EmptyOBP.docx");
+			FloatWindow.OpenWindow("Data/EmptyOBP.docx");
 		}
 
 		private void btnHistoryTBP_Click(object sender, RoutedEventArgs e) {
@@ -321,14 +321,15 @@ namespace MainSL
 		}
 
 		private void btnSync_Click(object sender, RoutedEventArgs e) {
-			if (MessageBox.Show("Будет выполнено принудительное копирование всех бланков из БД в файлы базы ОС (AutoArchive). Вы уверены?", "Синхронизация", MessageBoxButton.OKCancel) == MessageBoxResult.OK) {
-				FloatWindow.OpenWindow("/Home/SyncDB");
+			bool ok = MessageBox.Show("Будет выполнено принудительное копирование всех бланков из БД в файлы базы ОС (AutoArchive). Вы уверены?", "Синхронизация", MessageBoxButton.OKCancel) == MessageBoxResult.OK;
+			if (ok) {
+				FloatWindow.OpenWindow("Home/SyncDB?guid="+Guid.NewGuid().ToString());
 			}
 		}
 
 		private void btnClearHistory_Click(object sender, RoutedEventArgs e) {
 			if (MessageBox.Show("Будет выполнено удаление всех старых записей из истории редактирования ТБП (на которые нет ссылок в журнале и ТБП). Вы уверены?", "Очистка истории", MessageBoxButton.OKCancel) == MessageBoxResult.OK) {
-				FloatWindow.OpenWindow("/Home/ClearHistory");
+				FloatWindow.OpenWindow("Home/ClearHistory");
 			}
 		}
 

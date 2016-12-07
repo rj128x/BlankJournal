@@ -97,6 +97,7 @@ namespace BlankJournal.Controllers {
 			IQueryable<TBPInfoTable> blanks = from t in eni.TBPInfoTable where t.isActive select t;
 			foreach (TBPInfoTable tbp in blanks) {
 				bool res = FileSync.SyncTBP(tbp);
+				//bool res = true;
 				string resStr = String.Format("Синхронизация бланка {0} ({1}): {2}", tbp.Number, tbp.Name, res);
 				result.Add(resStr);
 			}

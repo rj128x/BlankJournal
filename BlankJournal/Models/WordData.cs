@@ -70,11 +70,25 @@ namespace BlankJournal.Models
 						string low = elem.InnerText.ToLower();
 						if (low.Contains("условия") && low.Contains("применения") && low.Contains("тбп")) {
 							try {
-								string str = elem.InnerXml;
-								int i = str.IndexOf("Т");
-								char[] chars = str.ToArray();
-								chars[i] = 'О';
-								elem.InnerXml = new string(chars);
+								bool ok = false;
+								string innerXML = elem.InnerXml;
+								int startI=0;
+								while (!ok) {
+									OpenXmlElement temp = elem.CloneNode(true);									
+									int i = innerXML.IndexOf("Т", startI);
+									if (i < 0)
+										break;
+									else
+										startI = i + 1;
+									char[] chars = innerXML.ToArray();
+									chars[i] = 'О';
+									temp.InnerXml = new string(chars);
+									string newLow = temp.InnerText.ToLower();
+									ok = newLow.Contains("условия") && newLow.Contains("применения") && newLow.Contains("обп");
+									if (ok){
+										elem.InnerXml = temp.InnerXml;
+									}
+								}
 							} catch (Exception e) {
 
 							}
