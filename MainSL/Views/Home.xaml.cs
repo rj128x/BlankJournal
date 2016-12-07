@@ -21,6 +21,7 @@ namespace MainSL
 	{
 		public event PropertyChangedEventHandler PropertyChanged;
 		public TBPJournalWindow currentJournalWindow;
+		public Dictionary<int, TBPInfo> SelectedFiles;
 
 		public void NotifyChanged(string propName) {
 			if (PropertyChanged != null)
@@ -38,6 +39,17 @@ namespace MainSL
 			}
 		}
 
+		protected int _countSel;
+		public int CountSel {
+			get {
+				return _countSel;
+			}
+			set {
+				_countSel = value;
+				NotifyChanged("CountSel");
+			}
+		}
+
 		public Button ButtonRemovedTBP;
 
 		public Home() {
@@ -47,6 +59,7 @@ namespace MainSL
 		}
 
 		public void init() {
+			SelectedFiles = new Dictionary<int, TBPInfo>();
 			GlobalContext.Single.Client.GetTBPBlanksByFolderCompleted += Client_GetTBPBlanksByFolderCompleted;
 			GlobalContext.Single.Client.InitOBPCompleted += Client_InitOBPCompleted;
 			GlobalContext.Single.Client.InitTBPCompleted += Client_InitTBPCompleted;
@@ -54,8 +67,8 @@ namespace MainSL
 			GlobalContext.Single.Client.InitCommentCompleted += Client_InitCommentCompleted;
 			GlobalContext.Single.Client.GetJournalBPCompleted += Client_GetJournalBPCompleted;
 			GlobalContext.Single.Client.InitBPBaseCompleted += Client_InitBPBaseCompleted;
+			GlobalContext.Single.Client.getDataRecordCompleted += Client_getDataRecordCompleted;
 		}
-
 
 		public void deInit() {
 			GlobalContext.Single.Client.GetTBPBlanksByFolderCompleted -= Client_GetTBPBlanksByFolderCompleted;
@@ -65,7 +78,7 @@ namespace MainSL
 			GlobalContext.Single.Client.InitCommentCompleted -= Client_InitCommentCompleted;
 			GlobalContext.Single.Client.GetJournalBPCompleted -= Client_GetJournalBPCompleted;
 			GlobalContext.Single.Client.InitBPBaseCompleted -= Client_InitBPBaseCompleted;
-
+			GlobalContext.Single.Client.getDataRecordCompleted -= Client_getDataRecordCompleted;
 		}
 
 		void Client_GetTBPBlanksByFolderCompleted(object sender, GetTBPBlanksByFolderCompletedEventArgs e) {
@@ -73,6 +86,9 @@ namespace MainSL
 			grdTBPBlanks.ItemsSource = e.Result;
 			User current = GlobalContext.Single.CurrentUser;
 			current.CanEditTBPCurrentFolder = current.CanEditTBP && (current.AvailFoldersList.Contains(CurrentFolder.ID));
+			foreach (TBPInfo tbp in e.Result) {
+				tbp.IsLocalSelected = SelectedFiles.ContainsKey(tbp.ID);
+			}
 			/*if (!GlobalContext.Single.CurrentUser.AvailFoldersList.Contains(CurrentFolder.ID)) {
 
 			}*/
@@ -323,7 +339,7 @@ namespace MainSL
 		private void btnSync_Click(object sender, RoutedEventArgs e) {
 			bool ok = MessageBox.Show("Будет выполнено принудительное копирование всех бланков из БД в файлы базы ОС (AutoArchive). Вы уверены?", "Синхронизация", MessageBoxButton.OKCancel) == MessageBoxResult.OK;
 			if (ok) {
-				FloatWindow.OpenWindow("Home/SyncDB?guid="+Guid.NewGuid().ToString());
+				FloatWindow.OpenWindow("Home/SyncDB?TBPIDS=" + String.Join("~",SelectedFiles.Keys));
 			}
 		}
 
@@ -380,10 +396,101 @@ namespace MainSL
 			win.Closed += win_Closed;
 			win.Show();
 		}
-		
+
 		private void CntrlJournal_OnCopyBlankPressed(JournalRecord blank) {
 			GlobalContext.Single.IsBusy = true;
 			GlobalContext.Single.Client.InitBPBaseAsync(blank);
 		}
+
+		private void btnPrintListTBP_Click(object sender, RoutedEventArgs e) {
+			FloatWindow.OpenWindow("Print/ListTBP");
+		}
+
+		private Dictionary<string, bool> ProcessedFiles;
+		private Dictionary<string, string> FileNames;
+
+
+		private void btnDownloadPDF_Click(object sender, RoutedEventArgs e) {
+			if (SelectedFiles.Count == 0)
+				return;
+			GlobalContext.Log("Загрузка бланков в папку");
+			GlobalContext.Single.IsBusy = true;
+			ProcessedFiles = new Dictionary<string, bool>();
+			FileNames = new Dictionary<string, string>();
+			foreach (TBPInfo tbp in SelectedFiles.Values) {
+				try {
+					string FileName = tbp.Number + " " + (tbp.Name.Length > 100 ? tbp.Name.Substring(0, 100) : tbp.Name);
+					if (chbPDF.IsChecked.HasValue && chbPDF.IsChecked.Value && !string.IsNullOrEmpty(tbp.IDPDFData)) {
+						ProcessedFiles.Add(tbp.IDPDFData, false);
+						FileNames.Add(tbp.IDPDFData, FileName + ".pdf");
+						GlobalContext.Log("==Добавлен pdf файл " + FileName);
+					}
+					if (chbWord.IsChecked.HasValue && chbWord.IsChecked.Value && !string.IsNullOrEmpty(tbp.IDWordData)) {
+						ProcessedFiles.Add(tbp.IDWordData, false);
+						FileNames.Add(tbp.IDWordData, FileName + ".docx");
+						GlobalContext.Log("==Добавлен word файл " + FileName);
+					}
+				} catch (Exception ex) {
+					MessageBox.Show(ex.ToString());
+				}
+			}
+			if (ProcessedFiles.Count == 0)
+				GlobalContext.Single.IsBusy = false;
+			foreach (string id in ProcessedFiles.Keys) {
+				GlobalContext.Single.Client.getDataRecordAsync(id);
+			}
+		}
+
+		private void Client_getDataRecordCompleted(object sender, getDataRecordCompletedEventArgs e) {
+			if (e.Result != null) {
+				DataRecord rec = e.Result as DataRecord;
+				GlobalContext.Log("Получен файл " + rec.FileInfo);
+				string folder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + String.Format("\\Загрузка ТБП\\{0}", DateTime.Now.ToString("yyyy-MM-dd HH.mm"));
+				try {
+					if (!Directory.Exists(folder))
+						Directory.CreateDirectory(folder);
+					string str = string.Format("{0}\\{1}", folder, FileNames[rec.ID]);
+					File.WriteAllBytes(str, rec.Data);
+				} catch {
+				}
+				ProcessedFiles.Remove(rec.ID);
+				if (ProcessedFiles.Count == 0) {
+					GlobalContext.Single.IsBusy = false;
+
+					WebBrowserBridge.OpenURL(new Uri("file://" + folder), "_blank");
+				}
+			}
+		}
+
+		private void btnSelect_Click(object sender, RoutedEventArgs e) {
+			if (CurrentTBP == null)
+				return;
+			CurrentTBP.IsLocalSelected = !CurrentTBP.IsLocalSelected;
+			refreshTBPSelection(CurrentTBP);
+		}
+
+		protected void refreshTBPSelection(TBPInfo tbp) {
+			try {
+				if (!tbp.IsLocalSelected) {
+					SelectedFiles.Remove(tbp.ID);
+				} else {
+					SelectedFiles.Add(tbp.ID, tbp);
+				}
+			} catch { }
+			CountSel = SelectedFiles.Count;
+		}
+
+		private void btnSelectAll_Click(object sender, RoutedEventArgs e) {
+			try {
+				foreach (Object obj in grdTBPBlanks.ItemsSource) {
+					try {
+						TBPInfo tbp = obj as TBPInfo;
+						tbp.IsLocalSelected = !tbp.IsLocalSelected;
+						refreshTBPSelection(tbp);
+					} catch { }
+				}
+			} catch { }
+		}
+
 	}
 }

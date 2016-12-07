@@ -352,6 +352,8 @@ namespace MainSL.MainSVC {
         
         private string IDWordDataField;
         
+        private bool IsLocalSelectedField;
+        
         private string NameField;
         
         private string NumberField;
@@ -576,6 +578,19 @@ namespace MainSL.MainSVC {
                 if ((object.ReferenceEquals(this.IDWordDataField, value) != true)) {
                     this.IDWordDataField = value;
                     this.RaisePropertyChanged("IDWordData");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsLocalSelected {
+            get {
+                return this.IsLocalSelectedField;
+            }
+            set {
+                if ((this.IsLocalSelectedField.Equals(value) != true)) {
+                    this.IsLocalSelectedField = value;
+                    this.RaisePropertyChanged("IsLocalSelected");
                 }
             }
         }

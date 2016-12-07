@@ -329,6 +329,9 @@
     <Resource Include="Images\btns\page_key.png" />
     <Resource Include="Images\btns\page_delete.png" />
     <Resource Include="Images\btns\house_go.png" />
+    <Resource Include="Images\btns\folder.png" />
+    <Resource Include="Images\btns\download.png" />
+    <Resource Include="Images\btns\folder_search.png" />
     <Content Include="Images\text-editor_4559.ico" />
     <Content Include="Images\votges.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

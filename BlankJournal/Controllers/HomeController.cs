@@ -90,11 +90,12 @@ namespace BlankJournal.Controllers {
 			return null;
 		}
 
-		public ActionResult SyncDB() {
+		public ActionResult SyncDB(string TBPIDS) {
 			Logger.info("Синхронизация БД");
 			List<string> result = new List<string>();
 			BlanksEntities eni = new BlanksEntities();
-			IQueryable<TBPInfoTable> blanks = from t in eni.TBPInfoTable where t.isActive select t;
+			string[] tbps = TBPIDS.Split(new char[] {'~'});
+			IQueryable<TBPInfoTable> blanks = from t in eni.TBPInfoTable where t.isActive && tbps.Contains(t.ID.ToString()) select t;
 			foreach (TBPInfoTable tbp in blanks) {
 				bool res = FileSync.SyncTBP(tbp);
 				//bool res = true;

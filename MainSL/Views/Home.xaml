@@ -15,12 +15,60 @@
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Name="pnlFolders" Orientation="Vertical" Grid.Column="0" Margin="0,0,0,0" Grid.RowSpan="2">
-            <StackPanel Margin="10">
-                <CheckBox Content="Показывать удаленные" IsChecked="{Binding Single.CurrentUser.ShowRemovedTBP, Source={StaticResource globalContext},Mode=TwoWay}" Click="CheckBox_Click"/>
-            </StackPanel>
-
-        </StackPanel>
+        <Grid Grid.Column="0" Margin="0,0,0,0" Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Border Style="{StaticResource BorderRND}" Grid.Row="0">
+                <StackPanel Name="pnlFolders" Orientation="Vertical" >
+                    <StackPanel Margin="10">
+                        <CheckBox Content="Показывать удаленные" IsChecked="{Binding Single.CurrentUser.ShowRemovedTBP, Source={StaticResource globalContext},Mode=TwoWay}" Click="CheckBox_Click"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+            <Border Style="{StaticResource BorderRND}" Grid.Row="1" Margin="5,5,5,30">
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="30"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Horizontal"   HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center">
+                        <TextBlock Text="Выбрано бланков: " Style="{StaticResource Label}"/>
+                        <TextBlock Text="{Binding CountSel}" Style="{StaticResource Value}"/>
+                    </StackPanel>
+                    <Button Name="btnSync"  Click="btnSync_Click" Width="30" Grid.Row="0" Grid.Column="1"
+                        Visibility="{Binding Single.CurrentUser.IsAdmin, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}"
+                            ToolTipService.ToolTip="Отправить выбранные файлы в рабочие документы ОС" Padding="0,0,0,0">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Image Height="20" Source="/MainSL;component/Images/btns/folder_go.png"></Image>
+                        </StackPanel>
+                    </Button>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="1" Grid.Column="0">
+                        <CheckBox Name="chbPDF" VerticalAlignment="Center">
+                            <StackPanel>
+                                <Image Height="20" Source="/MainSL;component/Images/btns/file_extension_pdf.png"/>
+                            </StackPanel>
+                        </CheckBox>
+                        <CheckBox Name="chbWord" VerticalAlignment="Center" >
+                            <StackPanel>
+                                <Image Height="20" Source="/MainSL;component/Images/btns/file_extension_doc.png"/>
+                            </StackPanel>
+                        </CheckBox>
+                    </StackPanel>
+                    <Button  Name="btnDownloadPDF" Click="btnDownloadPDF_Click" Grid.Row="1" Grid.Column="1"
+                             ToolTipService.ToolTip="Открыть выбранные файлы на диске" Width="30"  Padding="0,0,0,0">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Image Height="20" Source="/MainSL;component/Images/btns/folder_search.png"/>
+                        </StackPanel>
+                    </Button>
+                </Grid>
+            </Border>
+        </Grid>
         <Grid Grid.Row="0" Grid.Column="1" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
@@ -43,11 +91,10 @@
                             <TextBlock Text="Пакетная загрузка ТБП" Style="{StaticResource LabelBtn}"/>
                         </StackPanel>
                     </Button>
-                    <Button Name="btnSync"  Click="btnSync_Click" 
-                        Visibility="{Binding Single.CurrentUser.IsAdmin, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}">
+                    <Button  Name="btnPrintListTBP" Click="btnPrintListTBP_Click">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <Image Height="20" Source="/MainSL;component/Images/btns/folder_go.png"></Image>
-                            <TextBlock Text="Синхронизация БД" Style="{StaticResource LabelBtn}"/>
+                            <Image Height="20" Source="/MainSL;component/Images/btns/printer.png"></Image>
+                            <TextBlock Text="Печать перечня" Style="{StaticResource LabelBtn}"/>
                         </StackPanel>
                     </Button>
                     <!--<Button Name="btnClearHistory" Content="Очистка истории ТБП" Click="btnClearHistory_Click" 
@@ -73,6 +120,35 @@
             <Grid Grid.Row="1" VerticalAlignment="Stretch">
                 <sdk:DataGrid Name="grdTBPBlanks" AutoGenerateColumns="False" SelectionChanged="grdTBPBlanks_SelectionChanged" >
                     <sdk:DataGrid.Columns>
+                        <sdk:DataGridTemplateColumn  SortMemberPath="IsLocalSelected" Width="20" CanUserResize="False">
+                            <sdk:DataGridTemplateColumn.HeaderStyle>
+                                <Style TargetType="sdk:DataGridColumnHeader">
+                                    <Setter Property="Template" >
+                                        <Setter.Value>
+                                            <ControlTemplate>
+                                                <Button Name="btnSelectAll" Click="btnSelectAll_Click" Width="15" Height="15" Margin="0,0,0,0" Padding="0,0,0,0" >
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <Image Width="15" Source="/MainSL;component/Images/btns/accept.png"/>
+                                                    </StackPanel>
+                                                </Button>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="Padding" Value="0,0,0,0"/>
+                                    <Setter Property="Margin" Value="0,0,0,0"/>
+                                </Style>
+                            </sdk:DataGridTemplateColumn.HeaderStyle>
+                            <sdk:DataGridTemplateColumn.CellTemplate >
+                                <DataTemplate>
+                                    <Button Name="btnSelect" Click="btnSelect_Click" Width="15" Height="15" Margin="0,0,0,0" Padding="0,0,0,0" Opacity="80">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Width="15" Visibility="{Binding IsLocalSelected, Converter={StaticResource visibilityConverter}}" Source="/MainSL;component/Images/btns/accept.png"/>
+                                            <Image Width="15" Visibility="{Binding IsLocalSelected, Converter={StaticResource visibilityNotConverter}}"/>
+                                        </StackPanel>
+                                    </Button>
+                                </DataTemplate>
+                            </sdk:DataGridTemplateColumn.CellTemplate>
+                        </sdk:DataGridTemplateColumn>
                         <sdk:DataGridTemplateColumn Header="№ бланка" SortMemberPath="Number" Width="120" >
                             <sdk:DataGridTemplateColumn.CellTemplate >
                                 <DataTemplate>
@@ -154,7 +230,7 @@
             <Border Visibility="{Binding CurrentTBP, Converter={StaticResource visibilityConverter}}">
                 <StackPanel Name="pnlInfo"  Orientation="Horizontal"  Margin="0,0,0,30"
                         DataContext="{Binding CurrentTBP}">
-                    <Border Width="500">
+                    <Border Width="500" Style="{StaticResource BorderRND}">
                         <StackPanel Orientation="Vertical">
                             <TextBlock Text="Информация о бланке" Style="{StaticResource Label}"/>
                             <StackPanel Orientation="Horizontal">
@@ -204,7 +280,7 @@
                                         <TextBlock Text="Переключения" Style="{StaticResource LabelBtn}"/>
                                     </StackPanel>
                                 </Button>
-                        </StackPanel>
+                            </StackPanel>
                             <Button  Name="btnCommentTBP" Click="btnCommentTBP_Click" HorizontalAlignment="Right"
                             Visibility="{Binding Single.CurrentUser.CanCommentTBP, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}" 
                                     IsEnabled="{Binding Active}">
@@ -216,7 +292,7 @@
                         </StackPanel>
                     </Border>
 
-                    <Border Width="200" Margin="30,0,0,0">
+                    <Border Width="200" Margin="30,0,0,0" Style="{StaticResource BorderRND}">
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Vertical" 
                                         Visibility="{Binding Single.CurrentUser.CanDoOper, Source={StaticResource globalContext}, Converter={StaticResource visibilityConverter}}">

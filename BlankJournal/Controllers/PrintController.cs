@@ -30,5 +30,19 @@ namespace BlankJournal.Controllers
 			return view;
 		}
 
+		public ActionResult ListTBP() {
+			Logger.info("Печать перечня ТБП ");
+			Dictionary<string, List<TBPInfo>> TBPList=new Dictionary<string, List<TBPInfo>>();
+			foreach (Folder folder in DBContext.Single.AllFolders.Values) {
+				if (folder.ID == "del"||folder.ID=="-")
+					continue;
+				string id = folder.ID + " " + folder.Name;
+				List<TBPInfo> list = DBContext.Single.GetTBPListByFolder(folder.ID);
+				TBPList.Add(id, list);
+			}
+			ViewResult view = View("TBPList", TBPList);
+			return view;
+		}
+
 	}
 }

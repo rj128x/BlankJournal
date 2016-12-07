@@ -34,6 +34,7 @@ namespace BlankJournal.Models {
 		public int CountActiveComments { get; set; }
 		public bool CanUseTBP { get; set; }
 		public bool WordAfterPDF { get; set; }
+		public bool IsLocalSelected { get; set; }
 
 
 		public TBPInfo() {

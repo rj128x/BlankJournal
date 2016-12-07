@@ -59,6 +59,7 @@
       <xs:element minOccurs="0" name="ID" type="xs:int" />
       <xs:element minOccurs="0" name="IDPDFData" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="IDWordData" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsLocalSelected" type="xs:boolean" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Number" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ObjectInfo" nillable="true" type="xs:string" />

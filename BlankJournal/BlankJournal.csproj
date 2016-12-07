@@ -215,6 +215,7 @@
     <Content Include="bat\CommandLine.dll" />
     <Content Include="ClientBin\MainSL.xap" />
     <Content Include="Data\ClearDB.sql" />
+    <Content Include="folder_search.png" />
     <Content Include="Global.asax" />
     <Content Include="libs\itextsharp.dll" />
     <Content Include="libs\log4net.dll" />
@@ -227,6 +228,7 @@
     <Content Include="Views\Home\MainPage.aspx" />
     <Content Include="Views\Home\SyncDB.aspx" />
     <Content Include="Views\Home\View1.aspx" />
+    <Content Include="Views\Print\TBPList.aspx" />
     <Content Include="Views\Print\Svod.aspx" />
     <Content Include="Views\Print\PrintJournalBP.aspx" />
     <Content Include="Web.config">
