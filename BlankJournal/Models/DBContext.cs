@@ -393,6 +393,15 @@ namespace BlankJournal.Models
 				hist.Author = GetCurrentUser().Login;
 				hist.DateCreate = DateTime.Now;
 
+				string shortname = "";
+				if (tbl.Name.Contains('(') && tbl.Name.Length > 90) {
+					int ind = tbl.Name.IndexOf("(");
+					shortname = tbl.Name.Substring(0, ind);
+				} else {
+					shortname = tbl.Name.Length > 90 ? tbl.Name.Substring(0, 90) : tbl.Name;
+				}
+				shortname = tbl.Number + " " + shortname;
+
 				if (newBlank.UpdatedWord) {
 					DataTable word = new DataTable();
 					word.ID = Guid.NewGuid().ToString();
@@ -401,7 +410,8 @@ namespace BlankJournal.Models
 					hist.NewWordData = word.ID;
 					tbl.DataWord = word.ID;
 					word.Data = newBlank.WordData;
-					word.FileInfo = newBlank.FileInfoWord;
+					//word.FileInfo = newBlank.FileInfoWord;
+					word.FileInfo = shortname + ".docx";
 					word.md5 = newBlank.md5Word;
 					eni.DataTable.Add(word);
 				}
@@ -415,7 +425,8 @@ namespace BlankJournal.Models
 					tbl.DataPDF = pdf.ID;
 					pdf.isPDF = true;
 					pdf.Data = newBlank.PDFData;
-					pdf.FileInfo = newBlank.FileInfoPDF;
+					//pdf.FileInfo = newBlank.FileInfoPDF;
+					pdf.FileInfo = shortname + ".pdf";
 					pdf.md5 = newBlank.md5PDF;
 					eni.DataTable.Add(pdf);
 

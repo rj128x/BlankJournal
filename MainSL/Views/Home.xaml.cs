@@ -67,7 +67,7 @@ namespace MainSL
 			GlobalContext.Single.Client.InitCommentCompleted += Client_InitCommentCompleted;
 			GlobalContext.Single.Client.GetJournalBPCompleted += Client_GetJournalBPCompleted;
 			GlobalContext.Single.Client.InitBPBaseCompleted += Client_InitBPBaseCompleted;
-			GlobalContext.Single.Client.getDataRecordCompleted += Client_getDataRecordCompleted;
+			
 		}
 
 		public void deInit() {
@@ -78,7 +78,7 @@ namespace MainSL
 			GlobalContext.Single.Client.InitCommentCompleted -= Client_InitCommentCompleted;
 			GlobalContext.Single.Client.GetJournalBPCompleted -= Client_GetJournalBPCompleted;
 			GlobalContext.Single.Client.InitBPBaseCompleted -= Client_InitBPBaseCompleted;
-			GlobalContext.Single.Client.getDataRecordCompleted -= Client_getDataRecordCompleted;
+			
 		}
 
 		void Client_GetTBPBlanksByFolderCompleted(object sender, GetTBPBlanksByFolderCompletedEventArgs e) {
@@ -411,6 +411,10 @@ namespace MainSL
 
 
 		private void btnDownloadPDF_Click(object sender, RoutedEventArgs e) {
+			if (!GlobalContext.Single.IsOOB) {
+				MessageBox.Show("Скачать пакет файлов можно только при запуске вне браузера.");
+				return;
+			}
 			if (SelectedFiles.Count == 0)
 				return;
 			GlobalContext.Log("Загрузка бланков в папку");
@@ -436,6 +440,7 @@ namespace MainSL
 			}
 			if (ProcessedFiles.Count == 0)
 				GlobalContext.Single.IsBusy = false;
+			GlobalContext.Single.Client.getDataRecordCompleted += Client_getDataRecordCompleted;
 			foreach (string id in ProcessedFiles.Keys) {
 				GlobalContext.Single.Client.getDataRecordAsync(id);
 			}
@@ -456,7 +461,7 @@ namespace MainSL
 				ProcessedFiles.Remove(rec.ID);
 				if (ProcessedFiles.Count == 0) {
 					GlobalContext.Single.IsBusy = false;
-
+					GlobalContext.Single.Client.getDataRecordCompleted -= Client_getDataRecordCompleted;
 					WebBrowserBridge.OpenURL(new Uri("file://" + folder), "_blank");
 				}
 			}

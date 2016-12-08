@@ -140,7 +140,7 @@
                             </sdk:DataGridTemplateColumn.HeaderStyle>
                             <sdk:DataGridTemplateColumn.CellTemplate >
                                 <DataTemplate>
-                                    <Button Name="btnSelect" Click="btnSelect_Click" Width="15" Height="15" Margin="0,0,0,0" Padding="0,0,0,0" Opacity="80">
+                                    <Button Name="btnSelect" Click="btnSelect_Click" Width="15" Height="15" Margin="0,0,0,0" Padding="0,0,0,0" Opacity="0.75">
                                         <StackPanel Orientation="Horizontal">
                                             <Image Width="15" Visibility="{Binding IsLocalSelected, Converter={StaticResource visibilityConverter}}" Source="/MainSL;component/Images/btns/accept.png"/>
                                             <Image Width="15" Visibility="{Binding IsLocalSelected, Converter={StaticResource visibilityNotConverter}}"/>

@@ -46,7 +46,7 @@ namespace BlankJournal.Models {
 				BlanksEntities eni = new BlanksEntities();
 				DataTable tbl = (from t in eni.DataTable where t.ID == rec.ID select t).FirstOrDefault();
 				if (tbl != null) {
-					tbl.Data = rec.Data;
+					tbl.Data = rec.Data;					
 					eni.SaveChanges();
 					return new ReturnMessage(true,"Файл обновлен в БД");
 				} else {
