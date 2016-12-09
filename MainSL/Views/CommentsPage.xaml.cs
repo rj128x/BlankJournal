@@ -91,6 +91,11 @@ namespace MainSL.Views {
 			GlobalContext.Single.IsBusy = true;
 			GlobalContext.Single.Client.GetCommentsListAsync(CurrentFilter);
 		}
+		private void btnPrint_Click(object sender, RoutedEventArgs e) {
+			FloatWindow.OpenWindow(String.Format("/Print/PrintComments?year1={0}&month1={1}&day1={2}&year2={3}&month2={4}&day2={5}&onlyActive={6}",
+				CurrentFilter.dateStart.Value.Year, CurrentFilter.dateStart.Value.Month, CurrentFilter.dateStart.Value.Day,
+				CurrentFilter.dateEnd.Value.Year, CurrentFilter.dateEnd.Value.Month, CurrentFilter.dateEnd.Value.Day,CurrentFilter.onlyActive.ToString()));
+		}
 
 	}
 }

@@ -26,6 +26,12 @@
                             <TextBlock Text="Обновить" Style="{StaticResource LabelBtn}"/>
                         </StackPanel>
                     </Button>
+                    <Button Name="btnPrint" Click="btnPrint_Click">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Image Height="20" Source="/MainSL;component/Images/btns/printer.png"></Image>
+                            <TextBlock Text="Печать" Style="{StaticResource LabelBtn}"/>
+                        </StackPanel>
+                    </Button>
                 </StackPanel>
             </Grid>
 

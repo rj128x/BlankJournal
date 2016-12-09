@@ -228,6 +228,7 @@
     <Content Include="Views\Home\MainPage.aspx" />
     <Content Include="Views\Home\SyncDB.aspx" />
     <Content Include="Views\Home\View1.aspx" />
+    <Content Include="Views\Print\PrintComments.aspx" />
     <Content Include="Views\Print\TBPList.aspx" />
     <Content Include="Views\Print\Svod.aspx" />
     <Content Include="Views\Print\PrintJournalBP.aspx" />

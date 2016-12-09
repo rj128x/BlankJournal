@@ -337,7 +337,7 @@ namespace MainSL
 		}
 
 		private void btnSync_Click(object sender, RoutedEventArgs e) {
-			bool ok = MessageBox.Show("Будет выполнено принудительное копирование всех бланков из БД в файлы базы ОС (AutoArchive). Вы уверены?", "Синхронизация", MessageBoxButton.OKCancel) == MessageBoxResult.OK;
+			bool ok = MessageBox.Show("Будет выполнено принудительное копирование выбранных бланков из БД в файлы базы ОС (AutoArchive). Вы уверены?", "Синхронизация", MessageBoxButton.OKCancel) == MessageBoxResult.OK;
 			if (ok) {
 				FloatWindow.OpenWindow("Home/SyncDB?TBPIDS=" + String.Join("~",SelectedFiles.Keys));
 			}
