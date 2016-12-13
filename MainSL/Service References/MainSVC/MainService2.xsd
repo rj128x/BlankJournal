@@ -99,6 +99,7 @@
       <xs:element minOccurs="0" name="HasCrossDate" type="xs:boolean" />
       <xs:element minOccurs="0" name="HasCrossLSO" type="xs:boolean" />
       <xs:element minOccurs="0" name="IDWordData" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsCurrentYear" type="xs:boolean" />
       <xs:element minOccurs="0" name="Number" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="OBPComment" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ShortNumber" nillable="true" type="xs:string" />
@@ -108,6 +109,7 @@
       <xs:element minOccurs="0" name="TBPNumber" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Task" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="WordData" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="Year" type="xs:int" />
       <xs:element minOccurs="0" name="Zayav" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="isInit" type="xs:boolean" />
       <xs:element minOccurs="0" name="isOBP" type="xs:boolean" />

@@ -22,7 +22,8 @@
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
                             <StackPanel Orientation="Vertical">
-                                <ContentControl Content="{Binding ShortNumber}" />
+                                <TextBlock Text="{Binding ShortNumber}"/>
+
                                 <StackPanel Orientation="Horizontal" 
                                             Visibility="{Binding isOBP, Converter={StaticResource visibilityConverter}}"
                                             HorizontalAlignment="Right">
@@ -31,6 +32,7 @@
                                     <TextBlock Text=" - "/>
                                     <TextBlock Text="{Binding EndLSO}"/>
                                 </StackPanel>
+                                <TextBlock Text="{Binding Year}" HorizontalAlignment="Right" Style="{StaticResource Label}" Visibility="{Binding IsCurrentYear, Converter={StaticResource visibilityNotConverter}}" />
                             </StackPanel>
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
@@ -129,7 +131,7 @@
                                 </StackPanel>
 
 
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1" >                                    
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1" >
                                     <Button Name="btnDelete" Click="btnDelete_Click" Height="30" Width="30" Foreground="Red" FontSize="18" FontWeight="Bold" FontFamily="Courier New"
                                         Visibility="{Binding Closed, Converter={StaticResource visibilityNotConverter}}" HorizontalAlignment="Right" VerticalAlignment="Center"
                                             ToolTipService.ToolTip="Удалить" Padding="0,0,0,0" Margin="0,0,0,0">

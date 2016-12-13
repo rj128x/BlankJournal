@@ -39,6 +39,9 @@ namespace BlankJournal.Models {
 		public string CrossDate { get; set; }
 		public string CrossLSO { get; set; }
 
+		public bool IsCurrentYear { get; set; }
+		public int Year { get; set; }
+
 		public static double MAX_BP_YEAR = 10000.0;
 
 		public JournalRecord() {
@@ -54,6 +57,9 @@ namespace BlankJournal.Models {
 			DateStart = tbl.DateStart.HasValue ? tbl.DateStart.Value : tbl.DateCreate;
 			DateEnd = tbl.DateEnd.HasValue ? tbl.DateEnd.Value : tbl.DateCreate;
 			DateCreate = tbl.DateCreate;
+			Year = DateCreate.Year;
+			IsCurrentYear = Year == DateTime.Now.Year;
+
 			Finished = tbl.Finished;
 			Started = tbl.Started;
 			Closed = Started && Finished && tbl.LastUpdateFinish.HasValue && (tbl.LastUpdateFinish.Value.AddHours(6) < DateTime.Now) || !DBContext.Single.GetCurrentUser().CanDoOper;

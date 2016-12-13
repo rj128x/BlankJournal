@@ -11,6 +11,8 @@
         table, tr, td, p {
             font-family: 'Arial';
             font-size: 10pt;
+            padding:3pt;
+            margin:3pt;
         }
 
         h1, h2, h3, h4, h5, h6, hr {
@@ -97,7 +99,7 @@
         <table>
             <tr>
                 <th style="width: 30px;">№пп</th>
-                <th style="width: 100px;">Номер</th>
+                <th style="width: 130px;">Номер</th>
                 <th style="width: 70px;">ЛСО</th>
                 <th style="width: 120px;">Автор</th>
                 <th style="width: 100px;">Основание</th>
@@ -110,7 +112,7 @@
             <%foreach (JournalRecord rec in data) { %>
             <tr>
                 <td><%=++index %></td>
-                <td><%=rec.ShortNumber %></td>
+                <td><%=rec.ShortNumber+(rec.IsCurrentYear?"":"<div align='right'>["+rec.Year.ToString()+"]</div>") %></td>
                 <td><%=(rec.isOBP)?(rec.StartLSO+"-"+rec.EndLSO):"-" %></td>
                 <td><%=rec.Author %></td>
                 <td><%=rec.Zayav %></td>

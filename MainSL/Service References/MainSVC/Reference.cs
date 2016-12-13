@@ -881,6 +881,8 @@ namespace MainSL.MainSVC {
         
         private string IDWordDataField;
         
+        private bool IsCurrentYearField;
+        
         private string NumberField;
         
         private string OBPCommentField;
@@ -898,6 +900,8 @@ namespace MainSL.MainSVC {
         private string TaskField;
         
         private byte[] WordDataField;
+        
+        private int YearField;
         
         private string ZayavField;
         
@@ -1140,6 +1144,19 @@ namespace MainSL.MainSVC {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsCurrentYear {
+            get {
+                return this.IsCurrentYearField;
+            }
+            set {
+                if ((this.IsCurrentYearField.Equals(value) != true)) {
+                    this.IsCurrentYearField = value;
+                    this.RaisePropertyChanged("IsCurrentYear");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string Number {
             get {
                 return this.NumberField;
@@ -1252,6 +1269,19 @@ namespace MainSL.MainSVC {
                 if ((object.ReferenceEquals(this.WordDataField, value) != true)) {
                     this.WordDataField = value;
                     this.RaisePropertyChanged("WordData");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Year {
+            get {
+                return this.YearField;
+            }
+            set {
+                if ((this.YearField.Equals(value) != true)) {
+                    this.YearField = value;
+                    this.RaisePropertyChanged("Year");
                 }
             }
         }
