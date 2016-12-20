@@ -56,11 +56,11 @@ namespace MainSL.Views {
 		}
 
 		private void grdBlanks_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-			if (OnUnblockButtonPressed != null) {
+			//if (OnUnblockButtonPressed != null) {
 				try {
 					JournalRecord current = grdBlanks.SelectedItem as JournalRecord;
-					current.CanUnblock = current.Closed && GlobalContext.Single.CurrentUser.IsAdmin;
-					current.CanCopy = GlobalContext.Single.CurrentUser.CanDoOper;
+					current.CanUnblock = current.Closed && GlobalContext.Single.CurrentUser.IsAdmin && OnUnblockButtonPressed!=null;
+					current.CanCopy = GlobalContext.Single.CurrentUser.CanDoOper && OnCopyBlankPressed!=null;
 					foreach (JournalRecord rec in grdBlanks.ItemsSource) {
 						if (rec != current) {
 							rec.CanUnblock = false;
@@ -69,7 +69,7 @@ namespace MainSL.Views {
 					}
 				}
 				catch { }
-			}
+			//}
 		}
 
 		private void btnCopy_Click(object sender, RoutedEventArgs e) {
