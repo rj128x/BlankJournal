@@ -101,8 +101,7 @@ namespace BlankJournal.Models {
 
 		public static JournalRecord initTBPRecordBase(JournalRecord baseBP) {
 			Logger.info("Инициализация нового ТБП (в журнале) на основе " + baseBP.Number);
-			JournalRecord rec = new JournalRecord();
-			FillTBPNumber(rec, baseBP.TBPNumber);
+			JournalRecord rec = new JournalRecord();			
 			rec.Author = DBContext.Single.GetCurrentUser().Login;
 			rec.Task = baseBP.Task;
 			rec.isOBP = false;
@@ -132,7 +131,7 @@ namespace BlankJournal.Models {
 				Logger.info("Ошибка при получении актуальной информации из БД о ТБП");
 				return null;
 			}
-			
+			FillTBPNumber(rec, rec.TBPNumber);
 			DateTime dt = DateTime.Now;
 			rec.DateCreate = new DateTime(dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second, DateTimeKind.Unspecified);
 			rec.DateEnd = rec.DateCreate;
