@@ -223,6 +223,7 @@
     <Content Include="MainService.svc" />
     <Content Include="Data\MainSettings.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <BrowseToURL>/Data/MainSettings.xml</BrowseToURL>
     </Content>
     <Content Include="Silverlight.js" />
     <Content Include="Views\Home\MainPage.aspx" />

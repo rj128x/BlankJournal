@@ -22,6 +22,7 @@ namespace BlankJournal {
 			try {
 				Settings single = XMLSer<Settings>.fromXML(filename);
 				Single = single;
+				Logger.info(single.archiveFolder);
 			} catch (Exception e) {
 				Logger.error("Ошибка при чтении файла настроек " + e, Logger.LoggerSource.server);
 			}
