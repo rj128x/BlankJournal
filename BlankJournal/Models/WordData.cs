@@ -30,7 +30,7 @@ namespace BlankJournal.Models
 			}
 		}
 
-		public static string createOBP(string folder, TBPInfo tbp, int num = -1) {
+		public static string createOBP(string folder, TBPInfo tbp, int num = -1) {			
 			Logger.info("Формирование ОБП из ТБП " + tbp.Number);
 			BlanksEntities eni = new BlanksEntities();
 			DataTable dt = (from d in eni.DataTable where d.ID == tbp.IDWordData select d).FirstOrDefault();
@@ -117,9 +117,12 @@ namespace BlankJournal.Models
 
 				WriteHeaderInfo(doc, num,tbp.Name);
 
-
+				string zone = "";
+				try {
+					zone=DBContext.Single.AllFolders[tbp.FolderID].Zone;
+				}catch{ }
 				Logger.info("Добавление новой шапки и окончания");
-				WriteRegularData(body, tbp.ObjectInfo, num);
+				WriteRegularData(body, tbp.ObjectInfo,zone, num);
 				doc.Close();
 				return fn;
 			} catch (Exception e) {
@@ -190,13 +193,21 @@ namespace BlankJournal.Models
 				
 				Logger.info("Добавление новой шапки и окончания");
 				string obj = "";
+				string zone = "";
 				try {
 					obj = (from tbp in eni.TBPInfoTable where tbp.ID == baseBP.TBPID && tbp.isActive select tbp.ObjectInfo).FirstOrDefault();
 				}catch (Exception e) {
 					Logger.info("Ошибка при получении объекта переключений");
 					obj = "";
 				}
-				WriteRegularData(body, obj, num);
+				try {
+					string fol = (from tbp in eni.TBPInfoTable where tbp.ID == baseBP.TBPID && tbp.isActive select tbp.Folder).FirstOrDefault();
+					zone = (from f in eni.FoldersTable where f.Id == fol select f.Zone).FirstOrDefault();
+				} catch (Exception e) {
+					Logger.info("Ошибка при получении объекта переключений");
+					obj = "";
+				}
+				WriteRegularData(body, obj,zone, num);
 				doc.Close();
 				return fn;
 			} catch (Exception e) {
@@ -222,7 +233,7 @@ namespace BlankJournal.Models
 
 				Logger.info("Добавление новой шапки и окончания");
 
-				WriteRegularData(body, "", num);
+				WriteRegularData(body, "","", num);
 
 				doc.Close();
 				return fn;
@@ -327,21 +338,22 @@ namespace BlankJournal.Models
 			}
 		}
 
-		protected static void WriteRegularData(Body body, string obj, int num = -1) {
+		protected static void WriteRegularData(Body body, string obj,string zone, int num = -1) {
 
 			string str = "Бланк переключений №" + (num > 0 ? num.ToString() : "____");
 			Run headerRun = new Run(new Text(str));
 			headerRun.RunProperties = new RunProperties() {
 				FontSize = new FontSize() { Val = new StringValue("40") },
-				RunFonts = new RunFonts() { Ascii = "Times New Roman", HighAnsi = "Times New Roman" },
-				Bold = new Bold() { Val = new OnOffValue(true) }
+				RunFonts = new RunFonts() { Ascii = "Times New Roman", HighAnsi = "Times New Roman"  },
+				Bold = new Bold() { Val = new OnOffValue(true) }				
+				
 			};
 			Paragraph par = new Paragraph(headerRun);
 			par.ParagraphProperties = new ParagraphProperties();
 			par.ParagraphProperties.AppendChild(new Justification() { Val = JustificationValues.Center });
 			body.InsertBefore(par, body.FirstChild);
 
-			str = "Объект переключений: Воткинская ГЭС, " + obj;
+			str = "Зона оперативного обслуживания:";
 			headerRun = new Run(new Text(str));
 			headerRun.RunProperties = new RunProperties() {
 				FontSize = new FontSize() { Val = new StringValue("30") },
@@ -349,9 +361,39 @@ namespace BlankJournal.Models
 				Bold = new Bold() { Val = new OnOffValue(true) }
 			};
 			par = new Paragraph(headerRun);
+			headerRun = new Run(new Text("_"+zone+"_"));
+			headerRun.RunProperties = new RunProperties() {
+				FontSize = new FontSize() { Val = new StringValue("30") },
+				RunFonts = new RunFonts() { Ascii = "Times New Roman", HighAnsi = "Times New Roman" },
+				Bold = new Bold() { Val = new OnOffValue(false) },
+				Underline = new Underline() { Val=new EnumValue<UnderlineValues>(UnderlineValues.Single)}
+			};
+			par.AppendChild(headerRun);
 			par.ParagraphProperties = new ParagraphProperties();
-			par.ParagraphProperties.AppendChild(new Justification() { Val = JustificationValues.Center });
+			par.ParagraphProperties.AppendChild(new Justification() { Val = JustificationValues.Left });
 			body.InsertAfter(par, body.FirstChild);
+
+			str = "Объект переключений:" ;
+			headerRun = new Run(new Text(str));
+			headerRun.RunProperties = new RunProperties() {
+				FontSize = new FontSize() { Val = new StringValue("30") },
+				RunFonts = new RunFonts() { Ascii = "Times New Roman", HighAnsi = "Times New Roman" },
+				Bold = new Bold() { Val = new OnOffValue(true) },				
+			};
+			par = new Paragraph(headerRun);
+			headerRun = new Run(new Text("_Воткинская ГЭС, "+obj+"_"));
+			headerRun.RunProperties = new RunProperties() {
+				FontSize = new FontSize() { Val = new StringValue("30") },
+				RunFonts = new RunFonts() { Ascii = "Times New Roman", HighAnsi = "Times New Roman" },
+				Bold = new Bold() { Val = new OnOffValue(false) },
+				Underline = new Underline() { Val = new EnumValue<UnderlineValues>(UnderlineValues.Single) }
+			};
+			par.AppendChild(headerRun);
+			par.ParagraphProperties = new ParagraphProperties();
+			par.ParagraphProperties.AppendChild(new Justification() { Val = JustificationValues.Left });
+			body.InsertAfter(par, body.FirstChild);
+
+			
 
 
 

@@ -253,6 +253,8 @@ namespace MainSL.MainSVC {
         
         private string NameField;
         
+        private string ZoneField;
+        
         [System.Runtime.Serialization.DataMemberAttribute()]
         public bool CanEdit {
             get {
@@ -301,6 +303,19 @@ namespace MainSL.MainSVC {
                 if ((object.ReferenceEquals(this.NameField, value) != true)) {
                     this.NameField = value;
                     this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Zone {
+            get {
+                return this.ZoneField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ZoneField, value) != true)) {
+                    this.ZoneField = value;
+                    this.RaisePropertyChanged("Zone");
                 }
             }
         }

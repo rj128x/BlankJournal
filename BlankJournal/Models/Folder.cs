@@ -10,6 +10,7 @@ namespace BlankJournal.Models
 	{
 		public string ID { get; set; }
 		public string Name { get; set; }
+		public string Zone { get; set; }
 		public int Ident { get; set; }
 		public bool CanEdit { get; set; }
 
@@ -21,6 +22,7 @@ namespace BlankJournal.Models
 			ID = tbl.Id;
 			Name = tbl.Name;
 			Ident = tbl.Ident;
+			Zone = tbl.Zone;
 			CanEdit = tbl.Id != "-" && tbl.Id != "del";
 		}
 
@@ -46,6 +48,7 @@ namespace BlankJournal.Models
 					Logger.info("Присвоен индекс " + tbl.Ident);
 					tbl.Id = newFolder.ID;
 					tbl.Name = newFolder.Name;
+					tbl.Zone = newFolder.Zone;
 					eni.FoldersTable.Add(tbl);
 				}
 				if (edit) {
@@ -54,6 +57,7 @@ namespace BlankJournal.Models
 						if (tbl == null)
 							return new ReturnMessage(false, "Папка не найдена " + tbl.Id);
 						tbl.Name = newFolder.Name;
+						tbl.Zone = newFolder.Zone;
 						if (tbl.Id != newFolder.ID) {
 							try {
 								eni.FoldersTable.Remove(tbl);
@@ -66,6 +70,7 @@ namespace BlankJournal.Models
 								FoldersTable tab = new FoldersTable();
 								tab.Id = newFolder.ID;
 								tab.Name = newFolder.Name;
+								tab.Zone = newFolder.Zone;
 								tab.Ident = newFolder.Ident;
 								eni.FoldersTable.Add(tab);
 								foreach (TBPInfoTable tbp in tbpList) {

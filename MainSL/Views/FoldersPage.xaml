@@ -34,6 +34,13 @@
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
                 </sdk:DataGridTemplateColumn>
+                <sdk:DataGridTemplateColumn Header="Зона" SortMemberPath="Zone" Width="200"  >
+                    <sdk:DataGridTemplateColumn.CellTemplate >
+                        <DataTemplate>
+                            <ContentControl Content="{Binding Zone}"/>
+                        </DataTemplate>
+                    </sdk:DataGridTemplateColumn.CellTemplate>
+                </sdk:DataGridTemplateColumn>
                 <sdk:DataGridTemplateColumn Header="Команды" Width="*"  >
                     <sdk:DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
