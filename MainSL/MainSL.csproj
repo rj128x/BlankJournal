@@ -60,17 +60,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>false</SignManifests>
+    <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>B944A2AC11E764FE3F67A4AFAEB36C199D2ACFB3</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>C0DEE80B66E3152E5EEE100C356C70AD8C2C8018</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>
     </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>false</SignAssembly>
+    <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>MainSL_TemporaryKey.pfx</AssemblyOriginatorKeyFile>
@@ -269,6 +269,7 @@
     </Page>
     <None Include="App.config" />
     <None Include="MainSL_1_TemporaryKey.pfx" />
+    <None Include="MainSL_2_TemporaryKey.pfx" />
     <None Include="MainSL_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />

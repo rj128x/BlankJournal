@@ -22,7 +22,7 @@ namespace MainSL.Views {
 
 		private void OKButton_Click(object sender, RoutedEventArgs e) {
 			if (string.IsNullOrEmpty(CurrentFolder.ID) || string.IsNullOrEmpty(CurrentFolder.Name)) {
-				MessageBox.Show("Заполните поля");
+				MessageBox.Show("Заполните поля!");
 				return;
 			}			
 			GlobalContext.Single.IsBusy = true;
