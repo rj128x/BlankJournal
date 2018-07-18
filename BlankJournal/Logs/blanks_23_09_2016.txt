@@ -1,0 +1,201 @@
+[2016-09-23 09:09:00,924] INFO                                                      server               Start
+[2016-09-23 09:09:01,248] INFO                                                      server               Инициализация контекста БД
+[2016-09-23 09:09:02,003] INFO                                                      server               Чтение папок
+[2016-09-23 09:09:04,778] INFO                                                      server               Чтение пользователей
+[2016-09-23 09:09:04,871] INFO                                                      server               Чтение ЛСО
+[2016-09-23 09:09:05,081] INFO                                                      server               Чтение ОБП
+[2016-09-23 09:09:07,523] INFO       CORP\chekunovamv               ::1             server               Client: 23.09.2016 09:09:01,291: Нет обновлений
+[2016-09-23 09:09:18,537] INFO       CORP\chekunovamv               ::1             server               Client: 23.09.2016 09:09:01,516: Загрузка пользоветелей и папок
+[2016-09-23 09:09:18,986] INFO       CORP\chekunovamv               ::1             server               Client: 23.09.2016 09:09:18,724: Загрузка завершена
+[2016-09-23 09:09:20,307] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 10
+[2016-09-23 09:09:25,312] INFO       CORP\chekunovamv               ::1             server               Редактирование ТБП
+[2016-09-23 09:09:25,312] INFO       CORP\chekunovamv               ::1             server               ID=526 Number=10-03
+[2016-09-23 09:09:25,341] INFO       CORP\chekunovamv               ::1             server               Синхронизация бланка 10-03 Вывод в ремонт секции №2 щита 1Н
+[2016-09-23 09:09:25,348] INFO       CORP\chekunovamv               ::1             server               Запись файла e23f0cec-cbad-4cfe-879b-d1b25ae56215 в файл 10-03 Вывод в ремонт секции №2 щита 1Н.docx
+[2016-09-23 09:09:26,079] INFO       CORP\chekunovamv               ::1             server               Удаление файла 10-03 Вывод в ремонт секции №2 щита 1Н.docx
+[2016-09-23 09:09:26,092] INFO       CORP\chekunovamv               ::1             server               генерация ОБП
+[2016-09-23 09:09:26,138] INFO       CORP\chekunovamv               ::1             server               Удаление файла ОБП 10-03 Вывод в ремонт секции №2 щита 1Н.DOCX
+[2016-09-23 09:09:26,465] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 10-03
+[2016-09-23 09:09:26,474] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла \\sr-votges-013.corp.gidroogk.com\Рабочие_документы$\Предприятие\Оперативная служба\НТД\Бланки переключений\00 ЭЖ БП (ТБП_ОБП)\10 ЩСН 0.4 кВ\ОБП\ОБП 10-03 Вывод в ремонт секции №2 щита 1Н.DOCX
+[2016-09-23 09:09:26,483] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-09-23 09:09:26,733] INFO       CORP\chekunovamv               ::1             server               Ошибка при формировании обпSystem.TypeInitializationException: Инициализатор типа "MS.Utility.EventTrace" выдал исключение. ---> System.Security.SecurityException: Запрошенный доступ к реестру запрещен.
+   в System.ThrowHelper.ThrowSecurityException(ExceptionResource resource)
+   в Microsoft.Win32.RegistryKey.OpenSubKey(String name, Boolean writable)
+   в Microsoft.Win32.RegistryKey.OpenSubKey(String name)
+   в Microsoft.Win32.Registry.GetValue(String keyName, String valueName, Object defaultValue)
+   в MS.Utility.EventTrace.IsClassicETWRegistryEnabled()
+   в MS.Utility.EventTrace..cctor()
+   --- Конец трассировки внутреннего стека исключений ---
+   в MS.Utility.EventTrace.EasyTraceEvent(Keyword keywords, Event eventID)
+   в System.IO.Packaging.Package.Open(String path, FileMode packageMode, FileAccess packageAccess, FileShare packageShare, Boolean streaming)
+   в DocumentFormat.OpenXml.Packaging.OpenXmlPackage.OpenCore(String path, Boolean readWriteMode)
+   в DocumentFormat.OpenXml.Packaging.WordprocessingDocument.Open(String path, Boolean isEditable, OpenSettings openSettings)
+   в BlankJournal.Models.WordData.createOBP(String folder, TBPInfo tbp, Int32 num)
+[2016-09-23 09:09:26,733] INFO       CORP\chekunovamv               ::1             server               Возврат: True Бланк успешно создан.
+ Синхронизация в папку: Успешно
+[2016-09-23 09:09:28,019] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 10
+[2016-09-23 09:09:36,648] INFO       Anonimous                      ::1             server               Формирование файла ОБП для ТБП 10-03
+[2016-09-23 09:09:36,653] INFO       Anonimous                      ::1             server               Формирование ОБП из ТБП 10-03
+[2016-09-23 09:09:36,660] INFO       Anonimous                      ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 10-03 Вывод в ремонт секции №2 щита 1Н.DOCX
+[2016-09-23 09:09:36,662] INFO       Anonimous                      ::1             server               Открытие документа
+[2016-09-23 09:09:36,662] INFO       Anonimous                      ::1             server               Ошибка при формировании обпSystem.TypeInitializationException: Инициализатор типа "MS.Utility.EventTrace" выдал исключение. ---> System.Security.SecurityException: Запрошенный доступ к реестру запрещен.
+   в System.ThrowHelper.ThrowSecurityException(ExceptionResource resource)
+   в Microsoft.Win32.RegistryKey.OpenSubKey(String name, Boolean writable)
+   в Microsoft.Win32.RegistryKey.OpenSubKey(String name)
+   в Microsoft.Win32.Registry.GetValue(String keyName, String valueName, Object defaultValue)
+   в MS.Utility.EventTrace.IsClassicETWRegistryEnabled()
+   в MS.Utility.EventTrace..cctor()
+   --- Конец трассировки внутреннего стека исключений ---
+   в MS.Utility.EventTrace.EasyTraceEvent(Keyword keywords, Event eventID)
+   в System.IO.Packaging.Package.Open(String path, FileMode packageMode, FileAccess packageAccess, FileShare packageShare, Boolean streaming)
+   в DocumentFormat.OpenXml.Packaging.OpenXmlPackage.OpenCore(String path, Boolean readWriteMode)
+   в DocumentFormat.OpenXml.Packaging.WordprocessingDocument.Open(String path, Boolean isEditable, OpenSettings openSettings)
+   в BlankJournal.Models.WordData.createOBP(String folder, TBPInfo tbp, Int32 num)
+[2016-09-23 09:14:48,799] INFO                                                      server               Start
+[2016-09-23 09:14:48,815] INFO                                                      server               Инициализация контекста БД
+[2016-09-23 09:14:48,909] INFO                                                      server               Чтение папок
+[2016-09-23 09:14:50,094] INFO                                                      server               Чтение пользователей
+[2016-09-23 09:14:50,110] INFO                                                      server               Чтение ЛСО
+[2016-09-23 09:14:50,203] INFO                                                      server               Чтение ОБП
+[2016-09-23 09:14:50,469] INFO       CORP\chekunovamv               ::1             server               Client: 23.09.2016 09:14:50,422: Нет обновлений
+[2016-09-23 09:14:50,469] INFO       CORP\chekunovamv               ::1             server               Client: 23.09.2016 09:14:50,422: Загрузка пользоветелей и папок
+[2016-09-23 09:14:50,643] INFO       CORP\chekunovamv               ::1             server               Client: 23.09.2016 09:14:50,547: Загрузка завершена
+[2016-09-23 09:14:51,884] INFO       CORP\chekunovamv               ::1             server               Получение журнала переключений 
+[2016-09-23 09:14:54,636] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 10
+[2016-09-23 09:15:05,689] INFO       Anonimous                      ::1             server               Формирование файла ОБП для ТБП 10-03
+[2016-09-23 09:15:05,735] INFO       Anonimous                      ::1             server               Формирование ОБП из ТБП 10-03
+[2016-09-23 09:15:05,756] INFO       Anonimous                      ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 10-03 Вывод в ремонт секции №2 щита 1Н.DOCX
+[2016-09-23 09:15:05,758] INFO       Anonimous                      ::1             server               Открытие документа
+[2016-09-23 09:15:06,148] INFO       Anonimous                      ::1             server               Абзацев:  314
+[2016-09-23 09:15:06,195] INFO       Anonimous                      ::1             server               Удаление шапки и окончания бланка
+[2016-09-23 09:15:06,195] INFO       Anonimous                      ::1             server               Добавление новой шапки и окончания
+[2016-09-23 09:15:39,707] INFO                                                      server               Start
+[2016-09-23 09:15:40,340] INFO                                                      server               Инициализация контекста БД
+[2016-09-23 09:15:40,592] INFO                                                      server               Чтение папок
+[2016-09-23 09:15:42,459] INFO                                                      server               Чтение пользователей
+[2016-09-23 09:15:42,485] INFO                                                      server               Чтение ЛСО
+[2016-09-23 09:15:42,568] INFO                                                      server               Чтение ОБП
+[2016-09-23 09:15:52,652] INFO       CORP\chekunovamv               ::1             server               Client: 23.09.2016 09:15:52,081: Загрузка пользоветелей и папок
+[2016-09-23 09:15:52,882] INFO       CORP\chekunovamv               ::1             server               Client: 23.09.2016 09:15:52,757: Загрузка завершена
+[2016-09-23 09:15:59,509] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 10
+[2016-09-23 09:16:04,985] INFO       CORP\chekunovamv               ::1             server               Формирование файла ОБП для ТБП 10-03
+[2016-09-23 09:16:05,044] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 10-03
+[2016-09-23 09:16:05,067] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 10-03 Вывод в ремонт секции №2 щита 1Н.DOCX
+[2016-09-23 09:16:05,068] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-09-23 09:16:05,088] INFO       CORP\chekunovamv               ::1             server               Абзацев:  314
+[2016-09-23 09:16:05,103] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-09-23 09:16:05,103] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-09-23 09:50:26,440] INFO                                                      server               Start
+[2016-09-23 09:50:26,520] INFO                                                      server               Инициализация контекста БД
+[2016-09-23 09:50:26,682] INFO                                                      server               Чтение папок
+[2016-09-23 09:50:28,086] INFO                                                      server               Чтение пользователей
+[2016-09-23 09:50:28,117] INFO                                                      server               Чтение ЛСО
+[2016-09-23 09:50:28,226] INFO                                                      server               Чтение ОБП
+[2016-09-23 09:50:37,200] INFO       CORP\chekunovamv               ::1             server               Client: 23.09.2016 09:50:36,634: Загрузка пользоветелей и папок
+[2016-09-23 09:50:37,505] INFO       CORP\chekunovamv               ::1             server               Client: 23.09.2016 09:50:37,382: Загрузка завершена
+[2016-09-23 09:52:21,445] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 10
+[2016-09-23 09:52:25,407] INFO       CORP\chekunovamv               ::1             server               Формирование файла ОБП для ТБП 10-03
+[2016-09-23 09:52:25,473] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 10-03
+[2016-09-23 09:52:25,495] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 10-03 Вывод в ремонт секции №2 щита 1Н.DOCX
+[2016-09-23 09:52:25,504] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-09-23 09:52:25,547] INFO       CORP\chekunovamv               ::1             server               Абзацев:  314
+[2016-09-23 09:55:39,818] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-09-23 09:55:39,818] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-09-23 10:07:30,936] INFO                                                      server               Start
+[2016-09-23 10:07:31,029] INFO                                                      server               Инициализация контекста БД
+[2016-09-23 10:07:31,279] INFO                                                      server               Чтение папок
+[2016-09-23 10:07:32,402] INFO                                                      server               Чтение пользователей
+[2016-09-23 10:07:32,419] INFO                                                      server               Чтение ЛСО
+[2016-09-23 10:07:32,481] INFO                                                      server               Чтение ОБП
+[2016-09-23 10:07:45,785] INFO       CORP\chekunovamv               ::1             server               Client: 23.09.2016 10:07:44,877: Загрузка пользоветелей и папок
+[2016-09-23 10:07:46,118] INFO       CORP\chekunovamv               ::1             server               Client: 23.09.2016 10:07:45,993: Загрузка завершена
+[2016-09-23 10:07:50,572] INFO       CORP\chekunovamv               ::1             server               Получение журнала переключений 
+[2016-09-23 10:07:54,980] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 10
+[2016-09-23 10:07:59,344] INFO       CORP\chekunovamv               ::1             server               Формирование файла ОБП для ТБП 10-03
+[2016-09-23 10:07:59,387] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 10-03
+[2016-09-23 10:07:59,412] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 10-03 Вывод в ремонт секции №2 щита 1Н.DOCX
+[2016-09-23 10:07:59,425] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-09-23 10:07:59,456] INFO       CORP\chekunovamv               ::1             server               Абзацев:  314
+[2016-09-23 10:08:33,739] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-09-23 10:08:33,739] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-09-23 10:08:59,244] INFO       CORP\chekunovamv               ::1             server               Формирование файла ОБП для ТБП 10-03
+[2016-09-23 10:08:59,248] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 10-03
+[2016-09-23 10:08:59,257] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 10-03 Вывод в ремонт секции №2 щита 1Н.DOCX
+[2016-09-23 10:08:59,258] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-09-23 10:08:59,277] INFO       CORP\chekunovamv               ::1             server               Абзацев:  314
+[2016-09-23 10:09:17,831] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-09-23 10:09:17,831] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-09-23 10:09:47,678] INFO                                                      server               Start
+[2016-09-23 10:09:47,725] INFO                                                      server               Инициализация контекста БД
+[2016-09-23 10:09:47,819] INFO                                                      server               Чтение папок
+[2016-09-23 10:09:49,101] INFO                                                      server               Чтение пользователей
+[2016-09-23 10:09:49,132] INFO                                                      server               Чтение ЛСО
+[2016-09-23 10:09:49,273] INFO                                                      server               Чтение ОБП
+[2016-09-23 10:09:53,445] INFO       CORP\chekunovamv               ::1             server               Client: 23.09.2016 10:09:52,633: Загрузка пользоветелей и папок
+[2016-09-23 10:09:53,647] INFO       CORP\chekunovamv               ::1             server               Client: 23.09.2016 10:09:53,525: Загрузка завершена
+[2016-09-23 10:09:57,063] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 10
+[2016-09-23 10:10:01,282] INFO       CORP\chekunovamv               ::1             server               Формирование файла ОБП для ТБП 10-03
+[2016-09-23 10:10:01,329] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 10-03
+[2016-09-23 10:10:01,376] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 10-03 Вывод в ремонт секции №2 щита 1Н.DOCX
+[2016-09-23 10:10:01,376] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-09-23 10:10:01,423] INFO       CORP\chekunovamv               ::1             server               Абзацев:  314
+[2016-09-23 10:13:22,730] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-09-23 10:13:22,730] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-09-23 10:16:48,003] INFO                                                      server               Start
+[2016-09-23 10:16:48,053] INFO                                                      server               Инициализация контекста БД
+[2016-09-23 10:16:48,133] INFO                                                      server               Чтение папок
+[2016-09-23 10:16:48,343] INFO                                                      server               Чтение пользователей
+[2016-09-23 10:16:48,374] INFO                                                      server               Чтение ЛСО
+[2016-09-23 10:16:48,421] INFO                                                      server               Чтение ОБП
+[2016-09-23 10:16:52,326] INFO       CORP\chekunovamv               ::1             server               Client: 23.09.2016 10:16:51,845: Загрузка пользоветелей и папок
+[2016-09-23 10:16:52,603] INFO       CORP\chekunovamv               ::1             server               Client: 23.09.2016 10:16:52,475: Загрузка завершена
+[2016-09-23 10:17:30,118] INFO       CORP\chekunovamv               ::1             server               Получение журнала переключений 
+[2016-09-23 10:17:33,100] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 10
+[2016-09-23 10:17:36,201] INFO       CORP\chekunovamv               ::1             server               Формирование файла ОБП для ТБП 10-03
+[2016-09-23 10:17:36,224] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 10-03
+[2016-09-23 10:17:36,249] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 10-03 Вывод в ремонт секции №2 щита 1Н.DOCX
+[2016-09-23 10:17:36,252] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-09-23 10:17:36,272] INFO       CORP\chekunovamv               ::1             server               Абзацев:  314
+[2016-09-23 10:18:10,026] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-09-23 10:18:10,026] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-09-23 10:18:29,333] INFO                                                      server               Start
+[2016-09-23 10:18:29,380] INFO                                                      server               Инициализация контекста БД
+[2016-09-23 10:18:29,473] INFO                                                      server               Чтение папок
+[2016-09-23 10:18:30,660] INFO                                                      server               Чтение пользователей
+[2016-09-23 10:18:30,691] INFO                                                      server               Чтение ЛСО
+[2016-09-23 10:18:30,800] INFO                                                      server               Чтение ОБП
+[2016-09-23 10:18:33,515] INFO       CORP\chekunovamv               ::1             server               Client: 23.09.2016 10:18:33,080: Загрузка пользоветелей и папок
+[2016-09-23 10:18:33,746] INFO       CORP\chekunovamv               ::1             server               Client: 23.09.2016 10:18:33,628: Загрузка завершена
+[2016-09-23 10:18:36,487] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 10
+[2016-09-23 10:18:40,779] INFO       CORP\chekunovamv               ::1             server               Формирование файла ОБП для ТБП 10-03
+[2016-09-23 10:18:40,802] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 10-03
+[2016-09-23 10:18:40,825] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 10-03 Вывод в ремонт секции №2 щита 1Н.DOCX
+[2016-09-23 10:18:40,826] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-09-23 10:18:40,846] INFO       CORP\chekunovamv               ::1             server               Абзацев:  314
+[2016-09-23 10:18:40,849] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-09-23 10:18:40,849] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-09-23 10:29:25,414] INFO                                                      server               Start
+[2016-09-23 10:29:25,461] INFO                                                      server               Инициализация контекста БД
+[2016-09-23 10:29:25,492] INFO                                                      server               Чтение папок
+[2016-09-23 10:29:25,710] INFO                                                      server               Чтение пользователей
+[2016-09-23 10:29:25,742] INFO                                                      server               Чтение ЛСО
+[2016-09-23 10:29:25,788] INFO                                                      server               Чтение ОБП
+[2016-09-23 10:29:29,902] INFO       CORP\chekunovamv               ::1             server               Client: 23.09.2016 10:29:29,532: Загрузка пользоветелей и папок
+[2016-09-23 10:29:30,147] INFO       CORP\chekunovamv               ::1             server               Client: 23.09.2016 10:29:30,020: Загрузка завершена
+[2016-09-23 10:29:37,957] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 10
+[2016-09-23 10:29:47,847] INFO       CORP\chekunovamv               ::1             server               Формирование файла ОБП для ТБП 10-03
+[2016-09-23 10:29:47,871] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 10-03
+[2016-09-23 10:29:47,895] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 10-03 Вывод в ремонт секции №2 щита 1Н.DOCX
+[2016-09-23 10:29:47,897] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-09-23 10:29:47,916] INFO       CORP\chekunovamv               ::1             server               Абзацев:  314
+[2016-09-23 10:29:47,963] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-09-23 10:29:47,963] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-09-23 13:30:37,263] INFO                                                      server               Start
+[2016-09-23 13:30:37,467] INFO                                                      server               Инициализация контекста БД
+[2016-09-23 13:30:37,886] INFO                                                      server               Чтение папок
+[2016-09-23 13:30:42,089] INFO                                                      server               Чтение пользователей
+[2016-09-23 13:30:42,254] INFO                                                      server               Чтение ЛСО
+[2016-09-23 13:30:42,587] INFO                                                      server               Чтение ОБП
+[2016-09-23 13:30:45,516] INFO       CORP\chekunovamv               ::1             server               Client: 23.09.2016 01:30:43,574: Загрузка пользоветелей и папок
+[2016-09-23 13:30:45,535] INFO       CORP\chekunovamv               ::1             server               Client: 23.09.2016 01:30:43,481: Нет обновлений
+[2016-09-23 13:30:45,898] INFO       CORP\chekunovamv               ::1             server               Client: 23.09.2016 01:30:45,780: Загрузка завершена

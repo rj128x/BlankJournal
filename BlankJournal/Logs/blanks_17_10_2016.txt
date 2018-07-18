@@ -1,0 +1,686 @@
+[2016-10-17 08:24:05,119] INFO                                                      server               Start
+[2016-10-17 08:24:05,948] INFO                                                      server               Инициализация контекста БД
+[2016-10-17 08:24:06,260] INFO                                                      server               Чтение папок
+[2016-10-17 08:24:09,369] INFO                                                      server               Чтение пользователей
+[2016-10-17 08:24:09,416] INFO                                                      server               Чтение ЛСО
+[2016-10-17 08:24:09,557] INFO                                                      server               Чтение ОБП
+[2016-10-17 08:24:23,089] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 08:24:20,723: Загрузка пользоветелей и папок
+[2016-10-17 08:24:23,414] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 08:24:23,276: Загрузка завершена
+[2016-10-17 08:24:24,235] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 6.3
+[2016-10-17 08:24:27,947] INFO       CORP\chekunovamv               ::1             server               Формирование файла ОБП для ТБП 6.3-09
+[2016-10-17 08:24:28,056] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 6.3-09
+[2016-10-17 08:24:28,103] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 6.3-09 Вывод ДЗОШ ВЛ 500 Емелино.docx
+[2016-10-17 08:24:28,119] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-10-17 08:24:28,451] INFO       CORP\chekunovamv               ::1             server               Абзацев:  41
+[2016-10-17 08:24:28,482] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-10-17 08:24:28,514] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-10-17 08:24:56,370] INFO       CORP\chekunovamv               ::1             server               Инициализация нового ОБП (в журнале) 6.3-06
+[2016-10-17 08:24:56,415] INFO       CORP\chekunovamv               ::1             server               Создание файла ОБП с номером из ТБП
+[2016-10-17 08:24:56,415] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 6.3-06
+[2016-10-17 08:24:56,429] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 6.3-06 Ввод ДЗШ 1 СШ-500кВ (2комплект).docx
+[2016-10-17 08:24:56,453] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-10-17 08:24:56,461] INFO       CORP\chekunovamv               ::1             server               Абзацев:  50
+[2016-10-17 08:24:56,463] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-10-17 08:24:56,464] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-10-17 08:24:56,475] INFO       CORP\chekunovamv               ::1             server               Получение количества страниц документа D:\Projects\BlankJournal\BlankJournal\TempData\/ОБП 6.3-06 Ввод ДЗШ 1 СШ-500кВ (2комплект).docx
+[2016-10-17 08:24:56,485] INFO       CORP\chekunovamv               ::1             server               2
+[2016-10-17 08:24:56,486] INFO       CORP\chekunovamv               ::1             server               шаблон ОБП создан
+[2016-10-17 08:27:27,681] INFO                                                      server               Start
+[2016-10-17 08:27:27,726] INFO                                                      server               Инициализация контекста БД
+[2016-10-17 08:27:27,845] INFO                                                      server               Чтение папок
+[2016-10-17 08:27:29,282] INFO                                                      server               Чтение пользователей
+[2016-10-17 08:27:29,317] INFO                                                      server               Чтение ЛСО
+[2016-10-17 08:27:29,433] INFO                                                      server               Чтение ОБП
+[2016-10-17 08:27:37,884] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 08:27:37,193: Загрузка пользоветелей и папок
+[2016-10-17 08:27:38,157] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 08:27:38,031: Загрузка завершена
+[2016-10-17 08:28:08,890] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 5
+[2016-10-17 08:28:13,778] INFO       CORP\chekunovamv               ::1             server               Формирование файла ОБП для ТБП 5-09
+[2016-10-17 08:28:13,852] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 5-09
+[2016-10-17 08:28:13,929] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 5-09 Вывод 5,6АТ.docx
+[2016-10-17 08:28:13,931] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-10-17 08:28:13,978] INFO       CORP\chekunovamv               ::1             server               Абзацев:  399
+[2016-10-17 08:28:13,988] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-10-17 08:28:14,177] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-10-17 08:28:59,092] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 9
+[2016-10-17 08:29:00,870] INFO       CORP\chekunovamv               ::1             server               Формирование файла ОБП для ТБП 9-09
+[2016-10-17 08:29:00,873] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 9-09
+[2016-10-17 08:29:00,913] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 9-09 Вывод в ремонт 2 секции щита 2П.DOCX
+[2016-10-17 08:29:00,914] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-10-17 08:29:00,925] INFO       CORP\chekunovamv               ::1             server               Абзацев:  96
+[2016-10-17 08:29:00,928] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-10-17 08:29:00,928] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-10-17 08:46:51,411] INFO                                                      server               Start
+[2016-10-17 08:46:51,931] INFO                                                      server               Инициализация контекста БД
+[2016-10-17 08:46:52,637] INFO                                                      server               Чтение папок
+[2016-10-17 08:46:54,797] INFO                                                      server               Чтение пользователей
+[2016-10-17 08:46:54,850] INFO                                                      server               Чтение ЛСО
+[2016-10-17 08:46:54,976] INFO                                                      server               Чтение ОБП
+[2016-10-17 08:47:02,286] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 08:47:01,496: Загрузка пользоветелей и папок
+[2016-10-17 08:47:02,531] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 08:47:02,431: Загрузка завершена
+[2016-10-17 08:47:04,413] INFO       CORP\chekunovamv               ::1             server               Получение журнала переключений 
+[2016-10-17 08:47:08,523] INFO       CORP\chekunovamv               ::1             server               Получение журнала переключений 
+[2016-10-17 08:47:11,939] INFO       CORP\chekunovamv               ::1             server               Получение файла бланка из журнала переключений ОБП № 246/2016
+[2016-10-17 08:47:11,945] INFO       CORP\chekunovamv               ::1             server               Получение содержимого файла id=39345933-14ad-433f-8147-156811054db0
+[2016-10-17 08:47:11,979] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 10-05 Вывод в ремонт секции №1 щита 2Н.DOCX
+[2016-10-17 08:47:16,187] INFO       CORP\chekunovamv               ::1             server               Получение файла бланка из журнала переключений ОБП № 246/2016
+[2016-10-17 08:47:16,190] INFO       CORP\chekunovamv               ::1             server               Получение содержимого файла id=39345933-14ad-433f-8147-156811054db0
+[2016-10-17 08:47:16,195] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 10-05 Вывод в ремонт секции №1 щита 2Н.DOCX
+[2016-10-17 09:02:38,341] INFO                                                      server               Start
+[2016-10-17 09:02:38,383] INFO                                                      server               Инициализация контекста БД
+[2016-10-17 09:02:38,478] INFO                                                      server               Чтение папок
+[2016-10-17 09:02:39,755] INFO                                                      server               Чтение пользователей
+[2016-10-17 09:02:39,791] INFO                                                      server               Чтение ЛСО
+[2016-10-17 09:02:39,910] INFO                                                      server               Чтение ОБП
+[2016-10-17 09:02:43,200] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 09:02:42,818: Загрузка пользоветелей и папок
+[2016-10-17 09:02:43,453] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 09:02:43,331: Загрузка завершена
+[2016-10-17 09:02:45,094] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 6.1
+[2016-10-17 09:02:47,871] INFO       CORP\chekunovamv               ::1             server               Формирование файла ОБП для ТБП 6.1-10
+[2016-10-17 09:02:47,964] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 6.1-10
+[2016-10-17 09:02:47,995] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 6.1-10 Ввод ДФЗ ВЛ-110 кВ ЧаТЭЦ (ВЛ-110 кВ питается через свой В).docx
+[2016-10-17 09:02:48,018] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-10-17 09:02:48,028] INFO       CORP\chekunovamv               ::1             server               Абзацев:  67
+[2016-10-17 09:02:48,032] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-10-17 09:02:48,068] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-10-17 09:04:39,342] INFO                                                      server               Start
+[2016-10-17 09:04:39,405] INFO                                                      server               Инициализация контекста БД
+[2016-10-17 09:04:39,874] INFO                                                      server               Чтение папок
+[2016-10-17 09:04:40,092] INFO                                                      server               Чтение пользователей
+[2016-10-17 09:04:40,123] INFO                                                      server               Чтение ЛСО
+[2016-10-17 09:04:40,170] INFO                                                      server               Чтение ОБП
+[2016-10-17 09:04:43,968] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 09:04:43,568: Загрузка пользоветелей и папок
+[2016-10-17 09:04:44,188] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 09:04:44,067: Загрузка завершена
+[2016-10-17 09:04:45,760] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 6.3
+[2016-10-17 09:04:47,857] INFO       CORP\chekunovamv               ::1             server               Формирование файла ОБП для ТБП 6.3-11
+[2016-10-17 09:04:47,884] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 6.3-11
+[2016-10-17 09:04:47,918] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 6.3-11 Вывод ДЗОШ ВЛ 500 КаГРЭС.docx
+[2016-10-17 09:04:47,931] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-10-17 09:04:47,938] INFO       CORP\chekunovamv               ::1             server               Абзацев:  41
+[2016-10-17 09:04:47,939] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-10-17 09:04:47,945] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-10-17 09:09:08,550] INFO                                                      server               Start
+[2016-10-17 09:09:08,597] INFO                                                      server               Инициализация контекста БД
+[2016-10-17 09:09:08,691] INFO                                                      server               Чтение папок
+[2016-10-17 09:09:10,007] INFO                                                      server               Чтение пользователей
+[2016-10-17 09:09:10,053] INFO                                                      server               Чтение ЛСО
+[2016-10-17 09:09:10,241] INFO                                                      server               Чтение ОБП
+[2016-10-17 09:09:13,331] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 09:09:12,902: Загрузка пользоветелей и папок
+[2016-10-17 09:09:13,545] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 09:09:13,424: Загрузка завершена
+[2016-10-17 09:09:17,642] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 1
+[2016-10-17 09:09:20,695] INFO       CORP\chekunovamv               ::1             server               Формирование файла ОБП для ТБП 1-07
+[2016-10-17 09:09:20,721] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 1-07
+[2016-10-17 09:09:20,787] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 1-07 ввод 7ГГ.docx
+[2016-10-17 09:09:20,797] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-10-17 09:09:20,836] INFO       CORP\chekunovamv               ::1             server               Абзацев:  127
+[2016-10-17 09:09:20,838] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-10-17 09:09:21,076] INFO       CORP\chekunovamv               ::1             server               Ошибка при формировании колонтитула System.InvalidCastException: Не удалось привести тип объекта "DocumentFormat.OpenXml.Wordprocessing.SdtBlock" к типу "DocumentFormat.OpenXml.Wordprocessing.Paragraph".
+   в BlankJournal.Models.WordData.WriteHeaderInfo(WordprocessingDocument doc, Int32 num, String name) в D:\Projects\BlankJournal\BlankJournal\Models\WordData.cs:строка 198
+[2016-10-17 09:09:21,076] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-10-17 09:10:04,826] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 8
+[2016-10-17 09:10:07,791] INFO       CORP\chekunovamv               ::1             server               Формирование файла ОБП для ТБП 8-11
+[2016-10-17 09:10:07,839] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 8-11
+[2016-10-17 09:10:07,855] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 8-11 Вывод в ремонт перемычки КРУ2-КРУ3.docx
+[2016-10-17 09:10:07,857] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-10-17 09:10:07,885] INFO       CORP\chekunovamv               ::1             server               Абзацев:  35
+[2016-10-17 09:10:07,887] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-10-17 09:10:07,889] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-10-17 09:10:18,232] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 6.3
+[2016-10-17 09:10:20,119] INFO       CORP\chekunovamv               ::1             server               Формирование файла ОБП для ТБП 6.3-13
+[2016-10-17 09:10:20,122] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 6.3-13
+[2016-10-17 09:10:20,140] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 6.3-13 Вывод ДЗОШ ВЛ 500 Вятка.docx
+[2016-10-17 09:10:20,141] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-10-17 09:10:20,147] INFO       CORP\chekunovamv               ::1             server               Абзацев:  41
+[2016-10-17 09:10:20,148] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-10-17 09:10:20,165] INFO       CORP\chekunovamv               ::1             server               Ошибка при формировании колонтитула System.InvalidCastException: Не удалось привести тип объекта "DocumentFormat.OpenXml.Wordprocessing.SdtBlock" к типу "DocumentFormat.OpenXml.Wordprocessing.Paragraph".
+   в BlankJournal.Models.WordData.WriteHeaderInfo(WordprocessingDocument doc, Int32 num, String name) в D:\Projects\BlankJournal\BlankJournal\Models\WordData.cs:строка 198
+[2016-10-17 09:10:20,165] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-10-17 10:06:13,767] INFO                                                      server               Start
+[2016-10-17 10:06:13,814] INFO                                                      server               Инициализация контекста БД
+[2016-10-17 10:06:13,861] INFO                                                      server               Чтение папок
+[2016-10-17 10:06:14,391] INFO                                                      server               Чтение пользователей
+[2016-10-17 10:06:14,469] INFO                                                      server               Чтение ЛСО
+[2016-10-17 10:06:14,578] INFO                                                      server               Чтение ОБП
+[2016-10-17 10:06:19,119] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 10:06:18,449: Загрузка пользоветелей и папок
+[2016-10-17 10:06:19,338] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 10:06:19,218: Загрузка завершена
+[2016-10-17 10:06:21,356] INFO       CORP\chekunovamv               ::1             server               Получение журнала переключений 
+[2016-10-17 10:06:24,914] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 4
+[2016-10-17 10:06:28,750] INFO       CORP\chekunovamv               ::1             server               Формирование файла ОБП для ТБП 4-12
+[2016-10-17 10:06:28,839] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 4-12
+[2016-10-17 10:06:28,976] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 4-12 Ввод в работу В-1 500 КаГРЭС.docx
+[2016-10-17 10:06:28,978] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-10-17 10:06:29,058] INFO       CORP\chekunovamv               ::1             server               Абзацев:  87
+[2016-10-17 10:06:29,062] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-10-17 10:06:29,065] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-10-17 10:11:59,753] INFO                                                      server               Start
+[2016-10-17 10:11:59,800] INFO                                                      server               Инициализация контекста БД
+[2016-10-17 10:11:59,897] INFO                                                      server               Чтение папок
+[2016-10-17 10:12:01,148] INFO                                                      server               Чтение пользователей
+[2016-10-17 10:12:01,192] INFO                                                      server               Чтение ЛСО
+[2016-10-17 10:12:01,320] INFO                                                      server               Чтение ОБП
+[2016-10-17 10:12:04,249] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 10:12:03,854: Загрузка пользоветелей и папок
+[2016-10-17 10:12:04,500] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 10:12:04,379: Загрузка завершена
+[2016-10-17 10:12:06,511] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 1
+[2016-10-17 10:12:08,846] INFO       CORP\chekunovamv               ::1             server               Формирование файла ОБП для ТБП 1-06
+[2016-10-17 10:12:08,892] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 1-06
+[2016-10-17 10:12:08,955] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 1-06 ввод 6ГГ.docx
+[2016-10-17 10:12:09,000] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-10-17 10:12:09,018] INFO       CORP\chekunovamv               ::1             server               Абзацев:  132
+[2016-10-17 10:12:09,021] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-10-17 10:12:09,653] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-10-17 10:14:14,999] INFO                                                      server               Start
+[2016-10-17 10:14:15,046] INFO                                                      server               Инициализация контекста БД
+[2016-10-17 10:14:15,099] INFO                                                      server               Чтение папок
+[2016-10-17 10:14:15,605] INFO                                                      server               Чтение пользователей
+[2016-10-17 10:14:15,639] INFO                                                      server               Чтение ЛСО
+[2016-10-17 10:14:15,677] INFO                                                      server               Чтение ОБП
+[2016-10-17 10:14:18,677] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 10:14:18,364: Загрузка пользоветелей и папок
+[2016-10-17 10:14:18,950] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 10:14:18,827: Загрузка завершена
+[2016-10-17 10:14:20,676] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 2
+[2016-10-17 10:14:22,703] INFO       CORP\chekunovamv               ::1             server               Формирование файла ОБП для ТБП 2-07
+[2016-10-17 10:14:22,725] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 2-07
+[2016-10-17 10:14:22,759] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 2-07 Вывод в ремонт ОСШ 110.docx
+[2016-10-17 10:14:22,761] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-10-17 10:14:22,769] INFO       CORP\chekunovamv               ::1             server               Абзацев:  52
+[2016-10-17 10:14:22,784] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-10-17 10:14:22,790] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-10-17 10:15:38,465] INFO                                                      server               Start
+[2016-10-17 10:15:38,511] INFO                                                      server               Инициализация контекста БД
+[2016-10-17 10:15:38,621] INFO                                                      server               Чтение папок
+[2016-10-17 10:15:39,985] INFO                                                      server               Чтение пользователей
+[2016-10-17 10:15:40,016] INFO                                                      server               Чтение ЛСО
+[2016-10-17 10:15:40,141] INFO                                                      server               Чтение ОБП
+[2016-10-17 10:15:44,742] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 10:15:44,265: Загрузка пользоветелей и папок
+[2016-10-17 10:15:44,952] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 10:15:44,829: Загрузка завершена
+[2016-10-17 10:15:46,913] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 6.1
+[2016-10-17 10:15:49,109] INFO       CORP\chekunovamv               ::1             server               Формирование файла ОБП для ТБП 6.1-09
+[2016-10-17 10:15:49,219] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 6.1-09
+[2016-10-17 10:15:49,247] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 6.1-09 Вывод ДФЗ ВЛ-110 кВ ЧаТЭЦ (ВЛ-110 кВ питается через свой В).docx
+[2016-10-17 10:15:49,270] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-10-17 10:15:49,278] INFO       CORP\chekunovamv               ::1             server               Абзацев:  46
+[2016-10-17 10:15:49,280] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-10-17 10:15:49,288] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-10-17 10:16:08,915] INFO                                                      server               Start
+[2016-10-17 10:16:09,149] INFO                                                      server               Инициализация контекста БД
+[2016-10-17 10:16:09,211] INFO                                                      server               Чтение папок
+[2016-10-17 10:16:09,617] INFO                                                      server               Чтение пользователей
+[2016-10-17 10:16:09,648] INFO                                                      server               Чтение ЛСО
+[2016-10-17 10:16:09,679] INFO                                                      server               Чтение ОБП
+[2016-10-17 10:16:11,419] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 10:16:11,008: Загрузка пользоветелей и папок
+[2016-10-17 10:16:11,616] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 10:16:11,510: Загрузка завершена
+[2016-10-17 10:16:13,072] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 10
+[2016-10-17 10:16:15,306] INFO       CORP\chekunovamv               ::1             server               Формирование файла ОБП для ТБП 10-10
+[2016-10-17 10:16:15,383] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 10-10
+[2016-10-17 10:16:15,419] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 10-10 Ввод в работу секции №1 щита 3Н.DOCX
+[2016-10-17 10:16:15,441] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-10-17 10:16:15,452] INFO       CORP\chekunovamv               ::1             server               Абзацев:  146
+[2016-10-17 10:16:15,455] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-10-17 10:16:15,460] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-10-17 10:17:03,647] INFO                                                      server               Start
+[2016-10-17 10:17:03,693] INFO                                                      server               Инициализация контекста БД
+[2016-10-17 10:17:03,815] INFO                                                      server               Чтение папок
+[2016-10-17 10:17:05,308] INFO                                                      server               Чтение пользователей
+[2016-10-17 10:17:05,342] INFO                                                      server               Чтение ЛСО
+[2016-10-17 10:17:05,485] INFO                                                      server               Чтение ОБП
+[2016-10-17 10:17:08,361] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 10:17:07,887: Загрузка пользоветелей и папок
+[2016-10-17 10:17:08,590] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 10:17:08,464: Загрузка завершена
+[2016-10-17 10:17:09,995] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 5
+[2016-10-17 10:17:12,816] INFO       CORP\chekunovamv               ::1             server               Формирование файла ОБП для ТБП 5-09
+[2016-10-17 10:17:12,841] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 5-09
+[2016-10-17 10:17:12,886] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 5-09 Вывод 5,6АТ.docx
+[2016-10-17 10:17:12,904] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-10-17 10:17:13,121] INFO       CORP\chekunovamv               ::1             server               Абзацев:  399
+[2016-10-17 10:17:13,127] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-10-17 10:17:53,247] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-10-17 10:20:38,051] INFO                                                      server               Start
+[2016-10-17 10:20:38,103] INFO                                                      server               Инициализация контекста БД
+[2016-10-17 10:20:38,128] INFO                                                      server               Чтение папок
+[2016-10-17 10:20:38,332] INFO                                                      server               Чтение пользователей
+[2016-10-17 10:20:38,365] INFO                                                      server               Чтение ЛСО
+[2016-10-17 10:20:38,405] INFO                                                      server               Чтение ОБП
+[2016-10-17 10:20:41,365] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 10:20:40,989: Загрузка пользоветелей и папок
+[2016-10-17 10:20:41,606] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 10:20:41,485: Загрузка завершена
+[2016-10-17 10:20:43,109] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 7.1
+[2016-10-17 10:20:45,365] INFO       CORP\chekunovamv               ::1             server               Формирование файла ОБП для ТБП 7.1-10
+[2016-10-17 10:20:45,386] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 7.1-10
+[2016-10-17 10:20:45,428] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 7.1-10 Ввод прд АКА-328 Светлая.docx
+[2016-10-17 10:20:45,462] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-10-17 10:20:45,466] INFO       CORP\chekunovamv               ::1             server               Абзацев:  28
+[2016-10-17 10:20:45,467] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-10-17 10:20:45,475] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-10-17 10:22:01,862] INFO                                                      server               Start
+[2016-10-17 10:22:01,919] INFO                                                      server               Инициализация контекста БД
+[2016-10-17 10:22:02,016] INFO                                                      server               Чтение папок
+[2016-10-17 10:22:03,253] INFO                                                      server               Чтение пользователей
+[2016-10-17 10:22:03,288] INFO                                                      server               Чтение ЛСО
+[2016-10-17 10:22:03,404] INFO                                                      server               Чтение ОБП
+[2016-10-17 10:22:05,683] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 10:22:05,291: Загрузка пользоветелей и папок
+[2016-10-17 10:22:05,901] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 10:22:05,782: Загрузка завершена
+[2016-10-17 10:22:07,712] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 6.2
+[2016-10-17 10:22:11,136] INFO       CORP\chekunovamv               ::1             server               Формирование файла ОБП для ТБП 6.2-11
+[2016-10-17 10:22:11,184] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 6.2-11
+[2016-10-17 10:22:11,216] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 6.2-11 Вывод  ДФЗ ВЛ 220 кВ Светлая .docx
+[2016-10-17 10:22:11,218] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-10-17 10:22:11,224] INFO       CORP\chekunovamv               ::1             server               Абзацев:  48
+[2016-10-17 10:22:11,226] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-10-17 10:22:11,232] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-10-17 10:22:25,748] INFO       CORP\chekunovamv               ::1             server               Инициализация нового ОБП (в журнале) 6.2-11
+[2016-10-17 10:22:25,812] INFO       CORP\chekunovamv               ::1             server               Создание файла ОБП с номером из ТБП
+[2016-10-17 10:22:25,812] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 6.2-11
+[2016-10-17 10:22:25,817] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 6.2-11 Вывод  ДФЗ ВЛ 220 кВ Светлая .docx
+[2016-10-17 10:22:25,818] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-10-17 10:22:25,824] INFO       CORP\chekunovamv               ::1             server               Абзацев:  48
+[2016-10-17 10:22:25,825] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-10-17 10:22:25,827] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-10-17 10:22:25,833] INFO       CORP\chekunovamv               ::1             server               Получение количества страниц документа D:\Projects\BlankJournal\BlankJournal\TempData\/ОБП 6.2-11 Вывод  ДФЗ ВЛ 220 кВ Светлая .docx
+[2016-10-17 10:22:25,839] INFO       CORP\chekunovamv               ::1             server               2
+[2016-10-17 10:22:25,839] INFO       CORP\chekunovamv               ::1             server               шаблон ОБП создан
+[2016-10-17 10:22:28,990] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 6.2
+[2016-10-17 10:23:24,529] INFO                                                      server               Start
+[2016-10-17 10:23:24,576] INFO                                                      server               Инициализация контекста БД
+[2016-10-17 10:23:24,607] INFO                                                      server               Чтение папок
+[2016-10-17 10:23:24,811] INFO                                                      server               Чтение пользователей
+[2016-10-17 10:23:24,858] INFO                                                      server               Чтение ЛСО
+[2016-10-17 10:23:24,889] INFO                                                      server               Чтение ОБП
+[2016-10-17 10:23:27,306] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 10:23:26,891: Загрузка пользоветелей и папок
+[2016-10-17 10:23:27,592] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 10:23:27,446: Загрузка завершена
+[2016-10-17 10:23:28,833] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 6.1
+[2016-10-17 10:23:31,015] INFO       CORP\chekunovamv               ::1             server               Формирование файла ОБП для ТБП 6.1-09
+[2016-10-17 10:23:31,037] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 6.1-09
+[2016-10-17 10:23:31,060] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 6.1-09 Вывод ДФЗ ВЛ-110 кВ ЧаТЭЦ (ВЛ-110 кВ питается через свой В).docx
+[2016-10-17 10:23:31,062] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-10-17 10:23:31,069] INFO       CORP\chekunovamv               ::1             server               Абзацев:  46
+[2016-10-17 10:23:31,071] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-10-17 10:23:31,078] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-10-17 10:23:47,610] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 6.3
+[2016-10-17 10:23:49,475] INFO       CORP\chekunovamv               ::1             server               Формирование файла ОБП для ТБП 6.3-12
+[2016-10-17 10:23:49,478] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 6.3-12
+[2016-10-17 10:23:49,491] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 6.3-12 Ввод ДЗОШ ВЛ 500 КаГРЭС.docx
+[2016-10-17 10:23:49,512] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-10-17 10:23:49,520] INFO       CORP\chekunovamv               ::1             server               Абзацев:  50
+[2016-10-17 10:23:49,521] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-10-17 10:23:49,524] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-10-17 10:23:58,991] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 6.1
+[2016-10-17 10:24:01,363] INFO       CORP\chekunovamv               ::1             server               Формирование файла ОБП для ТБП 6.1-11
+[2016-10-17 10:24:01,366] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 6.1-11
+[2016-10-17 10:24:01,388] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 6.1-11 Вывод ДФЗ ВЛ-110 кВ Берёзовка (РП откл)..docx
+[2016-10-17 10:24:01,399] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-10-17 10:24:01,407] INFO       CORP\chekunovamv               ::1             server               Абзацев:  49
+[2016-10-17 10:24:01,409] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-10-17 10:24:01,412] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-10-17 10:24:36,288] INFO                                                      server               Start
+[2016-10-17 10:24:36,334] INFO                                                      server               Инициализация контекста БД
+[2016-10-17 10:24:36,428] INFO                                                      server               Чтение папок
+[2016-10-17 10:24:37,660] INFO                                                      server               Чтение пользователей
+[2016-10-17 10:24:37,692] INFO                                                      server               Чтение ЛСО
+[2016-10-17 10:24:37,801] INFO                                                      server               Чтение ОБП
+[2016-10-17 10:24:41,370] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 10:24:40,954: Загрузка пользоветелей и папок
+[2016-10-17 10:24:41,598] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 10:24:41,480: Загрузка завершена
+[2016-10-17 10:24:43,415] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 5
+[2016-10-17 10:24:45,250] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 6.1
+[2016-10-17 10:24:48,515] INFO       CORP\chekunovamv               ::1             server               Инициализация нового ОБП (в журнале) 6.1-11
+[2016-10-17 10:24:48,527] INFO       CORP\chekunovamv               ::1             server               Создание файла ОБП с номером из ТБП
+[2016-10-17 10:24:48,536] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 6.1-11
+[2016-10-17 10:24:48,561] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 6.1-11 Вывод ДФЗ ВЛ-110 кВ Берёзовка (РП откл)..docx
+[2016-10-17 10:24:48,563] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-10-17 10:24:48,570] INFO       CORP\chekunovamv               ::1             server               Абзацев:  49
+[2016-10-17 10:24:48,573] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-10-17 10:24:48,580] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-10-17 10:24:48,590] INFO       CORP\chekunovamv               ::1             server               Получение количества страниц документа D:\Projects\BlankJournal\BlankJournal\TempData\/ОБП 6.1-11 Вывод ДФЗ ВЛ-110 кВ Берёзовка (РП откл)..docx
+[2016-10-17 10:24:48,598] INFO       CORP\chekunovamv               ::1             server               2
+[2016-10-17 10:24:48,599] INFO       CORP\chekunovamv               ::1             server               шаблон ОБП создан
+[2016-10-17 10:24:49,812] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 6.1
+[2016-10-17 10:25:23,718] INFO       CORP\chekunovamv               ::1             server               Получение содержимого файла id=781c6723-ea94-4392-b80a-2daf6ff98dfa
+[2016-10-17 10:25:23,724] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\6.1-11 Вывод ДФЗ ВЛ-110 кВ Берёзовка (РП откл)..docx
+[2016-10-17 10:25:39,446] INFO       CORP\chekunovamv               ::1             server               Получение содержимого файла id=781c6723-ea94-4392-b80a-2daf6ff98dfa
+[2016-10-17 10:25:39,446] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\6.1-11 Вывод ДФЗ ВЛ-110 кВ Берёзовка (РП откл)..docx
+[2016-10-17 10:37:20,195] INFO                                                      server               Start
+[2016-10-17 10:37:20,384] INFO                                                      server               Инициализация контекста БД
+[2016-10-17 10:37:20,438] INFO                                                      server               Чтение папок
+[2016-10-17 10:37:21,159] INFO                                                      server               Чтение пользователей
+[2016-10-17 10:37:21,253] INFO                                                      server               Чтение ЛСО
+[2016-10-17 10:37:21,424] INFO                                                      server               Чтение ОБП
+[2016-10-17 10:37:23,075] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 10:37:22,735: Загрузка пользоветелей и папок
+[2016-10-17 10:37:23,269] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 10:37:23,173: Загрузка завершена
+[2016-10-17 10:37:25,824] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 4
+[2016-10-17 10:37:28,771] INFO       CORP\chekunovamv               ::1             server               Инициализация нового ОБП (в журнале) 4-12
+[2016-10-17 10:37:28,837] INFO       CORP\chekunovamv               ::1             server               Создание файла ОБП с номером из ТБП
+[2016-10-17 10:37:28,848] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 4-12
+[2016-10-17 10:37:28,883] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 4-12 Ввод в работу В-1 500 КаГРЭС.docx
+[2016-10-17 10:37:28,884] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-10-17 10:37:28,896] INFO       CORP\chekunovamv               ::1             server               Абзацев:  87
+[2016-10-17 10:37:28,898] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-10-17 10:37:28,904] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-10-17 10:37:28,918] INFO       CORP\chekunovamv               ::1             server               Получение количества страниц документа D:\Projects\BlankJournal\BlankJournal\TempData\/ОБП 4-12 Ввод в работу В-1 500 КаГРЭС.docx
+[2016-10-17 10:37:28,931] INFO       CORP\chekunovamv               ::1             server               4
+[2016-10-17 10:37:28,932] INFO       CORP\chekunovamv               ::1             server               шаблон ОБП создан
+[2016-10-17 10:37:30,193] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 4
+[2016-10-17 11:12:52,580] INFO                                                      server               Start
+[2016-10-17 11:12:52,658] INFO                                                      server               Инициализация контекста БД
+[2016-10-17 11:12:52,768] INFO                                                      server               Чтение папок
+[2016-10-17 11:12:54,066] INFO                                                      server               Чтение пользователей
+[2016-10-17 11:12:54,144] INFO                                                      server               Чтение ЛСО
+[2016-10-17 11:12:54,394] INFO                                                      server               Чтение ОБП
+[2016-10-17 11:12:56,818] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 11:12:56,453: Загрузка пользоветелей и папок
+[2016-10-17 11:12:57,089] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 11:12:56,961: Загрузка завершена
+[2016-10-17 11:13:01,903] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 6.1
+[2016-10-17 11:13:04,335] INFO       CORP\chekunovamv               ::1             server               Формирование файла ОБП для ТБП 6.1-12
+[2016-10-17 11:13:04,416] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 6.1-12
+[2016-10-17 11:13:04,457] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 6.1-12 Ввод ДФЗ ВЛ-110 кВ Берёзовка(РП откл).docx
+[2016-10-17 11:13:04,459] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-10-17 11:13:04,469] INFO       CORP\chekunovamv               ::1             server               Абзацев:  68
+[2016-10-17 11:13:04,473] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-10-17 11:13:04,496] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-10-17 11:13:51,879] INFO                                                      server               Start
+[2016-10-17 11:13:51,923] INFO                                                      server               Инициализация контекста БД
+[2016-10-17 11:13:51,972] INFO                                                      server               Чтение папок
+[2016-10-17 11:13:52,134] INFO                                                      server               Чтение пользователей
+[2016-10-17 11:13:52,161] INFO                                                      server               Чтение ЛСО
+[2016-10-17 11:13:52,193] INFO                                                      server               Чтение ОБП
+[2016-10-17 11:13:54,583] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 11:13:54,117: Загрузка пользоветелей и папок
+[2016-10-17 11:13:54,782] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 11:13:54,661: Загрузка завершена
+[2016-10-17 11:13:56,110] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 6.3
+[2016-10-17 11:14:01,701] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 6.1
+[2016-10-17 11:14:04,331] INFO       CORP\chekunovamv               ::1             server               Формирование файла ОБП для ТБП 6.1-11
+[2016-10-17 11:14:04,355] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 6.1-11
+[2016-10-17 11:14:04,396] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 6.1-11 Вывод ДФЗ ВЛ-110 кВ Берёзовка (РП откл)..docx
+[2016-10-17 11:14:04,398] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-10-17 11:14:04,406] INFO       CORP\chekunovamv               ::1             server               Абзацев:  49
+[2016-10-17 11:14:04,409] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-10-17 11:14:04,417] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-10-17 11:14:32,168] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 5
+[2016-10-17 11:14:34,029] INFO       CORP\chekunovamv               ::1             server               Формирование файла ОБП для ТБП 5-07
+[2016-10-17 11:14:34,031] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 5-07
+[2016-10-17 11:14:34,054] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 5-07 Вывод 4Т.docx
+[2016-10-17 11:14:34,402] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-10-17 11:14:34,452] INFO       CORP\chekunovamv               ::1             server               Абзацев:  187
+[2016-10-17 11:14:34,456] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-10-17 11:14:34,461] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-10-17 11:14:42,851] INFO       CORP\chekunovamv               ::1             server               Инициализация нового ОБП (в журнале) 5-10
+[2016-10-17 11:14:42,866] INFO       CORP\chekunovamv               ::1             server               Создание файла ОБП с номером из ТБП
+[2016-10-17 11:14:42,866] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 5-10
+[2016-10-17 11:14:42,893] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 5-10 Ввод 5,6АТ.docx
+[2016-10-17 11:14:42,895] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-10-17 11:14:42,988] INFO       CORP\chekunovamv               ::1             server               Абзацев:  605
+[2016-10-17 11:14:43,000] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-10-17 11:14:43,011] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-10-17 11:14:43,162] INFO       CORP\chekunovamv               ::1             server               Получение количества страниц документа D:\Projects\BlankJournal\BlankJournal\TempData\/ОБП 5-10 Ввод 5,6АТ.docx
+[2016-10-17 11:14:43,319] INFO       CORP\chekunovamv               ::1             server               18
+[2016-10-17 11:14:43,320] INFO       CORP\chekunovamv               ::1             server               шаблон ОБП создан
+[2016-10-17 11:14:44,455] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 5
+[2016-10-17 11:18:20,177] INFO                                                      server               Start
+[2016-10-17 11:18:20,224] INFO                                                      server               Инициализация контекста БД
+[2016-10-17 11:18:20,302] INFO                                                      server               Чтение папок
+[2016-10-17 11:18:21,504] INFO                                                      server               Чтение пользователей
+[2016-10-17 11:18:21,520] INFO                                                      server               Чтение ЛСО
+[2016-10-17 11:18:21,629] INFO                                                      server               Чтение ОБП
+[2016-10-17 11:18:25,211] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 11:18:24,788: Загрузка пользоветелей и папок
+[2016-10-17 11:18:25,428] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 11:18:25,304: Загрузка завершена
+[2016-10-17 11:18:27,014] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 6.1
+[2016-10-17 11:18:31,451] INFO       CORP\chekunovamv               ::1             server               Формирование файла ОБП для ТБП 6.1-10
+[2016-10-17 11:18:31,474] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 6.1-10
+[2016-10-17 11:18:31,521] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 6.1-10 Ввод ДФЗ ВЛ-110 кВ ЧаТЭЦ (ВЛ-110 кВ питается через свой В).docx
+[2016-10-17 11:18:31,543] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-10-17 11:18:31,553] INFO       CORP\chekunovamv               ::1             server               Абзацев:  67
+[2016-10-17 11:18:31,557] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-10-17 11:18:31,586] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-10-17 11:19:09,308] INFO                                                      server               Start
+[2016-10-17 11:19:09,352] INFO                                                      server               Инициализация контекста БД
+[2016-10-17 11:19:09,442] INFO                                                      server               Чтение папок
+[2016-10-17 11:19:10,631] INFO                                                      server               Чтение пользователей
+[2016-10-17 11:19:10,657] INFO                                                      server               Чтение ЛСО
+[2016-10-17 11:19:10,765] INFO                                                      server               Чтение ОБП
+[2016-10-17 11:19:12,867] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 11:19:12,496: Загрузка пользоветелей и папок
+[2016-10-17 11:19:13,140] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 11:19:13,002: Загрузка завершена
+[2016-10-17 11:19:14,670] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 5
+[2016-10-17 11:19:15,567] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 6.1
+[2016-10-17 11:19:17,620] INFO       CORP\chekunovamv               ::1             server               Формирование файла ОБП для ТБП 6.1-11
+[2016-10-17 11:19:17,677] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 6.1-11
+[2016-10-17 11:19:17,707] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 6.1-11 Вывод ДФЗ ВЛ-110 кВ Берёзовка (РП откл)..docx
+[2016-10-17 11:19:17,708] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-10-17 11:19:17,716] INFO       CORP\chekunovamv               ::1             server               Абзацев:  49
+[2016-10-17 11:19:17,718] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-10-17 11:19:17,726] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-10-17 11:21:18,260] INFO                                                      server               Start
+[2016-10-17 11:21:18,307] INFO                                                      server               Инициализация контекста БД
+[2016-10-17 11:21:18,338] INFO                                                      server               Чтение папок
+[2016-10-17 11:21:18,525] INFO                                                      server               Чтение пользователей
+[2016-10-17 11:21:18,541] INFO                                                      server               Чтение ЛСО
+[2016-10-17 11:21:18,572] INFO                                                      server               Чтение ОБП
+[2016-10-17 11:21:21,095] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 11:21:20,686: Загрузка пользоветелей и папок
+[2016-10-17 11:21:21,321] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 11:21:21,196: Загрузка завершена
+[2016-10-17 11:21:23,396] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 6.1
+[2016-10-17 11:21:26,079] INFO       CORP\chekunovamv               ::1             server               Формирование файла ОБП для ТБП 6.1-11
+[2016-10-17 11:21:26,102] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 6.1-11
+[2016-10-17 11:21:26,125] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 6.1-11 Вывод ДФЗ ВЛ-110 кВ Берёзовка (РП откл)..docx
+[2016-10-17 11:21:26,126] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-10-17 11:21:26,134] INFO       CORP\chekunovamv               ::1             server               Абзацев:  49
+[2016-10-17 11:21:26,137] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-10-17 11:21:26,174] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-10-17 11:21:45,020] INFO       CORP\chekunovamv               ::1             server               Формирование файла ОБП для ТБП 6.1-11
+[2016-10-17 11:21:45,023] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 6.1-11
+[2016-10-17 11:21:45,028] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 6.1-11 Вывод ДФЗ ВЛ-110 кВ Берёзовка (РП откл)..docx
+[2016-10-17 11:21:45,049] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-10-17 11:21:45,049] INFO       CORP\chekunovamv               ::1             server               Абзацев:  49
+[2016-10-17 11:21:45,059] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-10-17 11:21:45,059] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-10-17 11:23:48,493] INFO                                                      server               Start
+[2016-10-17 11:23:48,525] INFO                                                      server               Инициализация контекста БД
+[2016-10-17 11:23:48,618] INFO                                                      server               Чтение папок
+[2016-10-17 11:23:49,808] INFO                                                      server               Чтение пользователей
+[2016-10-17 11:23:49,823] INFO                                                      server               Чтение ЛСО
+[2016-10-17 11:23:49,933] INFO                                                      server               Чтение ОБП
+[2016-10-17 11:23:52,366] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 11:23:51,965: Загрузка пользоветелей и папок
+[2016-10-17 11:23:52,572] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 11:23:52,450: Загрузка завершена
+[2016-10-17 11:23:53,942] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 6.1
+[2016-10-17 11:23:56,076] INFO       CORP\chekunovamv               ::1             server               Формирование файла ОБП для ТБП 6.1-11
+[2016-10-17 11:23:56,126] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 6.1-11
+[2016-10-17 11:23:56,150] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 6.1-11 Вывод ДФЗ ВЛ-110 кВ Берёзовка (РП откл)..docx
+[2016-10-17 11:23:56,152] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-10-17 11:23:56,159] INFO       CORP\chekunovamv               ::1             server               Абзацев:  49
+[2016-10-17 11:23:56,162] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-10-17 11:23:56,223] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-10-17 11:26:23,818] INFO                                                      server               Start
+[2016-10-17 11:26:23,865] INFO                                                      server               Инициализация контекста БД
+[2016-10-17 11:26:23,896] INFO                                                      server               Чтение папок
+[2016-10-17 11:26:24,068] INFO                                                      server               Чтение пользователей
+[2016-10-17 11:26:24,084] INFO                                                      server               Чтение ЛСО
+[2016-10-17 11:26:24,115] INFO                                                      server               Чтение ОБП
+[2016-10-17 11:26:26,821] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 11:26:26,349: Загрузка пользоветелей и папок
+[2016-10-17 11:26:27,051] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 11:26:26,926: Загрузка завершена
+[2016-10-17 11:26:28,665] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 6.1
+[2016-10-17 11:26:31,444] INFO       CORP\chekunovamv               ::1             server               Формирование файла ОБП для ТБП 6.1-11
+[2016-10-17 11:26:31,469] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 6.1-11
+[2016-10-17 11:26:31,492] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 6.1-11 Вывод ДФЗ ВЛ-110 кВ Берёзовка (РП откл)..docx
+[2016-10-17 11:26:31,493] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-10-17 11:26:31,500] INFO       CORP\chekunovamv               ::1             server               Абзацев:  49
+[2016-10-17 11:26:31,503] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-10-17 11:26:31,544] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-10-17 11:27:02,817] INFO                                                      server               Start
+[2016-10-17 11:27:02,864] INFO                                                      server               Инициализация контекста БД
+[2016-10-17 11:27:02,942] INFO                                                      server               Чтение папок
+[2016-10-17 11:27:04,100] INFO                                                      server               Чтение пользователей
+[2016-10-17 11:27:04,163] INFO                                                      server               Чтение ЛСО
+[2016-10-17 11:27:04,272] INFO                                                      server               Чтение ОБП
+[2016-10-17 11:27:06,736] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 11:27:06,351: Загрузка пользоветелей и папок
+[2016-10-17 11:27:06,955] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 11:27:06,834: Загрузка завершена
+[2016-10-17 11:27:08,906] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 5
+[2016-10-17 11:27:10,362] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 6.1
+[2016-10-17 11:27:12,129] INFO       CORP\chekunovamv               ::1             server               Формирование файла ОБП для ТБП 6.1-11
+[2016-10-17 11:27:12,153] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 6.1-11
+[2016-10-17 11:27:12,174] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 6.1-11 Вывод ДФЗ ВЛ-110 кВ Берёзовка (РП откл)..docx
+[2016-10-17 11:27:12,176] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-10-17 11:27:12,184] INFO       CORP\chekunovamv               ::1             server               Абзацев:  49
+[2016-10-17 11:27:12,187] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-10-17 11:27:12,194] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-10-17 11:27:26,521] INFO       CORP\chekunovamv               ::1             server               Формирование файла ОБП для ТБП 6.1-09
+[2016-10-17 11:27:26,536] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 6.1-09
+[2016-10-17 11:27:26,536] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 6.1-09 Вывод ДФЗ ВЛ-110 кВ ЧаТЭЦ (ВЛ-110 кВ питается через свой В).docx
+[2016-10-17 11:27:26,555] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-10-17 11:27:26,562] INFO       CORP\chekunovamv               ::1             server               Абзацев:  46
+[2016-10-17 11:27:26,565] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-10-17 11:27:26,568] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-10-17 11:27:33,282] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 6.3
+[2016-10-17 11:27:39,510] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 8
+[2016-10-17 11:27:41,560] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 1
+[2016-10-17 11:27:42,547] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 5
+[2016-10-17 11:27:45,488] INFO       CORP\chekunovamv               ::1             server               Формирование файла ОБП для ТБП 5-09
+[2016-10-17 11:27:45,491] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 5-09
+[2016-10-17 11:27:45,531] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 5-09 Вывод 5,6АТ.docx
+[2016-10-17 11:27:45,539] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-10-17 11:27:45,577] INFO       CORP\chekunovamv               ::1             server               Абзацев:  399
+[2016-10-17 11:27:45,584] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-10-17 11:27:45,590] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-10-17 12:55:41,713] INFO                                                      server               Start
+[2016-10-17 12:55:41,760] INFO                                                      server               Инициализация контекста БД
+[2016-10-17 12:55:41,869] INFO                                                      server               Чтение папок
+[2016-10-17 12:55:42,321] INFO                                                      server               Чтение пользователей
+[2016-10-17 12:55:42,368] INFO                                                      server               Чтение ЛСО
+[2016-10-17 12:55:42,415] INFO                                                      server               Чтение ОБП
+[2016-10-17 12:55:53,014] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 12:55:52,152: Загрузка пользоветелей и папок
+[2016-10-17 12:55:53,520] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 12:55:53,394: Загрузка завершена
+[2016-10-17 12:55:59,092] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 5
+[2016-10-17 12:56:07,515] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 6.1
+[2016-10-17 12:56:11,175] INFO       CORP\chekunovamv               ::1             server               Формирование файла ОБП для ТБП 6.1-11
+[2016-10-17 12:56:11,228] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 6.1-11
+[2016-10-17 12:56:11,276] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 6.1-11 Вывод ДФЗ ВЛ-110 кВ Берёзовка (РП откл)..docx
+[2016-10-17 12:56:11,305] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-10-17 12:56:11,312] INFO       CORP\chekunovamv               ::1             server               Абзацев:  49
+[2016-10-17 12:56:11,315] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-10-17 12:56:11,323] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-10-17 12:57:24,335] INFO                                                      server               Start
+[2016-10-17 12:57:24,381] INFO                                                      server               Инициализация контекста БД
+[2016-10-17 12:57:24,469] INFO                                                      server               Чтение папок
+[2016-10-17 12:57:25,652] INFO                                                      server               Чтение пользователей
+[2016-10-17 12:57:25,677] INFO                                                      server               Чтение ЛСО
+[2016-10-17 12:57:25,782] INFO                                                      server               Чтение ОБП
+[2016-10-17 12:57:29,106] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 12:57:28,704: Загрузка пользоветелей и папок
+[2016-10-17 12:57:29,353] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 12:57:29,233: Загрузка завершена
+[2016-10-17 12:57:32,246] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 4
+[2016-10-17 12:57:35,574] INFO       CORP\chekunovamv               ::1             server               Формирование файла ОБП для ТБП 4-21
+[2016-10-17 12:57:35,599] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 4-21
+[2016-10-17 12:57:35,655] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 4-21 Ввод в работу 1СШ 500.Вариант №2. Опробование 1СШ 500 от В-1-500 Емелино.docx
+[2016-10-17 12:57:35,669] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-10-17 12:57:35,713] INFO       CORP\chekunovamv               ::1             server               Абзацев:  296
+[2016-10-17 12:57:35,744] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-10-17 12:57:35,756] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-10-17 12:58:47,270] INFO                                                      server               Start
+[2016-10-17 12:58:47,316] INFO                                                      server               Инициализация контекста БД
+[2016-10-17 12:58:47,332] INFO                                                      server               Чтение папок
+[2016-10-17 12:58:47,504] INFO                                                      server               Чтение пользователей
+[2016-10-17 12:58:47,535] INFO                                                      server               Чтение ЛСО
+[2016-10-17 12:58:47,566] INFO                                                      server               Чтение ОБП
+[2016-10-17 12:58:50,188] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 12:58:49,783: Загрузка пользоветелей и папок
+[2016-10-17 12:58:50,514] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 12:58:50,386: Загрузка завершена
+[2016-10-17 12:58:51,983] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 1
+[2016-10-17 12:58:54,246] INFO       CORP\chekunovamv               ::1             server               Формирование файла ОБП для ТБП 1-09
+[2016-10-17 12:58:54,269] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 1-09
+[2016-10-17 12:58:54,316] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 1-09 ввод 9ГГ.docx
+[2016-10-17 12:58:54,318] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-10-17 12:58:54,334] INFO       CORP\chekunovamv               ::1             server               Абзацев:  128
+[2016-10-17 12:58:54,336] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-10-17 12:58:54,344] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-10-17 12:59:55,699] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 6.1
+[2016-10-17 12:59:58,377] INFO       CORP\chekunovamv               ::1             server               Формирование файла ОБП для ТБП 6.1-11
+[2016-10-17 12:59:58,380] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 6.1-11
+[2016-10-17 12:59:58,385] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 6.1-11 Вывод ДФЗ ВЛ-110 кВ Берёзовка (РП откл)..docx
+[2016-10-17 12:59:58,388] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-10-17 12:59:58,398] INFO       CORP\chekunovamv               ::1             server               Абзацев:  49
+[2016-10-17 12:59:58,401] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-10-17 12:59:58,403] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-10-17 13:00:17,871] INFO                                                      server               Start
+[2016-10-17 13:00:17,933] INFO                                                      server               Инициализация контекста БД
+[2016-10-17 13:00:18,011] INFO                                                      server               Чтение папок
+[2016-10-17 13:00:19,196] INFO                                                      server               Чтение пользователей
+[2016-10-17 13:00:19,227] INFO                                                      server               Чтение ЛСО
+[2016-10-17 13:00:19,337] INFO                                                      server               Чтение ОБП
+[2016-10-17 13:00:22,040] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 01:00:21,662: Загрузка пользоветелей и папок
+[2016-10-17 13:00:22,265] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 01:00:22,141: Загрузка завершена
+[2016-10-17 13:00:24,052] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 1
+[2016-10-17 13:00:27,006] INFO       CORP\chekunovamv               ::1             server               Формирование файла ОБП для ТБП 1-06
+[2016-10-17 13:00:27,030] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 1-06
+[2016-10-17 13:00:27,085] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 1-06 ввод 6ГГ.docx
+[2016-10-17 13:00:27,106] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-10-17 13:00:27,122] INFO       CORP\chekunovamv               ::1             server               Абзацев:  132
+[2016-10-17 13:00:27,126] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-10-17 13:00:27,134] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-10-17 13:00:39,817] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 6.1
+[2016-10-17 13:00:42,192] INFO       CORP\chekunovamv               ::1             server               Формирование файла ОБП для ТБП 6.1-11
+[2016-10-17 13:00:42,195] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 6.1-11
+[2016-10-17 13:00:42,200] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 6.1-11 Вывод ДФЗ ВЛ-110 кВ Берёзовка (РП откл)..docx
+[2016-10-17 13:00:42,201] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-10-17 13:00:42,209] INFO       CORP\chekunovamv               ::1             server               Абзацев:  49
+[2016-10-17 13:00:42,211] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-10-17 13:00:42,214] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-10-17 13:01:13,886] INFO       CORP\chekunovamv               ::1             server               Формирование файла ОБП для ТБП 6.1-11
+[2016-10-17 13:01:13,889] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 6.1-11
+[2016-10-17 13:01:13,894] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 6.1-11 Вывод ДФЗ ВЛ-110 кВ Берёзовка (РП откл)..docx
+[2016-10-17 13:01:13,895] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-10-17 13:01:13,902] INFO       CORP\chekunovamv               ::1             server               Абзацев:  49
+[2016-10-17 13:01:13,904] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-10-17 13:01:13,908] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-10-17 13:01:17,123] INFO       CORP\chekunovamv               ::1             server               Инициализация нового ОБП (в журнале) 6.1-11
+[2016-10-17 13:01:17,155] INFO       CORP\chekunovamv               ::1             server               Создание файла ОБП с номером из ТБП
+[2016-10-17 13:01:17,155] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 6.1-11
+[2016-10-17 13:01:17,160] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 6.1-11 Вывод ДФЗ ВЛ-110 кВ Берёзовка (РП откл)..docx
+[2016-10-17 13:01:17,161] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-10-17 13:01:17,167] INFO       CORP\chekunovamv               ::1             server               Абзацев:  49
+[2016-10-17 13:01:17,170] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-10-17 13:01:17,172] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-10-17 13:01:17,181] INFO       CORP\chekunovamv               ::1             server               Получение количества страниц документа D:\Projects\BlankJournal\BlankJournal\TempData\/ОБП 6.1-11 Вывод ДФЗ ВЛ-110 кВ Берёзовка (РП откл)..docx
+[2016-10-17 13:01:17,189] INFO       CORP\chekunovamv               ::1             server               2
+[2016-10-17 13:01:17,189] INFO       CORP\chekunovamv               ::1             server               шаблон ОБП создан
+[2016-10-17 13:01:18,635] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 6.1
+[2016-10-17 13:30:40,840] INFO                                                      server               Start
+[2016-10-17 13:30:41,230] INFO                                                      server               Инициализация контекста БД
+[2016-10-17 13:30:41,433] INFO                                                      server               Чтение папок
+[2016-10-17 13:30:42,811] INFO                                                      server               Чтение пользователей
+[2016-10-17 13:30:42,842] INFO                                                      server               Чтение ЛСО
+[2016-10-17 13:30:42,905] INFO                                                      server               Чтение ОБП
+[2016-10-17 13:30:48,195] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 01:30:46,091: Загрузка пользоветелей и папок
+[2016-10-17 13:30:48,399] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 01:30:48,289: Загрузка завершена
+[2016-10-17 13:30:51,306] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 4
+[2016-10-17 13:30:57,814] INFO       CORP\chekunovamv               ::1             server               Инициализация нового ОБП (в журнале) 4-03
+[2016-10-17 13:30:57,858] INFO       CORP\chekunovamv               ::1             server               Создание файла ОБП с номером из ТБП
+[2016-10-17 13:30:57,915] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 4-03
+[2016-10-17 13:30:57,965] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 4-03 Вывод в ремонт ВЛ 500 Воткинская ГЭСКаГРЭС ..docx
+[2016-10-17 13:30:57,966] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-10-17 13:30:57,996] INFO       CORP\chekunovamv               ::1             server               Абзацев:  166
+[2016-10-17 13:30:58,107] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-10-17 13:30:58,126] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-10-17 13:30:58,167] INFO       CORP\chekunovamv               ::1             server               Получение количества страниц документа D:\Projects\BlankJournal\BlankJournal\TempData\/ОБП 4-03 Вывод в ремонт ВЛ 500 Воткинская ГЭСКаГРЭС ..docx
+[2016-10-17 13:30:58,196] INFO       CORP\chekunovamv               ::1             server               7
+[2016-10-17 13:30:58,197] INFO       CORP\chekunovamv               ::1             server               шаблон ОБП создан
+[2016-10-17 13:31:00,760] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 4
+[2016-10-17 13:32:54,766] INFO       CORP\chekunovamv               ::1             server               Получение содержимого файла id=b8a645a4-aeea-4277-8cfe-0887f88a657c
+[2016-10-17 13:32:54,773] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\4-03 Вывод в ремонт ВЛ 500 Воткинская ГЭСКаГРЭС ..docx
+[2016-10-17 15:05:58,378] INFO                                                      server               Start
+[2016-10-17 15:05:58,551] INFO                                                      server               Инициализация контекста БД
+[2016-10-17 15:05:59,003] INFO                                                      server               Чтение папок
+[2016-10-17 15:06:02,827] INFO                                                      server               Чтение пользователей
+[2016-10-17 15:06:02,889] INFO                                                      server               Чтение ЛСО
+[2016-10-17 15:06:03,126] INFO                                                      server               Чтение ОБП
+[2016-10-17 15:06:19,665] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 03:06:17,954: Загрузка пользоветелей и папок
+[2016-10-17 15:06:25,254] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 03:06:22,814: Загрузка завершена
+[2016-10-17 15:06:36,867] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 1
+[2016-10-17 15:06:47,130] INFO       CORP\chekunovamv               ::1             server               Формирование файла ОБП для ТБП 1-09
+[2016-10-17 15:06:47,729] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 1-09
+[2016-10-17 15:06:47,781] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 1-09 ввод 9ГГ.docx
+[2016-10-17 15:06:48,444] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-10-17 15:06:48,792] INFO       CORP\chekunovamv               ::1             server               Абзацев:  128
+[2016-10-17 15:06:49,285] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-10-17 15:06:50,249] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-10-17 15:08:57,525] INFO                                                      server               Start
+[2016-10-17 15:08:57,650] INFO                                                      server               Инициализация контекста БД
+[2016-10-17 15:08:58,009] INFO                                                      server               Чтение папок
+[2016-10-17 15:08:59,009] INFO                                                      server               Чтение пользователей
+[2016-10-17 15:08:59,087] INFO                                                      server               Чтение ЛСО
+[2016-10-17 15:08:59,149] INFO                                                      server               Чтение ОБП
+[2016-10-17 15:09:08,573] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 03:09:07,643: Загрузка пользоветелей и папок
+[2016-10-17 15:09:08,859] INFO       CORP\chekunovamv               ::1             server               Client: 17.10.2016 03:09:08,725: Загрузка завершена
+[2016-10-17 15:09:11,336] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 6.1
+[2016-10-17 15:09:15,422] INFO       CORP\chekunovamv               ::1             server               Формирование файла ОБП для ТБП 6.1-11
+[2016-10-17 15:09:15,482] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 6.1-11
+[2016-10-17 15:09:15,520] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 6.1-11 Вывод ДФЗ ВЛ-110 кВ Берёзовка (РП откл)..docx
+[2016-10-17 15:09:15,542] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-10-17 15:09:15,549] INFO       CORP\chekunovamv               ::1             server               Абзацев:  49
+[2016-10-17 15:09:15,646] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-10-17 15:09:15,749] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания

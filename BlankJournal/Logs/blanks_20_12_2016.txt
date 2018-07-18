@@ -1,0 +1,44 @@
+[2016-12-20 14:09:46,695] INFO                                                      server               Start
+[2016-12-20 14:09:46,773] INFO                                                      server               Инициализация контекста БД
+[2016-12-20 14:09:46,851] INFO                                                      server               Чтение папок
+[2016-12-20 14:09:48,443] INFO                                                      server               Чтение пользователей
+[2016-12-20 14:09:48,506] INFO                                                      server               Чтение ЛСО
+[2016-12-20 14:09:48,724] INFO                                                      server               Чтение ОБП
+[2016-12-20 14:09:51,425] INFO       CORP\chekunovamv               ::1             server               Client: 20.12.2016 02:09:51,307: Загрузка завершена
+[2016-12-20 14:09:58,635] INFO       CORP\chekunovamv               ::1             server               Client: 20.12.2016 02:09:49,130: Нет обновлений
+[2016-12-20 14:09:58,635] INFO       CORP\chekunovamv               ::1             server               Client: 20.12.2016 02:09:49,256: Загрузка пользоветелей и папок
+[2016-12-20 14:10:00,985] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 1
+[2016-12-20 14:10:04,958] INFO       CORP\chekunovamv               ::1             server               Получение журнала переключений 
+[2016-12-20 14:10:15,022] INFO       CORP\chekunovamv               ::1             server               Получение журнала переключений 
+[2016-12-20 14:12:24,578] INFO                                                      server               Start
+[2016-12-20 14:12:24,702] INFO                                                      server               Инициализация контекста БД
+[2016-12-20 14:12:24,843] INFO                                                      server               Чтение папок
+[2016-12-20 14:12:26,391] INFO                                                      server               Чтение пользователей
+[2016-12-20 14:12:26,438] INFO                                                      server               Чтение ЛСО
+[2016-12-20 14:12:26,563] INFO                                                      server               Чтение ОБП
+[2016-12-20 14:12:26,710] INFO       CORP\chekunovamv               ::1             server               Client: 20.12.2016 02:12:26,641: Загрузка пользоветелей и папок
+[2016-12-20 14:12:26,710] INFO       CORP\chekunovamv               ::1             server               Client: 20.12.2016 02:12:26,641: Нет обновлений
+[2016-12-20 14:12:26,910] INFO       CORP\chekunovamv               ::1             server               Client: 20.12.2016 02:12:26,804: Загрузка завершена
+[2016-12-20 14:12:28,019] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 1
+[2016-12-20 14:12:32,148] INFO       CORP\chekunovamv               ::1             server               Получение журнала переключений 
+[2016-12-20 14:12:38,967] INFO       CORP\chekunovamv               ::1             server               Инициализация нового ТБП (в журнале) на основе ТБП № 1-06/2/2016
+[2016-12-20 14:12:39,083] INFO       CORP\chekunovamv               ::1             server               Получение информации о свазянном ТБП (активен ли он
+[2016-12-20 14:12:39,122] INFO       CORP\chekunovamv               ::1             server               Связанный ТБП активен
+[2016-12-20 14:12:39,122] INFO       CORP\chekunovamv               ::1             server               Номер ТБП присвоен
+[2016-12-20 14:12:41,104] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 1
+[2016-12-20 14:12:44,782] INFO       CORP\chekunovamv               ::1             server               Получение журнала переключений 
+[2016-12-20 14:12:48,145] INFO       CORP\chekunovamv               ::1             server               Инициализация нового ОБП (в журнале) на основеОБП № 268/2016
+[2016-12-20 14:12:48,203] INFO       CORP\chekunovamv               ::1             server               Получение информации о свазянном ТБП (активен ли он
+[2016-12-20 14:12:48,224] INFO       CORP\chekunovamv               ::1             server               Связанный ТБП активен
+[2016-12-20 14:12:48,224] INFO       CORP\chekunovamv               ::1             server               Копирование файла ОБП
+[2016-12-20 14:12:48,269] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из Базового ОБП ОБП № 268/2016
+[2016-12-20 14:12:48,337] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 1-08 ввод 8ГГ.docx
+[2016-12-20 14:12:48,339] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-12-20 14:12:48,577] INFO       CORP\chekunovamv               ::1             server               Абзацев:  118
+[2016-12-20 14:12:48,578] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-12-20 14:12:48,651] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-12-20 14:12:48,725] INFO       CORP\chekunovamv               ::1             server               Получение количества страниц документа D:\Projects\BlankJournal\BlankJournal\TempData\/ОБП 1-08 ввод 8ГГ.docx
+[2016-12-20 14:12:48,747] INFO       CORP\chekunovamv               ::1             server               4
+[2016-12-20 14:12:48,747] INFO       CORP\chekunovamv               ::1             server               шаблон ОБП создан
+[2016-12-20 14:12:52,491] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 1
+[2016-12-20 14:12:55,249] INFO       CORP\chekunovamv               ::1             server               Получение журнала переключений 

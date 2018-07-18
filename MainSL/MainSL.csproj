@@ -63,11 +63,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>C0DEE80B66E3152E5EEE100C356C70AD8C2C8018</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>5B7649C7A3D692D9F4937FC7851740A11FCFFFCD</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>
-    </ManifestKeyFile>
+    <ManifestKeyFile>MainSL_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
@@ -268,8 +267,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <None Include="App.config" />
-    <None Include="MainSL_1_TemporaryKey.pfx" />
-    <None Include="MainSL_2_TemporaryKey.pfx" />
     <None Include="MainSL_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />

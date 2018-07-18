@@ -1,0 +1,163 @@
+[2016-11-23 13:20:37,767] INFO                                                      server               Start
+[2016-11-23 13:20:38,438] INFO                                                      server               Инициализация контекста БД
+[2016-11-23 13:20:39,046] INFO                                                      server               Чтение папок
+[2016-11-23 13:20:52,238] INFO                                                      server               ошибка при инициализации System.Data.Entity.Core.EntityException: Произошла ошибка базового поставщика в Open. ---> System.Data.SqlClient.SqlException: Cannot open database "BlanksTest" requested by the login. The login failed.
+Login failed for user 'sa'.
+   в System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, DbConnectionPool pool, String accessToken, Boolean applyTransientFaultHandling)
+   в System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   в System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   в System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   в System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   в System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   в System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   в System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   в System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   в System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   в System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   в System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   в System.Data.SqlClient.SqlConnection.Open()
+   в System.Data.Entity.Infrastructure.Interception.DbConnectionDispatcher.<Open>b__36(DbConnection t, DbConnectionInterceptionContext c)
+   в System.Data.Entity.Infrastructure.Interception.InternalDispatcher`1.Dispatch[TTarget,TInterceptionContext](TTarget target, Action`2 operation, TInterceptionContext interceptionContext, Action`3 executing, Action`3 executed)
+   в System.Data.Entity.Infrastructure.Interception.DbConnectionDispatcher.Open(DbConnection connection, DbInterceptionContext interceptionContext)
+   в System.Data.Entity.Core.EntityClient.EntityConnection.<Open>b__2()
+   в System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.<>c__DisplayClass1.<Execute>b__0()
+   в System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   в System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute(Action operation)
+   в System.Data.Entity.Core.EntityClient.EntityConnection.Open()
+   --- Конец трассировки внутреннего стека исключений ---
+   в System.Data.Entity.Core.EntityClient.EntityConnection.Open()
+   в System.Data.Entity.Core.Objects.ObjectContext.EnsureConnection(Boolean shouldMonitorTransactions)
+   в System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   в System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__5()
+   в System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   в System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   в System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
+   в System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   в BlankJournal.Models.DBContext.createInitData() в D:\Projects\BlankJournal\BlankJournal\Models\DBContext.cs:строка 36
+[2016-11-23 13:21:21,461] INFO       CORP\chekunovamv               ::1             server               Client: 23.11.2016 01:21:19,262: Загрузка пользоветелей и папок
+[2016-11-23 13:30:51,808] INFO                                                      server               Start
+[2016-11-23 13:30:51,861] INFO                                                      server               Инициализация контекста БД
+[2016-11-23 13:30:51,957] INFO                                                      server               Чтение папок
+[2016-11-23 13:30:54,041] INFO                                                      server               Чтение пользователей
+[2016-11-23 13:30:54,151] INFO                                                      server               Чтение ЛСО
+[2016-11-23 13:30:54,257] INFO                                                      server               Ошибка при получении максимального номера ЛСО из БДSystem.NullReferenceException: Ссылка на объект не указывает на экземпляр объекта.
+   в BlankJournal.Models.DBContext.INIT_LSO_OBP() в D:\Projects\BlankJournal\BlankJournal\Models\DBContext.cs:строка 67
+[2016-11-23 13:30:54,257] INFO                                                      server               Чтение ОБП
+[2016-11-23 13:30:54,267] INFO                                                      server               Ошибка при получении максимального номера ОБП из БДSystem.NullReferenceException: Ссылка на объект не указывает на экземпляр объекта.
+   в BlankJournal.Models.DBContext.INIT_LSO_OBP() в D:\Projects\BlankJournal\BlankJournal\Models\DBContext.cs:строка 78
+[2016-11-23 13:31:02,563] INFO       CORP\chekunovamv               ::1             server               Client: 23.11.2016 01:31:01,878: Загрузка пользоветелей и папок
+[2016-11-23 13:31:03,085] INFO       CORP\chekunovamv               ::1             server               Client: 23.11.2016 01:31:02,922: Загрузка завершена
+[2016-11-23 13:31:15,197] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 5
+[2016-11-23 13:31:20,060] INFO       CORP\chekunovamv               ::1             server               Возврат: LSO:0 OBP:  rezLSO: 1 rezOBP: ОБП № 1
+[2016-11-23 13:31:24,826] INFO       CORP\chekunovamv               ::1             server               Получение журнала переключений 
+[2016-11-23 13:31:39,198] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 1
+[2016-11-23 13:31:42,263] INFO       CORP\chekunovamv               ::1             server               Инициализация нового ТБП (в журнале) 1-09
+[2016-11-23 13:31:42,301] INFO       CORP\chekunovamv               ::1             server               Номер ТБП присвоен
+[2016-11-23 13:31:54,365] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 1
+[2016-11-23 13:31:56,499] INFO       CORP\chekunovamv               ::1             server               Инициализация нового ТБП (в журнале) 1-15
+[2016-11-23 13:31:56,513] INFO       CORP\chekunovamv               ::1             server               Номер ТБП присвоен
+[2016-11-23 13:31:58,555] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 1
+[2016-11-23 13:32:06,526] INFO       CORP\chekunovamv               ::1             server               Инициализация нового ОБП (в журнале) -
+[2016-11-23 13:32:06,537] INFO       CORP\chekunovamv               ::1             server               Создание пустого файла ОБП с номером из ТБП
+[2016-11-23 13:32:06,589] INFO       CORP\chekunovamv               ::1             server               Создание пустого ОБП
+[2016-11-23 13:32:06,589] INFO       CORP\chekunovamv               ::1             server               Получение шаблона ОБП
+[2016-11-23 13:32:06,626] INFO       CORP\chekunovamv               ::1             server               Запись шаблона ОБП в файл D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 283.docx
+[2016-11-23 13:32:07,119] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-11-23 13:32:07,177] INFO       CORP\chekunovamv               ::1             server               шаблон ОБП создан
+[2016-11-23 13:32:10,140] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 1
+[2016-11-23 13:38:03,632] INFO                                                      server               Start
+[2016-11-23 13:38:04,446] INFO                                                      server               Инициализация контекста БД
+[2016-11-23 13:38:04,539] INFO                                                      server               Чтение папок
+[2016-11-23 13:38:05,631] INFO                                                      server               Чтение пользователей
+[2016-11-23 13:38:05,662] INFO                                                      server               Чтение ЛСО
+[2016-11-23 13:38:05,741] INFO                                                      server               Ошибка при получении максимального номера ЛСО из БДSystem.NullReferenceException: Ссылка на объект не указывает на экземпляр объекта.
+   в BlankJournal.Models.DBContext.INIT_LSO_OBP() в D:\Projects\BlankJournal\BlankJournal\Models\DBContext.cs:строка 67
+[2016-11-23 13:38:05,741] INFO                                                      server               Чтение ОБП
+[2016-11-23 13:38:05,741] INFO                                                      server               Ошибка при получении максимального номера ОБП из БДSystem.NullReferenceException: Ссылка на объект не указывает на экземпляр объекта.
+   в BlankJournal.Models.DBContext.INIT_LSO_OBP() в D:\Projects\BlankJournal\BlankJournal\Models\DBContext.cs:строка 78
+[2016-11-23 13:38:08,266] INFO       CORP\chekunovamv               ::1             server               Client: 23.11.2016 01:38:07,847: Загрузка пользоветелей и папок
+[2016-11-23 13:38:08,534] INFO       CORP\chekunovamv               ::1             server               Client: 23.11.2016 01:38:08,414: Загрузка завершена
+[2016-11-23 13:38:12,644] INFO       CORP\chekunovamv               ::1             server               Возврат: LSO:0 OBP:  rezLSO: 1 rezOBP: ОБП № 1
+[2016-11-23 13:38:15,611] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 3
+[2016-11-23 13:38:18,415] INFO       CORP\chekunovamv               ::1             server               Инициализация нового ТБП (в журнале) 3-06
+[2016-11-23 13:38:18,773] INFO       CORP\chekunovamv               ::1             server               Номер ТБП присвоен
+[2016-11-23 13:38:22,213] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 3
+[2016-11-23 13:38:23,463] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 1
+[2016-11-23 13:38:30,063] INFO       CORP\chekunovamv               ::1             server               Инициализация нового ТБП (в журнале) 1-01
+[2016-11-23 13:38:30,078] INFO       CORP\chekunovamv               ::1             server               Номер ТБП присвоен
+[2016-11-23 13:38:35,511] INFO       CORP\chekunovamv               ::1             server               Создание/изменение зписи о переключении в журнале ТБП № 1-01/1
+[2016-11-23 13:38:35,532] INFO       CORP\chekunovamv               ::1             server               Поиск связанного ТБП (для сохранения сылки на файл
+[2016-11-23 13:38:35,842] INFO       CORP\chekunovamv               ::1             server               Возврат: True Бланк успешно создан
+
+[2016-11-23 13:38:36,947] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 1
+[2016-11-23 13:38:37,821] INFO       CORP\chekunovamv               ::1             server               Получение журнала переключений 
+[2016-11-23 13:38:44,946] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 1
+[2016-11-23 13:38:47,544] INFO       CORP\chekunovamv               ::1             server               Инициализация нового ОБП (в журнале) 1-07
+[2016-11-23 13:38:47,592] INFO       CORP\chekunovamv               ::1             server               Создание файла ОБП с номером из ТБП
+[2016-11-23 13:38:47,601] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 1-07
+[2016-11-23 13:38:47,647] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 1-07 ввод 7ГГ.docx
+[2016-11-23 13:38:47,665] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-11-23 13:38:47,690] INFO       CORP\chekunovamv               ::1             server               Абзацев:  127
+[2016-11-23 13:38:47,692] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-11-23 13:38:47,700] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-11-23 13:38:47,724] INFO       CORP\chekunovamv               ::1             server               Получение количества страниц документа D:\Projects\BlankJournal\BlankJournal\TempData\/ОБП 1-07 ввод 7ГГ.docx
+[2016-11-23 13:38:47,744] INFO       CORP\chekunovamv               ::1             server               5
+[2016-11-23 13:38:47,744] INFO       CORP\chekunovamv               ::1             server               шаблон ОБП создан
+[2016-11-23 13:38:53,326] INFO       CORP\chekunovamv               ::1             server               Создание/изменение зписи о переключении в журнале ОБП № 1
+[2016-11-23 13:38:53,566] INFO       CORP\chekunovamv               ::1             server               Загрузка прикрепленного файла 
+[2016-11-23 13:38:53,703] INFO       CORP\chekunovamv               ::1             server               Чтение ЛСО
+[2016-11-23 13:38:53,706] INFO       CORP\chekunovamv               ::1             server               Чтение ОБП
+[2016-11-23 13:38:53,708] INFO       CORP\chekunovamv               ::1             server               Возврат: True Бланк успешно создан
+
+[2016-11-23 13:38:54,980] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 1
+[2016-11-23 13:38:56,494] INFO       CORP\chekunovamv               ::1             server               Получение журнала переключений 
+[2016-11-23 13:39:09,636] INFO       CORP\chekunovamv               ::1             server               Получение журнала переключений 
+[2016-11-23 13:39:28,910] INFO       CORP\chekunovamv               ::1             server               Возврат: LSO:5 OBP: ОБП № 1 rezLSO: 6 rezOBP: ОБП № 2
+[2016-11-23 13:39:32,947] INFO       CORP\chekunovamv               ::1             server               Получение сводной статистики за год 2016
+[2016-11-23 13:39:47,741] INFO       CORP\chekunovamv               ::1             server               Получение сводной статистики за год 2015
+[2016-11-23 13:40:53,502] INFO       CORP\chekunovamv               ::1             server               Получение журнала переключений 
+[2016-11-23 13:40:54,897] INFO       CORP\chekunovamv               ::1             server               Возврат: LSO:5 OBP: ОБП № 1 rezLSO: 6 rezOBP: ОБП № 2
+[2016-11-23 13:41:01,304] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 1
+[2016-11-23 16:06:06,054] INFO                                                      server               Start
+[2016-11-23 16:06:07,203] INFO                                                      server               Инициализация контекста БД
+[2016-11-23 16:06:09,761] INFO                                                      server               Чтение папок
+[2016-11-23 16:06:17,690] INFO                                                      server               Чтение пользователей
+[2016-11-23 16:06:17,800] INFO                                                      server               Чтение ЛСО
+[2016-11-23 16:06:18,231] INFO                                                      server               Чтение ОБП
+[2016-11-23 16:06:34,854] INFO       CORP\chekunovamv               ::1             server               Client: 23.11.2016 04:06:29,110: Загрузка пользоветелей и папок
+[2016-11-23 16:06:35,197] INFO       CORP\chekunovamv               ::1             server               Client: 23.11.2016 04:06:35,072: Загрузка завершена
+[2016-11-23 16:06:37,335] INFO       CORP\chekunovamv               ::1             server               Получение журнала переключений 
+[2016-11-23 16:06:49,009] INFO       CORP\chekunovamv               ::1             server               Возврат: LSO:5 OBP: ОБП № 1 rezLSO: 6 rezOBP: ОБП № 2
+[2016-11-23 16:06:52,180] INFO       CORP\chekunovamv               ::1             server               Получение журнала переключений 
+[2016-11-23 16:07:01,831] INFO       CORP\chekunovamv               ::1             server               удаление зписи о переключении в журнале ОБП № 1
+[2016-11-23 16:07:03,361] INFO       CORP\chekunovamv               ::1             server               Чтение ЛСО
+[2016-11-23 16:07:03,423] INFO       CORP\chekunovamv               ::1             server               Ошибка при получении максимального номера ЛСО из БДSystem.NullReferenceException: Ссылка на объект не указывает на экземпляр объекта.
+   в BlankJournal.Models.DBContext.INIT_LSO_OBP() в D:\Projects\BlankJournal\BlankJournal\Models\DBContext.cs:строка 67
+[2016-11-23 16:07:03,423] INFO       CORP\chekunovamv               ::1             server               Чтение ОБП
+[2016-11-23 16:07:03,454] INFO       CORP\chekunovamv               ::1             server               Ошибка при получении максимального номера ОБП из БДSystem.NullReferenceException: Ссылка на объект не указывает на экземпляр объекта.
+   в BlankJournal.Models.DBContext.INIT_LSO_OBP() в D:\Projects\BlankJournal\BlankJournal\Models\DBContext.cs:строка 78
+[2016-11-23 16:07:03,454] INFO       CORP\chekunovamv               ::1             server               Возврат: True Запись о бланке удалена: ОБП № 1/2016
+[2016-11-23 16:07:04,991] INFO       CORP\chekunovamv               ::1             server               Получение журнала переключений 
+[2016-11-23 16:07:06,590] INFO       CORP\chekunovamv               ::1             server               Возврат: LSO:0 OBP:  rezLSO: 1 rezOBP: ОБП № 1
+[2016-11-23 16:07:16,558] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 6.3
+[2016-11-23 16:07:19,661] INFO       CORP\chekunovamv               ::1             server               Инициализация нового ОБП (в журнале) 6.3-10
+[2016-11-23 16:07:19,875] INFO       CORP\chekunovamv               ::1             server               Создание файла ОБП с номером из ТБП
+[2016-11-23 16:07:20,051] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 6.3-10
+[2016-11-23 16:07:20,106] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 6.3-10 Ввод ДЗОШ ВЛ 500 Емелино.docx
+[2016-11-23 16:07:20,127] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-11-23 16:07:20,345] INFO       CORP\chekunovamv               ::1             server               Абзацев:  50
+[2016-11-23 16:07:20,735] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-11-23 16:07:20,922] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-11-23 16:07:21,031] INFO       CORP\chekunovamv               ::1             server               Получение количества страниц документа D:\Projects\BlankJournal\BlankJournal\TempData\/ОБП 6.3-10 Ввод ДЗОШ ВЛ 500 Емелино.docx
+[2016-11-23 16:07:21,047] INFO       CORP\chekunovamv               ::1             server               2
+[2016-11-23 16:07:21,047] INFO       CORP\chekunovamv               ::1             server               шаблон ОБП создан
+[2016-11-23 16:07:24,287] INFO       CORP\chekunovamv               ::1             server               Создание/изменение зписи о переключении в журнале ОБП № 1
+[2016-11-23 16:07:24,741] INFO       CORP\chekunovamv               ::1             server               Загрузка прикрепленного файла 
+[2016-11-23 16:07:25,209] INFO       CORP\chekunovamv               ::1             server               Чтение ЛСО
+[2016-11-23 16:07:25,209] INFO       CORP\chekunovamv               ::1             server               Чтение ОБП
+[2016-11-23 16:07:25,209] INFO       CORP\chekunovamv               ::1             server               Возврат: True Бланк успешно создан
+
+[2016-11-23 16:07:26,287] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 6.3
+[2016-11-23 16:07:29,489] INFO       CORP\chekunovamv               ::1             server               Получение журнала переключений 
+[2016-11-23 16:07:33,914] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 1
+[2016-11-23 16:07:37,244] INFO       CORP\chekunovamv               ::1             server               Получение истории изменения ТБП 1-11

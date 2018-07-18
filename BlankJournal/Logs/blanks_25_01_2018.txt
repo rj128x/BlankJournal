@@ -1,0 +1,61 @@
+[2018-01-25 07:50:18,076] INFO                                                      server               Start
+[2018-01-25 07:50:18,313] INFO                                                      server               \\sr-votges-013.corp.gidroogk.com\Рабочие_документы$\Предприятие\Оперативная служба\НТД\05 Бланки переключений\00 ЭЖ БП (ТБП_ОБП)
+[2018-01-25 07:50:18,417] INFO                                                      server               Инициализация контекста БД
+[2018-01-25 07:50:19,105] INFO                                                      server               Чтение папок
+[2018-01-25 07:50:25,232] INFO                                                      server               Чтение пользователей
+[2018-01-25 07:50:25,313] INFO                                                      server               Чтение ЛСО
+[2018-01-25 07:50:25,498] INFO                                                      server               Чтение ОБП
+[2018-01-25 07:50:32,804] INFO       CORP\chekunovamv               ::1             server               Client: 25.01.2018 07:50:13,771: Загрузка пользоветелей и папок
+[2018-01-25 07:50:32,804] INFO       CORP\chekunovamv               ::1             server               Client: 25.01.2018 07:50:13,634: Нет обновлений
+[2018-01-25 07:50:34,053] INFO       CORP\chekunovamv               ::1             server               Client: 25.01.2018 07:50:33,600: Загрузка завершена
+[2018-01-25 07:50:38,858] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 1
+[2018-01-25 07:50:49,552] INFO       CORP\chekunovamv               ::1             server               Client: 25.01.2018 07:50:47,998: переход по ссылке http://localhost:8095/Home/getOBPWord?id=1-03
+[2018-01-25 07:51:00,668] INFO       Anonimous                      ::1             server               Формирование файла ОБП для ТБП 1-03
+[2018-01-25 07:51:00,689] INFO       Anonimous                      ::1             server               Формирование ОБП из ТБП 1-03
+[2018-01-25 07:51:00,739] INFO       Anonimous                      ::1             server               Формирование временного файла C:\DiscD\Projects\BlankJournal\BlankJournal\TempData\ОБП 1-03 ввод 3ГГ.docx
+[2018-01-25 07:51:00,760] INFO       Anonimous                      ::1             server               Открытие документа
+[2018-01-25 07:51:01,673] INFO       Anonimous                      ::1             server               Абзацев:  130
+[2018-01-25 07:51:02,083] INFO       Anonimous                      ::1             server               Удаление шапки и окончания бланка
+[2018-01-25 07:51:02,368] INFO       Anonimous                      ::1             server               Добавление новой шапки и окончания
+[2018-01-25 07:54:23,080] INFO                                                      server               Start
+[2018-01-25 07:54:23,100] INFO                                                      server               \\sr-votges-013.corp.gidroogk.com\Рабочие_документы$\Предприятие\Оперативная служба\НТД\05 Бланки переключений\00 ЭЖ БП (ТБП_ОБП)
+[2018-01-25 07:54:23,103] INFO                                                      server               Инициализация контекста БД
+[2018-01-25 07:54:23,319] INFO                                                      server               Чтение папок
+[2018-01-25 07:54:26,097] INFO                                                      server               Чтение пользователей
+[2018-01-25 07:54:26,148] INFO                                                      server               Чтение ЛСО
+[2018-01-25 07:54:26,284] INFO                                                      server               Чтение ОБП
+[2018-01-25 07:54:26,885] INFO       CORP\chekunovamv               ::1             server               Client: 25.01.2018 07:54:26,555: Нет обновлений
+[2018-01-25 07:54:26,887] INFO       CORP\chekunovamv               ::1             server               Client: 25.01.2018 07:54:26,563: Загрузка пользоветелей и папок
+[2018-01-25 07:54:27,465] INFO       CORP\chekunovamv               ::1             server               Client: 25.01.2018 07:54:27,058: Загрузка завершена
+[2018-01-25 07:54:32,854] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 2
+[2018-01-25 07:54:37,585] INFO       CORP\chekunovamv               ::1             server               Client: 25.01.2018 07:54:37,261: переход по ссылке http://localhost:8095/Home/getOBPWord?id=2-04
+[2018-01-25 07:54:39,834] INFO       Anonimous                      ::1             server               Формирование файла ОБП для ТБП 2-04
+[2018-01-25 07:54:39,937] INFO       Anonimous                      ::1             server               Формирование ОБП из ТБП 2-04
+[2018-01-25 07:54:40,201] INFO       Anonimous                      ::1             server               Формирование временного файла C:\DiscD\Projects\BlankJournal\BlankJournal\TempData\ОБП 2-04 Вывод в ремонт 2СШ 110. C переводом всех присоединений на 1СШ 110.docx
+[2018-01-25 07:54:40,202] INFO       Anonimous                      ::1             server               Открытие документа
+[2018-01-25 07:54:40,762] INFO       Anonimous                      ::1             server               Абзацев:  206
+[2018-01-25 07:54:41,351] INFO       Anonimous                      ::1             server               Удаление шапки и окончания бланка
+[2018-01-25 07:54:41,384] INFO       Anonimous                      ::1             server               Добавление новой шапки и окончания
+[2018-01-25 07:55:16,273] INFO       CORP\chekunovamv               ::1             server               Client: 25.01.2018 07:55:16,182: переход по ссылке http://localhost:8095/Home/getFile?id=2a452c01-ff7f-438a-836b-6044a4806cc0
+[2018-01-25 07:55:16,807] INFO       Anonimous                      ::1             server               Получение содержимого файла id=2a452c01-ff7f-438a-836b-6044a4806cc0
+[2018-01-25 07:55:16,814] INFO       Anonimous                      ::1             server               Формирование временного файла C:\DiscD\Projects\BlankJournal\BlankJournal\TempData\2-04 Вывод в ремонт 2СШ 110. C переводом всех присоединений на 1СШ 110.docx
+[2018-01-25 07:55:36,902] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 5
+[2018-01-25 07:55:39,053] INFO       CORP\chekunovamv               ::1             server               Client: 25.01.2018 07:55:39,004: переход по ссылке http://localhost:8095/Home/getFile?id=8f4f93f2-ef72-4ba9-92ac-dd2bc3f382e9
+[2018-01-25 07:55:39,526] INFO       Anonimous                      ::1             server               Получение содержимого файла id=8f4f93f2-ef72-4ba9-92ac-dd2bc3f382e9
+[2018-01-25 07:55:39,555] INFO       Anonimous                      ::1             server               Формирование временного файла C:\DiscD\Projects\BlankJournal\BlankJournal\TempData\5-06 Ввод 3АТГ.docx
+[2018-01-25 07:55:57,797] INFO       CORP\chekunovamv               ::1             server               Получение списка папок для редактирования
+[2018-01-25 07:56:18,824] INFO       CORP\chekunovamv               ::1             server               Редактирование папки 5
+[2018-01-25 07:56:19,215] INFO       CORP\chekunovamv               ::1             server               Инициализация контекста БД
+[2018-01-25 07:56:19,215] INFO       CORP\chekunovamv               ::1             server               Чтение папок
+[2018-01-25 07:56:19,218] INFO       CORP\chekunovamv               ::1             server               Чтение пользователей
+[2018-01-25 07:56:19,221] INFO       CORP\chekunovamv               ::1             server               Чтение ЛСО
+[2018-01-25 07:56:19,223] INFO       CORP\chekunovamv               ::1             server               Чтение ОБП
+[2018-01-25 07:56:19,226] INFO       CORP\chekunovamv               ::1             server               Возврат: True Изменения сохранены
+[2018-01-25 07:56:20,073] INFO       CORP\chekunovamv               ::1             server               Получение списка папок для редактирования
+[2018-01-25 07:56:23,654] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 6.3
+[2018-01-25 07:56:24,630] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 7.1
+[2018-01-25 07:56:28,342] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 8
+[2018-01-25 07:56:30,647] INFO       CORP\chekunovamv               ::1             server               Client: 25.01.2018 07:56:30,601: переход по ссылке http://localhost:8095/Home/getFile?id=2f70de63-6ae6-43e7-a11c-d8eb5483b51b
+[2018-01-25 07:56:31,282] INFO       Anonimous                      ::1             server               Получение содержимого файла id=2f70de63-6ae6-43e7-a11c-d8eb5483b51b
+[2018-01-25 07:56:31,309] INFO       Anonimous                      ::1             server               Формирование временного файла C:\DiscD\Projects\BlankJournal\BlankJournal\TempData\8-06 Ввод в работу КРУ-3.docx
+[2018-01-25 07:56:41,789] INFO       CORP\chekunovamv               ::1             server               Получение списка папок для редактирования

@@ -1,0 +1,278 @@
+[2016-09-30 08:59:10,711] INFO                                                      server               Start
+[2016-09-30 08:59:11,610] INFO                                                      server               Инициализация контекста БД
+[2016-09-30 08:59:11,839] INFO                                                      server               Чтение папок
+[2016-09-30 08:59:16,465] INFO                                                      server               Чтение пользователей
+[2016-09-30 08:59:16,901] INFO                                                      server               Чтение ЛСО
+[2016-09-30 08:59:17,483] INFO                                                      server               Чтение ОБП
+[2016-09-30 08:59:30,149] INFO                                                      server               Start
+[2016-09-30 08:59:30,172] INFO                                                      server               Инициализация контекста БД
+[2016-09-30 08:59:30,339] INFO                                                      server               Чтение папок
+[2016-09-30 08:59:33,566] INFO                                                      server               Чтение пользователей
+[2016-09-30 08:59:33,589] INFO                                                      server               Чтение ЛСО
+[2016-09-30 08:59:33,727] INFO                                                      server               Чтение ОБП
+[2016-09-30 08:59:36,007] INFO                                                      server               Start
+[2016-09-30 08:59:37,228] INFO                                                      server               Инициализация контекста БД
+[2016-09-30 08:59:37,327] INFO                                                      server               Чтение папок
+[2016-09-30 08:59:40,852] INFO                                                      server               Чтение пользователей
+[2016-09-30 08:59:41,404] INFO                                                      server               Чтение ЛСО
+[2016-09-30 08:59:41,981] INFO                                                      server               Чтение ОБП
+[2016-09-30 08:59:42,923] INFO       CORP\chekunovamv               ::1             server               Client: 30.09.2016 08:59:42,215: Нет обновлений
+[2016-09-30 08:59:42,930] INFO       CORP\chekunovamv               ::1             server               Client: 30.09.2016 08:59:42,266: Загрузка пользоветелей и папок
+[2016-09-30 08:59:43,534] INFO       CORP\chekunovamv               ::1             server               Client: 30.09.2016 08:59:43,355: Загрузка завершена
+[2016-09-30 08:59:45,988] INFO       CORP\chekunovamv               ::1             server               Получение журнала переключений 
+[2016-09-30 08:59:53,088] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 1
+[2016-09-30 08:59:56,026] INFO       CORP\chekunovamv               ::1             server               Получение журнала переключений 
+[2016-09-30 09:00:02,036] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 1
+[2016-09-30 09:00:09,865] INFO       CORP\chekunovamv               ::1             server               Редактирование ТБП
+[2016-09-30 09:00:09,865] INFO       CORP\chekunovamv               ::1             server               ID=2 Number=1-02
+[2016-09-30 09:00:10,469] INFO       CORP\chekunovamv               ::1             server               Синхронизация бланка 1-02 Ввод в работу ГГ-1
+[2016-09-30 09:00:10,491] INFO       CORP\chekunovamv               ::1             server               Запись файла 07ee3118-72e3-4899-9712-9cb1c5b6a758 в файл 1-02 Ввод в работу ГГ-1.pdf
+[2016-09-30 09:00:11,130] INFO       CORP\chekunovamv               ::1             server               Запись файла 537f4b9c-c0ea-41e6-be1e-33071bf238a5 в файл 1-02 Ввод в работу ГГ-1.docx
+[2016-09-30 09:00:11,295] INFO       CORP\chekunovamv               ::1             server               генерация ОБП
+[2016-09-30 09:00:11,501] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 1-02
+[2016-09-30 09:00:11,523] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла \\sr-votges-013.corp.gidroogk.com\Рабочие_документы$\Предприятие\Оперативная служба\НТД\Бланки переключений\00 ЭЖ БП (ТБП_ОБП)\test\1 Гидроагрегаты\ОБП\ОБП 1-01 ввод ГГ-1.docx
+[2016-09-30 09:00:11,531] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-09-30 09:00:11,879] INFO       CORP\chekunovamv               ::1             server               Ошибка при формировании обпSystem.TypeInitializationException: Инициализатор типа "MS.Utility.EventTrace" выдал исключение. ---> System.Security.SecurityException: Запрошенный доступ к реестру запрещен.
+   в System.ThrowHelper.ThrowSecurityException(ExceptionResource resource)
+   в Microsoft.Win32.RegistryKey.OpenSubKey(String name, Boolean writable)
+   в Microsoft.Win32.RegistryKey.OpenSubKey(String name)
+   в Microsoft.Win32.Registry.GetValue(String keyName, String valueName, Object defaultValue)
+   в MS.Utility.EventTrace.IsClassicETWRegistryEnabled()
+   в MS.Utility.EventTrace..cctor()
+   --- Конец трассировки внутреннего стека исключений ---
+   в MS.Utility.EventTrace.EasyTraceEvent(Keyword keywords, Event eventID)
+   в System.IO.Packaging.Package.Open(String path, FileMode packageMode, FileAccess packageAccess, FileShare packageShare, Boolean streaming)
+   в DocumentFormat.OpenXml.Packaging.OpenXmlPackage.OpenCore(String path, Boolean readWriteMode)
+   в DocumentFormat.OpenXml.Packaging.WordprocessingDocument.Open(String path, Boolean isEditable, OpenSettings openSettings)
+   в BlankJournal.Models.WordData.createOBP(String folder, TBPInfo tbp, Int32 num)
+[2016-09-30 09:00:11,879] INFO       CORP\chekunovamv               ::1             server               Возврат: True Бланк успешно создан.
+ Синхронизация в папку: Успешно
+[2016-09-30 09:00:15,039] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 1
+[2016-09-30 09:00:22,522] INFO       CORP\chekunovamv               ::1             server               Редактирование ТБП
+[2016-09-30 09:00:22,522] INFO       CORP\chekunovamv               ::1             server               ID=2 Number=1-01
+[2016-09-30 09:00:22,572] INFO       CORP\chekunovamv               ::1             server               Синхронизация бланка 1-01 Ввод в работу ГГ-1
+[2016-09-30 09:00:22,574] INFO       CORP\chekunovamv               ::1             server               Запись файла 07ee3118-72e3-4899-9712-9cb1c5b6a758 в файл 1-01 Ввод в работу ГГ-1.pdf
+[2016-09-30 09:00:22,671] INFO       CORP\chekunovamv               ::1             server               Запись файла 537f4b9c-c0ea-41e6-be1e-33071bf238a5 в файл 1-01 Ввод в работу ГГ-1.docx
+[2016-09-30 09:00:22,732] INFO       CORP\chekunovamv               ::1             server               генерация ОБП
+[2016-09-30 09:00:22,782] INFO       CORP\chekunovamv               ::1             server               Удаление файла ОБП 1-01 ввод ГГ-1.docx
+[2016-09-30 09:00:22,785] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 1-01
+[2016-09-30 09:00:22,816] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла \\sr-votges-013.corp.gidroogk.com\Рабочие_документы$\Предприятие\Оперативная служба\НТД\Бланки переключений\00 ЭЖ БП (ТБП_ОБП)\test\1 Гидроагрегаты\ОБП\ОБП 1-01 ввод ГГ-1.docx
+[2016-09-30 09:00:22,824] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-09-30 09:00:22,833] INFO       CORP\chekunovamv               ::1             server               Ошибка при формировании обпSystem.TypeInitializationException: Инициализатор типа "MS.Utility.EventTrace" выдал исключение. ---> System.Security.SecurityException: Запрошенный доступ к реестру запрещен.
+   в System.ThrowHelper.ThrowSecurityException(ExceptionResource resource)
+   в Microsoft.Win32.RegistryKey.OpenSubKey(String name, Boolean writable)
+   в Microsoft.Win32.RegistryKey.OpenSubKey(String name)
+   в Microsoft.Win32.Registry.GetValue(String keyName, String valueName, Object defaultValue)
+   в MS.Utility.EventTrace.IsClassicETWRegistryEnabled()
+   в MS.Utility.EventTrace..cctor()
+   --- Конец трассировки внутреннего стека исключений ---
+   в MS.Utility.EventTrace.EasyTraceEvent(Keyword keywords, Event eventID)
+   в System.IO.Packaging.Package.Open(String path, FileMode packageMode, FileAccess packageAccess, FileShare packageShare, Boolean streaming)
+   в DocumentFormat.OpenXml.Packaging.OpenXmlPackage.OpenCore(String path, Boolean readWriteMode)
+   в DocumentFormat.OpenXml.Packaging.WordprocessingDocument.Open(String path, Boolean isEditable, OpenSettings openSettings)
+   в BlankJournal.Models.WordData.createOBP(String folder, TBPInfo tbp, Int32 num)
+[2016-09-30 09:00:22,833] INFO       CORP\chekunovamv               ::1             server               Возврат: True Бланк успешно создан.
+ Синхронизация в папку: Успешно
+[2016-09-30 09:00:23,702] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 1
+[2016-09-30 09:03:30,063] INFO                                                      server               Start
+[2016-09-30 09:03:30,084] INFO                                                      server               Инициализация контекста БД
+[2016-09-30 09:03:30,250] INFO                                                      server               Чтение папок
+[2016-09-30 09:03:30,420] INFO                                                      server               Чтение пользователей
+[2016-09-30 09:03:30,442] INFO                                                      server               Чтение ЛСО
+[2016-09-30 09:03:30,495] INFO                                                      server               Чтение ОБП
+[2016-09-30 09:03:30,843] INFO       CORP\chekunovamv               ::1             server               Client: 30.09.2016 09:03:30,698: Нет обновлений
+[2016-09-30 09:03:30,865] INFO       CORP\chekunovamv               ::1             server               Client: 30.09.2016 09:03:30,706: Загрузка пользоветелей и папок
+[2016-09-30 09:03:31,080] INFO       CORP\chekunovamv               ::1             server               Client: 30.09.2016 09:03:30,913: Загрузка завершена
+[2016-09-30 09:03:33,719] INFO       CORP\chekunovamv               ::1             server               Получение журнала переключений 
+[2016-09-30 09:03:37,530] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 1
+[2016-09-30 09:03:43,401] INFO       CORP\chekunovamv               ::1             server               Редактирование ТБП
+[2016-09-30 09:03:43,401] INFO       CORP\chekunovamv               ::1             server               ID=2 Number=1-02
+[2016-09-30 09:03:43,420] INFO       CORP\chekunovamv               ::1             server               Возврат: False Бланк с номером 1-02 уже существует
+[2016-09-30 09:03:48,100] INFO       CORP\chekunovamv               ::1             server               Редактирование ТБП
+[2016-09-30 09:03:48,100] INFO       CORP\chekunovamv               ::1             server               ID=2 Number=1-01
+[2016-09-30 09:03:48,109] INFO       CORP\chekunovamv               ::1             server               Синхронизация бланка 1-01 Ввод в работу ГГ-1
+[2016-09-30 09:03:48,122] INFO       CORP\chekunovamv               ::1             server               Запись файла 07ee3118-72e3-4899-9712-9cb1c5b6a758 в файл 1-01 Ввод в работу ГГ-1.pdf
+[2016-09-30 09:03:48,242] INFO       CORP\chekunovamv               ::1             server               Удаление файла 1-01 Ввод в работу ГГ-1.pdf
+[2016-09-30 09:03:48,274] INFO       CORP\chekunovamv               ::1             server               Запись файла 537f4b9c-c0ea-41e6-be1e-33071bf238a5 в файл 1-01 Ввод в работу ГГ-1.docx
+[2016-09-30 09:03:48,325] INFO       CORP\chekunovamv               ::1             server               Удаление файла 1-01 Ввод в работу ГГ-1.docx
+[2016-09-30 09:03:48,336] INFO       CORP\chekunovamv               ::1             server               генерация ОБП
+[2016-09-30 09:03:48,380] INFO       CORP\chekunovamv               ::1             server               Удаление файла ОБП 1-01 ввод ГГ-1.docx
+[2016-09-30 09:03:48,386] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 1-01
+[2016-09-30 09:03:48,393] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла \\sr-votges-013.corp.gidroogk.com\Рабочие_документы$\Предприятие\Оперативная служба\НТД\Бланки переключений\00 ЭЖ БП (ТБП_ОБП)\test\1 Гидроагрегаты\ОБП\ОБП 1-01 ввод ГГ-1.docx
+[2016-09-30 09:03:48,401] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-09-30 09:03:48,409] INFO       CORP\chekunovamv               ::1             server               Ошибка при формировании обпSystem.TypeInitializationException: Инициализатор типа "MS.Utility.EventTrace" выдал исключение. ---> System.Security.SecurityException: Запрошенный доступ к реестру запрещен.
+   в System.ThrowHelper.ThrowSecurityException(ExceptionResource resource)
+   в Microsoft.Win32.RegistryKey.OpenSubKey(String name, Boolean writable)
+   в Microsoft.Win32.RegistryKey.OpenSubKey(String name)
+   в Microsoft.Win32.Registry.GetValue(String keyName, String valueName, Object defaultValue)
+   в MS.Utility.EventTrace.IsClassicETWRegistryEnabled()
+   в MS.Utility.EventTrace..cctor()
+   --- Конец трассировки внутреннего стека исключений ---
+   в MS.Utility.EventTrace.EasyTraceEvent(Keyword keywords, Event eventID)
+   в System.IO.Packaging.Package.Open(String path, FileMode packageMode, FileAccess packageAccess, FileShare packageShare, Boolean streaming)
+   в DocumentFormat.OpenXml.Packaging.OpenXmlPackage.OpenCore(String path, Boolean readWriteMode)
+   в DocumentFormat.OpenXml.Packaging.WordprocessingDocument.Open(String path, Boolean isEditable, OpenSettings openSettings)
+   в BlankJournal.Models.WordData.createOBP(String folder, TBPInfo tbp, Int32 num)
+[2016-09-30 09:03:48,409] INFO       CORP\chekunovamv               ::1             server               Возврат: True Бланк успешно создан.
+ Синхронизация в папку: Успешно
+[2016-09-30 09:03:49,502] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 1
+[2016-09-30 09:03:59,022] INFO       CORP\chekunovamv               ::1             server               Получение истории изменения ТБП 1-01
+[2016-09-30 09:04:04,318] INFO       CORP\chekunovamv               ::1             server               Удаление записи из истории редактирования бланка 02.03.2016 10:24:34 - 1-01 (Балабанов В.В.) 
+[2016-09-30 09:04:04,739] INFO       CORP\chekunovamv               ::1             server               Возврат: False Удаление записи из истории редактирования бланка 02.03.2016 10:24:34 - 1-01 (Балабанов В.В.)  Ошибка при удалении записи в истории. Активный бланк (PDF)
+[2016-09-30 09:04:08,352] INFO       CORP\chekunovamv               ::1             server               Получение истории изменения ТБП 1-01
+[2016-09-30 09:04:12,413] INFO       CORP\chekunovamv               ::1             server               Удаление записи из истории редактирования бланка 01.03.2016 13:11:25 - 1-01 (Балабанов В.В.) 
+[2016-09-30 09:04:12,421] INFO       CORP\chekunovamv               ::1             server               Возврат: False Удаление записи из истории редактирования бланка 01.03.2016 13:11:25 - 1-01 (Балабанов В.В.)  Ошибка при удалении записи в истории. Активный бланк (Word)
+[2016-09-30 09:04:13,486] INFO       CORP\chekunovamv               ::1             server               Получение истории изменения ТБП 1-01
+[2016-09-30 09:04:15,184] INFO       CORP\chekunovamv               ::1             server               Удаление записи из истории редактирования бланка 01.03.2016 10:35:48 - 1-01 (Балабанов В.В.) 
+[2016-09-30 09:04:16,490] INFO       CORP\chekunovamv               ::1             server               Возврат: True Удаление записи из истории редактирования бланка 01.03.2016 10:35:48 - 1-01 (Балабанов В.В.)  Запись удалена
+[2016-09-30 09:04:18,500] INFO       CORP\chekunovamv               ::1             server               Получение истории изменения ТБП 1-01
+[2016-09-30 09:04:20,660] INFO       CORP\chekunovamv               ::1             server               Удаление записи из истории редактирования бланка 28.01.2016 16:06:02 - 1-01 (Чекунова М.В.) 
+[2016-09-30 09:04:20,672] INFO       CORP\chekunovamv               ::1             server               Возврат: True Удаление записи из истории редактирования бланка 28.01.2016 16:06:02 - 1-01 (Чекунова М.В.)  Запись удалена
+[2016-09-30 09:04:21,563] INFO       CORP\chekunovamv               ::1             server               Получение истории изменения ТБП 1-01
+[2016-09-30 09:04:30,310] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 10
+[2016-09-30 09:04:34,022] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 9
+[2016-09-30 09:04:42,388] INFO       CORP\chekunovamv               ::1             server               Получение истории изменения ТБП 9-25
+[2016-09-30 09:04:56,080] INFO       CORP\chekunovamv               ::1             server               Удаление записи из истории редактирования бланка 29.08.2016 16:17:43 - 9-25 (Чекунова М.В.) 
+[2016-09-30 09:04:56,090] INFO       CORP\chekunovamv               ::1             server               Возврат: True Удаление записи из истории редактирования бланка 29.08.2016 16:17:43 - 9-25 (Чекунова М.В.)  Запись удалена
+[2016-09-30 09:04:57,112] INFO       CORP\chekunovamv               ::1             server               Получение истории изменения ТБП 9-25
+[2016-09-30 09:05:16,063] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 1
+[2016-09-30 09:05:20,984] INFO       CORP\chekunovamv               ::1             server               Получение истории изменения ТБП 1-06
+[2016-09-30 09:05:26,610] INFO       CORP\chekunovamv               ::1             server               Инициализация нового ТБП (в журнале) 1-06
+[2016-09-30 09:05:26,682] INFO       CORP\chekunovamv               ::1             server               Номер ТБП присвоен
+[2016-09-30 09:05:28,243] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 1
+[2016-09-30 09:53:05,304] INFO                                                      server               Start
+[2016-09-30 09:53:05,704] INFO                                                      server               Инициализация контекста БД
+[2016-09-30 09:53:05,809] INFO                                                      server               Чтение папок
+[2016-09-30 09:53:07,157] INFO                                                      server               Чтение пользователей
+[2016-09-30 09:53:07,179] INFO                                                      server               Чтение ЛСО
+[2016-09-30 09:53:07,281] INFO                                                      server               Чтение ОБП
+[2016-09-30 09:53:07,469] INFO       CORP\chekunovamv               ::1             server               Client: 30.09.2016 09:53:07,355: Загрузка пользоветелей и папок
+[2016-09-30 09:53:07,492] INFO       CORP\chekunovamv               ::1             server               Client: 30.09.2016 09:53:07,349: Нет обновлений
+[2016-09-30 09:53:07,648] INFO       CORP\chekunovamv               ::1             server               Client: 30.09.2016 09:53:07,537: Загрузка завершена
+[2016-09-30 09:53:10,536] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки del
+[2016-09-30 09:53:27,809] INFO       CORP\chekunovamv               ::1             server               Редактирование ТБП
+[2016-09-30 09:53:27,810] INFO       CORP\chekunovamv               ::1             server               ID=528 Number=10-04
+[2016-09-30 09:53:27,824] INFO       CORP\chekunovamv               ::1             server               Возврат: False Бланк с номером 10-04 уже существует
+[2016-09-30 09:53:31,891] INFO       CORP\chekunovamv               ::1             server               Редактирование ТБП
+[2016-09-30 09:53:31,891] INFO       CORP\chekunovamv               ::1             server               ID=528 Number=10-05
+[2016-09-30 09:53:32,083] INFO       CORP\chekunovamv               ::1             server               Синхронизация бланка 10-05 Вывод в ремонт секции №1 щита 2Н
+[2016-09-30 09:53:32,099] INFO       CORP\chekunovamv               ::1             server               Запись файла ae2854d5-b3c3-43c6-9b83-f14582e53a6e в файл 10-05 Вывод в ремонт секции №1 щита 2Н.docx
+[2016-09-30 09:53:32,239] INFO       CORP\chekunovamv               ::1             server               генерация ОБП
+[2016-09-30 09:53:32,301] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 10-05
+[2016-09-30 09:53:32,307] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла \\sr-votges-013.corp.gidroogk.com\Рабочие_документы$\Предприятие\Оперативная служба\НТД\Бланки переключений\00 ЭЖ БП (ТБП_ОБП)\test\10 ЩСН\ОБП\ОБП 10-05 Вывод в ремонт секции №1 щита 2Н.DOCX
+[2016-09-30 09:53:32,323] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-09-30 09:53:32,331] INFO       CORP\chekunovamv               ::1             server               Ошибка при формировании обпSystem.TypeInitializationException: Инициализатор типа "MS.Utility.EventTrace" выдал исключение. ---> System.Security.SecurityException: Запрошенный доступ к реестру запрещен.
+   в System.ThrowHelper.ThrowSecurityException(ExceptionResource resource)
+   в Microsoft.Win32.RegistryKey.OpenSubKey(String name, Boolean writable)
+   в Microsoft.Win32.RegistryKey.OpenSubKey(String name)
+   в Microsoft.Win32.Registry.GetValue(String keyName, String valueName, Object defaultValue)
+   в MS.Utility.EventTrace.IsClassicETWRegistryEnabled()
+   в MS.Utility.EventTrace..cctor()
+   --- Конец трассировки внутреннего стека исключений ---
+   в MS.Utility.EventTrace.EasyTraceEvent(Keyword keywords, Event eventID)
+   в System.IO.Packaging.Package.Open(String path, FileMode packageMode, FileAccess packageAccess, FileShare packageShare, Boolean streaming)
+   в DocumentFormat.OpenXml.Packaging.OpenXmlPackage.OpenCore(String path, Boolean readWriteMode)
+   в DocumentFormat.OpenXml.Packaging.WordprocessingDocument.Open(String path, Boolean isEditable, OpenSettings openSettings)
+   в BlankJournal.Models.WordData.createOBP(String folder, TBPInfo tbp, Int32 num)
+[2016-09-30 09:53:32,331] INFO       CORP\chekunovamv               ::1             server               Возврат: True Бланк успешно создан.
+ Синхронизация в папку: Успешно
+[2016-09-30 09:53:33,102] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки del
+[2016-09-30 09:53:34,059] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 10
+[2016-09-30 09:53:38,475] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки del
+[2016-09-30 09:53:41,984] INFO       CORP\chekunovamv               ::1             server               Получение истории изменения ТБП 10-24
+[2016-09-30 09:53:45,178] INFO       CORP\chekunovamv               ::1             server               Удаление записи из истории редактирования бланка 23.09.2016 8:35:13 - 10-24 (Чекунова М.В.) 
+[2016-09-30 09:53:45,222] INFO       CORP\chekunovamv               ::1             server               Возврат: False Удаление записи из истории редактирования бланка 23.09.2016 8:35:13 - 10-24 (Чекунова М.В.)  Ошибка при удалении записи в истории. Активный бланк (Word)
+[2016-09-30 09:53:46,299] INFO       CORP\chekunovamv               ::1             server               Получение истории изменения ТБП 10-24
+[2016-09-30 09:53:59,325] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 1
+[2016-09-30 09:53:59,908] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 2
+[2016-09-30 09:54:07,852] INFO       CORP\chekunovamv               ::1             server               Редактирование ТБП
+[2016-09-30 09:54:07,852] INFO       CORP\chekunovamv               ::1             server               ID=22 Number=2-02
+[2016-09-30 09:54:07,854] INFO       CORP\chekunovamv               ::1             server               Возврат: False Бланк с номером 2-02 уже существует
+[2016-09-30 09:54:12,525] INFO       CORP\chekunovamv               ::1             server               Редактирование ТБП
+[2016-09-30 09:54:12,525] INFO       CORP\chekunovamv               ::1             server               ID=22 Number=2-02
+[2016-09-30 09:54:12,527] INFO       CORP\chekunovamv               ::1             server               Возврат: False Бланк с номером 2-02 уже существует
+[2016-09-30 09:54:13,625] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 2
+[2016-09-30 10:01:14,115] INFO                                                      server               Start
+[2016-09-30 10:01:14,215] INFO                                                      server               Инициализация контекста БД
+[2016-09-30 10:01:14,276] INFO                                                      server               Чтение папок
+[2016-09-30 10:01:14,513] INFO                                                      server               Чтение пользователей
+[2016-09-30 10:01:14,536] INFO                                                      server               Чтение ЛСО
+[2016-09-30 10:01:14,564] INFO                                                      server               Чтение ОБП
+[2016-09-30 10:01:15,006] INFO       CORP\chekunovamv               ::1             server               Client: 30.09.2016 10:01:14,885: Загрузка пользоветелей и папок
+[2016-09-30 10:01:15,019] INFO       CORP\chekunovamv               ::1             server               Client: 30.09.2016 10:01:14,880: Нет обновлений
+[2016-09-30 10:01:15,339] INFO       CORP\chekunovamv               ::1             server               Client: 30.09.2016 10:01:15,163: Загрузка завершена
+[2016-09-30 10:01:22,667] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 1
+[2016-09-30 10:01:24,300] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 10
+[2016-09-30 10:01:27,041] INFO       CORP\chekunovamv               ::1             server               Получение истории изменения ТБП 10-04
+[2016-09-30 10:01:49,952] INFO       CORP\chekunovamv               ::1             server               Добавление/редактирование пльзователя
+[2016-09-30 10:01:51,400] INFO       CORP\chekunovamv               ::1             server               Чтение пользователей
+[2016-09-30 10:01:51,403] INFO       CORP\chekunovamv               ::1             server               Возврат: True Информация о пользоватле сохранена
+[2016-09-30 10:01:59,072] INFO                                                      server               Start
+[2016-09-30 10:01:59,163] INFO                                                      server               Инициализация контекста БД
+[2016-09-30 10:01:59,261] INFO                                                      server               Чтение папок
+[2016-09-30 10:02:00,458] INFO                                                      server               Чтение пользователей
+[2016-09-30 10:02:00,479] INFO                                                      server               Чтение ЛСО
+[2016-09-30 10:02:00,577] INFO                                                      server               Чтение ОБП
+[2016-09-30 10:02:00,678] INFO       CORP\chekunovamv               ::1             server               Client: 30.09.2016 10:02:00,614: Загрузка пользоветелей и папок
+[2016-09-30 10:02:00,678] INFO       CORP\chekunovamv               ::1             server               Client: 30.09.2016 10:02:00,609: Нет обновлений
+[2016-09-30 10:02:00,863] INFO       CORP\chekunovamv               ::1             server               Client: 30.09.2016 10:02:00,744: Загрузка завершена
+[2016-09-30 10:02:03,230] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 10
+[2016-09-30 10:02:06,379] INFO       CORP\chekunovamv               ::1             server               Получение истории изменения ТБП 10-04
+[2016-09-30 10:02:09,214] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 5
+[2016-09-30 10:02:11,473] INFO       CORP\chekunovamv               ::1             server               Получение истории изменения ТБП 5-14
+[2016-09-30 10:02:14,478] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 10
+[2016-09-30 10:02:16,099] INFO       CORP\chekunovamv               ::1             server               Получение истории изменения ТБП 10-03
+[2016-09-30 10:02:26,045] INFO       CORP\chekunovamv               ::1             server               Добавление/редактирование пльзователя
+[2016-09-30 10:02:26,188] INFO       CORP\chekunovamv               ::1             server               Чтение пользователей
+[2016-09-30 10:02:26,191] INFO       CORP\chekunovamv               ::1             server               Возврат: True Информация о пользоватле сохранена
+[2016-09-30 10:29:15,551] INFO                                                      server               Start
+[2016-09-30 10:29:15,571] INFO                                                      server               Инициализация контекста БД
+[2016-09-30 10:29:15,642] INFO                                                      server               Чтение папок
+[2016-09-30 10:29:17,687] INFO                                                      server               Чтение пользователей
+[2016-09-30 10:29:17,746] INFO                                                      server               Чтение ЛСО
+[2016-09-30 10:29:17,900] INFO                                                      server               Чтение ОБП
+[2016-09-30 10:29:18,577] INFO       CORP\chekunovamv               ::1             server               Client: 30.09.2016 10:29:17,975: Загрузка пользоветелей и папок
+[2016-09-30 10:29:18,578] INFO       CORP\chekunovamv               ::1             server               Client: 30.09.2016 10:29:17,967: Нет обновлений
+[2016-09-30 10:29:18,880] INFO       CORP\chekunovamv               ::1             server               Client: 30.09.2016 10:29:18,769: Загрузка завершена
+[2016-09-30 10:29:23,581] INFO       CORP\chekunovamv               ::1             server               Получение журнала переключений 
+[2016-09-30 10:29:26,384] INFO       CORP\chekunovamv               ::1             server               Получение списка замечаний 
+[2016-09-30 10:29:30,461] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 1
+[2016-09-30 10:29:32,232] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 6.1
+[2016-09-30 10:29:34,180] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 6.3
+[2016-09-30 10:30:18,847] INFO                                                      server               Start
+[2016-09-30 10:30:18,979] INFO                                                      server               Инициализация контекста БД
+[2016-09-30 10:30:19,181] INFO                                                      server               Чтение папок
+[2016-09-30 10:30:22,707] INFO                                                      server               Чтение пользователей
+[2016-09-30 10:30:22,728] INFO                                                      server               Чтение ЛСО
+[2016-09-30 10:30:22,824] INFO                                                      server               Чтение ОБП
+[2016-09-30 10:30:22,919] INFO       CORP\chekunovamv               ::1             server               Client: 30.09.2016 10:30:22,859: Нет обновлений
+[2016-09-30 10:30:22,922] INFO       CORP\chekunovamv               ::1             server               Client: 30.09.2016 10:30:22,866: Загрузка пользоветелей и папок
+[2016-09-30 10:30:23,101] INFO       CORP\chekunovamv               ::1             server               Client: 30.09.2016 10:30:22,992: Загрузка завершена
+[2016-09-30 10:30:26,242] INFO       CORP\chekunovamv               ::1             server               Получение журнала переключений 
+[2016-09-30 10:30:39,689] INFO       CORP\chekunovamv               ::1             server               Инициализация нового ОБП (в журнале) -
+[2016-09-30 10:30:39,758] INFO       CORP\chekunovamv               ::1             server               Создание пустого файла ОБП с номером из ТБП
+[2016-09-30 10:30:39,760] INFO       CORP\chekunovamv               ::1             server               Создание пустого ОБП
+[2016-09-30 10:30:39,760] INFO       CORP\chekunovamv               ::1             server               Получение шаблона ОБП
+[2016-09-30 10:30:39,774] INFO       CORP\chekunovamv               ::1             server               Запись шаблона ОБП в файл D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 231.docx
+[2016-09-30 10:30:41,326] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-09-30 10:30:41,777] INFO       CORP\chekunovamv               ::1             server               шаблон ОБП создан
+[2016-09-30 10:31:05,811] INFO       CORP\chekunovamv               ::1             server               Создание/изменение зписи о переключении в журнале ОБП № 231
+[2016-09-30 10:31:05,897] INFO       CORP\chekunovamv               ::1             server               Загрузка прикрепленного файла 
+[2016-09-30 10:31:06,313] INFO       CORP\chekunovamv               ::1             server               Чтение ЛСО
+[2016-09-30 10:31:06,317] INFO       CORP\chekunovamv               ::1             server               Чтение ОБП
+[2016-09-30 10:31:06,320] INFO       CORP\chekunovamv               ::1             server               Возврат: True Бланк успешно создан
+
+[2016-09-30 10:31:08,226] INFO       CORP\chekunovamv               ::1             server               Получение журнала переключений 
+[2016-09-30 10:31:16,236] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 1
+[2016-09-30 10:31:25,172] INFO       CORP\chekunovamv               ::1             server               Инициализация нового ОБП (в журнале) 1-01
+[2016-09-30 10:31:25,177] INFO       CORP\chekunovamv               ::1             server               Создание файла ОБП с номером из ТБП
+[2016-09-30 10:31:25,179] INFO       CORP\chekunovamv               ::1             server               Формирование ОБП из ТБП 1-01
+[2016-09-30 10:31:25,195] INFO       CORP\chekunovamv               ::1             server               Формирование временного файла D:\Projects\BlankJournal\BlankJournal\TempData\ОБП 1-01 ввод ГГ-1.docx
+[2016-09-30 10:31:25,225] INFO       CORP\chekunovamv               ::1             server               Открытие документа
+[2016-09-30 10:31:25,273] INFO       CORP\chekunovamv               ::1             server               Абзацев:  131
+[2016-09-30 10:31:25,433] INFO       CORP\chekunovamv               ::1             server               Удаление шапки и окончания бланка
+[2016-09-30 10:31:25,433] INFO       CORP\chekunovamv               ::1             server               Добавление новой шапки и окончания
+[2016-09-30 10:31:25,516] INFO       CORP\chekunovamv               ::1             server               Получение количества страниц документа D:\Projects\BlankJournal\BlankJournal\TempData\/ОБП 1-01 ввод ГГ-1.docx
+[2016-09-30 10:31:25,565] INFO       CORP\chekunovamv               ::1             server               5
+[2016-09-30 10:31:25,565] INFO       CORP\chekunovamv               ::1             server               шаблон ОБП создан
+[2016-09-30 10:32:48,818] INFO       CORP\chekunovamv               ::1             server               Получение бланков папки 1

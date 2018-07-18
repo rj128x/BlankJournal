@@ -2,12 +2,12 @@
 <Settings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 			 xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 
-  <smtpServer>mx-votges-021.corp.gidroogk.com</smtpServer>
-  <smtpUser></smtpUser>
-  <smtpPassword></smtpPassword>
-  <smtpDomain></smtpDomain>
+  <smtpServer>casdc1.corp.gidroogk.com</smtpServer>
+  <smtpUser>is</smtpUser>
+  <smtpPassword>12345</smtpPassword>
+  <smtpDomain>CORP</smtpDomain>
   <smtpPort>25</smtpPort>
-  <smtpFrom>TBP@votges.rushydro.ru</smtpFrom>
+  <smtpFrom>is@rushydro.ru</smtpFrom>
   <archiveFolder>\\sr-votges-013.corp.gidroogk.com\Рабочие_документы$\Предприятие\Оперативная служба\НТД\05 Бланки переключений\00 ЭЖ БП (ТБП_ОБП)</archiveFolder>
   <syncUser>TBPSync_votges</syncUser>
   <syncPassword>Vfif12345</syncPassword>
