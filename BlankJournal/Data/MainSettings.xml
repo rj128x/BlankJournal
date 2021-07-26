@@ -8,7 +8,7 @@
   <smtpDomain>CORP</smtpDomain>
   <smtpPort>25</smtpPort>
   <smtpFrom>is@rushydro.ru</smtpFrom>
-  <archiveFolder>\\sr-votges-013.corp.gidroogk.com\Рабочие_документы$\Предприятие\Оперативная служба\НТД\05 Бланки переключений\00 ЭЖ БП (ТБП_ОБП)</archiveFolder>
+  <archiveFolder>\\fs-votges-01.corp.gidroogk.com\wd$\Предприятие\Оперативная служба\НТД\05 Бланки переключений\00 ЭЖ БП (ТБП_ОБП)</archiveFolder>
   <syncUser>TBPSync_votges</syncUser>
   <syncPassword>Vfif12345</syncPassword>
   <syncDomain>corp</syncDomain>

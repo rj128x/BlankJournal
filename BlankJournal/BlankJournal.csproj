@@ -24,6 +24,7 @@
     <SilverlightApplicationList>{3CCF8F30-A0FB-41F7-A5CC-162B6AAE1EF7}|..\MainSL\MainSL.csproj|ClientBin|False</SilverlightApplicationList>
     <TargetFrameworkProfile />
     <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -213,7 +214,6 @@
     <Content Include="bat\bkp.sql" />
     <Content Include="bat\CmdHttpRequest.exe" />
     <Content Include="bat\CommandLine.dll" />
-    <Content Include="ClientBin\MainSL.xap" />
     <Content Include="Data\ClearDB.sql" />
     <Content Include="folder_search.png" />
     <Content Include="Global.asax" />
@@ -251,6 +251,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="ClientBin\" />
     <Folder Include="TempData\" />
   </ItemGroup>
   <ItemGroup>

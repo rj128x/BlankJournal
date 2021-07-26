@@ -53,7 +53,7 @@ namespace BlankJournal.Models {
 					var list = (from t in eni.TBPInfoTable
 											from dat in eni.DataTable.Where(dat => dat.ID == t.DataPDF).DefaultIfEmpty()
 											from dat2 in eni.DataTable.Where(dat2 => dat2.ID == t.DataWord).DefaultIfEmpty()
-											where t.Number == num
+											where t.Number == num && t.isActive
 											select new { blank = t, md5PDF = dat.md5, md5Word = dat2.md5 }).FirstOrDefault();
 					if (list != null) {
 						Logger.info("Бланк найден в БД: " + num);

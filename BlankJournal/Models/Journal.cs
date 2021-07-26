@@ -383,7 +383,7 @@ namespace BlankJournal.Models {
 
 				if (record.WordData != null && record.isOBP) {
 					Logger.info("Загрузка прикрепленного файла ");
-					DataTable data = (from d in eni.DataTable where d.ID == record.IDWordData select d).FirstOrDefault();
+					DataTable data = (from d in eni.DataTable where d.ID == record.IDWordData  select d).FirstOrDefault();
 					if (data == null) {
 						data = new DataTable();
 						data.ID = Guid.NewGuid().ToString();
@@ -401,7 +401,7 @@ namespace BlankJournal.Models {
 				if (!record.isOBP) {
 					Logger.info("Поиск связанного ТБП (для сохранения сылки на файл");
 					try {
-						TBPInfoTable tbp = (from t in eni.TBPInfoTable where t.Number == tbl.TBPNumber select t).FirstOrDefault();
+						TBPInfoTable tbp = (from t in eni.TBPInfoTable where t.Number == tbl.TBPNumber && t.isActive select t).FirstOrDefault();
 						if (tbp != null) {
 							tbl.PDFData = tbp.DataPDF;
 						}
